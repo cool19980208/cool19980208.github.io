@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>我的第一篇博客文章</title>
-    <link href="/2024/07/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
-    <url>/2024/07/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <title>博客更换主题</title>
+    <link href="/2024/07/24/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/"/>
+    <url>/2024/07/24/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
     
-    <content type="html"><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>测试</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="博客更换主题"><a href="#博客更换主题" class="headerlink" title="博客更换主题"></a>博客更换主题</h2><p>1.这个地址是github上你想更换主题的地址，然后文件夹命名为fluid<br><img src="https://s2.loli.net/2024/07/24/TzA4FewlNPOkaZp.png" alt="更换主题.png"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/fluid-dev/hexo-theme-fluid.git themes/fluid<br></code></pre></td></tr></table></figure><p><img src="https://s2.loli.net/2024/07/24/hDJ3BX85MmsAr4H.png" alt="命令运行.png"><br>2.修改配置文件成新主题的文件夹名称</p><p><img src="https://s2.loli.net/2024/07/24/RhficMNg6lJwx2Y.png" alt="修改主题.png"></p><p>3.清理缓存</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo clean</span><br></code></pre></td></tr></table></figure><p>4.重新生成</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo <span class="hljs-selector-tag">g</span><br></code></pre></td></tr></table></figure><p>5.开启去预览测试</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure><p>6.没有问题后更新到github上面去</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
     
