@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>学会学习-07   用输出倒逼输入</title>
+    <link href="/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-7%20%E7%94%A8%E8%BE%93%E5%87%BA%E5%80%92%E9%80%BC%E8%BE%93%E5%85%A5/"/>
+    <url>/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-7%20%E7%94%A8%E8%BE%93%E5%87%BA%E5%80%92%E9%80%BC%E8%BE%93%E5%85%A5/</url>
+    
+    <content type="html"><![CDATA[<h1 id="学会学习-07-用输出倒逼输入"><a href="#学会学习-07-用输出倒逼输入" class="headerlink" title="学会学习-07   用输出倒逼输入"></a>学会学习-07   用输出倒逼输入</h1><h2 id="什么是输入，输出？"><a href="#什么是输入，输出？" class="headerlink" title="什么是输入，输出？"></a>什么是输入，输出？</h2><ul><li>笔记、视频、文章</li><li>对找工作有帮助</li><li>表达力</li></ul><h2 id="为什么输出可以促进输入呢？"><a href="#为什么输出可以促进输入呢？" class="headerlink" title="为什么输出可以促进输入呢？"></a>为什么输出可以促进输入呢？</h2><ul><li>费曼学习法<ul><li>把自己学到的知识可以输出给其他人</li><li>一边加深自己对知识的理解</li><li>一边倒逼自己去查其他的资料（输入）</li></ul></li><li>不一定非得对人去输出，也可以对一个事物</li><li>比如程序员的Rubber Duck Debugging  小黄鸭版的程序Debug<ul><li>锻炼表达能力和写作能力</li><li>在现在这个互联网很发达的时代，可以用视频、文本、代码等开源出去，让各路高手来评论，来促使自己的进步</li></ul></li></ul><h2 id="如何输出：3W（学习知识万能公式）"><a href="#如何输出：3W（学习知识万能公式）" class="headerlink" title="如何输出：3W（学习知识万能公式）"></a>如何输出：3W（学习知识万能公式）</h2><h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">例子：数据库（为什么需要它呢？）<br>因为可以利用数据库可以达到储存数据的目的<br></code></pre></td></tr></table></figure><h3 id="What"><a href="#What" class="headerlink" title="What"></a>What</h3><p>这是什么东西</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">例子：数据库（这是什么东西？）<br>可以用数据库的SQL语句来达到<span class="hljs-strong">**增删改查**</span>的目的<br></code></pre></td></tr></table></figure><h3 id="How"><a href="#How" class="headerlink" title="How"></a>How</h3><p>这个东西怎么用</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">例子：数据库（这个东西怎么用呢？）<br>代码语句调用<span class="hljs-keyword">SQL</span>语句<br></code></pre></td></tr></table></figure><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><blockquote><p>从这个视频开始，每天学习的知识都写文章进行输出（文章&#x2F;视频&#x2F;Duck）<br>逼着自己写博客<br>逼着自己录视频</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习如何学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>学会学习-06   治疗“学无力”  失败是成功之父，成功是成功之母</title>
+    <link href="/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-6%20%E6%B2%BB%E7%96%97%E2%80%9C%E5%AD%A6%E6%97%A0%E5%8A%9B%E2%80%9D/"/>
+    <url>/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-6%20%E6%B2%BB%E7%96%97%E2%80%9C%E5%AD%A6%E6%97%A0%E5%8A%9B%E2%80%9D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="学会学习-06-治疗“学无力”"><a href="#学会学习-06-治疗“学无力”" class="headerlink" title="学会学习-06   治疗“学无力”"></a>学会学习-06   治疗“学无力”</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">失败是成功之父，成功是成功之母<br><br></code></pre></td></tr></table></figure><hr><h2 id="Trial-and-error"><a href="#Trial-and-error" class="headerlink" title="Trial and error"></a>Trial and error</h2><blockquote><p>一段成功代码的背后真相：是不断的<strong>删除</strong>和<strong>重构</strong>才有可能出现的产物之一。<br>所以失败是<strong>必然</strong>的，成功是<strong>偶然</strong>的</p><p>只有你失败了，站起来继续前进，才有可能<strong>守得云开见月明</strong></p></blockquote><h2 id="能耐-能力-耐力"><a href="#能耐-能力-耐力" class="headerlink" title="能耐&#x3D;能力+耐力"></a>能耐&#x3D;能力+耐力</h2><ul><li>自身的能力和坚持不限的耐力才是底气</li><li>而你有了相应的能力后，出现机会才能把握住<ul><li>而不是出现了一堆机会，而你没有能力去匹配</li><li>别人都是风口上的猪，而你只能眼睁睁看着</li></ul></li></ul><h2 id="成功是成功之母"><a href="#成功是成功之母" class="headerlink" title="成功是成功之母"></a>成功是成功之母</h2><ul><li>成功是一种习惯，会给予你<strong>成功的信心</strong></li><li>不要轻言放弃，最好不要让*<strong>失败成为一种习惯</strong></li></ul><h2 id="学无力的倾向或表现"><a href="#学无力的倾向或表现" class="headerlink" title="学无力的倾向或表现"></a>学无力的倾向或表现</h2><ul><li>我能做XX吗？</li><li>XX会怎么样？</li><li>怎么做XX？</li><li>如果做XX失败了，怎么办？</li><li>说到底还是：之前失败了太多次了，不敢相信能成功。</li></ul><h2 id="命运"><a href="#命运" class="headerlink" title="命运"></a>命运</h2><ul><li>命：由自己的能力来决定</li><li>运：由自己的行动来决定（付出&#x2F;结果）</li><li>成功学的虚幻：马后炮</li></ul><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><p>描述你经历过千辛万苦搞定事情的经历以及收获</p><blockquote><p>成考计算机本的时候需要学习<strong>高数</strong><br>我才发现高数挺有意思的，后来的结果也不错，因为我觉得那场考试让我自己很舒服，知识得到了验证。<br>可惜的是上学的时候从来没有关注过<br>但自己还是要前进，加油！</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习如何学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>学会学习-05   如果选择学习资料</title>
+    <link href="/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-5%20%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"/>
+    <url>/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-5%20%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</url>
+    
+    <content type="html"><![CDATA[<h1 id="学会学习-05-如果选择学习资料"><a href="#学会学习-05-如果选择学习资料" class="headerlink" title="学会学习-05   如果选择学习资料"></a>学会学习-05   如果选择学习资料</h1><h2 id="陷阱一：碎片化学习"><a href="#陷阱一：碎片化学习" class="headerlink" title="陷阱一：碎片化学习"></a>陷阱一：碎片化学习</h2><ul><li>公众号</li><li>短视频（震惊、XXX别再这么说了）<ul><li>焦虑和虚假的满足感</li><li>千万别陷入在碎片化的学习中</li></ul></li><li>养鱼视频&#x2F;9元微课（免费的视频吸引你，后面引导你交钱去学习后面的付费课程。比如：培训机构）</li></ul><hr><h2 id="陷阱二：过度学习"><a href="#陷阱二：过度学习" class="headerlink" title="陷阱二：过度学习"></a>陷阱二：过度学习</h2><ul><li>陷入技术或知识的深度，无限地钻牛角尖</li></ul><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul><li>找经典教材</li><li>找大纲（比如招聘需求）<ul><li>以此为纲来组织各种的材料，设定<strong>刹车时刻</strong><ul><li>比如：拿别人出版的书的目录去作为大纲，围绕这个大纲去准备学习资料。因为想要出版，就要经过出版社。出版社的要求对于大纲来说很严格，因为这本书要清晰明了。所以围绕大纲一般不会错</li></ul></li><li>形成知识树后，然后去分层式学习，避免过度学习</li><li>比如：你现在要转Java程序员，不可能你什么经验都没有就可以去当高级的Java程序员<ul><li>所以去寻找你的目标（Java初级程序员）的招聘需求，看20-100个，看看要求的技术栈，选择出现最多的5个，慢慢分层式学习，然后去扩展即可，但涉及到更深的方面建议<strong>刹车</strong></li></ul></li></ul></li></ul><hr><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ul><li>搜素<strong>裂变 招生</strong>、<strong>鱼塘 流量课程</strong>、<strong>贩卖焦虑</strong></li></ul><h2 id="找裂变-招生看到了原理"><a href="#找裂变-招生看到了原理" class="headerlink" title="找裂变 招生看到了原理"></a>找<strong>裂变 招生</strong>看到了原理<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">就是根据人的利益，生存等需求去制造产品而已。<br>就好比地推，注册账号送一杯奶茶等等<br>例子：瑞幸咖啡<br></code></pre></td></tr></table></figure></h2><p>找<strong>鱼塘 流量课程</strong>看到了量</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">多个手机+多个手机号+多个号等组成的鱼塘养成计划。也好像韭菜养成一样，割一茬涨一茬<br></code></pre></td></tr></table></figure><hr><p>找<strong>贩卖焦虑</strong>的时候看到一个不错的话</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">你若不抽出时间来创造自己想要的生活，你最终将不得不花费大量的时间，来应付自己不想要的生活！<br>你现在的任务就是认真学习，努力充实自己，并不是焦虑时光。<br>你在七八月做的事，十二月自有答复<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习如何学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>学会学习-04   笔记写得好，知识学得牢</title>
     <link href="/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-4%20%E7%AC%94%E8%AE%B0%E5%86%99%E5%BE%97%E5%A5%BD%EF%BC%8C%E7%9F%A5%E8%AF%86%E5%AD%A6%E5%BE%97%E7%89%A2/"/>
     <url>/2024/07/27/%E5%AD%A6%E4%BC%9A%E5%AD%A6%E4%B9%A0-4%20%E7%AC%94%E8%AE%B0%E5%86%99%E5%BE%97%E5%A5%BD%EF%BC%8C%E7%9F%A5%E8%AF%86%E5%AD%A6%E5%BE%97%E7%89%A2/</url>
