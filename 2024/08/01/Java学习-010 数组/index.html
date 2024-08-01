@@ -19,25 +19,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java学习-06  变量定义变量变量先定义，才能使用 12int number &#x3D; 26;System.out.println(number);  引用已有变量  两种作用  1.读取变量的数据 2.重新赋值   常见错误 1、变量必须定义才能使用 2、数据类型错误 3、变量重名   变量命名的规范 1、要取有意义的变量名，不要a1、a2、x1 这是程序员默认的潜规则 这样去写代码，显的不是很专">
+    <meta name="description" content="Java学习-10  数组为什么有数组 1、如果需要记录全班同学的姓名，难道要声明60个String变量？ 2、有序数据的集合就是数据（Array） 3、数组中每项都有一个编号，被称为数组下标 通过下标就可以找到数组中指定的数据，也可以给指定位置赋值    数组的定义和初始化 1、int[] a&#x3D;{1,2,3,4,5,6,7,8,9,10};这个常用，指定初始值和长度 int a[] &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习-06  变量">
-<meta property="og:url" content="http://example.com/2024/07/31/Java%E5%AD%A6%E4%B9%A0-06%20%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:title" content="Java学习-10  数组">
+<meta property="og:url" content="http://example.com/2024/08/01/Java%E5%AD%A6%E4%B9%A0-010%20%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Java学习-06  变量定义变量变量先定义，才能使用 12int number &#x3D; 26;System.out.println(number);  引用已有变量  两种作用  1.读取变量的数据 2.重新赋值   常见错误 1、变量必须定义才能使用 2、数据类型错误 3、变量重名   变量命名的规范 1、要取有意义的变量名，不要a1、a2、x1 这是程序员默认的潜规则 这样去写代码，显的不是很专">
+<meta property="og:description" content="Java学习-10  数组为什么有数组 1、如果需要记录全班同学的姓名，难道要声明60个String变量？ 2、有序数据的集合就是数据（Array） 3、数组中每项都有一个编号，被称为数组下标 通过下标就可以找到数组中指定的数据，也可以给指定位置赋值    数组的定义和初始化 1、int[] a&#x3D;{1,2,3,4,5,6,7,8,9,10};这个常用，指定初始值和长度 int a[] &amp;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240731/%E5%B7%B2%E6%9C%89%E5%8F%98%E9%87%8F.73tuoxzr3e.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240731/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF.1e8idd0caq.webp">
-<meta property="article:published_time" content="2024-07-31T04:10:26.000Z">
-<meta property="article:modified_time" content="2024-07-31T04:10:24.012Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%95%B0%E7%BB%841.2krtnefljc.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%95%B0%E6%8D%AE%E8%B6%8A%E7%95%8C.4xug4m9epp.webp">
+<meta property="article:published_time" content="2024-08-01T04:28:26.000Z">
+<meta property="article:modified_time" content="2024-08-01T04:28:55.070Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240731/%E5%B7%B2%E6%9C%89%E5%8F%98%E9%87%8F.73tuoxzr3e.webp">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%95%B0%E7%BB%841.2krtnefljc.webp">
   
   
   
-  <title>Java学习-06  变量 - Hexo</title>
+  <title>Java学习-10  数组 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java学习-06  变量"></span>
+            <span id="subtitle" data-typed-text="Java学习-10  数组"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-31 12:10" pubdate>
-          July 31, 2024 pm
+        <time datetime="2024-08-01 12:28" pubdate>
+          August 1, 2024 pm
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          259 words
+          346 words
         
       </span>
     
@@ -287,45 +287,51 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java学习-06  变量</h1>
+            <h1 id="seo-header">Java学习-10  数组</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java学习-06-变量"><a href="#Java学习-06-变量" class="headerlink" title="Java学习-06  变量"></a>Java学习-06  变量</h1><h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><p><strong>变量先定义，才能使用</strong></p>
-<figure class="highlight irpf90"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs irpf90"><span class="hljs-built_in">int</span> <span class="hljs-keyword">number</span> = <span class="hljs-number">26</span>;<br>System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">number</span>);<br></code></pre></td></tr></table></figure>
-
-<h2 id="引用已有变量"><a href="#引用已有变量" class="headerlink" title="引用已有变量"></a>引用已有变量</h2><p>  两种作用</p>
-<ul>
-<li>1.读取变量的数据</li>
-<li>2.重新赋值</li>
-</ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240731/%E5%B7%B2%E6%9C%89%E5%8F%98%E9%87%8F.73tuoxzr3e.webp" srcset="/img/loading.gif" lazyload alt="已有变量"></p>
-<h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><ul>
-<li>1、变量必须定义才能使用</li>
-<li>2、数据类型错误</li>
-<li>3、变量重名</li>
-</ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240731/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF.1e8idd0caq.webp" srcset="/img/loading.gif" lazyload alt="常见错误"></p>
-<h2 id="变量命名的规范"><a href="#变量命名的规范" class="headerlink" title="变量命名的规范"></a>变量命名的规范</h2><ul>
-<li>1、要取有意义的变量名，不要a1、a2、x1<ul>
-<li>这是程序员默认的潜规则</li>
-<li>这样去写代码，显的不是很专业</li>
-</ul>
-</li>
-<li>2、变量一般小写开头，尽量遵守驼峰法<ul>
-<li>除了第一个单词小写，后面的单词首字母大写<ul>
-<li>比如helloWrold</li>
+                <h1 id="Java学习-10-数组"><a href="#Java学习-10-数组" class="headerlink" title="Java学习-10  数组"></a>Java学习-10  数组</h1><h2 id="为什么有数组"><a href="#为什么有数组" class="headerlink" title="为什么有数组"></a>为什么有数组</h2><ul>
+<li>1、如果需要记录全班同学的姓名，难道要声明60个String变量？</li>
+<li>2、<strong>有序</strong>数据的集合就是数据（Array）</li>
+<li>3、数组中每项都有一个编号，被称为数组下标<ul>
+<li>通过下标就可以找到数组中指定的数据，也可以给指定位置赋值</li>
 </ul>
 </li>
 </ul>
+<h2 id="数组的定义和初始化"><a href="#数组的定义和初始化" class="headerlink" title="数组的定义和初始化"></a>数组的定义和初始化</h2><ul>
+<li>1、int[] a&#x3D;{1,2,3,4,5,6,7,8,9,10};这个常用，指定初始值和长度<ul>
+<li>int a[] &#x3D; {1,2,3,4,5,6,7,8,9,10};下面这个也行，功能没区别，就是书写格式变了一点</li>
+</ul>
 </li>
-<li>3、如果英语很不好或者专业术语不知道怎么翻译或者非专业程序员，可以根据情况决定是否用中文变量名</li>
-<li>关于<strong>代码坏味道</strong><ul>
-<li>如果平时写代码都是a1、a2的变量的例子和代码风格写的不好的人，显的很不专业，如果进入公司的后续也很难在规范</li>
+<li>2、int[] a&#x3D;new int[10];声明长度，不赋初始值<ul>
+<li>int a[]&#x3D;new int[10];</li>
+<li>每个元素的值为默认值</li>
+<li>int，double等默认值是0；boolean默认值是false；String等默认值是null</li>
 </ul>
 </li>
 </ul>
+<h2 id="引用元素"><a href="#引用元素" class="headerlink" title="引用元素"></a>引用元素</h2><ul>
+<li>1、数据组员下标从0开始，最后一个元素的下标为“长度-1”</li>
+<li>2、引用数组的形式：数组名[下标]</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%95%B0%E7%BB%841.2krtnefljc.webp" srcset="/img/loading.gif" lazyload alt="数组1"></li>
+</ul>
+<h2 id="数组-下标使用"><a href="#数组-下标使用" class="headerlink" title="数组+下标使用"></a>数组+下标使用</h2><ul>
+<li>1、a[2]单独使用或者放到&#x3D;右边，就是取值<ul>
+<li>放到&#x3D;左边就是赋值</li>
+</ul>
+</li>
+<li>2、数组元素完全可以当做变量使用<ul>
+<li>进行数学运算、赋值操作、自加自减等</li>
+</ul>
+</li>
+<li>3、举例  元素的赋值&#x2F;取值</li>
+</ul>
+<h2 id="数组越界"><a href="#数组越界" class="headerlink" title="数组越界"></a>数组越界</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] a =&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br>System.out.println(a[<span class="hljs-number">3</span>]);<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>数组下标超范围了<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%95%B0%E6%8D%AE%E8%B6%8A%E7%95%8C.4xug4m9epp.webp" srcset="/img/loading.gif" lazyload alt="数据越界"></p>
+</blockquote>
 
                 
               </div>
@@ -350,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java学习-06  变量</div>
-      <div>http://example.com/2024/07/31/Java学习-06 变量/</div>
+      <div>Java学习-10  数组</div>
+      <div>http://example.com/2024/08/01/Java学习-010 数组/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 31, 2024</div>
+          <div>August 1, 2024</div>
         </div>
       
       
@@ -395,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/31/Java%E5%AD%A6%E4%B9%A0-07%20%E8%BF%90%E7%AE%97%E7%AC%A6/" title="Java学习-07  运算符">
+                      <a href="/2024/08/01/Java%E5%AD%A6%E4%B9%A0-11%20%E6%95%B0%E7%BB%84%E5%85%B6%E4%BB%96/" title="Java学习-11  数组其他">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java学习-07  运算符</span>
+                        <span class="hidden-mobile">Java学习-11  数组其他</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -405,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/31/Java%E5%AD%A6%E4%B9%A0-05%20%E6%B3%A8%E9%87%8A/" title="Java学习-05  注释">
-                        <span class="hidden-mobile">Java学习-05  注释</span>
+                      <a href="/2024/08/01/Java%E5%AD%A6%E4%B9%A0-09%20%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" title="Java学习-09  循环结构">
+                        <span class="hidden-mobile">Java学习-09  循环结构</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
