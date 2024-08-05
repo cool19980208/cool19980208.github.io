@@ -19,25 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="方法什么是方法 1、程序&#x3D;命令+数据+逻辑 2、方法也可以叫函数 3、方法就是组成程序的可以重复使用的积木，方法把复杂的N行代码封装起来，让使用者可以通过“方法名”调用(使用)。 比如println()内部就很复杂  方法的组成方法由方法名、参数、返回值组成  1、方法名是别人调用本“命令”的标识符 2、参数是调用方法的时候传递的数据 方法可能没有参数，也可能有1个或N个参数   调用方">
+    <meta name="description" content="案例：统计学生成绩 需求说明 1.有如下格式的一个文本文件：张三,90,100,80.2罗翔,99,99,30.5杨中科,100,100,100每一行代表一个学生的姓名，成绩（语数外）。输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P1-13  方法">
-<meta property="og:url" content="http://example.com/2024/08/01/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part1-%E7%AC%94%E8%AE%B0/P1-13%20%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="P2-6  案例：统计学生成绩">
+<meta property="og:url" content="http://example.com/2024/08/05/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-6%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="方法什么是方法 1、程序&#x3D;命令+数据+逻辑 2、方法也可以叫函数 3、方法就是组成程序的可以重复使用的积木，方法把复杂的N行代码封装起来，让使用者可以通过“方法名”调用(使用)。 比如println()内部就很复杂  方法的组成方法由方法名、参数、返回值组成  1、方法名是别人调用本“命令”的标识符 2、参数是调用方法的时候传递的数据 方法可能没有参数，也可能有1个或N个参数   调用方">
+<meta property="og:description" content="案例：统计学生成绩 需求说明 1.有如下格式的一个文本文件：张三,90,100,80.2罗翔,99,99,30.5杨中科,100,100,100每一行代表一个学生的姓名，成绩（语数外）。输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95.86tk1qsfae.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8%E8%AF%AD%E6%B3%95.8z6fjh910k.webp">
-<meta property="article:published_time" content="2024-08-01T12:30:26.000Z">
-<meta property="article:modified_time" content="2024-08-02T03:15:43.849Z">
+<meta property="article:published_time" content="2024-08-05T09:28:26.000Z">
+<meta property="article:modified_time" content="2024-08-05T09:28:41.871Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95.86tk1qsfae.webp">
   
   
   
-  <title>P1-13  方法 - Hexo</title>
+  <title>P2-6  案例：统计学生成绩 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P1-13  方法"></span>
+            <span id="subtitle" data-typed-text="P2-6  案例：统计学生成绩"></span>
           
         </div>
 
@@ -214,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-01 20:30" pubdate>
-          August 1, 2024 pm
+        <time datetime="2024-08-05 17:28" pubdate>
+          August 5, 2024 pm
         </time>
       </span>
     
@@ -226,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          385 words
+          506 words
         
       </span>
     
@@ -237,7 +234,7 @@
         
         
         
-          4 mins
+          5 mins
         
       </span>
     
@@ -287,39 +284,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P1-13  方法</h1>
+            <h1 id="seo-header">P2-6  案例：统计学生成绩</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="什么是方法"><a href="#什么是方法" class="headerlink" title="什么是方法"></a>什么是方法</h2><ul>
-<li>1、程序&#x3D;命令+数据+逻辑</li>
-<li>2、方法也可以叫函数</li>
-<li>3、方法就是组成程序的可以<strong>重复使用</strong>的积木，方法把复杂的N行代码封装起来，让使用者可以通过“方法名”调用(使用)。</li>
-<li>比如println()内部就很复杂</li>
-</ul>
-<h2 id="方法的组成"><a href="#方法的组成" class="headerlink" title="方法的组成"></a>方法的组成</h2><p>方法由方法名、参数、返回值组成</p>
+                <h1 id="案例：统计学生成绩"><a href="#案例：统计学生成绩" class="headerlink" title="案例：统计学生成绩"></a>案例：统计学生成绩</h1><hr>
+<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><blockquote>
+<p>1.有如下格式的一个文本文件：<br>张三,90,100,80.2<br>罗翔,99,99,30.5<br>杨中科,100,100,100<br>每一行代表一个学生的姓名，成绩（语数外）。<br>输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String转换为double的方法。</p>
+</blockquote>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<p>1、有如下格式的一个文本文件：<br>张三 ,90,100,80,90<br>罗 翔,99,99,30<br>杨 中科,100,100,100,100<br>每一行代表一个学生的姓名，成绩。每个学生参加的考试科目数量不确定。输入姓名的时候，有的姓名两边或者中间误输入了空格。输出所有人的成绩到一个文本文件“平均成绩.txt” ，内容格式如下：<br>张三, 90<br>李四, 76<br>杨中科,100</p>
+</blockquote>
 <ul>
-<li>1、方法名是别人调用本“命令”的标识符</li>
-<li>2、参数是调用方法的时候传递的数据<ul>
-<li>方法可能没有参数，也可能有1个或N个参数</li>
+<li>思路</li>
+<li>1.先逐行去获取一行的内容</li>
+<li>2.姓名的两边或中间有空格，可以用trim去空格</li>
+<li>3.考试科目数量不确定，可以用每一行的数组长度，</li>
+<li>4.把这些信息都输入到同一个文本文件中。名称为“平均成绩.txt”</li>
 </ul>
-</li>
-<li>调用方法的时候要足量、正确的类型的传递参数</li>
-<li>3、返回值是方法调用完成的结果。方法可能没有返回值</li>
-<li>对于有返回值的方法，我们也可以忽略返回值</li>
-</ul>
-<h2 id="两种方法"><a href="#两种方法" class="headerlink" title="两种方法"></a>两种方法</h2><p>1、别人写好的方法：JDK内置的库中的方法；第三方库中的方法</p>
-<p>2、自己写的方法：给自己或者别人使用的方法</p>
-<p>先学怎么调用别人的，熟练了再自己写</p>
-<h2 id="重载方法"><a href="#重载方法" class="headerlink" title="重载方法"></a>重载方法</h2><ul>
-<li>允许存在一个以上的同名方法，只要参数个数或参数类型不同即可。这些方法叫做“重载方法”。</li>
-<li>编译器会根据调用的时候传递参数的个数以及类型来自动匹配合适的重载方法。</li>
-</ul>
-<h2 id="方法的定义语法"><a href="#方法的定义语法" class="headerlink" title="方法的定义语法"></a>方法的定义语法</h2><p>Ctrl+F12 可以快速看当前页面所有的方法列表</p>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95.86tk1qsfae.webp" srcset="/img/loading.gif" lazyload alt="方法的定义语法"></p>
-<h2 id="方法的调用语法"><a href="#方法的调用语法" class="headerlink" title="方法的调用语法"></a>方法的调用语法</h2><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240801/%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8%E8%AF%AD%E6%B3%95.8z6fjh910k.webp" srcset="/img/loading.gif" lazyload alt="方法的调用语法"></p>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] lines = IOHelpers.readAllLines(<span class="hljs-string">&quot;D:/新建文件夹/练习.txt&quot;</span>);<br><span class="hljs-keyword">for</span> (String line :lines)<br>&#123;<br>    String[] strs =line.split(<span class="hljs-string">&quot;,&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> strs[<span class="hljs-number">0</span>].replace(<span class="hljs-string">&quot; &quot;</span>,<span class="hljs-string">&quot;&quot;</span>);<span class="hljs-comment">//去掉名字中的空格</span><br>    System.out.println(name);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span>strs.length;<span class="hljs-comment">//获取字符串组的长度</span><br>    <span class="hljs-type">double</span> <span class="hljs-variable">sum1</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">1</span>;i&lt;=sum-<span class="hljs-number">1</span>;i++)<br>    &#123;<br>        <span class="hljs-comment">// System.out.println(strs[i]);</span><br>        <span class="hljs-type">double</span> 成绩 = Double.parseDouble(strs[i]);<span class="hljs-comment">//String转换成double</span><br>        sum1 =成绩+sum1;<br>    &#125;<br>    <span class="hljs-type">double</span> <span class="hljs-variable">pingjun</span> <span class="hljs-operator">=</span> sum1/(sum-<span class="hljs-number">1</span>);<span class="hljs-comment">//获得平均分</span><br>    System.out.println(pingjun);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> name+<span class="hljs-string">&quot;,&quot;</span>+pingjun;<br><br>    <span class="hljs-comment">//FileWriter方法 不会覆盖</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">FileWriter</span> <span class="hljs-variable">fileWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;D:/新建文件夹/平均成绩.txt&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 第二个参数为true表示追加内容</span><br>        fileWriter.write(msg+<span class="hljs-string">&quot;\n&quot;</span>);<span class="hljs-comment">//换行</span><br>        fileWriter.close();<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -342,7 +326,7 @@
   
     <span>></span>
     
-  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part1/" class="category-chain-item">零基础玩Java-Part1</a>
+  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part2/" class="category-chain-item">零基础玩Java-Part2</a>
   
   
 
@@ -371,8 +355,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P1-13  方法</div>
-      <div>http://example.com/2024/08/01/SE101-零基础玩Java/Part1-笔记/P1-13 方法/</div>
+      <div>P2-6  案例：统计学生成绩</div>
+      <div>http://example.com/2024/08/05/SE101-零基础玩Java/Part2-笔记/P2-6 案例：统计学生成绩/</div>
     </div>
     <div class="license-meta">
       
@@ -384,7 +368,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 1, 2024</div>
+          <div>August 5, 2024</div>
         </div>
       
       
@@ -416,18 +400,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/02/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-1%20%E6%96%87%E4%BB%B6%E3%80%81%E6%97%A5%E6%9C%9F%E7%AD%89%E5%B8%B8%E7%94%A8%E7%B1%BB/" title="P2-1  文件、日期等常用类">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P2-1  文件、日期等常用类</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/01/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part1-%E7%AC%94%E8%AE%B0/P1-12%20%E6%95%B0%E7%BB%84%E6%A1%88%E4%BE%8B/" title="P1-12  数组案例">
-                        <span class="hidden-mobile">P1-12  数组案例</span>
+                      <a href="/2024/08/05/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-5%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%A3%80%E6%B5%8B%E5%9B%BE%E7%89%87%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E4%BA%8C%E7%BB%B4%E7%A0%81/" title="P2-5  案例：检测图片中是否有二维码">
+                        <span class="hidden-mobile">P2-5  案例：检测图片中是否有二维码</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

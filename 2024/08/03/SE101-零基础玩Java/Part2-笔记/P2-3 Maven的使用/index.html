@@ -19,27 +19,33 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文件、日期等常用类 常用类：File 1、输入输出、IO；文件、文件夹（目录） 输入：读文件 输出：写文件 程序员喜欢称文件夹为目录   2、如何显示文件的扩展名（程序员必备）    3、import java.io.File（引用类库） 4、File:代表文件或者目录（文件夹）.如果根据字符串创建File对象的话，必须用new； 如果在Windows下，复制出来的路径默认是用“\”分割的，需要转">
+    <meta name="description" content="Maven的使用 YZK18-COMMONS库 由杨中科封装的库，让初学者更好的学习   通过Maven引用库 1、Maven默认从国外的服务器下载库，可能速度慢。国内最好配置镜像服务器，可以用阿里云的，也可以用其他的。 2、pom.xml上右键Maven→Create settings.xml 一台电脑配置一次即可 把阿里云镜像的配置文件写进去      123456789&lt;mirrors">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P2-1  文件、日期等常用类">
-<meta property="og:url" content="http://example.com/2024/08/02/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-01%20%E6%96%87%E4%BB%B6%E3%80%81%E6%97%A5%E6%9C%9F%E7%AD%89%E5%B8%B8%E7%94%A8%E7%B1%BB/index.html">
+<meta property="og:title" content="P2-3  Maven的使用">
+<meta property="og:url" content="http://example.com/2024/08/03/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-3%20Maven%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="文件、日期等常用类 常用类：File 1、输入输出、IO；文件、文件夹（目录） 输入：读文件 输出：写文件 程序员喜欢称文件夹为目录   2、如何显示文件的扩展名（程序员必备）    3、import java.io.File（引用类库） 4、File:代表文件或者目录（文件夹）.如果根据字符串创建File对象的话，必须用new； 如果在Windows下，复制出来的路径默认是用“\”分割的，需要转">
+<meta property="og:description" content="Maven的使用 YZK18-COMMONS库 由杨中科封装的库，让初学者更好的学习   通过Maven引用库 1、Maven默认从国外的服务器下载库，可能速度慢。国内最好配置镜像服务器，可以用阿里云的，也可以用其他的。 2、pom.xml上右键Maven→Create settings.xml 一台电脑配置一次即可 把阿里云镜像的配置文件写进去      123456789&lt;mirrors">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D.7egol7y0ll.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E5%A4%B9%E5%92%8C%E6%96%87%E6%9C%AC%E7%9A%84%E5%90%8D%E5%AD%97.231s0l7q0f.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F.9nzp4t5gta.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4.86tk321c2n.webp">
-<meta property="article:published_time" content="2024-08-02T13:08:26.000Z">
-<meta property="article:modified_time" content="2024-08-03T09:10:02.189Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/commons%E5%BA%93-yzk%E5%B0%81%E8%A3%85%E7%9A%84.1022r19jom.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%85%8D%E7%BD%AE.7p3ifs6odm.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/settings.41xys9k05s.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/Maven%E5%BC%95%E7%94%A8%E5%BA%93.2venjnlzag.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E6%8F%8F%E8%BF%B0.7zqc8y0vcp.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%85%8D%E7%BD%AE1.esf4qu27u.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/YZK18.9dcvcywyjt.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%87%8D%E6%96%B0%E4%B8%8B%E8%BD%BD.syuvn05w5.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E4%B8%8B%E8%BD%BD%E6%83%85%E5%86%B5.8s37qpi1ms.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E6%88%90%E5%8A%9F.6f0l9i9iok.webp">
+<meta property="article:published_time" content="2024-08-03T09:05:26.000Z">
+<meta property="article:modified_time" content="2024-08-03T09:12:50.841Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D.7egol7y0ll.webp">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/commons%E5%BA%93-yzk%E5%B0%81%E8%A3%85%E7%9A%84.1022r19jom.webp">
   
   
   
-  <title>P2-1  文件、日期等常用类 - Hexo</title>
+  <title>P2-3  Maven的使用 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P2-1  文件、日期等常用类"></span>
+            <span id="subtitle" data-typed-text="P2-3  Maven的使用"></span>
           
         </div>
 
@@ -216,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-02 21:08" pubdate>
-          August 2, 2024 pm
+        <time datetime="2024-08-03 17:05" pubdate>
+          August 3, 2024 pm
         </time>
       </span>
     
@@ -228,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          464 words
+          410 words
         
       </span>
     
@@ -289,59 +295,60 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P2-1  文件、日期等常用类</h1>
+            <h1 id="seo-header">P2-3  Maven的使用</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="文件、日期等常用类"><a href="#文件、日期等常用类" class="headerlink" title="文件、日期等常用类"></a>文件、日期等常用类</h1><hr>
-<h2 id="常用类：File"><a href="#常用类：File" class="headerlink" title="常用类：File"></a>常用类：File</h2><ul>
-<li>1、输入输出、IO；文件、文件夹（目录）<ul>
-<li>输入：读文件</li>
-<li>输出：写文件</li>
-<li>程序员喜欢称文件夹为<strong>目录</strong></li>
+                <h1 id="Maven的使用"><a href="#Maven的使用" class="headerlink" title="Maven的使用"></a>Maven的使用</h1><hr>
+<h2 id="YZK18-COMMONS库"><a href="#YZK18-COMMONS库" class="headerlink" title="YZK18-COMMONS库"></a>YZK18-COMMONS库</h2><ul>
+<li>由杨中科封装的库，让初学者更好的学习</li>
 </ul>
-</li>
-<li>2、<strong>如何显示文件的扩展名（程序员必备）</strong><ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D.7egol7y0ll.webp" srcset="/img/loading.gif" lazyload alt="文件扩展名"></li>
-</ul>
-</li>
-<li>3、import java.io.File（引用类库）</li>
-<li>4、File:代表文件或者目录（文件夹）.如果根据字符串创建File对象的话，必须用new；<ul>
-<li>如果在Windows下，复制出来的路径默认是用“\”分割的，需要转义（IDEA会自动转义），也可以改成“&#x2F;”<ul>
-<li>因为Windows的路径复制默认是\，而Linux、Mac默认是&#x2F;</li>
-<li>所以改成\去兼容mac把，Windows其实是兼容这种写法的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">File</span> <span class="hljs-variable">fl</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;D:/Users/Desktop/test.txt&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/commons%E5%BA%93-yzk%E5%B0%81%E8%A3%85%E7%9A%84.1022r19jom.webp" srcset="/img/loading.gif" lazyload alt="commons库-yzk封装的"></p>
+<h3 id="通过Maven引用库"><a href="#通过Maven引用库" class="headerlink" title="通过Maven引用库"></a>通过Maven引用库</h3><ul>
+<li>1、Maven默认从国外的服务器下载库，可能速度慢。国内最好配置镜像服务器，可以用阿里云的，也可以用其他的。</li>
+<li>2、pom.xml上右键Maven→Create settings.xml<ul>
+<li>一台电脑配置一次即可</li>
+<li>把阿里云镜像的配置文件写进去</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>5、File只是代表逻辑上的一个文件或者目录（文件夹），不代表一定存在</li>
-</ul>
-<h3 id="File类主要成员"><a href="#File类主要成员" class="headerlink" title="File类主要成员"></a>File类主要成员</h3><p><strong>方法前面的数据类型就是返回值的类型</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">delete():<span class="hljs-comment">//删除(如果是非空目录，会删除失败，但不会提示)</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">exists</span><span class="hljs-params">()</span>:<span class="hljs-comment">//是否存在</span><br>String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>:<span class="hljs-comment">//获得名称（最后一部分）</span><br>Strin <span class="hljs-title function_">getParent</span><span class="hljs-params">()</span>、File <span class="hljs-title function_">getParentFile</span><span class="hljs-params">()</span>:<span class="hljs-comment">//得到上一级</span><br>getPath():<span class="hljs-comment">//得到路径部分</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">isDirectory</span><span class="hljs-params">()</span>:<span class="hljs-comment">//是否是目录</span><br><span class="hljs-type">boolean</span> <span class="hljs-title function_">isFile</span><span class="hljs-params">()</span>:<span class="hljs-comment">//是否是文件</span><br>String[] list()、File[] listFiles():<span class="hljs-comment">//获得子项（文件及目录），不包含更下一级</span><br>mkdirs():<span class="hljs-comment">//如果这个目录不存在，则创建；</span><br>        <span class="hljs-comment">//如果上N 级目录不存在，也把他们创建起来，不要错误调用成了mkdir()</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%85%8D%E7%BD%AE.7p3ifs6odm.webp" srcset="/img/loading.gif" lazyload alt="配置"></p>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/settings.41xys9k05s.webp" srcset="/img/loading.gif" lazyload alt="settings"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirrors</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span>	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>nexus-aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span>	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Nexus aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/nexus/content/groups/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirrors</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/Maven%E5%BC%95%E7%94%A8%E5%BA%93.2venjnlzag.webp" srcset="/img/loading.gif" lazyload alt="Maven引用库"></p>
+<h3 id="添加库"><a href="#添加库" class="headerlink" title="添加库"></a>添加库</h3><ul>
+<li>1、在<a target="_blank" rel="noopener" href="https://mvnrepository.com自己搜索,或者直接用别人提供的maven配置./">https://mvnrepository.com自己搜索，或者直接用别人提供的maven配置。</a><ul>
+<li>里面最好选新版本，除非有特殊要求</li>
+<li>多看看描述和文档.还能看到这个第三方的依赖库</li>
+<li>然后在浏览器中看看这个的用法，和易用性</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E6%8F%8F%E8%BF%B0.7zqc8y0vcp.webp" srcset="/img/loading.gif" lazyload alt="描述"></p>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%85%8D%E7%BD%AE1.esf4qu27u.webp" srcset="/img/loading.gif" lazyload alt="配置1"></p>
 <ul>
-<li>注意：文件夹的名字有可能会和文本的名字一样，mkdirs也是只创建文件夹</li>
+<li>2、在pom.xml中建一个dependencies节点(如果已经有了就不能重复建了)，然后把dependency粘贴上去即可。 dependencies中可以放多个dependency</li>
 </ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E5%A4%B9%E5%92%8C%E6%96%87%E6%9C%AC%E7%9A%84%E5%90%8D%E5%AD%97.231s0l7q0f.webp" srcset="/img/loading.gif" lazyload alt="文件夹和文本的名字"></p>
-<h2 id="常用类：日期"><a href="#常用类：日期" class="headerlink" title="常用类：日期"></a>常用类：日期</h2><ul>
-<li>1、在JDK1.8之前，日期时间都用Date，但是特别难用</li>
-<li>2、import java.time.XXX  <ul>
-<li>LocalDate：日期</li>
-<li>LocalTime：时间</li>
-<li>LocalDateTime：日期+时间</li>
-</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/YZK18.9dcvcywyjt.webp" srcset="/img/loading.gif" lazyload alt="YZK18"></p>
+<ul>
+<li><p>3、修改了pom.xml后要点一下m图标才会下载</p>
 </li>
-<li>3、获取当前日期：<ul>
-<li>获取指定日期：</li>
-<li>把字符串解析为日期：</li>
-<li>日期对象.getXXX()用于获取年月日的部分</li>
-</ul>
+<li><p>4、偶尔会下载失败，jar包展开没东西，就右键【pom.xml】，然后选择【Maven】→【Reload Project】就会自动重试下载。有时候要试好几次，或者重启IDEA</p>
 </li>
 </ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F.9nzp4t5gta.webp" srcset="/img/loading.gif" lazyload alt="常用类日期"></p>
-<h2 id="常用类：日期、时间"><a href="#常用类：日期、时间" class="headerlink" title="常用类：日期、时间"></a>常用类：日期、时间</h2><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4.86tk321c2n.webp" srcset="/img/loading.gif" lazyload alt="常用类日期时间">
-  </p>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E9%87%8D%E6%96%B0%E4%B8%8B%E8%BD%BD.syuvn05w5.webp" srcset="/img/loading.gif" lazyload alt="重新下载"></p>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E4%B8%8B%E8%BD%BD%E6%83%85%E5%86%B5.8s37qpi1ms.webp" srcset="/img/loading.gif" lazyload alt="下载情况"></p>
+<h3 id="添加yzk18-commons库"><a href="#添加yzk18-commons库" class="headerlink" title="添加yzk18-commons库"></a>添加yzk18-commons库</h3><ul>
+<li>从<a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com</a> 搜最新版yzk18-commons，放到pom.xml中。或者用：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.yzk18<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>yzk18-commons<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>2、开源地址： <a target="_blank" rel="noopener" href="https://github.com/yangzhongke/yzk18/">https://github.com/yangzhongke/yzk18/</a></li>
+<li>3、调用IOHelpers. readAllText()方法读取然后打印文本文件</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240803/%E6%88%90%E5%8A%9F.6f0l9i9iok.webp" srcset="/img/loading.gif" lazyload alt="成功"></p>
 
                 
               </div>
@@ -394,8 +401,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P2-1  文件、日期等常用类</div>
-      <div>http://example.com/2024/08/02/SE101-零基础玩Java/Part2-笔记/P2-01 文件、日期等常用类/</div>
+      <div>P2-3  Maven的使用</div>
+      <div>http://example.com/2024/08/03/SE101-零基础玩Java/Part2-笔记/P2-3 Maven的使用/</div>
     </div>
     <div class="license-meta">
       
@@ -407,7 +414,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 2, 2024</div>
+          <div>August 3, 2024</div>
         </div>
       
       
@@ -439,9 +446,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/03/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-02%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9B%B4%E5%A4%9A%E6%96%B9%E6%B3%95/" title="P2-2  字符串的更多方法">
+                      <a href="/2024/08/04/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-4%20%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E7%AD%89%E7%B1%BB/" title="P2-4  文件读写等类">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P2-2  字符串的更多方法</span>
+                        <span class="hidden-mobile">P2-4  文件读写等类</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -449,8 +456,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/01/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part1-%E7%AC%94%E8%AE%B0/P1-13%20%E6%96%B9%E6%B3%95/" title="P1-13  方法">
-                        <span class="hidden-mobile">P1-13  方法</span>
+                      <a href="/2024/08/03/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-2%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9B%B4%E5%A4%9A%E6%96%B9%E6%B3%95/" title="P2-2  字符串的更多方法">
+                        <span class="hidden-mobile">P2-2  字符串的更多方法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
