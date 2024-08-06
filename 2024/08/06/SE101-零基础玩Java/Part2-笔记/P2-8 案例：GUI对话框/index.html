@@ -19,22 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="案例：统计学生成绩 需求说明 1.有如下格式的一个文本文件：张三,90,100,80.2罗翔,99,99,30.5杨中科,100,100,100每一行代表一个学生的姓名，成绩（语数外）。输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String">
+    <meta name="description" content="GUI对话框 关于GUI 1、GUI：图形化界面。广义上桌面程序、APP、网页等都算是GUI，狭义上就是桌面程序 2、Java中有Swint、SWT等GUI技术，桌面程序开发不是Java开发的重点，因此除非有需要，否则不用研究。 Java去开发桌面程序不是主流 个人觉得C#去做桌面程序开发很合适   3、为了方便常规的GUI需求，在yzk18-GUI库中提供了一些简化GUI程序编写的方法， 如果不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P2-6  案例：统计学生成绩">
-<meta property="og:url" content="http://example.com/2024/08/05/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-6%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9/index.html">
+<meta property="og:title" content="P2-8 GUI对话框">
+<meta property="og:url" content="http://example.com/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-8%20%E6%A1%88%E4%BE%8B%EF%BC%9AGUI%E5%AF%B9%E8%AF%9D%E6%A1%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="案例：统计学生成绩 需求说明 1.有如下格式的一个文本文件：张三,90,100,80.2罗翔,99,99,30.5杨中科,100,100,100每一行代表一个学生的姓名，成绩（语数外）。输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String">
+<meta property="og:description" content="GUI对话框 关于GUI 1、GUI：图形化界面。广义上桌面程序、APP、网页等都算是GUI，狭义上就是桌面程序 2、Java中有Swint、SWT等GUI技术，桌面程序开发不是Java开发的重点，因此除非有需要，否则不用研究。 Java去开发桌面程序不是主流 个人觉得C#去做桌面程序开发很合适   3、为了方便常规的GUI需求，在yzk18-GUI库中提供了一些简化GUI程序编写的方法， 如果不">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-05T09:28:26.000Z">
-<meta property="article:modified_time" content="2024-08-05T09:28:41.871Z">
+<meta property="article:published_time" content="2024-08-06T03:15:26.000Z">
+<meta property="article:modified_time" content="2024-08-06T03:21:48.983Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>P2-6  案例：统计学生成绩 - Hexo</title>
+  <title>P2-8 GUI对话框 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P2-6  案例：统计学生成绩"></span>
+            <span id="subtitle" data-typed-text="P2-8 GUI对话框"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-05 17:28" pubdate>
-          August 5, 2024 pm
+        <time datetime="2024-08-06 11:15" pubdate>
+          August 6, 2024 am
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          506 words
+          744 words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          5 mins
+          7 mins
         
       </span>
     
@@ -284,26 +284,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P2-6  案例：统计学生成绩</h1>
+            <h1 id="seo-header">P2-8 GUI对话框</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="案例：统计学生成绩"><a href="#案例：统计学生成绩" class="headerlink" title="案例：统计学生成绩"></a>案例：统计学生成绩</h1><hr>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><blockquote>
-<p>1.有如下格式的一个文本文件：<br>张三,90,100,80.2<br>罗翔,99,99,30.5<br>杨中科,100,100,100<br>每一行代表一个学生的姓名，成绩（语数外）。<br>输出每个人的成绩到一个单独的文本文件，比如“张三.txt”的内容为“张三你好，你的语文成绩为90，你的数学成绩为100，你的外语成绩为80，平均分为90.06”。不考虑小数精度问题。演示：如果自己搜索把String转换为double的方法。</p>
-</blockquote>
-<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
-<p>1、有如下格式的一个文本文件：<br>张三 ,90,100,80,90<br>罗 翔,99,99,30<br>杨 中科,100,100,100,100<br>每一行代表一个学生的姓名，成绩。每个学生参加的考试科目数量不确定。输入姓名的时候，有的姓名两边或者中间误输入了空格。输出所有人的成绩到一个文本文件“平均成绩.txt” ，内容格式如下：<br>张三, 90<br>李四, 76<br>杨中科,100</p>
-</blockquote>
-<ul>
-<li>思路</li>
-<li>1.先逐行去获取一行的内容</li>
-<li>2.姓名的两边或中间有空格，可以用trim去空格</li>
-<li>3.考试科目数量不确定，可以用每一行的数组长度，</li>
-<li>4.把这些信息都输入到同一个文本文件中。名称为“平均成绩.txt”</li>
+                <h1 id="GUI对话框"><a href="#GUI对话框" class="headerlink" title="GUI对话框"></a>GUI对话框</h1><hr>
+<h2 id="关于GUI"><a href="#关于GUI" class="headerlink" title="关于GUI"></a>关于GUI</h2><ul>
+<li>1、GUI：图形化界面。广义上桌面程序、APP、网页等都算是GUI，狭义上就是桌面程序</li>
+<li>2、Java中有Swint、SWT等GUI技术，桌面程序开发不是Java开发的重点，因此除非有需要，否则不用研究。<ul>
+<li>Java去开发桌面程序不是主流</li>
+<li>个人觉得C#去做桌面程序开发很合适</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] lines = IOHelpers.readAllLines(<span class="hljs-string">&quot;D:/新建文件夹/练习.txt&quot;</span>);<br><span class="hljs-keyword">for</span> (String line :lines)<br>&#123;<br>    String[] strs =line.split(<span class="hljs-string">&quot;,&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> strs[<span class="hljs-number">0</span>].replace(<span class="hljs-string">&quot; &quot;</span>,<span class="hljs-string">&quot;&quot;</span>);<span class="hljs-comment">//去掉名字中的空格</span><br>    System.out.println(name);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span>strs.length;<span class="hljs-comment">//获取字符串组的长度</span><br>    <span class="hljs-type">double</span> <span class="hljs-variable">sum1</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">1</span>;i&lt;=sum-<span class="hljs-number">1</span>;i++)<br>    &#123;<br>        <span class="hljs-comment">// System.out.println(strs[i]);</span><br>        <span class="hljs-type">double</span> 成绩 = Double.parseDouble(strs[i]);<span class="hljs-comment">//String转换成double</span><br>        sum1 =成绩+sum1;<br>    &#125;<br>    <span class="hljs-type">double</span> <span class="hljs-variable">pingjun</span> <span class="hljs-operator">=</span> sum1/(sum-<span class="hljs-number">1</span>);<span class="hljs-comment">//获得平均分</span><br>    System.out.println(pingjun);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> name+<span class="hljs-string">&quot;,&quot;</span>+pingjun;<br><br>    <span class="hljs-comment">//FileWriter方法 不会覆盖</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-type">FileWriter</span> <span class="hljs-variable">fileWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;D:/新建文件夹/平均成绩.txt&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// 第二个参数为true表示追加内容</span><br>        fileWriter.write(msg+<span class="hljs-string">&quot;\n&quot;</span>);<span class="hljs-comment">//换行</span><br>        fileWriter.close();<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>3、为了方便常规的GUI需求，在yzk18-GUI库中提供了一些简化GUI程序编写的方法，<ul>
+<li>如果不够用的话，可以自己研究GUI技术，比如SWT技术~</li>
+</ul>
+</li>
+<li>任何编程语言都会被淘汰，只是时间问题而已。在时间长河中只算作是一粒沙子而已，学会解决问题的思路才是核心。</li>
+</ul>
+<h2 id="YZK18-GUI"><a href="#YZK18-GUI" class="headerlink" title="YZK18-GUI"></a>YZK18-GUI</h2><ul>
+<li>看文档探索yzk18-GUI的使用</li>
+<li>这些对话框是“模态”对话框，也就是窗口关闭之后，才能继续往下执行代码</li>
+<li>进度条是非模态对话框，不用等对话框关闭，代码就继续往后执行<ul>
+<li>Java：大部分情况，main函数执行结束了程序就退出了</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>无需死记硬背每个库的函数用法及其参数<br>在工作中，当需要用到某个库时，可以随时查阅其官方文档。<br>重要的是，<strong>了解该库的大致功能和用途</strong>，以及它的<strong>优缺点</strong>。这样，在需要实现特定功能时，能够迅速回忆起哪个库能够胜任，并直接查阅文档来具体实现。<br>比如，如果你需要处理GUI界面，你只需记得有这样一个库能够支持该功能，并在需要时查阅如何使用它。同样，对于操作PowerPoint文件的库，即使不记得具体用法，只要知道之前用过这个库并且知道它能满足需求，就可以在需要时快速查阅并应用。<br>总的来说，关键在于掌握库的功能和用途，具体用法则可以<strong>随用随查</strong>。</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim">你不用去记住这些库的每个函数是怎么用的，有什么参数等等<br>不用记那个东西，没必要记，用的时候在去查文档就行了<br><br>工作之后也是如此：<br>假如：你需要用到一个库，你临时去查这个文档。<br>然后等你用过这个库后，你知道这个库大概可以用来干什么，大体有什么功能这就够了，不需要把它的用法记住，因为记不住<br>以后在用的时候，你知道要的这个功能在哪个库中有，拿来使用即可， 比如说一个<span class="hljs-keyword">gui</span>功能的这个库，库里面正好有你需要的功能，那直接把它拿过来用就可以了<br><br>学习库后，你只要知道这个库能干什么，它的优点缺点是什么就可以了，别的不用管，随用随查<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -355,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P2-6  案例：统计学生成绩</div>
-      <div>http://example.com/2024/08/05/SE101-零基础玩Java/Part2-笔记/P2-6 案例：统计学生成绩/</div>
+      <div>P2-8 GUI对话框</div>
+      <div>http://example.com/2024/08/06/SE101-零基础玩Java/Part2-笔记/P2-8 案例：GUI对话框/</div>
     </div>
     <div class="license-meta">
       
@@ -368,7 +379,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 5, 2024</div>
+          <div>August 6, 2024</div>
         </div>
       
       
@@ -400,9 +411,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-7%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%95%B4%E7%90%86%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%B9/" title="P2-7  案例：整理视频文件夹">
+                      <a href="/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-9%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%A0%87%E5%87%86%E4%BD%93%E9%87%8D%E8%AE%A1%E7%AE%97%E5%99%A8/" title="P2-9 案例：标准体重计算器">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P2-7  案例：整理视频文件夹</span>
+                        <span class="hidden-mobile">P2-9 案例：标准体重计算器</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -410,8 +421,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/05/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-5%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%A3%80%E6%B5%8B%E5%9B%BE%E7%89%87%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89%E4%BA%8C%E7%BB%B4%E7%A0%81/" title="P2-5  案例：检测图片中是否有二维码">
-                        <span class="hidden-mobile">P2-5  案例：检测图片中是否有二维码</span>
+                      <a href="/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-7%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%95%B4%E7%90%86%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%B9/" title="P2-7  案例：整理视频文件夹">
+                        <span class="hidden-mobile">P2-7  案例：整理视频文件夹</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
