@@ -19,22 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="案例：拷贝文件夹 需求说明 1、让用户分别选择源文件夹和目标文件夹，然后把源文件夹所有文件都拷贝到目标文件夹 2、考虑文件可能会很多，所以要显示拷贝进度   思路1.弹出选择源文件夹2.弹出选择目标文件夹3.把源文件夹所有文件拷贝到目标文件夹4.要显示拷贝进度（因为文件有可能会很多）  12345678910111213141516171819String srcdir &#x3D; GUI.dirOpen">
+    <meta name="description" content="案例：统计英语单词个数 需求 1、让用户选择一个文件夹 2、程序扫描文件夹下所有的txt文件，统计总的“英文单词个数”  思路(写编程前一定要有思路)然后遇到问题就逢山开道，遇水搭桥  1.弹出一个文件夹选择对话框，让用户去选择2.扫描文件夹下所有的txt文件，有可能是文件夹后代都需要扫描3.统计每一个txt文件中的英文单词个数，统计完txt文件后在相加 即可   123456789101112&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P2-11 案例：拷贝文件夹">
-<meta property="og:url" content="http://example.com/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-11%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6%E5%A4%B9/index.html">
+<meta property="og:title" content="P2-12    案例：统计字数">
+<meta property="og:url" content="http://example.com/2024/08/07/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-12%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%97%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="案例：拷贝文件夹 需求说明 1、让用户分别选择源文件夹和目标文件夹，然后把源文件夹所有文件都拷贝到目标文件夹 2、考虑文件可能会很多，所以要显示拷贝进度   思路1.弹出选择源文件夹2.弹出选择目标文件夹3.把源文件夹所有文件拷贝到目标文件夹4.要显示拷贝进度（因为文件有可能会很多）  12345678910111213141516171819String srcdir &#x3D; GUI.dirOpen">
+<meta property="og:description" content="案例：统计英语单词个数 需求 1、让用户选择一个文件夹 2、程序扫描文件夹下所有的txt文件，统计总的“英文单词个数”  思路(写编程前一定要有思路)然后遇到问题就逢山开道，遇水搭桥  1.弹出一个文件夹选择对话框，让用户去选择2.扫描文件夹下所有的txt文件，有可能是文件夹后代都需要扫描3.统计每一个txt文件中的英文单词个数，统计完txt文件后在相加 即可   123456789101112&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-06T09:54:26.000Z">
-<meta property="article:modified_time" content="2024-08-06T09:54:15.462Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240807/%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90.2h87y2we9g.webp">
+<meta property="article:published_time" content="2024-08-07T01:14:26.000Z">
+<meta property="article:modified_time" content="2024-08-07T01:15:24.891Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240807/%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90.2h87y2we9g.webp">
   
   
   
-  <title>P2-11 案例：拷贝文件夹 - Hexo</title>
+  <title>P2-12    案例：统计字数 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P2-11 案例：拷贝文件夹"></span>
+            <span id="subtitle" data-typed-text="P2-12    案例：统计字数"></span>
           
         </div>
 
@@ -211,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-06 17:54" pubdate>
-          August 6, 2024 pm
+        <time datetime="2024-08-07 09:14" pubdate>
+          August 7, 2024 am
         </time>
       </span>
     
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          388 words
+          253 words
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          4 mins
+          3 mins
         
       </span>
     
@@ -284,27 +286,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P2-11 案例：拷贝文件夹</h1>
+            <h1 id="seo-header">P2-12    案例：统计字数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="案例：拷贝文件夹"><a href="#案例：拷贝文件夹" class="headerlink" title="案例：拷贝文件夹"></a>案例：拷贝文件夹</h1><hr>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><ul>
-<li>1、让用户分别选择源文件夹和目标文件夹，然后把源文件夹所有文件都拷贝到目标文件夹</li>
-<li>2、考虑文件可能会很多，所以要显示拷贝进度</li>
+                <h1 id="案例：统计英语单词个数"><a href="#案例：统计英语单词个数" class="headerlink" title="案例：统计英语单词个数"></a>案例：统计英语单词个数</h1><hr>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>1、让用户选择一个文件夹</li>
+<li>2、程序扫描文件夹下所有的txt文件，统计总的“英文单词个数”</li>
 </ul>
+<p><strong>思路(写编程前一定要有思路)</strong><br>然后遇到问题就<strong>逢山开道，遇水搭桥</strong></p>
 <blockquote>
-<p>思路<br>1.弹出选择源文件夹<br>2.弹出选择目标文件夹<br>3.把源文件夹所有文件拷贝到目标文件夹<br>4.要显示拷贝进度（因为文件有可能会很多）</p>
+<p>1.弹出一个文件夹选择对话框，让用户去选择<br>2.扫描文件夹下所有的txt文件，有可能是文件夹后代都需要扫描<br>3.统计每一个txt文件中的英文单词个数，统计完txt文件后在相加 即可</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">srcdir</span> <span class="hljs-operator">=</span> GUI.dirOpenBox(<span class="hljs-string">&quot;请选择源文件夹&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">destdir</span> <span class="hljs-operator">=</span> GUI.dirSaveBox(<span class="hljs-string">&quot;请选择目标文件夹&quot;</span>);<br><span class="hljs-type">File</span> <span class="hljs-variable">srcFile</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(srcdir);<br>File[] files = srcFile.listFiles();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt; files.length;i++)<span class="hljs-comment">//用到序号，for循环好找</span><br>&#123;<br>    <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> files[i];<br>    <span class="hljs-keyword">if</span> (file.isDirectory())<br>    &#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    GUI.showProgressDialog(<span class="hljs-string">&quot;正在拷贝&quot;</span>+file.getName(),i,files.length);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">destFilename</span> <span class="hljs-operator">=</span> destdir+<span class="hljs-string">&quot;/&quot;</span>+file.getName();<br>    <span class="hljs-type">byte</span>[] bytes = IOHelpers.readAllBytes(file);<span class="hljs-comment">//读取路径文件的内容</span><br>    IOHelpers.writeAllBytes(destFilename,bytes);<span class="hljs-comment">//写入目标文件夹</span><br>&#125;<br>GUI.closeProgressDialog();<br>GUI.msgBox(<span class="hljs-string">&quot;搞定&quot;</span>);<br><br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240807/%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90.2h87y2we9g.webp" srcset="/img/loading.gif" lazyload alt="思路分析"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//自己写的，难点就是正则表达式</span><br><span class="hljs-type">String</span> <span class="hljs-variable">srcdir</span> <span class="hljs-operator">=</span> GUI.dirOpenBox(<span class="hljs-string">&quot;请选择源文件夹&quot;</span>);<br>String[] files = IOHelpers.getFilesRecursively(srcdir,<span class="hljs-string">&quot;txt&quot;</span>);<span class="hljs-comment">//遍历出txt文件</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;<span class="hljs-comment">//单词总个数</span><br><span class="hljs-keyword">for</span> (String file:files)<br>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> IOHelpers.readAllText(file);<span class="hljs-comment">//读取txt文件内容</span><br>    String[] strs = str.split(<span class="hljs-string">&quot;\\s|\\.|\\?|\\!|,&quot;</span>);<span class="hljs-comment">//分割成单个单词</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> strs.length;<br>    sum =sum+i;<br>&#125;<br>System.out.println(<span class="hljs-string">&quot;这个文件夹下&quot;</span>+srcdir+<span class="hljs-string">&quot;一共有&quot;</span>+sum+<span class="hljs-string">&quot;个单词&quot;</span>);<br></code></pre></td></tr></table></figure>
 
-<p>分析</p>
-<ul>
-<li>最佳写法肯定选择for循环，因为要有进度条，用序号去搞进度条</li>
-<li>后面也有for增强的写法，但工作中很少看到</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">srcdir</span> <span class="hljs-operator">=</span> GUI.dirOpenBox(<span class="hljs-string">&quot;请选择源文件夹&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">destdir</span> <span class="hljs-operator">=</span> GUI.dirSaveBox(<span class="hljs-string">&quot;请选择目标文件夹&quot;</span>);<br><span class="hljs-type">int</span> i= <span class="hljs-number">0</span>;<span class="hljs-comment">//序号</span><br><span class="hljs-type">File</span> <span class="hljs-variable">srcFile</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(srcdir);<br>File[] files = srcFile.listFiles();<br><span class="hljs-keyword">for</span> (File file :srcFile.listFiles())<br>&#123;<br>    <span class="hljs-keyword">if</span> (file.isDirectory())<br>    &#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    GUI.showProgressDialog(<span class="hljs-string">&quot;正在拷贝&quot;</span>+file.getName(),i,files.length);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">destFilename</span> <span class="hljs-operator">=</span> destdir+<span class="hljs-string">&quot;/&quot;</span>+file.getName();<br>    <span class="hljs-type">byte</span>[] bytes = IOHelpers.readAllBytes(file);<span class="hljs-comment">//读取路径文件的内容</span><br>    IOHelpers.writeAllBytes(destFilename,bytes);<span class="hljs-comment">//写入目标文件夹</span><br>    i++;<span class="hljs-comment">//序号自增</span><br>&#125;<br>GUI.closeProgressDialog();<br>GUI.msgBox(<span class="hljs-string">&quot;搞定&quot;</span>);<br><br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -356,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P2-11 案例：拷贝文件夹</div>
-      <div>http://example.com/2024/08/06/SE101-零基础玩Java/Part2-笔记/P2-11 案例：拷贝文件夹/</div>
+      <div>P2-12    案例：统计字数</div>
+      <div>http://example.com/2024/08/07/SE101-零基础玩Java/Part2-笔记/P2-12 案例：统计字数/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 6, 2024</div>
+          <div>August 7, 2024</div>
         </div>
       
       
@@ -401,18 +401,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/07/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-12%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%97%E6%95%B0/" title="P2-12    案例：统计字数">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P2-12    案例：统计字数</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-10%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BF%9D%E5%AD%98%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E5%88%B0%E6%96%87%E4%BB%B6/" title="P2-10  案例：保存用户信息到文件">
-                        <span class="hidden-mobile">P2-10  案例：保存用户信息到文件</span>
+                      <a href="/2024/08/06/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-11%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6%E5%A4%B9/" title="P2-11 案例：拷贝文件夹">
+                        <span class="hidden-mobile">P2-11 案例：拷贝文件夹</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

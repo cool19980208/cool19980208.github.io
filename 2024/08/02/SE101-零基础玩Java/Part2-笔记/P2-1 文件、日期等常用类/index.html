@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F.9nzp4t5gta.webp">
 <meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4.86tk321c2n.webp">
 <meta property="article:published_time" content="2024-08-02T13:08:26.000Z">
-<meta property="article:modified_time" content="2024-08-03T09:10:02.189Z">
+<meta property="article:modified_time" content="2024-08-07T01:30:01.897Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          464 words
+          951 words
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          4 mins
+          8 mins
         
       </span>
     
@@ -324,6 +324,10 @@
 <li>注意：文件夹的名字有可能会和文本的名字一样，mkdirs也是只创建文件夹</li>
 </ul>
 <p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E6%96%87%E4%BB%B6%E5%A4%B9%E5%92%8C%E6%96%87%E6%9C%AC%E7%9A%84%E5%90%8D%E5%AD%97.231s0l7q0f.webp" srcset="/img/loading.gif" lazyload alt="文件夹和文本的名字"></p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">File</span> <span class="hljs-variable">fl</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;E:/temp/test.txt&quot;</span>);<br><span class="hljs-comment">// System.out.println(fl);</span><br><span class="hljs-type">File</span> <span class="hljs-variable">fl1</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;E:/temp&quot;</span>);<br><span class="hljs-comment">//System.out.println(fl1);</span><br><span class="hljs-comment">//delete()://删除(如果是非空目录，会删除失败，但不会提示)</span><br>fl.delete();<br><span class="hljs-comment">//fl1.delete();</span><br><br><span class="hljs-comment">//boolean exists()://是否存在</span><br>System.out.println(fl.exists());<br>System.out.println(fl1.exists());<br><span class="hljs-comment">//String getName()://获得名称（最后一部分）</span><br>System.out.println(fl.getName());<br>System.out.println(fl1.getName());<br><span class="hljs-comment">//Strin getParent()、File getParentFile()://得到上一级</span><br>System.out.println(fl.getParent());<br>System.out.println(fl1.getParentFile());<br><span class="hljs-comment">//getPath()://得到路径部分</span><br>System.out.println(fl.getPath());<br><span class="hljs-comment">//boolean isDirectory()://是否是目录</span><br>System.out.println(fl1.isDirectory());<br><span class="hljs-comment">//boolean isFile()://是否是文件</span><br>System.out.println(fl.isFile());<br><span class="hljs-comment">//String[] list()、File[] listFiles()://获得子项（文件及目录），不包含更下一级</span><br>String[] files =fl1.list();<br><span class="hljs-keyword">for</span> (String file :files)<br>&#123;<br>    System.out.println(file);<br>&#125;<br><span class="hljs-comment">//mkdirs()://如果这个目录不存在，则创建；//如果上N 级目录不存在，也把他们创建起来，不要错误调用成了mkdir()</span><br>fl.mkdirs();<br></code></pre></td></tr></table></figure>
+
+<hr>
 <h2 id="常用类：日期"><a href="#常用类：日期" class="headerlink" title="常用类：日期"></a>常用类：日期</h2><ul>
 <li>1、在JDK1.8之前，日期时间都用Date，但是特别难用</li>
 <li>2、import java.time.XXX  <ul>
@@ -340,9 +344,14 @@
 </li>
 </ul>
 <p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F.9nzp4t5gta.webp" srcset="/img/loading.gif" lazyload alt="常用类日期"></p>
-<h2 id="常用类：日期、时间"><a href="#常用类：日期、时间" class="headerlink" title="常用类：日期、时间"></a>常用类：日期、时间</h2><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4.86tk321c2n.webp" srcset="/img/loading.gif" lazyload alt="常用类日期时间">
-  </p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//LocalTime</span><br><span class="hljs-type">LocalTime</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> LocalTime.now();<span class="hljs-comment">//获取当前时分秒</span><br>System.out.println(t1);<br>LocalTime t2=LocalTime.of(<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">56</span>);<span class="hljs-comment">//获取制定的时分秒</span><br>System.out.println(t2);<br>LocalTime t3=LocalTime.parse(<span class="hljs-string">&quot;23:26:08&quot;</span>);<span class="hljs-comment">//字符串解析成时间</span><br>System.out.println(t3);<br><span class="hljs-comment">//获取时分秒</span><br>System.out.println(t1.getHour());<br>System.out.println(t1.getMinute());<br>System.out.println(t1.getSecond());<br><br></code></pre></td></tr></table></figure>
 
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//LocalDate</span><br>LocalDate d1=LocalDate.now();<span class="hljs-comment">//获取当前日期</span><br>System.out.println(d1);<br>LocalDate d2=LocalDate.of(<span class="hljs-number">2023</span>,<span class="hljs-number">6</span>,<span class="hljs-number">19</span>);<span class="hljs-comment">//获取指定日期</span><br>System.out.println(d2);<br>LocalDate d3=LocalDate.parse(<span class="hljs-string">&quot;1998-02-08&quot;</span>);<span class="hljs-comment">//把字符串解析为日期</span><br>System.out.println(d3);<br><br>System.out.println(d3.getYear());<span class="hljs-comment">//获取年</span><br>System.out.println(d3.getMonth());<span class="hljs-comment">//获取英语的月</span><br>System.out.println(d3.getMonthValue());<span class="hljs-comment">//获取数字的月</span><br>System.out.println(d3.getDayOfMonth());<span class="hljs-comment">//这月的第几天</span><br>System.out.println(d3.getDayOfWeek());<span class="hljs-comment">//这周的第几天</span><br>System.out.println(d3.getDayOfYear());<span class="hljs-comment">//这年的第几天</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="常用类：日期、时间"><a href="#常用类：日期、时间" class="headerlink" title="常用类：日期、时间"></a>常用类：日期、时间</h2><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240802/%E5%B8%B8%E7%94%A8%E7%B1%BB%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4.86tk321c2n.webp" srcset="/img/loading.gif" lazyload alt="常用类日期时间"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//LocalDateTime</span><br> LocalDateTime dt1=LocalDateTime.now();<br>System.out.println(dt1);<br>LocalDate d2=LocalDate.of(<span class="hljs-number">1998</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>);<span class="hljs-comment">//获取指定日期</span><br>LocalTime t2=LocalTime.of(<span class="hljs-number">12</span>,<span class="hljs-number">24</span>,<span class="hljs-number">59</span>);<span class="hljs-comment">//获取制定的时分秒</span><br>LocalDateTime dt2=LocalDateTime.of(d2,t2);<br>System.out.println(dt2);<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * LocalDateTime lt = LocalDateTime.parse(&quot;2018-12-30T19:34:50.63&quot;);</span><br><span class="hljs-comment"> *需要解析后才能正常输出</span><br><span class="hljs-comment">  *</span><br><span class="hljs-comment">  */</span><br>LocalDateTime dt3=LocalDateTime.parse(<span class="hljs-string">&quot;1997-03-17T11:59:59&quot;</span>);<br>System.out.println(dt3);<br><br>System.out.println(dt1.getDayOfMonth());<br>System.out.println(dt1.getDayOfWeek());<br>System.out.println(dt1.getDayOfYear());<br></code></pre></td></tr></table></figure>
                 
               </div>
             
