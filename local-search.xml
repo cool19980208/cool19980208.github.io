@@ -4,6 +4,168 @@
   
   
   <entry>
+    <title>P3-6 类的其他语法</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-6%20%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E8%AF%AD%E6%B3%95/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-6%20%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E8%AF%AD%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="类的其他语法"><a href="#类的其他语法" class="headerlink" title="类的其他语法"></a>类的其他语法</h1><hr><h2 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h2><ul><li>1、所有类型的局部变量必须初始化，而成员变量声明时候可以部初始化。<ul><li>对成员变量，对于基本数值类型默认初始值为0、false</li><li>String、Person等非基本类型从初始化为null（从命名上看的出来，首字母大写是类的写法）</li><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%B1%BB.6t718xnuqq.webp" alt="类"></li></ul></li><li>2、当成员变量和局部变量（方法的参数也可以看作局部变量）重名的时候，age被看作局部变量，因此为了避免混乱，建议访问类成员变量、方法的时候加上**this.**，在类部门this代表当前对象。<ul><li>**this.**也可以调用当前类的成员方法</li></ul></li></ul><h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul><li>1、当一个变量指向null的时候表示<strong>变量不执行任何对象</strong></li><li>2、Java的基本数据类型（byte、short、int、long、float、double、char、boolean）变量不可以被赋值为null<ul><li>其他类（包括String）变量可以被赋值为null</li></ul></li><li>3、对于一个指向null的变量调用如何方法都会报错<ul><li>碰到<strong>NullPointerException</strong>不要慌</li><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E6%8A%A5%E9%94%99.5fki4wcspu.webp" alt="报错"></li></ul></li></ul><h3 id="public-公有-和protected-受保护的"><a href="#public-公有-和protected-受保护的" class="headerlink" title="public(公有)和protected(受保护的)"></a>public(公有)和protected(受保护的)</h3><ul><li>1、谁都可以访问的叫public；只有本类才能访问的是private。这就是<strong>封装</strong></li><li>2、一般情况下，成员变量声明为private，不希望外部访问的方法也是private，希望别人调用的方法声明为public<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/public.60u5r7fuba.webp" alt="public"></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>P3-5 “搞”对象</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-5%20%E2%80%9C%E6%90%9E%E2%80%9D%E5%AF%B9%E8%B1%A1/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-5%20%E2%80%9C%E6%90%9E%E2%80%9D%E5%AF%B9%E8%B1%A1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="“搞”对象"><a href="#“搞”对象" class="headerlink" title="“搞”对象"></a>“搞”对象</h1><hr><h2 id="同一个类的不同对象是独立的"><a href="#同一个类的不同对象是独立的" class="headerlink" title="同一个类的不同对象是独立的"></a>同一个类的不同对象是独立的</h2><ul><li>问题：有几个Preson对象呢？<ul><li>答案：2个<br>例子：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">Person p1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<span class="hljs-comment">//只有new出来的才是一个新的对象</span><br>p1.setAge(<span class="hljs-number">18</span>);<br>p1.setName(<span class="hljs-string">&quot;Cool&quot;</span>);<br>p1.sayHello();<br><br>Person p2=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>p2.setAge(<span class="hljs-number">88</span>);<br>p2.setName(<span class="hljs-string">&quot;X&quot;</span>);<br>p2.sayHello();<br><br>p1.sayHello();<span class="hljs-comment">//18</span><br></code></pre></td></tr></table></figure></li></ul></li></ul><h3 id="复习原始数据类型"><a href="#复习原始数据类型" class="headerlink" title="复习原始数据类型"></a>复习原始数据类型</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> i= <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> j=i;<span class="hljs-comment">//把i&quot;当前&quot;的值赋值给j</span><br>i=<span class="hljs-number">20</span>;<span class="hljs-comment">//这是i后来的值，与之前的操作没有关系</span><br>System.out.println(j);<br><br></code></pre></td></tr></table></figure><h2 id="类变量复制"><a href="#类变量复制" class="headerlink" title="类变量复制"></a>类变量复制</h2><ul><li>1、Preson p2&#x3D;p1;  变量p2指向p1”当前”所指向的对象</li><li>2、画对象关系图，分析有几个Preson类的对象<ul><li>1个</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Person p1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>p1.setAge(<span class="hljs-number">18</span>);<br>p1.setName(<span class="hljs-string">&quot;Cool&quot;</span>);<br>p1.sayHello();<br>Person p2=p1;<span class="hljs-comment">//Preson p2=p1;  变量p2指向p1&quot;当前&quot;所指向的对象</span><br><span class="hljs-comment">//让p2变量指向p1&quot;当前指向的对象&quot;</span><br>p2.setAge(<span class="hljs-number">80</span>);<br>p2.setName(<span class="hljs-string">&quot;X&quot;</span>);<br>p2.sayHello();<br>p1.sayHello();<span class="hljs-comment">//结果是多少     80</span><br></code></pre></td></tr></table></figure><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%94%BB%E5%9B%BE1.7ax2xgky1i.webp" alt="画图1"></p><h2 id="参数变量赋值"><a href="#参数变量赋值" class="headerlink" title="参数变量赋值"></a>参数变量赋值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <br>&#123;<br>    Person p1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>    p1.setAge(<span class="hljs-number">18</span>);<br>    p1.setName(<span class="hljs-string">&quot;Cool&quot;</span>);<br>    p1.sayHello();<br>    test(p1);<br>    p1.sayHello();<span class="hljs-comment">//这个值是多少呢？  666 Cool</span><br>&#125;<br><span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">(Person p)</span><br>&#123;<br>    p.setAge(<span class="hljs-number">666</span>);<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul><li>当Person的变量又重新new了一个新对象的时候，那上次连接的对象就会断开连接，后续练习到新对象上去</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Person</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>p1.setAge(<span class="hljs-number">18</span>);<br>p1.setName(<span class="hljs-string">&quot;Cool&quot;</span>);<br>p1.sayHello();<br><br>Person p2=p1;<br>p1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>p1.setAge(<span class="hljs-number">26</span>);<br>p1.setName(<span class="hljs-string">&quot;X&quot;</span>);<br>p1.sayHello();<span class="hljs-comment">//这个值是什么呢？  26</span><br><br>p2.sayHello();<span class="hljs-comment">//这个值是什么呢？  18</span><br></code></pre></td></tr></table></figure><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%94%BB%E5%9B%BE2.7p7hux8hw.webp" alt="画图2"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>P3-4 类的基本语法</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-4%20%E7%B1%BB%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-4%20%E7%B1%BB%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="类的基本语法"><a href="#类的基本语法" class="headerlink" title="类的基本语法"></a>类的基本语法</h1><hr><h2 id="类的基础知识"><a href="#类的基础知识" class="headerlink" title="类的基础知识"></a>类的基础知识</h2><ul><li>1、private：只能类内部访问；public：其他类也可以访问</li><li>2、类的定义由成员变量和方法组成<ul><li>方法：动作<ul><li>大多数情况都是public</li></ul></li><li>成员变量：状态<ul><li>大多数情况都是private</li></ul></li></ul></li></ul><h2 id="Java中定义一个类的语法"><a href="#Java中定义一个类的语法" class="headerlink" title="Java中定义一个类的语法"></a>Java中定义一个类的语法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> <br>&#123;<br>    <span class="hljs-keyword">private</span>  <span class="hljs-type">int</span> age;<span class="hljs-comment">//成员变量</span><br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span><br>    &#123;<br>        <span class="hljs-built_in">this</span>.age = value;<span class="hljs-comment">//给当前对象赋值</span><br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String value)</span><br>    &#123;<br>        <span class="hljs-built_in">this</span>.name=value;<br>    &#125;<br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">sayHello</span><span class="hljs-params">()</span><br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;大家好，我是&quot;</span>+<span class="hljs-built_in">this</span>.name+<span class="hljs-string">&quot;,我今年&quot;</span>+<span class="hljs-built_in">this</span>.age+<span class="hljs-string">&quot;岁了。&quot;</span>);<span class="hljs-comment">//取值</span><br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">hi</span><span class="hljs-params">()</span><br>    &#123;<br>        <span class="hljs-comment">//static方法</span><br>        System.out.println(<span class="hljs-string">&quot;Hello wrold!&quot;</span>);<br>        <span class="hljs-comment">//this.age=5;  static方法中不能直接访问非static成员</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure><h3 id="创建类的对象"><a href="#创建类的对象" class="headerlink" title="创建类的对象"></a>创建类的对象</h3><ul><li>可以声明Person类型的变量：Person p1；</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Person p1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br><span class="hljs-comment">//Preson p1:声明Preson类型的的变量p1</span><br><span class="hljs-comment">//new Person():创建Person类的一个对象 或者说是 把Preson实例化</span><br><span class="hljs-comment">//Person p1=new Person(): 1.声明Preson类型的的变量p1 2.创建Person类的一个对象 3.把变量p1指向这个对象</span><br><br></code></pre></td></tr></table></figure><h3 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">p1.setAge(<span class="hljs-number">18</span>);<span class="hljs-comment">//调用p1变量“当前所指向对象”的setAge方法</span><br></code></pre></td></tr></table></figure><h2 id="类的另一种解读"><a href="#类的另一种解读" class="headerlink" title="类的另一种解读"></a>类的另一种解读</h2><ul><li>类是把对象的若干个状态(成员变量)和相关的方法聚集到一个模板中的机制</li><li>new一个类就是根据类的模板实例化出来一个对象<ul><li>不同的对象之间互不干扰</li></ul></li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/new.esfd7hugj.webp" alt="new"></p><h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><ul><li>static方法和对象无关，因此可以直接通过类名调用<ul><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%B1%BB%E5%90%8D%E8%B0%83%E7%94%A8.5j442hv6i4.webp" alt="类名调用"></li><li>直接用类目. 去访问static方法</li><li>用p1.hi()的话，是没有意义的，因为static方法与对象无关</li><li>static方法是不依赖于类的成员变量的</li><li>好比:String也有static方法</li><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%B1%BB%E7%9B%AE%E8%B0%83%E7%94%A81.3gobeg3jn1.webp" alt="类目调用1"></li></ul></li><li>非static方法需要通过对象调用<ul><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8.54xobmmvn0.webp" alt="方法调用"></li><li>非static方法是依赖于成员变量的，所以不能直接使用类目去调用</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">hi</span><span class="hljs-params">()</span><br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;Hello wrold!&quot;</span>);<br>    <span class="hljs-comment">//this.age=5;  static方法中不能直接访问非static成员</span><br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>P3-3 面向对象概念</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-3%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E5%BF%B5/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-3%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E5%BF%B5/</url>
+    
+    <content type="html"><![CDATA[<h1 id="面向对象概念"><a href="#面向对象概念" class="headerlink" title="面向对象概念"></a>面向对象概念</h1><hr><blockquote><p>说明<br>1、for、while、变量、方法、数组等这些都是“面向过程”的语法，Java还提供了“面向对象”的语法。“面向对象”不是用来替代“面向过程”的，而是一个升华和补充。<br>2、初学者不可能完全搞明白“面向对象”，搞明白语法即可</p></blockquote><h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1.7sn4ltpwvd.webp" alt="类和对象"></p><h2 id="对象发送消息"><a href="#对象发送消息" class="headerlink" title="对象发送消息"></a>对象发送消息</h2><ul><li>消息：不同的对象之间可以互相发送“消息”<ul><li>好比下面这张图！</li><li>关羽是对象(人类的实例)；马也是对象（动物类中马的实例）</li><li>比如关羽可以向马 发出消息：驾、驾、驾 ；冲….</li></ul></li><li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%AF%B9%E8%B1%A1.58ha96rtto.webp" alt="对象"></li></ul><h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><ul><li>马自身把步伐、呼吸、进食等“封装”起来。其他的对象可以向马发送消息<ul><li>比如发送：喝水，追等</li></ul></li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B0%81%E8%A3%85.7i0asoiaz5.webp" alt="封装"></p><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul><li>不同的“马”类对应的实例属性都不相同</li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B1%9E%E6%80%A7.45hkyb2i12.webp" alt="属性"></p><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul><li>继承是用来简化类型声明的</li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E7%BB%A7%E6%89%BF.73tv1t2duw.webp" alt="继承"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>P3-2 方法的返回值</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-2%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-2%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="方法的返回值"><a href="#方法的返回值" class="headerlink" title="方法的返回值"></a>方法的返回值</h1><hr><h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><ul><li>1、对于有返回值方法，需要显示指定返回值类型，这类方法的返回值通过return语句给出结果</li><li>2、对于没有返回值的方法，要想结束方法，直接用return;就可以。return下面的语句将不再执行<ul><li>用来终止当前函数&#x2F;方法</li></ul></li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/return.51e2dpaj44.webp" alt="return"></p><h3 id="常见问题1"><a href="#常见问题1" class="headerlink" title="常见问题1"></a>常见问题1</h3><ul><li>1、如果方法有返回值，则return后的数据类型必须和返回值的类型一致。并且在所有情况下，方法都要返回数据</li></ul><h3 id="常见问题2"><a href="#常见问题2" class="headerlink" title="常见问题2"></a>常见问题2</h3><ul><li>return只是结束当前的方法，并不会结束程序；只有main方法执行完成后，程序才会结束</li></ul><hr><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul><li>1、计算两个数的和，有返回值</li><li>2、计算给定的两个数中的最大值，有返回值</li><li>3、接收一个文本文件名，读取并输出文件的内容，如果文件不存在，则输出“文件不存在”，无返回值</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//计算两个数的和，有返回值   </span><br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> i1,<span class="hljs-type">int</span> i2)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> i1+i2;<br>&#125;<br></code></pre></td></tr></table></figure><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">//计算给定的两个数中的最大值，有返回值</span><br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(<span class="hljs-type">int</span> i1,<span class="hljs-type">int</span> i2)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i1&gt;i2)<br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;最大值为：&quot;</span>+i1);<br>        <span class="hljs-keyword">return</span> i1;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        System.out.println(<span class="hljs-string">&quot;最大值为：&quot;</span>+i2);<br>        <span class="hljs-keyword">return</span> i2;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//接收一个文本文件名，读取并输出文件的内容，如果文件不存在，则输出“文件不存在”</span><br><span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">outPut</span><span class="hljs-params">(String  filename)</span><br>&#123;<br><span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filename);<br><span class="hljs-comment">/*if (file.exists()==false)//这个文件是否存在。if(!file.exists()) 另外一种写法</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    System.out.println(&quot;文件不存在&quot;);</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">else</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    String s = IOHelpers.readAllText(file);</span><br><span class="hljs-comment">    System.out.println(s);</span><br><span class="hljs-comment">&#125;*/</span><br><br>&#125;<br></code></pre></td></tr></table></figure><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//这一种写法也可以</span><br><span class="hljs-keyword">if</span> (file.exists()==<span class="hljs-literal">false</span>)<span class="hljs-comment">//这个文件是否存在。if(!file.exists()) 另外一种写法</span><br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;文件不存在&quot;</span>);<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> IOHelpers.readAllText(file);<br>    System.out.println(s);<br><br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>P3-1 编写自己的方法</title>
+    <link href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-1%20%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-1%20%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="编写自己的方法"><a href="#编写自己的方法" class="headerlink" title="编写自己的方法"></a>编写自己的方法</h1><hr><blockquote><p>开始学习更多Java语法：编写方法、类、JavaBean、简单的继承？Integer和int等；List、Map等，简单的泛型<br>这部分内容不能拿，但是枯燥，而且“这有啥用？”</p></blockquote><h2 id="复习：方法"><a href="#复习：方法" class="headerlink" title="复习：方法"></a>复习：方法</h2><ul><li>1、方法：一段可以重复使用的代码。相当于一个“命令”、“积木块”</li><li>2、方法由“名字”、“参数”、“返回值”组成</li><li>3、方法既可以由参数，也可以没有参数</li><li>4、方法既可以由返回值，也可以没有返回值</li><li>5、方法可以由多个重名的“重载方法”</li></ul><h2 id="定义自己的方法"><a href="#定义自己的方法" class="headerlink" title="定义自己的方法"></a>定义自己的方法</h2><ul><li>1、从“使用”到“创造”<ul><li>从学习使用别人的方法–&gt;自己有写方法的能力，而不是一味的只会使用别人的；当别人写的方法满足不了的时候，就需要自己去创造了</li></ul></li><li>2、方法的一般格式：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> 返回类型名 方法名(参数列表)<br>&#123;<br>    语句;<span class="hljs-comment">//方法体</span><br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p>如果方法没有返回值，可以将类型名写为void</p></blockquote><h3 id="常见问题1"><a href="#常见问题1" class="headerlink" title="常见问题1"></a>常见问题1</h3><ul><li>赋值的顺序的与参数的顺序有关，与变量名无关</li><li>主要看调用方法时的填写的参数顺序</li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%981.13lowzn8k8.webp" alt="常见问题1"></p><h3 id="常见问题2"><a href="#常见问题2" class="headerlink" title="常见问题2"></a>常见问题2</h3><ul><li>定义在方法内部的变量成为局部变量<ul><li>出了方法就用不了这个变量了</li></ul></li></ul><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%982.3d4pgh7z15.webp" alt="常见问题2"></p><h3 id="常见问题3"><a href="#常见问题3" class="headerlink" title="常见问题3"></a>常见问题3</h3><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%983.60u5quivrm.webp" alt="常见问题3"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>零基础玩Java-Part3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>P2-13 案例：计算星座</title>
     <link href="/2024/08/07/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-13%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%98%9F%E5%BA%A7/"/>
     <url>/2024/08/07/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-13%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%98%9F%E5%BA%A7/</url>
