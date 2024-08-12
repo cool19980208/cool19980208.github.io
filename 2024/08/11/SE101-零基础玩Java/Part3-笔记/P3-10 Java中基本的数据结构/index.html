@@ -19,26 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="编写自己的方法  开始学习更多Java语法：编写方法、类、JavaBean、简单的继承？Integer和int等；List、Map等，简单的泛型这部分内容不能拿，但是枯燥，而且“这有啥用？”  复习：方法 1、方法：一段可以重复使用的代码。相当于一个“命令”、“积木块” 2、方法由“名字”、“参数”、“返回值”组成 3、方法既可以由参数，也可以没有参数 4、方法既可以由返回值，也可以没有返回值 5">
+    <meta name="description" content="Java中基本的数据结构 数据结构 《数据结构》是研究数据在计算机中存储的学科。数组就是一种基础的可以顺序存储****固定数量数据的数据结构。 Java中还有很多其他数据结构的类&#x2F;接口 比如Set、Map、List等，他们还有很多子类 比如：LinkedList、ArrayList….     这次，介绍最常用的两个：LinkedList、LinkedHashMap。先讲非泛型写法，在介">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P3-1 编写自己的方法">
-<meta property="og:url" content="http://example.com/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-1%20%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="P3-10 Java中基本的数据结构">
+<meta property="og:url" content="http://example.com/2024/08/11/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-10%20Java%E4%B8%AD%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="编写自己的方法  开始学习更多Java语法：编写方法、类、JavaBean、简单的继承？Integer和int等；List、Map等，简单的泛型这部分内容不能拿，但是枯燥，而且“这有啥用？”  复习：方法 1、方法：一段可以重复使用的代码。相当于一个“命令”、“积木块” 2、方法由“名字”、“参数”、“返回值”组成 3、方法既可以由参数，也可以没有参数 4、方法既可以由返回值，也可以没有返回值 5">
+<meta property="og:description" content="Java中基本的数据结构 数据结构 《数据结构》是研究数据在计算机中存储的学科。数组就是一种基础的可以顺序存储****固定数量数据的数据结构。 Java中还有很多其他数据结构的类&#x2F;接口 比如Set、Map、List等，他们还有很多子类 比如：LinkedList、ArrayList….     这次，介绍最常用的两个：LinkedList、LinkedHashMap。先讲非泛型写法，在介">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%981.13lowzn8k8.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%982.3d4pgh7z15.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%983.60u5quivrm.webp">
-<meta property="article:published_time" content="2024-08-09T02:57:26.000Z">
-<meta property="article:modified_time" content="2024-08-09T09:55:35.575Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240811/int%E6%B3%9B%E5%9E%8B%E6%8A%A5%E9%94%99.1vyki32ln5.webp">
+<meta property="article:published_time" content="2024-08-11T11:16:26.000Z">
+<meta property="article:modified_time" content="2024-08-11T11:16:22.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%981.13lowzn8k8.webp">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240811/int%E6%B3%9B%E5%9E%8B%E6%8A%A5%E9%94%99.1vyki32ln5.webp">
   
   
   
-  <title>P3-1 编写自己的方法 - Hexo</title>
+  <title>P3-10 Java中基本的数据结构 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P3-1 编写自己的方法"></span>
+            <span id="subtitle" data-typed-text="P3-10 Java中基本的数据结构"></span>
           
         </div>
 
@@ -215,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-09 10:57" pubdate>
-          August 9, 2024 am
+        <time datetime="2024-08-11 19:16" pubdate>
+          August 11, 2024 pm
         </time>
       </span>
     
@@ -227,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          339 words
+          860 words
         
       </span>
     
@@ -238,7 +236,7 @@
         
         
         
-          3 mins
+          8 mins
         
       </span>
     
@@ -288,47 +286,64 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P3-1 编写自己的方法</h1>
+            <h1 id="seo-header">P3-10 Java中基本的数据结构</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="编写自己的方法"><a href="#编写自己的方法" class="headerlink" title="编写自己的方法"></a>编写自己的方法</h1><hr>
-<blockquote>
-<p>开始学习更多Java语法：编写方法、类、JavaBean、简单的继承？Integer和int等；List、Map等，简单的泛型<br>这部分内容不能拿，但是枯燥，而且“这有啥用？”</p>
-</blockquote>
-<h2 id="复习：方法"><a href="#复习：方法" class="headerlink" title="复习：方法"></a>复习：方法</h2><ul>
-<li>1、方法：一段可以重复使用的代码。相当于一个“命令”、“积木块”</li>
-<li>2、方法由“名字”、“参数”、“返回值”组成</li>
-<li>3、方法既可以由参数，也可以没有参数</li>
-<li>4、方法既可以由返回值，也可以没有返回值</li>
-<li>5、方法可以由多个重名的“重载方法”</li>
-</ul>
-<h2 id="定义自己的方法"><a href="#定义自己的方法" class="headerlink" title="定义自己的方法"></a>定义自己的方法</h2><ul>
-<li>1、从“使用”到“创造”<ul>
-<li>从学习使用别人的方法–&gt;自己有写方法的能力，而不是一味的只会使用别人的；当别人写的方法满足不了的时候，就需要自己去创造了</li>
-</ul>
-</li>
-<li>2、方法的一般格式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> 返回类型名 方法名(参数列表)<br>&#123;<br>    语句;<span class="hljs-comment">//方法体</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>如果方法没有返回值，可以将类型名写为void</p>
-</blockquote>
-<h3 id="常见问题1"><a href="#常见问题1" class="headerlink" title="常见问题1"></a>常见问题1</h3><ul>
-<li>赋值的顺序的与参数的顺序有关，与变量名无关</li>
-<li>主要看调用方法时的填写的参数顺序</li>
-</ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%981.13lowzn8k8.webp" srcset="/img/loading.gif" lazyload alt="常见问题1"></p>
-<h3 id="常见问题2"><a href="#常见问题2" class="headerlink" title="常见问题2"></a>常见问题2</h3><ul>
-<li>定义在方法内部的变量为局部变量<ul>
-<li>出了方法就用不了这个变量了</li>
+                <h1 id="Java中基本的数据结构"><a href="#Java中基本的数据结构" class="headerlink" title="Java中基本的数据结构"></a>Java中基本的数据结构</h1><hr>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<li>《数据结构》是研究数据在计算机中存储的学科。数组就是一种基础的可以<strong>顺序存储****固定数量</strong>数据的数据结构。</li>
+<li>Java中还有很多其他数据结构的类&#x2F;接口<ul>
+<li>比如Set、Map、List等，他们还有很多子类<ul>
+<li>比如：LinkedList、ArrayList….</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%982.3d4pgh7z15.webp" srcset="/img/loading.gif" lazyload alt="常见问题2"></p>
-<h3 id="常见问题3"><a href="#常见问题3" class="headerlink" title="常见问题3"></a>常见问题3</h3><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240809/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%983.60u5quivrm.webp" srcset="/img/loading.gif" lazyload alt="常见问题3"></p>
+</li>
+<li>这次，介绍最常用的两个：LinkedList、LinkedHashMap。先讲非泛型写法，在介绍泛型。</li>
+</ul>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><ul>
+<li>数组的长度在声明的时候就确定了，无法在运行时改变数组对象的长度。</li>
+<li>需要一种能在运行时动态添加内容的数据结构，这就是LinkedList。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LinkedList</span> <span class="hljs-variable">l1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>();<br>l1.add(<span class="hljs-string">&quot;3&quot;</span>);<span class="hljs-comment">//添加元素</span><br>l1.add(<span class="hljs-number">6</span>);<br>l1.add(<span class="hljs-number">8</span>);<br>System.out.println(l1.size());<span class="hljs-comment">//获取数据个数</span><br>System.out.println(l1.get(<span class="hljs-number">2</span>));<span class="hljs-comment">//获取指定序号的元素</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><ul>
+<li>1、编程中，有时候需要一种类似“字典”的数据结构：也就是保存“一对数据”。<ul>
+<li>比如实现英汉词典的时候，就是一堆由“英文-中文解释”组成的“键值对”<ul>
+<li>英文是“健”（key），中文是“值”(Value)</li>
+<li>键不能重复，但值可以重复</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LinkedHashMap</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>();<br>map.put(<span class="hljs-string">&quot;Hello&quot;</span>,<span class="hljs-string">&quot;你好&quot;</span>);<span class="hljs-comment">//放入键值对，如果已经存在则覆盖</span><br>System.out.println(map.get(<span class="hljs-string">&quot;Hello&quot;</span>));<span class="hljs-comment">//根据键获取值，如果不存在，则返回null</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>演示：做一个简单的英汉词典，如果查询不存在则提示“查不到”</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LinkedHashMap</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>();<br>map.put(<span class="hljs-string">&quot;Hello&quot;</span>,<span class="hljs-string">&quot;你好&quot;</span>);<span class="hljs-comment">//放入键值对，如果已经存在则覆盖</span><br><span class="hljs-comment">//System.out.println(map.get(&quot;Hello&quot;));//根据键获取值，如果不存在，则返回null</span><br>map.put(<span class="hljs-string">&quot;dog&quot;</span>,<span class="hljs-string">&quot;狗&quot;</span>);<br>map.put(<span class="hljs-string">&quot;cat&quot;</span>,<span class="hljs-string">&quot;猫&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;dat&quot;</span>;<br><span class="hljs-type">Object</span> <span class="hljs-variable">ojt</span> <span class="hljs-operator">=</span> map.get(s);<span class="hljs-comment">//只能用Object类型去接收值</span><br><span class="hljs-keyword">if</span> (ojt==<span class="hljs-literal">null</span>)<br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;查不到&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>    System.out.println(ojt);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="泛型入门"><a href="#泛型入门" class="headerlink" title="泛型入门"></a>泛型入门</h2><ul>
+<li>1、LinkedList、LinkedHashMap中的数据可以放入任意类型，不仅容易造成数据混乱，在取出来数据的时候还需要做类型转换。这时候就可以用泛型</li>
+<li>2、使用泛型的数据结构，就可以限制放入数据的类型，这样取出来的数据类型也就确定了。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">LinkedList&lt;String&gt; list =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;String&gt;();<span class="hljs-comment">//new后面的String类型可以省略</span><br>list.add(<span class="hljs-string">&quot;你好&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> list.getLast();<span class="hljs-comment">//返回值类型也变成了String</span><br>System.out.println(s);<br><br><br><br>LinkedHashMap&lt;String,String&gt; map =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>&lt;&gt;();<span class="hljs-comment">//LinkedHashMap 需要两个类型，第一个是key的，第二个是value的</span><br>map.put(<span class="hljs-string">&quot;cat&quot;</span>,<span class="hljs-string">&quot;猫&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span>map.get(<span class="hljs-string">&quot;cat&quot;</span>);<br>System.out.println(s);<br></code></pre></td></tr></table></figure>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>1、关于int等类型的问题：对于基本数据类型，不能直接用在声明泛型类型中，必须用对应的包装类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">LinkedList &lt;<span class="hljs-type">int</span>&gt; p1 =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;<span class="hljs-type">int</span>&gt;();  <span class="hljs-comment">//这种声明是错误的</span><br><br>LinkedList&lt;Integer&gt; p1 =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<span class="hljs-comment">//这种声明才是正确的，用了int的包装类</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240811/int%E6%B3%9B%E5%9E%8B%E6%8A%A5%E9%94%99.1vyki32ln5.webp" srcset="/img/loading.gif" lazyload alt="int泛型报错"></p>
+<ul>
+<li>2、演示：使用泛型保存学生的“姓名-成绩”，然后提供成绩查询功能</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">LinkedHashMap &lt;String,Integer&gt; map =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>&lt;&gt;(); <span class="hljs-comment">//key 是String类型，value是Integer类型(int的包装类型)</span><br>map.put(<span class="hljs-string">&quot;张三&quot;</span>,<span class="hljs-number">80</span>);<br>map.put(<span class="hljs-string">&quot;李四&quot;</span>,<span class="hljs-number">60</span>);<br>map.put(<span class="hljs-string">&quot;王麻子&quot;</span>,<span class="hljs-number">95</span>);<br>map.put(<span class="hljs-string">&quot;夏天&quot;</span>,<span class="hljs-number">99</span>);<br><span class="hljs-type">Integer</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span>map.get(<span class="hljs-string">&quot;夏&quot;</span>);<span class="hljs-comment">//也可以用int去接收数据，但是最好使用Integer，因为它可以接受null</span><br><span class="hljs-keyword">if</span> (s==<span class="hljs-literal">null</span>)<br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;此人查不到&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;成绩为：&quot;</span>+s);<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -380,8 +395,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P3-1 编写自己的方法</div>
-      <div>http://example.com/2024/08/09/SE101-零基础玩Java/Part3-笔记/P3-1 编写自己的方法/</div>
+      <div>P3-10 Java中基本的数据结构</div>
+      <div>http://example.com/2024/08/11/SE101-零基础玩Java/Part3-笔记/P3-10 Java中基本的数据结构/</div>
     </div>
     <div class="license-meta">
       
@@ -393,7 +408,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 9, 2024</div>
+          <div>August 11, 2024</div>
         </div>
       
       
@@ -425,9 +440,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/09/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-2%20%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC/" title="P3-2 方法的返回值">
+                      <a href="/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-11%20%E5%BC%82%E5%B8%B8/" title="P3-11 异常">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P3-2 方法的返回值</span>
+                        <span class="hidden-mobile">P3-11 异常</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -435,8 +450,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/07/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part2-%E7%AC%94%E8%AE%B0/P2-13%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%98%9F%E5%BA%A7/" title="P2-13 案例：计算星座">
-                        <span class="hidden-mobile">P2-13 案例：计算星座</span>
+                      <a href="/2024/08/11/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-9%20Integer%E5%92%8CInt/" title="P3-9 Integer和Int">
+                        <span class="hidden-mobile">P3-9 Integer和Int</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
