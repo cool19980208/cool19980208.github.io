@@ -19,29 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="异常 什么是异常 1、异常是程序执行过程中出现的“意外”情况。 但异常不是bug哦   2、异常我们肯定不陌生 比如：数组访问越界、Integer.parseInt()失败、读取不存在的文件等    3、异常可以让程序出现意外情况的时候立即通知调用者 遇到异常的时候，程序也会在异常点停止，以免造成进一步的破坏 可以和C语言或Go语言的错误码等实现方式比较    Java异常 1、Java中的异常是">
+    <meta name="description" content="办公自动化简介以及PDF文件分析 什么是办公自动化 非IT专业人员打交道最多的三种文件：Word、Excel、PDF Excel中的VBA脚本，用的是Basic的语言，非常小众了现在 办公自动化就是把人工手动的操作方法通过编程自动化去完成这个阶段讲：Word、Excel、PDF文件的读写，图表，简化日常工作      使用YZK-Docs 1、Maven中引入yzk18-docs 2、看文档研究P">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P3-11 异常">
-<meta property="og:url" content="http://example.com/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-11%20%E5%BC%82%E5%B8%B8/index.html">
+<meta property="og:title" content="P4-1 办公自动化简介以及PDF文件分析">
+<meta property="og:url" content="http://example.com/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-1%20%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8APDF%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="异常 什么是异常 1、异常是程序执行过程中出现的“意外”情况。 但异常不是bug哦   2、异常我们肯定不陌生 比如：数组访问越界、Integer.parseInt()失败、读取不存在的文件等    3、异常可以让程序出现意外情况的时候立即通知调用者 遇到异常的时候，程序也会在异常点停止，以免造成进一步的破坏 可以和C语言或Go语言的错误码等实现方式比较    Java异常 1、Java中的异常是">
+<meta property="og:description" content="办公自动化简介以及PDF文件分析 什么是办公自动化 非IT专业人员打交道最多的三种文件：Word、Excel、PDF Excel中的VBA脚本，用的是Basic的语言，非常小众了现在 办公自动化就是把人工手动的操作方法通过编程自动化去完成这个阶段讲：Word、Excel、PDF文件的读写，图表，简化日常工作      使用YZK-Docs 1、Maven中引入yzk18-docs 2、看文档研究P">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/%E5%BC%82%E5%B8%B81.6pnff3juac.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/Throwable.syv83f922.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/RuntimeException.9kg3kways9.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/%E5%A3%B0%E6%98%8E%E5%BC%82%E5%B8%B81.9gwhn65yc3.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/catch.361hpah4i9.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/throws.pf9ada8lu.webp">
-<meta property="article:published_time" content="2024-08-12T02:05:26.000Z">
-<meta property="article:modified_time" content="2024-08-12T02:14:26.994Z">
+<meta property="article:published_time" content="2024-08-12T06:41:26.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:06:24.983Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/%E5%BC%82%E5%B8%B81.6pnff3juac.webp">
   
   
   
-  <title>P3-11 异常 - Hexo</title>
+  <title>P4-1 办公自动化简介以及PDF文件分析 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P3-11 异常"></span>
+            <span id="subtitle" data-typed-text="P4-1 办公自动化简介以及PDF文件分析"></span>
           
         </div>
 
@@ -218,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-12 10:05" pubdate>
-          August 12, 2024 am
+        <time datetime="2024-08-12 14:41" pubdate>
+          August 12, 2024 pm
         </time>
       </span>
     
@@ -230,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          516 words
+          514 words
         
       </span>
     
@@ -291,72 +284,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P3-11 异常</h1>
+            <h1 id="seo-header">P4-1 办公自动化简介以及PDF文件分析</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><hr>
-<h2 id="什么是异常"><a href="#什么是异常" class="headerlink" title="什么是异常"></a>什么是异常</h2><ul>
-<li>1、异常是程序执行过程中出现的“意外”情况。<ul>
-<li>但异常不是bug哦</li>
-</ul>
+                <h1 id="办公自动化简介以及PDF文件分析"><a href="#办公自动化简介以及PDF文件分析" class="headerlink" title="办公自动化简介以及PDF文件分析"></a>办公自动化简介以及PDF文件分析</h1><hr>
+<h2 id="什么是办公自动化"><a href="#什么是办公自动化" class="headerlink" title="什么是办公自动化"></a>什么是办公自动化</h2><ul>
+<li>非IT专业人员打交道最多的三种文件：Word、Excel、PDF<ul>
+<li>Excel中的VBA脚本，用的是Basic的语言，非常小众了现在<blockquote>
+<p>办公自动化就是把人工手动的操作方法通过编程自动化去完成<br>这个阶段讲：Word、Excel、PDF文件的读写，图表，简化日常工作</p>
+</blockquote>
 </li>
-<li>2、异常我们肯定不陌生<ul>
-<li>比如：数组访问越界、Integer.parseInt()失败、读取不存在的文件等</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/%E5%BC%82%E5%B8%B81.6pnff3juac.webp" srcset="/img/loading.gif" lazyload alt="异常1"></li>
-</ul>
-</li>
-<li>3、异常可以让程序出现意外情况的时候立即通知调用者<ul>
-<li>遇到异常的时候，程序也会在异常点停止，以免造成进一步的破坏</li>
-<li>可以和C语言或Go语言的错误码等实现方式比较</li>
 </ul>
 </li>
 </ul>
-<h2 id="Java异常"><a href="#Java异常" class="headerlink" title="Java异常"></a>Java异常</h2><ul>
-<li><p>1、Java中的异常是一种特殊的类，他们直接或者间接继承自Throwable</p>
+<h2 id="使用YZK-Docs"><a href="#使用YZK-Docs" class="headerlink" title="使用YZK-Docs"></a>使用YZK-Docs</h2><ul>
+<li>1、Maven中引入yzk18-docs</li>
+<li>2、看文档研究PDFHelpers的用法。 <ul>
+<li>就是对PDFbox的简单封装，没有封装的方法直接参考PDFbox的文档即可</li>
+</ul>
+</li>
+<li>3、案例：把一个PDF文件中的文字提取到一个文本文档中，图片保存到同级目录下，文件名用递增序号</li>
+</ul>
+<p>思路</p>
 <ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/Throwable.syv83f922.webp" srcset="/img/loading.gif" lazyload alt="Throwable"></li>
-<li>直接或者间接继承自RuntimeException的异常叫做“运行时异常”，属于<strong>非检查异常</strong></li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/RuntimeException.9kg3kways9.webp" srcset="/img/loading.gif" lazyload alt="RuntimeException"></li>
-<li>其他所有的异常叫做“检查异常”，属于<strong>非运行时异常</strong></li>
-</ul>
-</li>
-<li><p>2、一个方法上可以通过throws关键字说明这个方法可能会抛出哪些异常（了解即可）</p>
-<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/%E5%A3%B0%E6%98%8E%E5%BC%82%E5%B8%B81.9gwhn65yc3.webp" srcset="/img/loading.gif" lazyload alt="声明异常1"></li>
-<li>调用这个方法的代码要么catch(抓住)这些异常，要么继续声明throws</li>
-</ul>
-</li>
-<li><p>3、调用一个声明throws非RuntimeException的方法，必须对异常做处理：要么catch，要么继续throws</p>
-<ul>
-<li>怎么去看非RuntimeException呢？<ul>
-<li>(可以从错误的继承链中看看是否能找到RuntimeException)</li>
-</ul>
-</li>
-<li>IDEA提供的快捷写的模板只能是printStacktrace，这不是一个好习惯，不建议用它默认写的这个报错。2024的IDEA模板改成了throw new RuntimeException(e)，非常不错</li>
-<li>IDEA的快捷方式catch<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/catch.361hpah4i9.webp" srcset="/img/loading.gif" lazyload alt="catch"></li>
-</ul>
-</li>
-<li>IDEA的快捷方式throws<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240812/throws.pf9ada8lu.webp" srcset="/img/loading.gif" lazyload alt="throws"></li>
+<li>1.PDF文档的不同：<ul>
+<li>扫描版</li>
+<li>加密版</li>
+<li>文字版(开源一般都只对文字版管用)</li>
+<li>限制<ul>
+<li>1、有的是纯扫描版文件，全都是图片，无法简单的提取文字，需要调用OCR等功能。OCR精度较高，所以都是收费的</li>
+<li>2、一些被加密等PDF文件需要特殊处理</li>
+<li>3、PDF的不可替代性的格式。所以用代码去实现提取PDF中的文字，无法达到完美的还原出来里面所有的内容</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>4、对于初学者，如果不知道如何处理的话，就throw new RuntimeException(e);</p>
-</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> <br>&#123;<br>    <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fis</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;d:/1.txt&quot;</span>);<br>&#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) <br>&#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<span class="hljs-comment">//用这个去处理</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<ul>
-<li>5、杨中科封装的库，很多地方就是把检查异常catch住，然后重新抛成RuntimeException了</li>
-<li>6、可以自己catch处理的地方<ul>
-<li>比如：检测用户输入的是否是合法的整数，就可以用catch住Integer.parseInt()的异常。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;1b2&quot;</span>;<br><span class="hljs-keyword">try</span><br>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span>Integer.parseInt(s);<span class="hljs-comment">//字符串转换成int</span><br>    System.out.println(i);<br>&#125;<br><span class="hljs-keyword">catch</span>(NumberFormatException e)<br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;不是合法的整数&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//案例：把一个PDF文件中的文字提取到一个文本文档中，图片保存到同级目录下，文件名用递增序号</span><br><span class="hljs-type">PDDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> PDFHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/PDFtest/03 1.1 提升信息敏感度的三种方法，成为信息收集的「有心人」.pdf&quot;</span>);  <span class="hljs-comment">//读取对应路径的pdf文件</span><br><span class="hljs-type">int</span> <span class="hljs-variable">docNumbr</span> <span class="hljs-operator">=</span> doc.getNumberOfPages();<span class="hljs-comment">//获取pdf多少页</span><br><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> PDFHelpers.parseText(doc);<span class="hljs-comment">//pdf的txt文本提取成字符串</span><br>IOHelpers.writeAllText(<span class="hljs-string">&quot;D:/JavaTest1/PDFtest/有心人.txt&quot;</span>,text);<span class="hljs-comment">//字符串写入txt</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt;docNumbr;i++)<br>&#123;<br>    <span class="hljs-type">PDPage</span> <span class="hljs-variable">page</span> <span class="hljs-operator">=</span> doc.getPage(i);<span class="hljs-comment">//获取页数</span><br>    List&lt;<span class="hljs-type">byte</span>[]&gt; bytes = PDFHelpers.parseImages(page,<span class="hljs-string">&quot;png&quot;</span>);<span class="hljs-comment">//获取当前页的图片信息</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">byte</span>[] bytes1 :bytes)<br>    &#123;<br>        IOHelpers.writeAllBytes(<span class="hljs-string">&quot;D:/JavaTest1/PDFtest/图片/&quot;</span>+i+<span class="hljs-string">&quot;.png&quot;</span>,bytes1);<span class="hljs-comment">//写入图片</span><br>    &#125;<br>&#125;<br><br>PDFHelpers.close(doc);<span class="hljs-comment">//关闭pdf</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -379,7 +345,7 @@
   
     <span>></span>
     
-  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part3/" class="category-chain-item">零基础玩Java-Part3</a>
+  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part4/" class="category-chain-item">零基础玩Java-Part4</a>
   
   
 
@@ -408,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P3-11 异常</div>
-      <div>http://example.com/2024/08/12/SE101-零基础玩Java/Part3-笔记/P3-11 异常/</div>
+      <div>P4-1 办公自动化简介以及PDF文件分析</div>
+      <div>http://example.com/2024/08/12/SE101-零基础玩Java/Part4-笔记/P4-1 办公自动化简介以及PDF文件分析/</div>
     </div>
     <div class="license-meta">
       
@@ -453,9 +419,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-1%20%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8APDF%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" title="P4-1 办公自动化简介以及PDF文件分析">
+                      <a href="/2024/08/14/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-2%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E5%AF%B9%E8%8B%B1%E8%AF%AD%E7%9C%9F%E9%A2%98%E8%BF%9B%E8%A1%8C%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/" title="P4-2 案例：对英语真题进行词频分析">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P4-1 办公自动化简介以及PDF文件分析</span>
+                        <span class="hidden-mobile">P4-2 案例：对英语真题进行词频分析</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -463,8 +429,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/11/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-10%20Java%E4%B8%AD%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="P3-10 Java中基本的数据结构">
-                        <span class="hidden-mobile">P3-10 Java中基本的数据结构</span>
+                      <a href="/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part3-%E7%AC%94%E8%AE%B0/P3-11%20%E5%BC%82%E5%B8%B8/" title="P3-11 异常">
+                        <span class="hidden-mobile">P3-11 异常</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
