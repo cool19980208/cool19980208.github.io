@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="案例：根据Excel工资表生成工资条 需求 1、一个Excel工资文件，每个Sheet是一个部门，每个部门都有员工的姓名、编号、基本工资、考勤扣款、奖金，然后生成每个员工一个工资条word文件，文件名为【部门名+姓名+员工编号】 2、允许用户选择文字文件以及保存文件夹  1234567891011121314151617181920212223242526272829303132333435363">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P4-9 案例：根据Excel工资表生成工资条">
+<meta property="og:url" content="http://example.com/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-9%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%A0%B9%E6%8D%AEExcel%E5%B7%A5%E8%B5%84%E8%A1%A8%E7%94%9F%E6%88%90%E5%B7%A5%E8%B5%84%E6%9D%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="案例：根据Excel工资表生成工资条 需求 1、一个Excel工资文件，每个Sheet是一个部门，每个部门都有员工的姓名、编号、基本工资、考勤扣款、奖金，然后生成每个员工一个工资条word文件，文件名为【部门名+姓名+员工编号】 2、允许用户选择文字文件以及保存文件夹  1234567891011121314151617181920212223242526272829303132333435363">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-16T09:07:26.000Z">
+<meta property="article:modified_time" content="2024-08-16T09:07:30.917Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>P4-9 案例：根据Excel工资表生成工资条 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P4-9 案例：根据Excel工资表生成工资条"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-16 17:07" pubdate>
+          August 16, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P4-9 案例：根据Excel工资表生成工资条</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="案例：根据Excel工资表生成工资条"><a href="#案例：根据Excel工资表生成工资条" class="headerlink" title="案例：根据Excel工资表生成工资条"></a>案例：根据Excel工资表生成工资条</h1><hr>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>1、一个Excel工资文件，每个Sheet是一个部门，每个部门都有员工的姓名、编号、基本工资、考勤扣款、奖金，然后生成每个员工一个工资条word文件，文件名为【部门名+姓名+员工编号】</li>
+<li>2、允许用户选择文字文件以及保存文件夹</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//自己第一次没看杨中科大佬写之前，自己琢磨的</span><br><span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/2024年8月工资表.xlsx&quot;</span>);<span class="hljs-comment">//获取对应文件</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> sheetIndex=<span class="hljs-number">0</span>;sheetIndex&lt;workbook.getNumberOfSheets();sheetIndex++) <span class="hljs-comment">//循环读取页签中的内容 sheet</span><br>    &#123;<br>        <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(sheetIndex);<span class="hljs-comment">//获取第x页签</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span> sheet.getFirstRowNum();rowIndex&lt;=sheet.getLastRowNum();rowIndex++)<span class="hljs-comment">//循环读取有效的第一行到有效的最后一行</span><br>        &#123;<br>            <span class="hljs-type">Row</span> <span class="hljs-variable">row</span> <span class="hljs-operator">=</span> sheet.getRow(rowIndex+<span class="hljs-number">1</span>);<span class="hljs-comment">//获取第2行，忽略姓名，工号。基本工资。奖金。考勤</span><br>            <span class="hljs-keyword">if</span> (row==<span class="hljs-literal">null</span>)<br>            &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            LinkedList&lt;String&gt; Lists =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">cellIndex</span> <span class="hljs-operator">=</span> row.getFirstCellNum(); cellIndex&lt;=row.getLastCellNum();cellIndex++)<br>            &#123;<br>                <span class="hljs-type">Cell</span> <span class="hljs-variable">cell</span> <span class="hljs-operator">=</span> row.getCell(cellIndex);<span class="hljs-comment">//获取第x格</span><br>                <span class="hljs-keyword">if</span> (cell==<span class="hljs-literal">null</span>)<br>                &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                String value= ExcelHelpers.getCellStringValue(cell);<span class="hljs-comment">//推荐用这个，封装的这个傻瓜化，自带类型转换</span><br>                <span class="hljs-keyword">if</span> (value==<span class="hljs-literal">null</span>)<br>                &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                Lists.add(value);<br>            &#125;<br>                LocalDate d1=LocalDate.now();<span class="hljs-comment">//获取当前日期 年/月/日</span><br>                String yFile=<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/工资条模板.docx&quot;</span>;<br>                HashMap&lt;String,Object&gt; data =<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>                String 员工姓名=Lists.get(<span class="hljs-number">0</span>);<br>                String 工号=Lists.get(<span class="hljs-number">1</span>);<br>                <span class="hljs-type">double</span> 基本工资=Double.parseDouble(Lists.get(<span class="hljs-number">2</span>));<br>                <span class="hljs-type">double</span> 奖金=Double.parseDouble(Lists.get(<span class="hljs-number">3</span>));<br>                <span class="hljs-type">double</span> 考勤罚款=Double.parseDouble(Lists.get(<span class="hljs-number">4</span>));<br>                <span class="hljs-type">double</span> 实发工资=基本工资+奖金+考勤罚款;<br><br><br>                <span class="hljs-comment">/*System.out.println(员工姓名);</span><br><span class="hljs-comment">                System.out.println(工号);</span><br><span class="hljs-comment">                System.out.println(基本工资);</span><br><span class="hljs-comment">                System.out.println(奖金);</span><br><span class="hljs-comment">                System.out.println(考勤罚款);</span><br><span class="hljs-comment">                System.out.println(实发工资);</span><br><span class="hljs-comment">                System.out.println(&quot;一个员工完成&quot;);*/</span><br><br>                data.put(<span class="hljs-string">&quot;&#123;员工姓名&#125;&quot;</span>,员工姓名);<br>                data.put(<span class="hljs-string">&quot;&#123;工号&#125;&quot;</span>,工号);<br>                data.put(<span class="hljs-string">&quot;&#123;基本工资&#125;&quot;</span>,基本工资);<br>                data.put(<span class="hljs-string">&quot;&#123;奖金&#125;&quot;</span>,奖金);<br>                data.put(<span class="hljs-string">&quot;&#123;考勤罚款&#125;&quot;</span>,考勤罚款);<br>                data.put(<span class="hljs-string">&quot;&#123;实发工资&#125;&quot;</span>,实发工资);<br>                data.put(<span class="hljs-string">&quot;&#123;部门&#125;&quot;</span>,sheet.getSheetName());<br>                data.put(<span class="hljs-string">&quot;&#123;日期&#125;&quot;</span>,d1.toString());<br>                WordTemplateRenderer.render(yFile, data,<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/&quot;</span>+sheet.getSheetName()+员工姓名+工号+<span class="hljs-string">&quot;.docx&quot;</span>);<br>        &#125;<br><br>    &#125;<br>    ExcelHelpers.close(workbook);<br></code></pre></td></tr></table></figure>
+
+<p>分析不足</p>
+<ul>
+<li>1、多写了一层cell循环，可以用ExcelHelpers.getCellStringValue()这个方法直接取对应的值</li>
+<li>2、int cellIndex &#x3D; row.getFirstCellNum()  for循环中的条件，最好在外面用变量命名后在使用，要不然浪费性能</li>
+<li>3、LinkedList<String> Lists &#x3D;new LinkedList&lt;&gt;(); 这个可以去掉</li>
+<li>4、rowIndex+1  可以在for循环的条件中是限制  比如：int i &#x3D;1；</li>
+</ul>
+<h3 id="完善后"><a href="#完善后" class="headerlink" title="完善后"></a>完善后</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java">String yFile=<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/工资条模板.docx&quot;</span>;<br><span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/2024年8月工资表.xlsx&quot;</span>);<span class="hljs-comment">//获取对应文件</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sheetmax</span> <span class="hljs-operator">=</span> workbook.getNumberOfSheets();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> sheetIndex=<span class="hljs-number">0</span>;sheetIndex&lt;sheetmax;sheetIndex++) <span class="hljs-comment">//循环读取页签中的内容 sheet</span><br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(sheetIndex);<span class="hljs-comment">//获取第x页签</span><br>    String 部门=sheet.getSheetName();<br>    <span class="hljs-type">int</span> rowNumber=sheet.getLastRowNum();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;rowIndex&lt;=rowNumber;rowIndex++)<span class="hljs-comment">//跳过表头</span><br>    &#123;<br>        String 员工姓名=ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">0</span>);<br>        String 工号=ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">1</span>);<br>        <span class="hljs-type">double</span> 基本工资=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-type">double</span> 奖金=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>        <span class="hljs-type">double</span> 考勤罚款=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">4</span>);<br>        <span class="hljs-type">double</span> 实发工资=基本工资+奖金+考勤罚款;<br><br>        HashMap&lt;String,Object&gt; data =<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        data.put(<span class="hljs-string">&quot;&#123;员工姓名&#125;&quot;</span>,员工姓名);<br>        data.put(<span class="hljs-string">&quot;&#123;工号&#125;&quot;</span>,工号);<br>        data.put(<span class="hljs-string">&quot;&#123;基本工资&#125;&quot;</span>,基本工资);<br>        data.put(<span class="hljs-string">&quot;&#123;奖金&#125;&quot;</span>,奖金);<br>        data.put(<span class="hljs-string">&quot;&#123;考勤罚款&#125;&quot;</span>,考勤罚款);<br>        data.put(<span class="hljs-string">&quot;&#123;实发工资&#125;&quot;</span>,实发工资);<br>        data.put(<span class="hljs-string">&quot;&#123;部门&#125;&quot;</span>,部门);<br>        data.put(<span class="hljs-string">&quot;&#123;日期&#125;&quot;</span>,LocalDate.now());<span class="hljs-comment">//获取当前日期 年/月/日</span><br>        String newFile=<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/&quot;</span>+部门+<span class="hljs-string">&quot;-&quot;</span>+员工姓名+<span class="hljs-string">&quot;-&quot;</span>+工号+<span class="hljs-string">&quot;.docx&quot;</span>;<br>        WordTemplateRenderer.render(yFile, data,newFile);<br>    &#125;<br>&#125;<br>ExcelHelpers.close(workbook);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="在此基础上增加功能"><a href="#在此基础上增加功能" class="headerlink" title="在此基础上增加功能"></a>在此基础上增加功能</h3><ul>
+<li>允许用户选择文字文件以及保存文件夹<ul>
+<li>添加了两个窗口，让用户自己选择，但是模板是我内置的。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java">String yFile=<span class="hljs-string">&quot;D:/JavaTest1/WordTest2/工资条模板.docx&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">xlsxFile</span> <span class="hljs-operator">=</span>GUI.fileOpenBox(<span class="hljs-string">&quot;请选择工资表&quot;</span>,<span class="hljs-string">&quot;xlsx&quot;</span>);<span class="hljs-comment">//选择xlsx文件</span><br><span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> GUI.dirOpenBox(<span class="hljs-string">&quot;请选择要保存到的文件夹&quot;</span>).replace(<span class="hljs-string">&quot;\\&quot;</span>,<span class="hljs-string">&quot;/&quot;</span>);<span class="hljs-comment">//获取文件夹路径,然后把\\都换成/ 来兼容其他系统</span><br><span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(xlsxFile);<span class="hljs-comment">//获取对应文件</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sheetmax</span> <span class="hljs-operator">=</span> workbook.getNumberOfSheets();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> sheetIndex=<span class="hljs-number">0</span>;sheetIndex&lt;sheetmax;sheetIndex++) <span class="hljs-comment">//循环读取页签中的内容 sheet</span><br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(sheetIndex);<span class="hljs-comment">//获取第x页签</span><br>    String 部门=sheet.getSheetName();<br>    <span class="hljs-type">int</span> rowNumber=sheet.getLastRowNum();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;rowIndex&lt;=rowNumber;rowIndex++)<span class="hljs-comment">//跳过表头</span><br>    &#123;<br>        String 员工姓名=ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">0</span>);<br>        String 工号=ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">1</span>);<br>        <span class="hljs-type">double</span> 基本工资=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-type">double</span> 奖金=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>        <span class="hljs-type">double</span> 考勤罚款=ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">4</span>);<br>        <span class="hljs-type">double</span> 实发工资=基本工资+奖金+考勤罚款;<br><br>        HashMap&lt;String,Object&gt; data =<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        data.put(<span class="hljs-string">&quot;&#123;员工姓名&#125;&quot;</span>,员工姓名);<br>        data.put(<span class="hljs-string">&quot;&#123;工号&#125;&quot;</span>,工号);<br>        data.put(<span class="hljs-string">&quot;&#123;基本工资&#125;&quot;</span>,基本工资);<br>        data.put(<span class="hljs-string">&quot;&#123;奖金&#125;&quot;</span>,奖金);<br>        data.put(<span class="hljs-string">&quot;&#123;考勤罚款&#125;&quot;</span>,考勤罚款);<br>        data.put(<span class="hljs-string">&quot;&#123;实发工资&#125;&quot;</span>,实发工资);<br>        data.put(<span class="hljs-string">&quot;&#123;部门&#125;&quot;</span>,部门);<br>        data.put(<span class="hljs-string">&quot;&#123;日期&#125;&quot;</span>,LocalDate.now());<span class="hljs-comment">//获取当前日期 年/月/日</span><br>        <span class="hljs-comment">//System.out.println(fileName);</span><br>        String newFile=fileName+<span class="hljs-string">&quot;/&quot;</span>+部门+<span class="hljs-string">&quot;-&quot;</span>+员工姓名+<span class="hljs-string">&quot;-&quot;</span>+工号+<span class="hljs-string">&quot;.docx&quot;</span>;<br>        WordTemplateRenderer.render(yFile, data,newFile);<br>    &#125;<br>&#125;<br>ExcelHelpers.close(workbook);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part4/" class="category-chain-item">零基础玩Java-Part4</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" class="print-no-link">#Java学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P4-9 案例：根据Excel工资表生成工资条</div>
+      <div>http://example.com/2024/08/16/SE101-零基础玩Java/Part4-笔记/P4-9 案例：根据Excel工资表生成工资条/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 16, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-8%20%E4%BD%BF%E7%94%A8Word%E6%A8%A1%E6%9D%BF%E7%AE%80%E5%8C%96%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA/" title="P4-8 使用Word模板简化文件创建">
+                        <span class="hidden-mobile">P4-8 使用Word模板简化文件创建</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -19,22 +19,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在多个Excel文件中进行搜索 需求说明公司里有N多个历年的客户缴费数据Excel表格，现在要做一个从“姓名、电话、备注”字段中查找包含特定内容的Excel表的一个功能，输出文件的名字以及找到的内容所在的表格中的位置（哪个Sheet、哪个单元格） 思路  先从人的基本操作来分析： 打开一个Excel表格，然后从第一个页签里面的表格开始遍历，遍历到格。 然后在继续下一个Excel表格，找到符合要求的">
+    <meta name="description" content="案例：PDF转Word 程序员的工作程序员的工作其无非就是把一堆零件，有读写的PDF零件，有读写Word的零件，有读写Excel的零件等等，然后根据不同的项目把这些零件组装起来，按照不同的项目需求进行不同的拼装，从而就能够开发出来千变万化的程序 需求 1.把一个普通的PDF文件(可能含有图片)转换为Word格式  思路  1.打开PDF文件2.遍历每一页的文本和图片，写入到Word格式，比如XWP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4-5 Excel多文件的搜索">
-<meta property="og:url" content="http://example.com/2024/08/15/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-5%20Excel%E5%A4%9A%E6%96%87%E4%BB%B6%E7%9A%84%E6%90%9C%E7%B4%A2/index.html">
+<meta property="og:title" content="P4-7 案例：PDF转Word">
+<meta property="og:url" content="http://example.com/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-7%20%E6%A1%88%E4%BE%8B%EF%BC%9APDF%E8%BD%ACWord/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在多个Excel文件中进行搜索 需求说明公司里有N多个历年的客户缴费数据Excel表格，现在要做一个从“姓名、电话、备注”字段中查找包含特定内容的Excel表的一个功能，输出文件的名字以及找到的内容所在的表格中的位置（哪个Sheet、哪个单元格） 思路  先从人的基本操作来分析： 打开一个Excel表格，然后从第一个页签里面的表格开始遍历，遍历到格。 然后在继续下一个Excel表格，找到符合要求的">
+<meta property="og:description" content="案例：PDF转Word 程序员的工作程序员的工作其无非就是把一堆零件，有读写的PDF零件，有读写Word的零件，有读写Excel的零件等等，然后根据不同的项目把这些零件组装起来，按照不同的项目需求进行不同的拼装，从而就能够开发出来千变万化的程序 需求 1.把一个普通的PDF文件(可能含有图片)转换为Word格式  思路  1.打开PDF文件2.遍历每一页的文本和图片，写入到Word格式，比如XWP">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-15T08:47:26.000Z">
-<meta property="article:modified_time" content="2024-08-15T08:47:38.036Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240816/to%E6%8A%A5%E9%94%991.pf9g4r0eu.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240816/%E5%BA%93%E5%86%B2%E7%AA%81.7sn4vqwfyv.webp">
+<meta property="article:published_time" content="2024-08-16T02:50:26.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:51:05.161Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240816/to%E6%8A%A5%E9%94%991.pf9g4r0eu.webp">
   
   
   
-  <title>P4-5 Excel多文件的搜索 - Hexo</title>
+  <title>P4-7 案例：PDF转Word - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4-5 Excel多文件的搜索"></span>
+            <span id="subtitle" data-typed-text="P4-7 案例：PDF转Word"></span>
           
         </div>
 
@@ -211,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-15 16:47" pubdate>
-          August 15, 2024 pm
+        <time datetime="2024-08-16 10:50" pubdate>
+          August 16, 2024 am
         </time>
       </span>
     
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          490 words
+          450 words
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          5 mins
+          4 mins
         
       </span>
     
@@ -284,21 +287,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4-5 Excel多文件的搜索</h1>
+            <h1 id="seo-header">P4-7 案例：PDF转Word</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="在多个Excel文件中进行搜索"><a href="#在多个Excel文件中进行搜索" class="headerlink" title="在多个Excel文件中进行搜索"></a>在多个Excel文件中进行搜索</h1><hr>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>公司里有N多个历年的客户缴费数据Excel表格，现在要做一个从“姓名、电话、备注”字段中查找包含特定内容的Excel表的一个功能，输出文件的名字以及找到的内容所在的表格中的位置（哪个Sheet、哪个单元格）</p>
-<p>思路</p>
-<ul>
-<li>先从人的基本操作来分析： 打开一个Excel表格，然后从第一个页签里面的表格开始遍历，遍历到格。 然后在继续下一个Excel表格，找到符合要求的就输出文件名字 和所在表格的位置</li>
-<li>1.找到文件夹下所有的xls、xlsx的文件</li>
-<li>2.打开文件，开始遍历，遍历到符合要求的就输出</li>
-<li>3.直到所有文件都过了一遍</li>
+                <h1 id="案例：PDF转Word"><a href="#案例：PDF转Word" class="headerlink" title="案例：PDF转Word"></a>案例：PDF转Word</h1><hr>
+<h2 id="程序员的工作"><a href="#程序员的工作" class="headerlink" title="程序员的工作"></a>程序员的工作</h2><p>程序员的工作其无非就是把一堆零件，有读写的PDF零件，有读写Word的零件，有读写Excel的零件等等，然后根据不同的项目把这些零件组装起来，按照不同的项目需求进行不同的拼装，从而就能够开发出来千变万化的程序</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>1.把一个普通的PDF文件(可能含有图片)转换为Word格式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] xlsxFiles = IOHelpers.getFilesRecursively(<span class="hljs-string">&quot;D:/JavaTest1/ExcelTest2&quot;</span>, <span class="hljs-string">&quot;xlsx&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;任宗鑫&quot;</span>;<br><span class="hljs-keyword">for</span> (String xlsxfile:xlsxFiles)<br>&#123;<br>    <span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(xlsxfile);<span class="hljs-comment">//获取对应文件</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> IOHelpers.getFileName(xlsxfile);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> sheetIndex=<span class="hljs-number">0</span>;sheetIndex&lt;workbook.getNumberOfSheets();sheetIndex++) <span class="hljs-comment">//循环读取页签中的内容 sheet</span><br>    &#123;<br>        <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(sheetIndex);<span class="hljs-comment">//获取第x页签</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span> sheet.getFirstRowNum();rowIndex&lt;=sheet.getLastRowNum();rowIndex++)<span class="hljs-comment">//循环读取有效的第一行到有效的最后一行</span><br>        &#123;<br>            <span class="hljs-type">Row</span> <span class="hljs-variable">row</span> <span class="hljs-operator">=</span> sheet.getRow(rowIndex);<span class="hljs-comment">//获取第x行</span><br>            <span class="hljs-keyword">if</span> (row==<span class="hljs-literal">null</span>)<br>            &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">cellIndex</span> <span class="hljs-operator">=</span> row.getFirstCellNum(); cellIndex&lt;=row.getLastCellNum();cellIndex++)<br>            &#123;<br>                <span class="hljs-comment">/*if (cellIndex==-1)</span><br><span class="hljs-comment">                &#123;</span><br><span class="hljs-comment">                    continue;</span><br><span class="hljs-comment">                &#125;*/</span><br>                <span class="hljs-type">Cell</span> <span class="hljs-variable">cell</span> <span class="hljs-operator">=</span> row.getCell(cellIndex);<span class="hljs-comment">//获取第x格</span><br>                <span class="hljs-comment">//cell.getStringCellValue() 这个不带类型转换</span><br>                <span class="hljs-keyword">if</span> (cell==<span class="hljs-literal">null</span>)<br>                &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                String value= ExcelHelpers.getCellStringValue(cell);<span class="hljs-comment">//推荐用这个，封装的这个傻瓜化，自带类型转换</span><br>                <span class="hljs-keyword">if</span> (value==<span class="hljs-literal">null</span>)<br>                &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (value.contains(name))<span class="hljs-comment">//模糊搜索</span><br>                &#123;<br>                    <span class="hljs-comment">//System.out.println(&quot;文件名称为:&quot;+fileName+&quot;;搜索的内容所在位置为：&quot;+sheet+&quot;页签&quot;+row+&quot;行&quot;+cell+&quot;格&quot;);</span><br>                    <span class="hljs-type">CellReference</span> <span class="hljs-variable">cellRef</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CellReference</span>(row.getRowNum(), cell.getColumnIndex());<br>                    System.out.println(<span class="hljs-string">&quot;文件名称为: &quot;</span> + fileName + <span class="hljs-string">&quot;; 搜索的内容所在位置为：&quot;</span> +<br>                            <span class="hljs-string">&quot; 页签: &quot;</span> + sheet.getSheetName() + <span class="hljs-string">&quot; 行: &quot;</span>+ (rowIndex + <span class="hljs-number">1</span>)  + <span class="hljs-string">&quot; 格:&quot;</span> + cellRef.formatAsString());<br>                &#125;<br>            &#125;<br>        &#125;<br><br>    &#125;<br>    ExcelHelpers.close(workbook);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>思路</p>
+<blockquote>
+<p>1.打开PDF文件<br>2.遍历每一页的文本和图片，写入到Word格式，比如XWPFRun、XWPFParagraph(段落)、XWPFDocument<br>3.然后保存到Word</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><span class="hljs-type">PDDocument</span> <span class="hljs-variable">PDF</span> <span class="hljs-operator">=</span> PDFHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/PDFTest3/03 1.1 提升信息敏感度的三种方法，成为信息收集的「有心人」.pdf&quot;</span>);<br><span class="hljs-type">XWPFDocument</span> <span class="hljs-variable">docx</span> <span class="hljs-operator">=</span> WordHelpers.createDocxDocument();<span class="hljs-comment">//创建docx文件</span><br><span class="hljs-type">int</span> PDFNumber=PDF.getNumberOfPages();<span class="hljs-comment">//获取pdf多少页</span><br>System.out.println(PDFNumber);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt;PDFNumber;i++)<br>&#123;<br>    <span class="hljs-type">PDPage</span> <span class="hljs-variable">page</span> <span class="hljs-operator">=</span> PDF.getPage(i);<span class="hljs-comment">//获取页数</span><br>    String s= parseText(page);<span class="hljs-comment">//提取文本</span><br>    <span class="hljs-type">XWPFRun</span> <span class="hljs-variable">run</span> <span class="hljs-operator">=</span> WordHelpers.createRun(docx, s);<span class="hljs-comment">//文本插入word</span><br>    <span class="hljs-comment">//run.setFontSize(30);</span><br>    <span class="hljs-comment">//run.setItalic(true);</span><br>    List&lt;<span class="hljs-type">byte</span>[]&gt; bytes = PDFHelpers.parseImages(page,<span class="hljs-string">&quot;png&quot;</span>);<span class="hljs-comment">//获取当前页的图片信息</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">byte</span>[] bytes1 :bytes)<br>    &#123;<br>            WordHelpers.addPicture(docx,bytes1);<span class="hljs-comment">//在run里面写入图片</span><br>    &#125;<br>&#125;<br>WordHelpers.saveToFile(docx,<span class="hljs-string">&quot;D:/JavaTest1/PDFTest3/666.docx&quot;</span>);<span class="hljs-comment">//保存docx文件</span><br>WordHelpers.close(docx);<br>PDFHelpers.close(PDF);<span class="hljs-comment">//关闭PDF</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><ul>
+<li>问题1.String s&#x3D; parseText(page);&#x2F;&#x2F;提取文本   提取文件报错。<ul>
+<li>分析：1.代码和杨中科老师一模一样，但是就是运行出错，</li>
+<li>2.前几天写的代码运行还正常，但今天去运行就报错。</li>
+<li>3.百度上查结果也找不到</li>
+<li>最后我想 前几天和今天哪里有变化，我想起来中间有加过PDFBox的库，然后尝试去掉后，就可以了。</li>
+<li>总结：有可能是封装的库和PDFBox的库冲突了。</li>
+</ul>
+</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240816/to%E6%8A%A5%E9%94%991.pf9g4r0eu.webp" srcset="/img/loading.gif" lazyload alt="to报错1"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240816/%E5%BA%93%E5%86%B2%E7%AA%81.7sn4vqwfyv.webp" srcset="/img/loading.gif" lazyload alt="库冲突"></li>
+</ul>
+
                 
               </div>
             
@@ -350,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4-5 Excel多文件的搜索</div>
-      <div>http://example.com/2024/08/15/SE101-零基础玩Java/Part4-笔记/P4-5 Excel多文件的搜索/</div>
+      <div>P4-7 案例：PDF转Word</div>
+      <div>http://example.com/2024/08/16/SE101-零基础玩Java/Part4-笔记/P4-7 案例：PDF转Word/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +379,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 15, 2024</div>
+          <div>August 16, 2024</div>
         </div>
       
       
@@ -395,9 +411,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-6%20Word%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99/" title="P4-6 Word文件的读写">
+                      <a href="/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-8%20%E4%BD%BF%E7%94%A8Word%E6%A8%A1%E6%9D%BF%E7%AE%80%E5%8C%96%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA/" title="P4-8 使用Word模板简化文件创建">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P4-6 Word文件的读写</span>
+                        <span class="hidden-mobile">P4-8 使用Word模板简化文件创建</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -405,8 +421,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/15/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-4%20Excel%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99/" title="P4-4 Excel文件的读写">
-                        <span class="hidden-mobile">P4-4 Excel文件的读写</span>
+                      <a href="/2024/08/16/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-6%20Word%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99/" title="P4-6 Word文件的读写">
+                        <span class="hidden-mobile">P4-6 Word文件的读写</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
