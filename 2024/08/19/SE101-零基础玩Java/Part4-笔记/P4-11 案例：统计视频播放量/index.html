@@ -19,22 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="案例：对英语真题进行词频分析 需求说明 有一堆英语考试真题(PDF格式)，要求读取它们，然后分析出来每个单词出现的词频，然后输出到一个文本文件中，每行是一个“单词 词频”。暂不实现按照词频排序，因为涉及到stream或者SQL 先分析思路，写出伪代码，然后实现。不能没有准备的写代码 怎么分析思路呢？1. 先站在人的角度去看这个需求，正常人的方式怎么进行？ 然后切换到计算机的视角去，看看怎么利用计算">
+    <meta name="description" content="案例：统计视频播放量 需求说明 微博上面的专辑视频是没有总播放量的，所以现在需要统计出视频的总播放量  思路  1、读取txt文件 2、然后遍历每一行，如果每一行中含有“次观看”的话 就提取出来数字 3、然后把数字相加，得出所有视频的总播放量  代码分析  1、我用的是把后面多余的部分替换成空字符串，然后转换成int，在相加 杨中科老师用的是 substring去截取，然后转换，在相加   2、变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4-2 案例：对英语真题进行词频分析">
-<meta property="og:url" content="http://example.com/2024/08/14/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-2%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E5%AF%B9%E8%8B%B1%E8%AF%AD%E7%9C%9F%E9%A2%98%E8%BF%9B%E8%A1%8C%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="P4-11 案例：统计视频播放量">
+<meta property="og:url" content="http://example.com/2024/08/19/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-11%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E9%87%8F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="案例：对英语真题进行词频分析 需求说明 有一堆英语考试真题(PDF格式)，要求读取它们，然后分析出来每个单词出现的词频，然后输出到一个文本文件中，每行是一个“单词 词频”。暂不实现按照词频排序，因为涉及到stream或者SQL 先分析思路，写出伪代码，然后实现。不能没有准备的写代码 怎么分析思路呢？1. 先站在人的角度去看这个需求，正常人的方式怎么进行？ 然后切换到计算机的视角去，看看怎么利用计算">
+<meta property="og:description" content="案例：统计视频播放量 需求说明 微博上面的专辑视频是没有总播放量的，所以现在需要统计出视频的总播放量  思路  1、读取txt文件 2、然后遍历每一行，如果每一行中含有“次观看”的话 就提取出来数字 3、然后把数字相加，得出所有视频的总播放量  代码分析  1、我用的是把后面多余的部分替换成空字符串，然后转换成int，在相加 杨中科老师用的是 substring去截取，然后转换，在相加   2、变">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-14T00:50:26.000Z">
-<meta property="article:modified_time" content="2024-08-14T00:50:20.372Z">
+<meta property="article:published_time" content="2024-08-19T01:51:26.000Z">
+<meta property="article:modified_time" content="2024-08-19T01:51:32.665Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>P4-2 案例：对英语真题进行词频分析 - Hexo</title>
+  <title>P4-11 案例：统计视频播放量 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4-2 案例：对英语真题进行词频分析"></span>
+            <span id="subtitle" data-typed-text="P4-11 案例：统计视频播放量"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-14 08:50" pubdate>
-          August 14, 2024 am
+        <time datetime="2024-08-19 09:51" pubdate>
+          August 19, 2024 am
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          573 words
+          370 words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          5 mins
+          4 mins
         
       </span>
     
@@ -284,29 +284,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4-2 案例：对英语真题进行词频分析</h1>
+            <h1 id="seo-header">P4-11 案例：统计视频播放量</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="案例：对英语真题进行词频分析"><a href="#案例：对英语真题进行词频分析" class="headerlink" title="案例：对英语真题进行词频分析"></a>案例：对英语真题进行词频分析</h1><hr>
+                <h1 id="案例：统计视频播放量"><a href="#案例：统计视频播放量" class="headerlink" title="案例：统计视频播放量"></a>案例：统计视频播放量</h1><hr>
 <h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><ul>
-<li>有一堆英语考试真题(PDF格式)，要求读取它们，然后分析出来每个单词出现的词频，然后输出到一个文本文件中，每行是一个“单词 词频”。暂不实现按照词频排序，因为涉及到stream或者SQL</li>
-<li>先分析思路，写出伪代码，然后实现。不能没有准备的写代码<ul>
-<li>怎么分析思路呢？1.<ul>
-<li>先站在人的角度去看这个需求，正常人的方式怎么进行？</li>
-<li>然后切换到计算机的视角去，看看怎么利用计算机去达到这个目的</li>
+<li>微博上面的专辑视频是没有总播放量的，所以现在需要统计出视频的总播放量</li>
+</ul>
+<p>思路</p>
+<ul>
+<li>1、读取txt文件</li>
+<li>2、然后遍历每一行，如果每一行中含有“次观看”的话 就提取出来数字</li>
+<li>3、然后把数字相加，得出所有视频的总播放量</li>
+</ul>
+<p>代码分析</p>
+<ul>
+<li>1、我用的是把后面多余的部分替换成空字符串，然后转换成int，在相加<ul>
+<li>杨中科老师用的是 substring去截取，然后转换，在相加</li>
 </ul>
 </li>
+<li>2、变量名称应该换成line</li>
 </ul>
-</li>
-</ul>
-<p>思路分析</p>
-<blockquote>
-<p>声明一个LinkedHashMap，Key是单词(忽略大小写),Value是词频<br>遍历每一个pdf文件<br>{<br>读取这个pdf的所有文本<br>对于文件按照 空格，口号，句号等来分割为单词。然后全部转为小写<br>然后在遍历每一个单词，看在map中是否存在，不存在则新增，存在则词频+1<br>}</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    LinkedHashMap&lt;String,Integer&gt; map =<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>&lt;&gt;();<br>    String[] PDFFiles= IOHelpers.getFilesRecursively(<span class="hljs-string">&quot;D:/JavaTest1/PDFTest2&quot;</span>,<span class="hljs-string">&quot;pdf&quot;</span>);<span class="hljs-comment">//获取文件夹下所有的pdf文件</span><br>    <span class="hljs-keyword">for</span> (String Files :PDFFiles)<br>    &#123;<br>        <span class="hljs-type">PDDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> PDFHelpers.openFile(Files);  <span class="hljs-comment">//读取对应路径的pdf文件</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> PDFHelpers.parseText(doc);<span class="hljs-comment">//pdf的txt文本提取成字符串</span><br>        String[] texts = text.toLowerCase().split(<span class="hljs-string">&quot;\\s|\\.|\\,|\\:|\\!|\\?|;|\\(|\\)&quot;</span>);<span class="hljs-comment">//符号转成小写并分割</span><br>        <span class="hljs-keyword">for</span> (String word:texts)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (!isEnglishWord(word))<span class="hljs-comment">//如果这个word不是英语单词，则跳过</span><br>            &#123;<br>                <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//处理下一个单词</span><br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (word.equals(<span class="hljs-string">&quot;&quot;</span>))<br>            &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">frqe</span> <span class="hljs-operator">=</span>map.get(word);<span class="hljs-comment">//获得当前的词频</span><br>            <span class="hljs-keyword">if</span> (frqe==<span class="hljs-literal">null</span>)<span class="hljs-comment">//如果为null就证明不存在</span><br>            &#123;<br>                map.put(word,<span class="hljs-number">1</span>);<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                map.put(word,frqe+<span class="hljs-number">1</span>);<span class="hljs-comment">//存在就词频+1</span><br><br>            &#125;<br><br>        &#125;<br><br>        PDFHelpers.close(doc);<span class="hljs-comment">//关闭pdf*/</span><br>    &#125;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">outputString</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">for</span> (String word:map.keySet())<span class="hljs-comment">//keyset()是map中所有key的集合</span><br>    &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">freq</span> <span class="hljs-operator">=</span>map.get(word);<br>        outputString =outputString+word+<span class="hljs-string">&quot;=&quot;</span>+freq+<span class="hljs-string">&quot;\r\n&quot;</span>;<br><br>    &#125;<br>    <span class="hljs-comment">//System.out.println(outputString);</span><br>    IOHelpers.writeAllText(<span class="hljs-string">&quot;D:/JavaTest1/PDFTest2/1.txt&quot;</span>,outputString);<br><br><br>&#125;<br><span class="hljs-comment">//判断字符串中是否是一个英文单词(全部由英文字母组成)</span><br><span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>  <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEnglishWord</span><span class="hljs-params">(String s)</span><br>&#123;<br>    <span class="hljs-type">int</span> numbers=s.length();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt;numbers;i++)<br>    &#123;<br>        <span class="hljs-type">char</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span>s.charAt(i);<br>        <span class="hljs-keyword">if</span> (Character.isLowerCase(ch)==<span class="hljs-literal">false</span>)<span class="hljs-comment">//只要碰到一个非字母，函数就返回false</span><br>        &#123;<br>            <span class="hljs-keyword">return</span>  <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span>  <span class="hljs-literal">true</span>;<span class="hljs-comment">//如果运行到这里，就说明每个都是字母</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * - 1、读取txt文件</span><br><span class="hljs-comment"> * - 2、然后遍历每一行，如果每一行中含有“次观看”的话 就提取出来数字</span><br><span class="hljs-comment"> * - 3、然后把数字相加，得出所有视频的总播放量</span><br><span class="hljs-comment"> */</span><br>String[] txtFiles = IOHelpers.readAllLines(<span class="hljs-string">&quot;D:/JavaTest1/视频量/Test.txt&quot;</span>);<br><span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;<span class="hljs-comment">//总播放量</span><br><span class="hljs-keyword">for</span> (String txtFile:txtFiles)<br>&#123;<br>    <span class="hljs-type">int</span> txtNumber=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (txtFile.contains(<span class="hljs-string">&quot;次观看&quot;</span>))<span class="hljs-comment">//判断字符串中是否含有“次观看”</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (txtFile.contains(<span class="hljs-string">&quot;万&quot;</span>))<br>        &#123;<br>            txtNumber = Integer.valueOf(txtFile.replace(<span class="hljs-string">&quot;万次观看&quot;</span>,<span class="hljs-string">&quot;0000&quot;</span>));<br>            System.out.println(txtNumber);<br>            sum= sum+txtNumber;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            txtNumber = Integer.valueOf(txtFile.replace(<span class="hljs-string">&quot;次观看&quot;</span>,<span class="hljs-string">&quot;&quot;</span>));<span class="hljs-comment">//String转换成int</span><br>            System.out.println(txtNumber);<br>            sum= sum+txtNumber;<br>        &#125;<br><br>    &#125;<br>&#125;<br>System.out.println(<span class="hljs-string">&quot;视频总播放为：&quot;</span>+sum);<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">indexofci</span> <span class="hljs-operator">=</span>line.indexOf(<span class="hljs-string">&quot;次观看&quot;</span>);<span class="hljs-comment">// 找到次观看的位置</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span>line.substring(<span class="hljs-number">0</span>,indexofci);<span class="hljs-comment">//从0提取到次观看</span><br><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span>Integer.valueOf(s);<span class="hljs-comment">//转换成int</span><br>sum = sum+count;<span class="hljs-comment">//相加</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -358,8 +361,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4-2 案例：对英语真题进行词频分析</div>
-      <div>http://example.com/2024/08/14/SE101-零基础玩Java/Part4-笔记/P4-2 案例：对英语真题进行词频分析/</div>
+      <div>P4-11 案例：统计视频播放量</div>
+      <div>http://example.com/2024/08/19/SE101-零基础玩Java/Part4-笔记/P4-11 案例：统计视频播放量/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +374,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 14, 2024</div>
+          <div>August 19, 2024</div>
         </div>
       
       
@@ -403,9 +406,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/14/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-3%20%E6%A1%88%E4%BE%8B%EF%BC%9APDF%E5%90%88%E5%B9%B6/" title="P4-3 案例：PDF合并">
+                      <a href="/2024/08/19/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-12%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BB%8E%E6%95%B0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%88%9B%E5%BB%BAExcel%E5%9B%BE%E8%A1%A8/" title="P4-12 案例：从数组数据创建Excel图表">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P4-3 案例：PDF合并</span>
+                        <span class="hidden-mobile">P4-12 案例：从数组数据创建Excel图表</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -413,8 +416,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/12/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-13%20%E4%BB%8E%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%88%9B%E5%BB%BAExcel%E5%9B%BE%E8%A1%A8/" title="P4-13 从表格数据创建Excel图表">
-                        <span class="hidden-mobile">P4-13 从表格数据创建Excel图表</span>
+                      <a href="/2024/08/18/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-10%20%E6%A1%88%E4%BE%8B%EF%BC%9AExcel%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6/" title="P4-10 案例：Excel文件合并">
+                        <span class="hidden-mobile">P4-10 案例：Excel文件合并</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
