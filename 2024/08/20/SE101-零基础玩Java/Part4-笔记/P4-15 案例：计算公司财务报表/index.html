@@ -19,24 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="案例：从数组数据创建Excel图表 主要概念 XSSFChart是代表Excel中的图表对象。 ChartBuilder是用于向XSSFChart中填充数据的构建器，有很多子类： ChartFromArrayBuilder用于从一个固定的数组来创建数据； ChartFromCellRangeBuilder用于从一个Excel表指定范围来创建数据；    创建Chart123XSSFChart ch">
+    <meta name="description" content="案例：计算公司财务报表 需求说明 “公司账目2021年.xlsx”,计算每个月的学费收入的波动图  思路  1.打开xlsx 2.先按照日期月份去算,然后再看收支类别是否为”学费收入” ,  3.然后相加 赋值给变量 4.制作波动图  1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4-12 案例：从数组数据创建Excel图表">
-<meta property="og:url" content="http://example.com/2024/08/19/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-12%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BB%8E%E6%95%B0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%88%9B%E5%BB%BAExcel%E5%9B%BE%E8%A1%A8/index.html">
+<meta property="og:title" content="P4-15 案例：计算公司财务报表">
+<meta property="og:url" content="http://example.com/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-15%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%85%AC%E5%8F%B8%E8%B4%A2%E5%8A%A1%E6%8A%A5%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="案例：从数组数据创建Excel图表 主要概念 XSSFChart是代表Excel中的图表对象。 ChartBuilder是用于向XSSFChart中填充数据的构建器，有很多子类： ChartFromArrayBuilder用于从一个固定的数组来创建数据； ChartFromCellRangeBuilder用于从一个Excel表指定范围来创建数据；    创建Chart123XSSFChart ch">
+<meta property="og:description" content="案例：计算公司财务报表 需求说明 “公司账目2021年.xlsx”,计算每个月的学费收入的波动图  思路  1.打开xlsx 2.先按照日期月份去算,然后再看收支类别是否为”学费收入” ,  3.然后相加 赋值给变量 4.制作波动图  1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240819/%E6%95%88%E6%9E%9C.8z6g8vukeo.webp">
-<meta property="article:published_time" content="2024-08-19T07:00:26.000Z">
-<meta property="article:modified_time" content="2024-08-19T07:00:44.334Z">
+<meta property="article:published_time" content="2024-08-20T08:03:26.000Z">
+<meta property="article:modified_time" content="2024-08-20T08:03:36.211Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240819/%E6%95%88%E6%9E%9C.8z6g8vukeo.webp">
   
   
   
-  <title>P4-12 案例：从数组数据创建Excel图表 - Hexo</title>
+  <title>P4-15 案例：计算公司财务报表 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4-12 案例：从数组数据创建Excel图表"></span>
+            <span id="subtitle" data-typed-text="P4-15 案例：计算公司财务报表"></span>
           
         </div>
 
@@ -213,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-19 15:00" pubdate>
-          August 19, 2024 pm
+        <time datetime="2024-08-20 16:03" pubdate>
+          August 20, 2024 pm
         </time>
       </span>
     
@@ -225,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          540 words
+          737 words
         
       </span>
     
@@ -236,7 +234,7 @@
         
         
         
-          5 mins
+          7 mins
         
       </span>
     
@@ -286,36 +284,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4-12 案例：从数组数据创建Excel图表</h1>
+            <h1 id="seo-header">P4-15 案例：计算公司财务报表</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="案例：从数组数据创建Excel图表"><a href="#案例：从数组数据创建Excel图表" class="headerlink" title="案例：从数组数据创建Excel图表"></a>案例：从数组数据创建Excel图表</h1><hr>
-<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><ul>
-<li>XSSFChart是代表Excel中的图表对象。</li>
-<li>ChartBuilder是用于向XSSFChart中填充数据的构建器，有很多子类：<ul>
-<li>ChartFromArrayBuilder用于从一个固定的数组来创建数据；</li>
-<li>ChartFromCellRangeBuilder用于从一个Excel表指定范围来创建数据；</li>
+                <h1 id="案例：计算公司财务报表"><a href="#案例：计算公司财务报表" class="headerlink" title="案例：计算公司财务报表"></a>案例：计算公司财务报表</h1><hr>
+<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><ul>
+<li>“公司账目2021年.xlsx”,计算每个月的学费收入的波动图</li>
+</ul>
+<p>思路</p>
+<ul>
+<li>1.打开xlsx</li>
+<li>2.先按照日期月份去算,然后再看收支类别是否为”学费收入” , </li>
+<li>3.然后相加 赋值给变量</li>
+<li>4.制作波动图</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * - &quot;公司账目2021年.xlsx&quot;,计算每个月的学费收入的波动图</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 思路</span><br><span class="hljs-comment"> * - 1.打开xlsx</span><br><span class="hljs-comment"> * - 2.先按照日期月份去算,然后再看收支类别是否为&quot;学费收入&quot; ,</span><br><span class="hljs-comment"> * - 3.然后相加 赋值给变量</span><br><span class="hljs-comment"> * - 4.制作波动图</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/公司账目2021年.xlsx&quot;</span>);<br><span class="hljs-type">int</span> <span class="hljs-variable">sheetmax</span> <span class="hljs-operator">=</span> workbook.getNumberOfSheets();<br><span class="hljs-type">double</span> one=<span class="hljs-number">0</span>;<br><span class="hljs-type">double</span> two=<span class="hljs-number">0</span>;<br><span class="hljs-type">double</span> three=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> sheetIndex=<span class="hljs-number">0</span>;sheetIndex&lt;sheetmax;sheetIndex++) <span class="hljs-comment">//循环读取页签中的内容 sheet</span><br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(sheetIndex);<span class="hljs-comment">//获取第x页签</span><br>    <span class="hljs-type">int</span> rowNumber=sheet.getLastRowNum();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;rowIndex&lt;=rowNumber;rowIndex++)<span class="hljs-comment">//跳过表头</span><br>    &#123;<br>        String 收支类别 =ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-type">double</span> 金额 =ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>        <span class="hljs-keyword">if</span> (!收支类别.equals(<span class="hljs-string">&quot;学费收入&quot;</span>))<br>        &#123;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (sheetIndex==<span class="hljs-number">0</span>)<br>            &#123;<br>                one=one+金额;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sheetIndex==<span class="hljs-number">1</span>)<br>            &#123;<br>                two=two+金额;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sheetIndex==<span class="hljs-number">2</span>)<br>            &#123;<br>                three=three+金额;<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                System.out.println(<span class="hljs-string">&quot;没有的表&quot;</span>);<br>            &#125;<br>        &#125;<br><br>    &#125;<br>&#125;<br><span class="hljs-type">XSSFWorkbook</span> <span class="hljs-variable">workbooks</span> <span class="hljs-operator">=</span>ExcelHelpers.createXLSX();<span class="hljs-comment">//创建xlsx</span><br><span class="hljs-type">XSSFSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbooks.createSheet();<span class="hljs-comment">//创建页签</span><br><span class="hljs-type">XSSFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> ExcelHelpers.createChart(sheet, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">26</span>);<span class="hljs-comment">//在sheet上创建一个图表对象，显示到左上角坐标为(coll，row)、右下角坐标为(col2，row2)这个位置</span><br>chart.setTitleText(<span class="hljs-string">&quot;每月收入波动图&quot;</span>);<br>chart.getOrAddLegend().setPosition(LegendPosition.LEFT);<br><br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.LINE);<span class="hljs-comment">//设置显示的图像:折线图  3D图等</span><br>String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;一月份&quot;</span>,<span class="hljs-string">&quot;二月份&quot;</span>,<span class="hljs-string">&quot;三月份&quot;</span>&#125;;<br>Double[] sales1 =&#123;one,two,three&#125;;<br>chartBuilder.setCategoryNames(monthNames);<span class="hljs-comment">//横坐标用哪个数组</span><br>chartBuilder.putValues(<span class="hljs-string">&quot;月份&quot;</span>,sales1);<br>chartBuilder.build(chart);<br><br>ExcelHelpers.saveToFile(workbooks,<span class="hljs-string">&quot;D:/JavaTest1/学费收入/1.xlsx&quot;</span>);<span class="hljs-comment">//保存文件</span><br>ExcelHelpers.close(workbooks);<span class="hljs-comment">//关闭文件</span><br>ExcelHelpers.close(workbooks);<br><span class="hljs-comment">//DesktopHelpers.openFile(&quot;D:/JavaTest1/学费收入/1.xlsx&quot;);//用默认方式去打开文件</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>1.上面这个代码是自己没有看大佬的视频时,写出来的.</li>
+<li>分析一下<ul>
+<li>1.自己写的太固定了,不好换</li>
+<li>2.其他思路和大佬的都差不多</li>
 </ul>
 </li>
 </ul>
-<h3 id="创建Chart"><a href="#创建Chart" class="headerlink" title="创建Chart"></a>创建Chart</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">XSSFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> ExcelHelpers.createChart(sheet, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">26</span>);<span class="hljs-comment">//在sheet上创建一个图表对象，显示到左上角坐标为(coll，row)、右下角坐标为(col2，row2)这个位置</span><br>chart.setTitleText(<span class="hljs-string">&quot;销售榜&quot;</span>);<br>chart.getOrAddLegend().setPosition(LegendPosition.LEFT);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//大佬写的</span><br><span class="hljs-type">Workbook</span> <span class="hljs-variable">wb</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;d:/公司账目2021年.xlsx&quot;</span>);<br><span class="hljs-type">int</span> <span class="hljs-variable">sheetCount</span> <span class="hljs-operator">=</span> wb.getNumberOfSheets();<br>String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[sheetCount];<span class="hljs-comment">//用来给波动图的指标</span><br>Double[] sales = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[sheetCount];<span class="hljs-comment">//用来给波动图的数据</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">sheetIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;sheetIndex&lt;sheetCount;sheetIndex++)<br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> wb.getSheetAt(sheetIndex);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> sheet.getSheetName();<br>    monthNames[sheetIndex]=month;<br>    <span class="hljs-type">double</span> 学费总额=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span><span class="hljs-number">1</span>;rowIndex&lt;=sheet.getLastRowNum();rowIndex++)<br>    &#123;<br>        String 收支类别 = ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-comment">//System.out.println(收支类别);</span><br>        <span class="hljs-keyword">if</span>(收支类别.equals(<span class="hljs-string">&quot;学费收入&quot;</span>))<br>        &#123;<br>            <span class="hljs-type">double</span> 金额= ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>            学费总额+=金额;<br>        &#125;<br>    &#125;<br>    sales[sheetIndex] = 学费总额;<br>    System.out.println(month+<span class="hljs-string">&quot;:&quot;</span>+学费总额);<br>&#125;<br><br><span class="hljs-type">XSSFWorkbook</span> <span class="hljs-variable">wbChart</span> <span class="hljs-operator">=</span> ExcelHelpers.createXLSX();<br><span class="hljs-type">XSSFSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> wbChart.createSheet();<br><span class="hljs-type">XSSFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> ExcelHelpers.createChart(sheet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>);<br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.LINE);<br>chartBuilder.setCategoryNames(monthNames);<br>chartBuilder.putValues(<span class="hljs-string">&quot;学费收入&quot;</span>,sales);<br>chartBuilder.build(chart);<br><br>ExcelHelpers.saveToFile(wbChart,<span class="hljs-string">&quot;d:/学费波动.xlsx&quot;</span>);<br>ExcelHelpers.close(wbChart);<br><br>ExcelHelpers.close(wb);<br><br></code></pre></td></tr></table></figure>
 
-
-<h3 id="Builder"><a href="#Builder" class="headerlink" title="Builder"></a>Builder</h3><ul>
-<li>ChartFromArrayBuilder<Double> chartBuilder &#x3D; new ChartFromArrayBuilder&lt;&gt;(ChartTypes.LINE);</li>
-<li>泛型的类型为数据的类型， ChartTypes为图表的类型：LINE 折线图； LINE3D立体 折线图；BAR条形图；BAR3D 立体条形图；PIE 饼状图；PIE3D立体饼状图；RADAR 雷达图；SCATTER散点图等。</li>
-</ul>
-<h3 id="填充数据"><a href="#填充数据" class="headerlink" title="填充数据"></a>填充数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;语文&quot;</span>,<span class="hljs-string">&quot;数学&quot;</span>,<span class="hljs-string">&quot;英语&quot;</span>&#125;;<br>Double[] sales1 =&#123;<span class="hljs-number">99.0</span>,<span class="hljs-number">99.8</span>,<span class="hljs-number">66.6</span>&#125;;<br>Double[] sales2 =&#123;<span class="hljs-number">99.8</span>,<span class="hljs-number">99.9</span>,<span class="hljs-number">88.8</span>&#125;;<br>chartBuilder.setCategoryNames(monthNames);<span class="hljs-comment">//横坐标用哪个数组</span><br>chartBuilder.putValues(<span class="hljs-string">&quot;张三&quot;</span>,sales1);<br>chartBuilder.putValues(<span class="hljs-string">&quot;李四&quot;</span>,sales2);<br>chartBuilder.setCategoryAxisTitle(<span class="hljs-string">&quot;科目&quot;</span>);<span class="hljs-comment">//分类的标题</span><br>chartBuilder.setValueAxisTitle(<span class="hljs-string">&quot;姓名&quot;</span>);<span class="hljs-comment">//数据的标题</span><br>chartBuilder.build(chart);<br></code></pre></td></tr></table></figure>
-
-
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
-<li>1、创建Chart，准备数据，使用Builder构建数据，然后build到chart上。</li>
-<li>2、演示：创建一个excel表，填充数据，保存到excel中。</li>
-</ul>
-<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240819/%E6%95%88%E6%9E%9C.8z6g8vukeo.webp" srcset="/img/loading.gif" lazyload alt="效果"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">XSSFWorkbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span>ExcelHelpers.createXLSX();<span class="hljs-comment">//创建xlsx</span><br><span class="hljs-type">XSSFSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.createSheet();<span class="hljs-comment">//创建页签</span><br><span class="hljs-type">XSSFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> ExcelHelpers.createChart(sheet, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">26</span>);<span class="hljs-comment">//在sheet上创建一个图表对象，显示到左上角坐标为(coll，row)、右下角坐标为(col2，row2)这个位置</span><br>chart.setTitleText(<span class="hljs-string">&quot;销售榜&quot;</span>);<br>chart.getOrAddLegend().setPosition(LegendPosition.LEFT);<br><br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.LINE);<span class="hljs-comment">//设置显示的图像:折线图  3D图等</span><br>String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;语文&quot;</span>,<span class="hljs-string">&quot;数学&quot;</span>,<span class="hljs-string">&quot;英语&quot;</span>&#125;;<br>Double[] sales1 =&#123;<span class="hljs-number">99.0</span>,<span class="hljs-number">99.8</span>,<span class="hljs-number">66.6</span>&#125;;<br>Double[] sales2 =&#123;<span class="hljs-number">99.8</span>,<span class="hljs-number">99.9</span>,<span class="hljs-number">88.8</span>&#125;;<br>chartBuilder.setCategoryNames(monthNames);<span class="hljs-comment">//横坐标用哪个数组</span><br>chartBuilder.putValues(<span class="hljs-string">&quot;张三&quot;</span>,sales1);<br>chartBuilder.putValues(<span class="hljs-string">&quot;李四&quot;</span>,sales2);<br>chartBuilder.setCategoryAxisTitle(<span class="hljs-string">&quot;科目&quot;</span>);<span class="hljs-comment">//分类的标题</span><br>chartBuilder.setValueAxisTitle(<span class="hljs-string">&quot;姓名&quot;</span>);<span class="hljs-comment">//数据的标题</span><br>chartBuilder.build(chart);<br><br>ExcelHelpers.saveToFile(workbook,<span class="hljs-string">&quot;D:/JavaTest1/1.xlsx&quot;</span>);<span class="hljs-comment">//保存文件</span><br>ExcelHelpers.close(workbook);<span class="hljs-comment">//关闭文件</span><br>DesktopHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/1.xlsx&quot;</span>);<span class="hljs-comment">//用默认方式去打开文件</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -367,8 +362,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4-12 案例：从数组数据创建Excel图表</div>
-      <div>http://example.com/2024/08/19/SE101-零基础玩Java/Part4-笔记/P4-12 案例：从数组数据创建Excel图表/</div>
+      <div>P4-15 案例：计算公司财务报表</div>
+      <div>http://example.com/2024/08/20/SE101-零基础玩Java/Part4-笔记/P4-15 案例：计算公司财务报表/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +375,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 19, 2024</div>
+          <div>August 20, 2024</div>
         </div>
       
       
@@ -412,9 +407,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-14%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E5%90%84%E5%9B%BD%E7%96%AB%E6%83%85%E6%8E%92%E8%A1%8C/" title="P4-14 案例：各国疫情排行">
+                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-16%20%E5%9C%A8Word%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%9B%BE%E8%A1%A8/" title="P4-16 在Word中创建图表">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P4-14 案例：各国疫情排行</span>
+                        <span class="hidden-mobile">P4-16 在Word中创建图表</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -422,8 +417,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/19/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-11%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%BB%9F%E8%AE%A1%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E9%87%8F/" title="P4-11 案例：统计视频播放量">
-                        <span class="hidden-mobile">P4-11 案例：统计视频播放量</span>
+                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-14%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E5%90%84%E5%9B%BD%E7%96%AB%E6%83%85%E6%8E%92%E8%A1%8C/" title="P4-14 案例：各国疫情排行">
+                        <span class="hidden-mobile">P4-14 案例：各国疫情排行</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
