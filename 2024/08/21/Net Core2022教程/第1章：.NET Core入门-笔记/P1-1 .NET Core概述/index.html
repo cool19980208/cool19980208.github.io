@@ -19,22 +19,29 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在Word中创建图表 用法Word中创建图表的方式是一样的 XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.ChartFromArrayBuilder等都可以用 案例:把Excel中的那两个案例再用Word实现一遍 1.疫情统计 123456789101112131415161718192021222324252">
+    <meta name="description" content=".NET Core概述  听课前提说明  1、不讲C#基础语法和.NET基础类库(不需要学过ASP.NET等) 需要懂HTML、JavaScript、数据库等   2、上课尽量与老师用的Visual Studio 版本保持一致，杨中科老师是2019 VS2019支持.NET SDK-5 VS2022和VS2019的区别就是需要手动选择一下5.0的SDK版本   SDK6 以上最好用VS2022版本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4-16 在Word中创建图表">
-<meta property="og:url" content="http://example.com/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-16%20%E5%9C%A8Word%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%9B%BE%E8%A1%A8/index.html">
+<meta property="og:title" content="P1-1 .NET Core概述">
+<meta property="og:url" content="http://example.com/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-1%20.NET%20Core%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在Word中创建图表 用法Word中创建图表的方式是一样的 XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.ChartFromArrayBuilder等都可以用 案例:把Excel中的那两个案例再用Word实现一遍 1.疫情统计 123456789101112131415161718192021222324252">
+<meta property="og:description" content=".NET Core概述  听课前提说明  1、不讲C#基础语法和.NET基础类库(不需要学过ASP.NET等) 需要懂HTML、JavaScript、数据库等   2、上课尽量与老师用的Visual Studio 版本保持一致，杨中科老师是2019 VS2019支持.NET SDK-5 VS2022和VS2019的区别就是需要手动选择一下5.0的SDK版本   SDK6 以上最好用VS2022版本">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-20T09:44:26.000Z">
-<meta property="article:modified_time" content="2024-08-20T09:44:54.398Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E5%9B%BE%E8%A7%A31.2h88i65700.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/Standard.73tviycrrs.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E5%B1%95%E5%BC%80%E7%BB%86%E8%8A%821.6ik7wngacf.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E4%B8%8D%E5%90%8C1.5q7cexi68q.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E7%89%88%E6%9C%AC1.8vmuduebes.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/Standard%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81.7i0b9vk9vd.webp">
+<meta property="article:published_time" content="2024-08-21T08:52:14.000Z">
+<meta property="article:modified_time" content="2024-08-21T08:52:54.788Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Java学习">
+<meta property="article:tag" content=".NET Core2022-学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E5%9B%BE%E8%A7%A31.2h88i65700.webp">
   
   
   
-  <title>P4-16 在Word中创建图表 - Hexo</title>
+  <title>P1-1 .NET Core概述 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4-16 在Word中创建图表"></span>
+            <span id="subtitle" data-typed-text="P1-1 .NET Core概述"></span>
           
         </div>
 
@@ -211,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-20 17:44" pubdate>
-          August 20, 2024 pm
+        <time datetime="2024-08-21 16:52" pubdate>
+          August 21, 2024 pm
         </time>
       </span>
     
@@ -223,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          509 words
+          1.1k words
         
       </span>
     
@@ -234,7 +241,7 @@
         
         
         
-          5 mins
+          10 mins
         
       </span>
     
@@ -284,21 +291,156 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4-16 在Word中创建图表</h1>
+            <h1 id="seo-header">P1-1 .NET Core概述</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="在Word中创建图表"><a href="#在Word中创建图表" class="headerlink" title="在Word中创建图表"></a>在Word中创建图表</h1><hr>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>Word中创建图表的方式是一样的</p>
-<p>XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.<br>ChartFromArrayBuilder等都可以用</p>
-<p>案例:把Excel中的那两个案例再用Word实现一遍</p>
-<p>1.疫情统计</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] lines = IOHelpers.readAllLines(<span class="hljs-string">&quot;D:/JavaTest1/疫情/疫情.txt&quot;</span>);<br>String[] countries=<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[lines.length];<span class="hljs-comment">//用来存放国家的数组</span><br>Double[] 确诊数量 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[lines.length];<span class="hljs-comment">//用来存放确诊数量的数组</span><br>Double[] 死亡数量 =<span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[lines.length];<span class="hljs-comment">//用来存放死亡数量的数组</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt; lines.length;i++)<br>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span>lines[i];<br>    String[] datas = line.split(<span class="hljs-string">&quot;\\s&quot;</span>);<span class="hljs-comment">//\\s 是正则表达式,代表了空格和Tab, 只要是空,就算</span><br>    <span class="hljs-comment">//System.out.println(Arrays.toString(datas));//先输出一下看看正确不</span><br>    String 国家 =datas[<span class="hljs-number">0</span>];<br>    Double 确诊 = Double.parseDouble(datas[<span class="hljs-number">1</span>]);<br>    Double 死亡 = Double.parseDouble(datas[<span class="hljs-number">2</span>]);<br>    countries[i]=国家;<br>    确诊数量[i]=确诊;<br>    死亡数量[i]=死亡;<br>&#125;<br><span class="hljs-type">XWPFDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> WordHelpers.createDocxDocument();<br><span class="hljs-type">XWPFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> WordHelpers.createChart(doc, <span class="hljs-number">400</span>, <span class="hljs-number">400</span>);<br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.BAR);<br>chart.setTitleText(<span class="hljs-string">&quot;疫情统计&quot;</span>);<span class="hljs-comment">//图表标题</span><br>chart.getOrAddLegend().setPosition(LegendPosition.LEFT);<br>chartBuilder.setCategoryNames(countries);<br>chartBuilder.putValues(<span class="hljs-string">&quot;确诊数量&quot;</span>,确诊数量);<br>chartBuilder.putValues(<span class="hljs-string">&quot;死亡数量&quot;</span>,死亡数量);<br>chartBuilder.build(chart);<br>WordHelpers.saveToFile(doc,<span class="hljs-string">&quot;D:/JavaTest1/疫情/疫情.docx&quot;</span>);<br>WordHelpers.close(doc);<br></code></pre></td></tr></table></figure>
+                <h1 id="NET-Core概述"><a href="#NET-Core概述" class="headerlink" title=".NET Core概述"></a>.NET Core概述</h1><hr>
+<blockquote>
+<p>听课前提说明</p>
+<ul>
+<li>1、不讲C#基础语法和.NET基础类库(不需要学过ASP.NET等)<ul>
+<li>需要懂HTML、JavaScript、数据库等</li>
+</ul>
+</li>
+<li>2、上课尽量与老师用的Visual Studio 版本保持一致，杨中科老师是2019<ul>
+<li>VS2019支持.NET SDK-5</li>
+<li>VS2022和VS2019的区别就是需要手动选择一下5.0的SDK版本</li>
+</ul>
+</li>
+<li>SDK6 以上最好用VS2022版本以上的 </li>
+<li>3、程序员的自主学习能力<ul>
+<li>记录笔记</li>
+<li>不依靠老师的课件、代码</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="什么是-NET-Core"><a href="#什么是-NET-Core" class="headerlink" title="什么是.NET Core"></a>什么是.NET Core</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>.NET是开发平台<br>.NET是.NET Framework、.NET Core、Xamarin&#x2F;Mono的统称</p>
+</blockquote>
+<ul>
+<li>.NET Framework<ul>
+<li>近20年历史，.NET简称的最早拥有者，用于开发Windows程序</li>
+</ul>
+</li>
+<li>Xamarin&#x2F;Mono<ul>
+<li>主要做移动开发</li>
+<li>Xamarin、Unity。Mono也能做Web等跨平台开发，但主要专注移动端</li>
+</ul>
+</li>
+<li>.NET Core<ul>
+<li>免费、跨平台、开源<ul>
+<li>跨平台：程序可以运行在Windows、Linux、Mac等操作系统下</li>
+</ul>
+</li>
+<li>事件：社区的 <strong>微软 love Linux</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么程序要跨平台运行？"><a href="#为什么程序要跨平台运行？" class="headerlink" title="为什么程序要跨平台运行？"></a>为什么程序要跨平台运行？</h3><ul>
+<li>因为微软最早是没有开源，直到.NET Core 才开源，真正的跨平台的开始<ul>
+<li>像.NET Framework 只支持Windows系统，太狭义了。</li>
+</ul>
+</li>
+<li>微软的发展转折–&gt; 云计算(Microsoft Azure—全球第二大云计算厂商)<ul>
+<li>按需付费</li>
+</ul>
+</li>
+<li>.NET Core为云而生<ul>
+<li>不止于云，不止于Azure</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="NET-Core的重要问题"><a href="#NET-Core的重要问题" class="headerlink" title="NET Core的重要问题"></a>NET Core的重要问题</h2><h3 id="什么是C-？"><a href="#什么是C-？" class="headerlink" title="什么是C#？"></a>什么是C#？</h3><ul>
+<li>.NET中主要的开发语言</li>
+</ul>
+<h3 id="NET-Core是-NET-Framework的升级版吗？"><a href="#NET-Core是-NET-Framework的升级版吗？" class="headerlink" title=".NET Core是.NET Framework的升级版吗？"></a>.NET Core是.NET Framework的升级版吗？</h3><ul>
+<li><p>尽管绝大部分用法没变，但是.NET Core不是.NET Framework的升级版，无法直接升级</p>
+</li>
+<li><p>有人会觉得又被微软坑了？</p>
+<ul>
+<li>.NET Framework白学了？ 那倒没有，因为绝大多数用法没变</li>
+</ul>
+</li>
+<li><p>之前可以用Mono让.NET Framework程序可以直接运行在LInux下。但有了Mono，为啥微软还搞了.NET Core呢？</p>
+<ul>
+<li>.NET Framework历史包袱<ul>
+<li>1.带着手铐脚镣长大的ASP.NET—MVC<ul>
+<li>因为这是在这个底层逻辑上的MVC框架而已，底层太过于臃肿</li>
+</ul>
+</li>
+<li>2.ASP.NET底层不支持很好的单元测试</li>
+</ul>
+</li>
+<li>Mono在移动端可以，但是现在服务器端几乎不用</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>.NET Framework的缺点<br>1、系统级别的安装，互相影响(比如补丁升级)<br>2、无法独立部署<br>3、ASP.NET和IIS 深度耦合<br>4、ASP.NET资源消耗大<br>5、非云原生  </p>
+</blockquote>
+<blockquote>
+<p>.NET Core的优点<br>1、支撑独立部署，不互相影响<br>2、彻底模块化<br>3、没有历史包袱，运行效率高<br>4、不依赖与IIS<br>5、跨平台<br>6、符合现代开发理念：依赖注入，单元测试等</p>
+</blockquote>
+<p>不同之处</p>
+<ul>
+<li>1、不支持：ASP.NET WebForms、WCF服务器端、WF、.NET Remoting、Appdomain</li>
+<li>2、部分Windows-Only的特性 .NET Core，但是无法跨平台：WinForm、WPF、注册表、Event Log、AD等。</li>
+</ul>
+<h3 id="项目应该使用-NET-Core开发吗？"><a href="#项目应该使用-NET-Core开发吗？" class="headerlink" title="项目应该使用.NET Core开发吗？"></a>项目应该使用.NET Core开发吗？</h3><ul>
+<li>1、旧的.NET Framework项目没必要动</li>
+<li>2、用到了.NET Core中不支持的特性的不能动</li>
+<li>3、其他新项目都可以用.NET Core，已经足够成熟，社区也在全面转向.NET Core</li>
+</ul>
+<hr>
+<h2 id="NET-Standard是什么"><a href="#NET-Standard是什么" class="headerlink" title=".NET Standard是什么"></a>.NET Standard是什么</h2><h3 id="NET-Standard介绍"><a href="#NET-Standard介绍" class="headerlink" title=".NET Standard介绍"></a>.NET Standard介绍</h3><ul>
+<li>它是一个标准规范</li>
+<li>图解<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E5%9B%BE%E8%A7%A31.2h88i65700.webp" srcset="/img/loading.gif" lazyload alt="图解1"></li>
+</ul>
+</li>
+</ul>
+<h3 id="验证：-NET-Standard只是标准，不是实现"><a href="#验证：-NET-Standard只是标准，不是实现" class="headerlink" title="验证：.NET Standard只是标准，不是实现"></a>验证：.NET Standard只是标准，不是实现</h3><ul>
+<li>1、建.NET Standard类库项目，确认版本是2.0，建一个类，方法中打印typeof(FileStream).Assembly.Location<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/Standard.73tviycrrs.webp" srcset="/img/loading.gif" lazyload alt="Standard"></li>
+</ul>
+</li>
+<li>2、分别建.NET Standard和.NET Core的控制台项目，添加对类库项目引用，并且调用</li>
+<li>3、用反编译工具ILSpy分别反编译VS中FileStream、.NET Framework和.NET Core运行中的。BeginRead方法实现以及定义有不同<ul>
+<li>反编译：程序集–&gt;源代码</li>
+<li>ILSpy不会默认展开方法细节<ul>
+<li>所以可以在选项中打开</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E5%B1%95%E5%BC%80%E7%BB%86%E8%8A%821.6ik7wngacf.webp" srcset="/img/loading.gif" lazyload alt="展开细节1"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Core-BeginRead和Framework-BeginRead的不同"><a href="#Core-BeginRead和Framework-BeginRead的不同" class="headerlink" title="Core-BeginRead和Framework-BeginRead的不同"></a>Core-BeginRead和Framework-BeginRead的不同</h4><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E4%B8%8D%E5%90%8C1.5q7cexi68q.webp" srcset="/img/loading.gif" lazyload alt="不同1"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C#">Core<br><span class="hljs-comment">//在Standard规范的前提下，实现各自的方法逻辑</span><br>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\<span class="hljs-number">5.0</span><span class="hljs-number">.17</span>\System.Private.CoreLib.dll<br>E:\Projects\C-sharp\.NET Core2022 Study\CoreConsole1\bin\Debug\net5<span class="hljs-number">.0</span>\TestLib1.dll<br><br><br>Framework<br><span class="hljs-comment">//在Standard规范的前提下，实现各自的方法逻辑</span><br>C:\Windows\Microsoft.NET\Framework\v4<span class="hljs-number">.0</span><span class="hljs-number">.30319</span>\mscorlib.dll<br>E:\Projects\C-sharp\.NET Core2022 Study\FrameworkConsole1\bin\Debug\TestLib1.dll<br><br>NET Standard<br><span class="hljs-comment">//方法都是只有定义，但没有实现</span><br>C:\Users\Administrator\.nuget\packages\netstandard.library\<span class="hljs-number">2.0</span><span class="hljs-number">.3</span>\build\netstandard2<span class="hljs-number">.0</span>\<span class="hljs-keyword">ref</span>\netstandard.dll<br></code></pre></td></tr></table></figure>
+<h5 id="遇到的报错"><a href="#遇到的报错" class="headerlink" title="遇到的报错"></a>遇到的报错</h5><ul>
+<li>1、FrameworkConsole1 引用Standard类库时，框架版本不能低于4.7.2，要不然引用会出错</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/%E7%89%88%E6%9C%AC1.8vmuduebes.webp" srcset="/img/loading.gif" lazyload alt="版本1"></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>.NET Standard只是规范，一个.NET Standard类库可以被支持其版本的.NET Framework、.NET Core、Xamarin等引用。</li>
+<li>而.NET Core类库、.NET Framework类库则不可以被.NET Standard引用。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240821/Standard%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81.7i0b9vk9vd.webp" srcset="/img/loading.gif" lazyload alt="Standard版本支持"></li>
+</ul>
+</li>
+<li>如果编写一个公用的类库，尽量选择.NET Standard，并且尽量用低版本</li>
+<li>.NET Framework支持到.NET Standard 2.0为止<ul>
+<li>从.NET5开始，微软开始淡化其他叫法，统一为.NET。<ul>
+<li>后续默认.NET就是指的.NET Core</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-
-<p>2.收入统计</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Workbook</span> <span class="hljs-variable">wb</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/公司账目2021年.xlsx&quot;</span>);<br><span class="hljs-type">int</span> <span class="hljs-variable">sheetCount</span> <span class="hljs-operator">=</span> wb.getNumberOfSheets();<br>String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[sheetCount];<span class="hljs-comment">//用来给波动图的指标</span><br>Double[] sales = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[sheetCount];<span class="hljs-comment">//用来给波动图的数据</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">sheetIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;sheetIndex&lt;sheetCount;sheetIndex++)<br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> wb.getSheetAt(sheetIndex);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> sheet.getSheetName();<br>    monthNames[sheetIndex]=month;<br>    <span class="hljs-type">double</span> 学费总额=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span><span class="hljs-number">1</span>;rowIndex&lt;=sheet.getLastRowNum();rowIndex++)<br>    &#123;<br>        String 收支类别 = ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-comment">//System.out.println(收支类别);</span><br>        <span class="hljs-keyword">if</span>(收支类别.equals(<span class="hljs-string">&quot;学费收入&quot;</span>))<br>        &#123;<br>            <span class="hljs-type">double</span> 金额= ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>            学费总额+=金额;<br>        &#125;<br>    &#125;<br>    sales[sheetIndex] = 学费总额;<br>    System.out.println(month+<span class="hljs-string">&quot;:&quot;</span>+学费总额);<br>&#125;<br><br><span class="hljs-type">XWPFDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> WordHelpers.createDocxDocument();<br><span class="hljs-type">XWPFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> WordHelpers.createChart(doc, <span class="hljs-number">400</span>, <span class="hljs-number">400</span>);<br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.LINE);<br>chartBuilder.setCategoryNames(monthNames);<br>chartBuilder.putValues(<span class="hljs-string">&quot;学费收入&quot;</span>,sales);<br>chartBuilder.build(chart);<br><br>WordHelpers.saveToFile(doc,<span class="hljs-string">&quot;D:/JavaTest1/学费收入/1.docx&quot;</span>);<br>WordHelpers.close(doc);<br><br>ExcelHelpers.close(wb);<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -316,12 +458,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part4/" class="category-chain-item">零基础玩Java-Part4</a>
+  <a href="/categories/NET-Core/%E7%AC%AC1%E7%AB%A0%EF%BC%9A-NET-Core%E5%85%A5%E9%97%A8/" class="category-chain-item">第1章：.NET Core入门</a>
   
   
 
@@ -338,7 +480,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" class="print-no-link">#Java学习</a>
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
       
     </div>
   
@@ -350,8 +492,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4-16 在Word中创建图表</div>
-      <div>http://example.com/2024/08/20/SE101-零基础玩Java/Part4-笔记/P4-16 在Word中创建图表/</div>
+      <div>P1-1 .NET Core概述</div>
+      <div>http://example.com/2024/08/21/Net Core2022教程/第1章：.NET Core入门-笔记/P1-1 .NET Core概述/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +505,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 20, 2024</div>
+          <div>August 21, 2024</div>
         </div>
       
       
@@ -395,9 +537,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-1%20.NET%20Core%E6%A6%82%E8%BF%B0/" title="P1-1 .NET Core概述">
+                      <a href="/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-2%20.NET%20Core%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" title="P1-2 .NET Core 开发环境的搭建">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P1-1 .NET Core概述</span>
+                        <span class="hidden-mobile">P1-2 .NET Core 开发环境的搭建</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -405,8 +547,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-15%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%85%AC%E5%8F%B8%E8%B4%A2%E5%8A%A1%E6%8A%A5%E8%A1%A8/" title="P4-15 案例：计算公司财务报表">
-                        <span class="hidden-mobile">P4-15 案例：计算公司财务报表</span>
+                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-16%20%E5%9C%A8Word%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%9B%BE%E8%A1%A8/" title="P4-16 在Word中创建图表">
+                        <span class="hidden-mobile">P4-16 在Word中创建图表</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

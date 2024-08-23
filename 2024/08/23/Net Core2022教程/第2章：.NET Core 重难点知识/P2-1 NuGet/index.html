@@ -19,22 +19,36 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在Word中创建图表 用法Word中创建图表的方式是一样的 XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.ChartFromArrayBuilder等都可以用 案例:把Excel中的那两个案例再用Word实现一遍 1.疫情统计 123456789101112131415161718192021222324252">
+    <meta name="description" content="NuGet 下载DLL的方式 以前传统的手工下载dll 缺点：不好找;版本不匹配;依赖复杂 所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件   软件包 之前都是自己引用dll或者第三方包去使用 下载–&gt;安装–&gt;匹配 .NET Core用的是：NuGet VS里面也有应用商城，但是功能不是非常的完善   比如其他软件都有类似的操作 Linux：apt、y">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4-16 在Word中创建图表">
-<meta property="og:url" content="http://example.com/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-16%20%E5%9C%A8Word%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%9B%BE%E8%A1%A8/index.html">
+<meta property="og:title" content="P2-1 NuGet">
+<meta property="og:url" content="http://example.com/2024/08/23/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-1%20NuGet/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在Word中创建图表 用法Word中创建图表的方式是一样的 XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.ChartFromArrayBuilder等都可以用 案例:把Excel中的那两个案例再用Word实现一遍 1.疫情统计 123456789101112131415161718192021222324252">
+<meta property="og:description" content="NuGet 下载DLL的方式 以前传统的手工下载dll 缺点：不好找;版本不匹配;依赖复杂 所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件   软件包 之前都是自己引用dll或者第三方包去使用 下载–&gt;安装–&gt;匹配 .NET Core用的是：NuGet VS里面也有应用商城，但是功能不是非常的完善   比如其他软件都有类似的操作 Linux：apt、y">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-20T09:44:26.000Z">
-<meta property="article:modified_time" content="2024-08-20T09:44:54.398Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%A8%8B%E5%BA%8F.5tqyee57ry.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%97%A0%E4%BE%9D%E8%B5%96.pf9p45ajp.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E8%A2%AB%E5%BC%95%E7%94%A8.1ovd2a81p9.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.7zqd05wviv.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E4%B8%8B%E8%BD%BD%E9%87%8F.2dommavkpy.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E5%8C%85%E7%9A%84%E4%BB%8B%E7%BB%8D.1zi6vfn9ui.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%94%B6%E8%B4%B9.6bh02z6lcz.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.5tqyfextu6.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%AE%89%E8%A3%85.67xe6agpow.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8D%B8%E8%BD%BD.4uav297b2p.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%9D%9E%E5%B8%B8%E8%A7%84.4xugzza4wl.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%9B%B4%E6%96%B0.ic1upbr65.webp">
+<meta property="article:published_time" content="2024-08-23T03:32:26.000Z">
+<meta property="article:modified_time" content="2024-08-23T03:33:18.737Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Java学习">
+<meta property="article:tag" content=".NET Core2022-学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp">
   
   
   
-  <title>P4-16 在Word中创建图表 - Hexo</title>
+  <title>P2-1 NuGet - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4-16 在Word中创建图表"></span>
+            <span id="subtitle" data-typed-text="P2-1 NuGet"></span>
           
         </div>
 
@@ -211,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-20 17:44" pubdate>
-          August 20, 2024 pm
+        <time datetime="2024-08-23 11:32" pubdate>
+          August 23, 2024 am
         </time>
       </span>
     
@@ -223,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          509 words
+          1.2k words
         
       </span>
     
@@ -234,7 +248,7 @@
         
         
         
-          5 mins
+          10 mins
         
       </span>
     
@@ -284,21 +298,200 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4-16 在Word中创建图表</h1>
+            <h1 id="seo-header">P2-1 NuGet</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="在Word中创建图表"><a href="#在Word中创建图表" class="headerlink" title="在Word中创建图表"></a>在Word中创建图表</h1><hr>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>Word中创建图表的方式是一样的</p>
-<p>XWPFChart和XSSFChart 一样都是继承自XDDFChart的,因此同样可以用chartBuilder构建数据,然后填充.<br>ChartFromArrayBuilder等都可以用</p>
-<p>案例:把Excel中的那两个案例再用Word实现一遍</p>
-<p>1.疫情统计</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] lines = IOHelpers.readAllLines(<span class="hljs-string">&quot;D:/JavaTest1/疫情/疫情.txt&quot;</span>);<br>String[] countries=<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[lines.length];<span class="hljs-comment">//用来存放国家的数组</span><br>Double[] 确诊数量 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[lines.length];<span class="hljs-comment">//用来存放确诊数量的数组</span><br>Double[] 死亡数量 =<span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[lines.length];<span class="hljs-comment">//用来存放死亡数量的数组</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span><span class="hljs-number">0</span>;i&lt; lines.length;i++)<br>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span>lines[i];<br>    String[] datas = line.split(<span class="hljs-string">&quot;\\s&quot;</span>);<span class="hljs-comment">//\\s 是正则表达式,代表了空格和Tab, 只要是空,就算</span><br>    <span class="hljs-comment">//System.out.println(Arrays.toString(datas));//先输出一下看看正确不</span><br>    String 国家 =datas[<span class="hljs-number">0</span>];<br>    Double 确诊 = Double.parseDouble(datas[<span class="hljs-number">1</span>]);<br>    Double 死亡 = Double.parseDouble(datas[<span class="hljs-number">2</span>]);<br>    countries[i]=国家;<br>    确诊数量[i]=确诊;<br>    死亡数量[i]=死亡;<br>&#125;<br><span class="hljs-type">XWPFDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> WordHelpers.createDocxDocument();<br><span class="hljs-type">XWPFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> WordHelpers.createChart(doc, <span class="hljs-number">400</span>, <span class="hljs-number">400</span>);<br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.BAR);<br>chart.setTitleText(<span class="hljs-string">&quot;疫情统计&quot;</span>);<span class="hljs-comment">//图表标题</span><br>chart.getOrAddLegend().setPosition(LegendPosition.LEFT);<br>chartBuilder.setCategoryNames(countries);<br>chartBuilder.putValues(<span class="hljs-string">&quot;确诊数量&quot;</span>,确诊数量);<br>chartBuilder.putValues(<span class="hljs-string">&quot;死亡数量&quot;</span>,死亡数量);<br>chartBuilder.build(chart);<br>WordHelpers.saveToFile(doc,<span class="hljs-string">&quot;D:/JavaTest1/疫情/疫情.docx&quot;</span>);<br>WordHelpers.close(doc);<br></code></pre></td></tr></table></figure>
+                <h1 id="NuGet"><a href="#NuGet" class="headerlink" title="NuGet"></a>NuGet</h1><hr>
+<h2 id="下载DLL的方式"><a href="#下载DLL的方式" class="headerlink" title="下载DLL的方式"></a>下载DLL的方式</h2><ul>
+<li>以前传统的手工下载dll<ul>
+<li>缺点：不好找;版本不匹配;依赖复杂</li>
+<li>所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件</li>
+</ul>
+</li>
+<li>软件包<ul>
+<li>之前都是自己引用dll或者第三方包去使用<ul>
+<li>下载–&gt;安装–&gt;匹配</li>
+<li>.NET Core用的是：NuGet</li>
+<li>VS里面也有应用商城，但是功能不是非常的完善</li>
+</ul>
+</li>
+<li>比如其他软件都有类似的操作<ul>
+<li>Linux：apt、yum</li>
+<li>Javascript：npm</li>
+<li>Java：Maven、Gradle</li>
+<li>Python：pip</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="NuGet的搜索"><a href="#NuGet的搜索" class="headerlink" title="NuGet的搜索"></a>NuGet的搜索</h2><p>官网：<a target="_blank" rel="noopener" href="https://www.nuget.org/">https://www.nuget.org/</a></p>
+<blockquote>
+<p>这个网址大多数都是欧美地区人再用，所以都是英语</p>
+</blockquote>
+<ul>
+<li>功能<ul>
+<li>精确搜索(Zack.EFCore.Batch)<ul>
+<li>知道自己需要用哪个包，可以直接使用精确搜索</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp" srcset="/img/loading.gif" lazyload alt="精确搜索"></li>
+</ul>
+</li>
+<li>模糊搜索<ul>
+<li>建议使用英文去搜索，下面是例子<ul>
+<li>subtitle parser—解析器</li>
+<li>ftp—文件传输</li>
+<li>hotkey—热键</li>
+</ul>
+</li>
+<li>中文一般搜索不到</li>
+</ul>
+</li>
+<li>详细页讲解<ul>
+<li>Dependencies —查看支持什么程序<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%A8%8B%E5%BA%8F.5tqyee57ry.webp" srcset="/img/loading.gif" lazyload alt="查看支持程序"></li>
+<li>如果是This package has no dependencies 没有依赖<ul>
+<li>默认都是.NETFramework</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%97%A0%E4%BE%9D%E8%B5%96.pf9p45ajp.webp" srcset="/img/loading.gif" lazyload alt="无依赖"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Used By—查看这个包被哪些库类引用<ul>
+<li>如果被引用的多，就说明这个包非常的流行，经过很多人的验证</li>
+<li>很多人用这个包，就说明这个包比较靠谱；如果没人用，相对来讲可能就不靠谱一点</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E8%A2%AB%E5%BC%95%E7%94%A8.1ovd2a81p9.webp" srcset="/img/loading.gif" lazyload alt="被引用"></li>
+</ul>
+</li>
+<li>Versions—更新的频次越多，更新的时间越近，说明这个项目非常的活跃，一直在更新，有了新的bug，新的功能，这个作者一直在往里面加<ul>
+<li>那么这个项目就属于一个比较靠谱的项目</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.7zqd05wviv.webp" srcset="/img/loading.gif" lazyload alt="版本迭代"></li>
+</ul>
+</li>
+<li>downloads—下载量<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E4%B8%8B%E8%BD%BD%E9%87%8F.2dommavkpy.webp" srcset="/img/loading.gif" lazyload alt="下载量"></li>
+</ul>
+</li>
+<li>Project website —官网<ul>
+<li>有的是直接指向了GitHub上面</li>
+</ul>
+</li>
+<li>MIT license—协议</li>
+<li>Package Manager(一般都使用这个)<ul>
+<li>安装命令</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>因为NuGet上面的包不都是微软提供的<ul>
+<li>有少数是微软提供的，但大部分的包都是像杨中科老师这样的第三方开发者或者说有一些公司来提供的</li>
+<li>这只是微软构建的一个第三方开发包的一个应用商城而已，里面的软件包的质量有好有坏，参差不齐.</li>
+<li>有的只发布了一个版本，放上去就没人在管了，里边一大堆bug；也有一些比较优秀的人做的项目一直在更新。所以说你要自己去甄别</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="挑选包的原则"><a href="#挑选包的原则" class="headerlink" title="挑选包的原则"></a>挑选包的原则</h3><ul>
+<li><p>1、先查看这个包支不支持你的.NET的版本</p>
+</li>
+<li><p>2、被别人类库引用的多不多</p>
+</li>
+<li><p>3、下载量大不大</p>
+</li>
+<li><p>4、更新的频次是不是频繁</p>
+</li>
+<li><p>5、官网看看是否收费</p>
+</li>
+<li><p>包的介绍</p>
+<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E5%8C%85%E7%9A%84%E4%BB%8B%E7%BB%8D.1zi6vfn9ui.webp" srcset="/img/loading.gif" lazyload alt="包的介绍"></li>
+</ul>
+</li>
+<li><p>有一些项目下载少，引用少，不代表说他一定不靠谱，可能这个功能很简单，就发布了一个版本就没啥可维护的。毕竟有些比较冷门的功能</p>
+</li>
+<li><p>还可以打开官网看看</p>
+<ul>
+<li>有些官网里面会显示 price—价格或者purchase，那就说明这个包它不是免费的，不是开源的<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%94%B6%E8%B4%B9.6bh02z6lcz.webp" srcset="/img/loading.gif" lazyload alt="收费"></li>
+</ul>
+</li>
+<li>NuGet上面不是所有的包都是免费的，也有一部分是收费的<ul>
+<li>有一部分属于商业使用，需要收费</li>
+<li>或者说是试用版</li>
+<li>收费的慎用，因为是需要花钱的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="NuGet使用方式"><a href="#NuGet使用方式" class="headerlink" title="NuGet使用方式"></a>NuGet使用方式</h2><ul>
+<li>NuGet CLI</li>
+<li>VS图形界面<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.5tqyfextu6.webp" srcset="/img/loading.gif" lazyload alt="图形化界面"></li>
+</ul>
+</li>
+<li>VS命令行【程序包管理器控制台】(推荐)<ul>
+<li>安装<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%AE%89%E8%A3%85.67xe6agpow.webp" srcset="/img/loading.gif" lazyload alt="安装"></li>
+</ul>
+</li>
+<li>卸载<ul>
+<li>常规<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8D%B8%E8%BD%BD.4uav297b2p.webp" srcset="/img/loading.gif" lazyload alt="卸载"></li>
+</ul>
+</li>
+<li>非常规<ul>
+<li>直接在配置文件中把那一行是删除保存即可。</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%9D%9E%E5%B8%B8%E8%A7%84.4xugzza4wl.webp" srcset="/img/loading.gif" lazyload alt="非常规"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>更新<ul>
+<li>Update-Package XXX 跟上包名即可</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>注意：【默认项目】为目标项目。</li>
+<li>1）安装：Install-Package XXX。-Version 指定版本。<ul>
+<li>可以看到把依赖组件都下载了。</li>
+<li>版本检测：尝试 把项目改为.NET core 1.0，然后再安装Zack.EFCore.Batch试试。</li>
+</ul>
+</li>
+<li>2）卸载：Uninstall-Package XXX</li>
+<li>3）更新到最新版：Update-Package XXX</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他方面"><a href="#其他方面" class="headerlink" title="其他方面"></a>其他方面</h3><ul>
+<li>1、NuGet你也可以贡献，就三步。<ul>
+<li>能力的锻炼，增加社区的影响力</li>
+</ul>
+</li>
+<li>2、和.NET Framework不同，.NET core绝大部分官方程序集也要到NuGet下载。模块化！<ul>
+<li>.NET Framework的一些部分功能都是默认集成了，到了.NET Core就把这些功能都剥离出来放在NuGet上面了，变成模块化~ 需要就装，不需要就不用安装</li>
+</ul>
+</li>
+<li>3、少部分是收费的，如搜索“word file”。</li>
+<li>4、参差不齐，如何分辨质量。</li>
+<li>5、内部部署NuGet服务器。<ul>
+<li>通用的包，不方便放在NuGet上面。方便团队使用，可以内部去搭建NuGet服务器，如果需要微软的包，也可以映射过来。</li>
+</ul>
+</li>
+</ul>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><ul>
+<li>项目中的包太多了，想更新版本，如果使用VS命令行，需要一个一个更新太麻烦了<ul>
+<li>可以使用VS图形界面去更新(选需要更新的包即可)</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%9B%B4%E6%96%B0.ic1upbr65.webp" srcset="/img/loading.gif" lazyload alt="更新"></li>
+</ul>
+</li>
+</ul>
 
-
-<p>2.收入统计</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Workbook</span> <span class="hljs-variable">wb</span> <span class="hljs-operator">=</span> ExcelHelpers.openFile(<span class="hljs-string">&quot;D:/JavaTest1/公司账目2021年.xlsx&quot;</span>);<br><span class="hljs-type">int</span> <span class="hljs-variable">sheetCount</span> <span class="hljs-operator">=</span> wb.getNumberOfSheets();<br>String[] monthNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[sheetCount];<span class="hljs-comment">//用来给波动图的指标</span><br>Double[] sales = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Double</span>[sheetCount];<span class="hljs-comment">//用来给波动图的数据</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">sheetIndex</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;sheetIndex&lt;sheetCount;sheetIndex++)<br>&#123;<br>    <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> wb.getSheetAt(sheetIndex);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> sheet.getSheetName();<br>    monthNames[sheetIndex]=month;<br>    <span class="hljs-type">double</span> 学费总额=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">rowIndex</span> <span class="hljs-operator">=</span><span class="hljs-number">1</span>;rowIndex&lt;=sheet.getLastRowNum();rowIndex++)<br>    &#123;<br>        String 收支类别 = ExcelHelpers.getCellStringValue(sheet,rowIndex,<span class="hljs-number">2</span>);<br>        <span class="hljs-comment">//System.out.println(收支类别);</span><br>        <span class="hljs-keyword">if</span>(收支类别.equals(<span class="hljs-string">&quot;学费收入&quot;</span>))<br>        &#123;<br>            <span class="hljs-type">double</span> 金额= ExcelHelpers.getCellDoubleValue(sheet,rowIndex,<span class="hljs-number">3</span>);<br>            学费总额+=金额;<br>        &#125;<br>    &#125;<br>    sales[sheetIndex] = 学费总额;<br>    System.out.println(month+<span class="hljs-string">&quot;:&quot;</span>+学费总额);<br>&#125;<br><br><span class="hljs-type">XWPFDocument</span> <span class="hljs-variable">doc</span> <span class="hljs-operator">=</span> WordHelpers.createDocxDocument();<br><span class="hljs-type">XWPFChart</span> <span class="hljs-variable">chart</span> <span class="hljs-operator">=</span> WordHelpers.createChart(doc, <span class="hljs-number">400</span>, <span class="hljs-number">400</span>);<br>ChartFromArrayBuilder&lt;Double&gt; chartBuilder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChartFromArrayBuilder</span>&lt;&gt;(ChartTypes.LINE);<br>chartBuilder.setCategoryNames(monthNames);<br>chartBuilder.putValues(<span class="hljs-string">&quot;学费收入&quot;</span>,sales);<br>chartBuilder.build(chart);<br><br>WordHelpers.saveToFile(doc,<span class="hljs-string">&quot;D:/JavaTest1/学费收入/1.docx&quot;</span>);<br>WordHelpers.close(doc);<br><br>ExcelHelpers.close(wb);<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -316,12 +509,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java/%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java-Part4/" class="category-chain-item">零基础玩Java-Part4</a>
+  <a href="/categories/NET-Core/%E7%AC%AC2%E7%AB%A0%EF%BC%9A-NET-Core-%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/" class="category-chain-item">第2章：.NET Core 重难点知识</a>
   
   
 
@@ -338,7 +531,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" class="print-no-link">#Java学习</a>
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
       
     </div>
   
@@ -350,8 +543,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4-16 在Word中创建图表</div>
-      <div>http://example.com/2024/08/20/SE101-零基础玩Java/Part4-笔记/P4-16 在Word中创建图表/</div>
+      <div>P2-1 NuGet</div>
+      <div>http://example.com/2024/08/23/Net Core2022教程/第2章：.NET Core 重难点知识/P2-1 NuGet/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +556,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 20, 2024</div>
+          <div>August 23, 2024</div>
         </div>
       
       
@@ -395,18 +588,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-1%20.NET%20Core%E6%A6%82%E8%BF%B0/" title="P1-1 .NET Core概述">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P1-1 .NET Core概述</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/20/SE101-%E9%9B%B6%E5%9F%BA%E7%A1%80%E7%8E%A9Java/Part4-%E7%AC%94%E8%AE%B0/P4-15%20%E6%A1%88%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%85%AC%E5%8F%B8%E8%B4%A2%E5%8A%A1%E6%8A%A5%E8%A1%A8/" title="P4-15 案例：计算公司财务报表">
-                        <span class="hidden-mobile">P4-15 案例：计算公司财务报表</span>
+                      <a href="/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-2%20.NET%20Core%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" title="P1-2 .NET Core 开发环境的搭建">
+                        <span class="hidden-mobile">P1-2 .NET Core 开发环境的搭建</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
