@@ -19,36 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="NuGet 下载DLL的方式 以前传统的手工下载dll 缺点：不好找;版本不匹配;依赖复杂 所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件   软件包 之前都是自己引用dll或者第三方包去使用 下载–&gt;安装–&gt;匹配 .NET Core用的是：NuGet VS里面也有应用商城，但是功能不是非常的完善   比如其他软件都有类似的操作 Linux：apt、y">
+    <meta name="description" content="精读阅读理解精通核心必备词汇-4 串词是手段，理解句子是核心  理解句子的时候，你可以知道有些单词很重要，有些单词没那么重要。 名词和动词是句子的核心：n 和 v 形容词，因为它是修饰名词的，所以不那么重要；表示程度的副词也是这样 形容词只需要先记住是形容好的方面还是坏的方面即可   副词和形容词都是起修饰作用的      原文(1)：  Jarden Zinc(锌)Products,a larg">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P2-1 NuGet">
-<meta property="og:url" content="http://example.com/2024/08/23/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-1%20NuGet/index.html">
+<meta property="og:title" content="精读阅读理解精通核心必备词汇-4">
+<meta property="og:url" content="http://example.com/2024/08/24/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87-4/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="NuGet 下载DLL的方式 以前传统的手工下载dll 缺点：不好找;版本不匹配;依赖复杂 所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件   软件包 之前都是自己引用dll或者第三方包去使用 下载–&gt;安装–&gt;匹配 .NET Core用的是：NuGet VS里面也有应用商城，但是功能不是非常的完善   比如其他软件都有类似的操作 Linux：apt、y">
+<meta property="og:description" content="精读阅读理解精通核心必备词汇-4 串词是手段，理解句子是核心  理解句子的时候，你可以知道有些单词很重要，有些单词没那么重要。 名词和动词是句子的核心：n 和 v 形容词，因为它是修饰名词的，所以不那么重要；表示程度的副词也是这样 形容词只需要先记住是形容好的方面还是坏的方面即可   副词和形容词都是起修饰作用的      原文(1)：  Jarden Zinc(锌)Products,a larg">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%A8%8B%E5%BA%8F.5tqyee57ry.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%97%A0%E4%BE%9D%E8%B5%96.pf9p45ajp.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E8%A2%AB%E5%BC%95%E7%94%A8.1ovd2a81p9.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.7zqd05wviv.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E4%B8%8B%E8%BD%BD%E9%87%8F.2dommavkpy.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E5%8C%85%E7%9A%84%E4%BB%8B%E7%BB%8D.1zi6vfn9ui.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%94%B6%E8%B4%B9.6bh02z6lcz.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.5tqyfextu6.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%AE%89%E8%A3%85.67xe6agpow.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8D%B8%E8%BD%BD.4uav297b2p.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%9D%9E%E5%B8%B8%E8%A7%84.4xugzza4wl.webp">
-<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%9B%B4%E6%96%B0.ic1upbr65.webp">
-<meta property="article:published_time" content="2024-08-23T03:32:26.000Z">
-<meta property="article:modified_time" content="2024-08-23T03:33:18.737Z">
+<meta property="article:published_time" content="2024-08-24T06:55:26.000Z">
+<meta property="article:modified_time" content="2024-08-24T07:10:56.000Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content=".NET Core2022-学习">
+<meta property="article:tag" content="学位英语">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp">
   
   
   
-  <title>P2-1 NuGet - Hexo</title>
+  <title>精读阅读理解精通核心必备词汇-4 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P2-1 NuGet"></span>
+            <span id="subtitle" data-typed-text="精读阅读理解精通核心必备词汇-4"></span>
           
         </div>
 
@@ -225,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-23 11:32" pubdate>
-          August 23, 2024 am
+        <time datetime="2024-08-24 14:55" pubdate>
+          August 24, 2024 pm
         </time>
       </span>
     
@@ -237,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          848 words
         
       </span>
     
@@ -248,7 +234,7 @@
         
         
         
-          10 mins
+          8 mins
         
       </span>
     
@@ -298,200 +284,169 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P2-1 NuGet</h1>
+            <h1 id="seo-header">精读阅读理解精通核心必备词汇-4</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="NuGet"><a href="#NuGet" class="headerlink" title="NuGet"></a>NuGet</h1><hr>
-<h2 id="下载DLL的方式"><a href="#下载DLL的方式" class="headerlink" title="下载DLL的方式"></a>下载DLL的方式</h2><ul>
-<li>以前传统的手工下载dll<ul>
-<li>缺点：不好找;版本不匹配;依赖复杂</li>
-<li>所以后面就出现了应用商店(360软件管家等)自动根据你的系统和配置下载合适的软件</li>
-</ul>
-</li>
-<li>软件包<ul>
-<li>之前都是自己引用dll或者第三方包去使用<ul>
-<li>下载–&gt;安装–&gt;匹配</li>
-<li>.NET Core用的是：NuGet</li>
-<li>VS里面也有应用商城，但是功能不是非常的完善</li>
-</ul>
-</li>
-<li>比如其他软件都有类似的操作<ul>
-<li>Linux：apt、yum</li>
-<li>Javascript：npm</li>
-<li>Java：Maven、Gradle</li>
-<li>Python：pip</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="NuGet的搜索"><a href="#NuGet的搜索" class="headerlink" title="NuGet的搜索"></a>NuGet的搜索</h2><p>官网：<a target="_blank" rel="noopener" href="https://www.nuget.org/">https://www.nuget.org/</a></p>
-<blockquote>
-<p>这个网址大多数都是欧美地区人再用，所以都是英语</p>
-</blockquote>
+                <h1 id="精读阅读理解精通核心必备词汇-4"><a href="#精读阅读理解精通核心必备词汇-4" class="headerlink" title="精读阅读理解精通核心必备词汇-4"></a>精读阅读理解精通核心必备词汇-4</h1><hr>
+<p>串词是手段，理解句子是核心</p>
 <ul>
-<li>功能<ul>
-<li>精确搜索(Zack.EFCore.Batch)<ul>
-<li>知道自己需要用哪个包，可以直接使用精确搜索</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2.6t71rk7yxt.webp" srcset="/img/loading.gif" lazyload alt="精确搜索"></li>
+<li>理解句子的时候，你可以知道有些单词很重要，有些单词没那么重要。<ul>
+<li>名词和动词是句子的核心：n 和 v</li>
+<li>形容词，因为它是修饰名词的，所以不那么重要；表示程度的副词也是这样<ul>
+<li>形容词只需要先记住是形容好的方面还是坏的方面即可</li>
 </ul>
 </li>
-<li>模糊搜索<ul>
-<li>建议使用英文去搜索，下面是例子<ul>
-<li>subtitle parser—解析器</li>
-<li>ftp—文件传输</li>
-<li>hotkey—热键</li>
-</ul>
-</li>
-<li>中文一般搜索不到</li>
-</ul>
-</li>
-<li>详细页讲解<ul>
-<li>Dependencies —查看支持什么程序<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%A8%8B%E5%BA%8F.5tqyee57ry.webp" srcset="/img/loading.gif" lazyload alt="查看支持程序"></li>
-<li>如果是This package has no dependencies 没有依赖<ul>
-<li>默认都是.NETFramework</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%97%A0%E4%BE%9D%E8%B5%96.pf9p45ajp.webp" srcset="/img/loading.gif" lazyload alt="无依赖"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Used By—查看这个包被哪些库类引用<ul>
-<li>如果被引用的多，就说明这个包非常的流行，经过很多人的验证</li>
-<li>很多人用这个包，就说明这个包比较靠谱；如果没人用，相对来讲可能就不靠谱一点</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E8%A2%AB%E5%BC%95%E7%94%A8.1ovd2a81p9.webp" srcset="/img/loading.gif" lazyload alt="被引用"></li>
-</ul>
-</li>
-<li>Versions—更新的频次越多，更新的时间越近，说明这个项目非常的活跃，一直在更新，有了新的bug，新的功能，这个作者一直在往里面加<ul>
-<li>那么这个项目就属于一个比较靠谱的项目</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3.7zqd05wviv.webp" srcset="/img/loading.gif" lazyload alt="版本迭代"></li>
-</ul>
-</li>
-<li>downloads—下载量<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E4%B8%8B%E8%BD%BD%E9%87%8F.2dommavkpy.webp" srcset="/img/loading.gif" lazyload alt="下载量"></li>
-</ul>
-</li>
-<li>Project website —官网<ul>
-<li>有的是直接指向了GitHub上面</li>
-</ul>
-</li>
-<li>MIT license—协议</li>
-<li>Package Manager(一般都使用这个)<ul>
-<li>安装命令</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>因为NuGet上面的包不都是微软提供的<ul>
-<li>有少数是微软提供的，但大部分的包都是像杨中科老师这样的第三方开发者或者说有一些公司来提供的</li>
-<li>这只是微软构建的一个第三方开发包的一个应用商城而已，里面的软件包的质量有好有坏，参差不齐.</li>
-<li>有的只发布了一个版本，放上去就没人在管了，里边一大堆bug；也有一些比较优秀的人做的项目一直在更新。所以说你要自己去甄别</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="挑选包的原则"><a href="#挑选包的原则" class="headerlink" title="挑选包的原则"></a>挑选包的原则</h3><ul>
-<li><p>1、先查看这个包支不支持你的.NET的版本</p>
-</li>
-<li><p>2、被别人类库引用的多不多</p>
-</li>
-<li><p>3、下载量大不大</p>
-</li>
-<li><p>4、更新的频次是不是频繁</p>
-</li>
-<li><p>5、官网看看是否收费</p>
-</li>
-<li><p>包的介绍</p>
-<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E5%8C%85%E7%9A%84%E4%BB%8B%E7%BB%8D.1zi6vfn9ui.webp" srcset="/img/loading.gif" lazyload alt="包的介绍"></li>
-</ul>
-</li>
-<li><p>有一些项目下载少，引用少，不代表说他一定不靠谱，可能这个功能很简单，就发布了一个版本就没啥可维护的。毕竟有些比较冷门的功能</p>
-</li>
-<li><p>还可以打开官网看看</p>
-<ul>
-<li>有些官网里面会显示 price—价格或者purchase，那就说明这个包它不是免费的，不是开源的<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240822/%E6%94%B6%E8%B4%B9.6bh02z6lcz.webp" srcset="/img/loading.gif" lazyload alt="收费"></li>
-</ul>
-</li>
-<li>NuGet上面不是所有的包都是免费的，也有一部分是收费的<ul>
-<li>有一部分属于商业使用，需要收费</li>
-<li>或者说是试用版</li>
-<li>收费的慎用，因为是需要花钱的</li>
-</ul>
-</li>
+<li>副词和形容词都是起修饰作用的</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="NuGet使用方式"><a href="#NuGet使用方式" class="headerlink" title="NuGet使用方式"></a>NuGet使用方式</h2><ul>
-<li>NuGet CLI</li>
-<li>VS图形界面<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.5tqyfextu6.webp" srcset="/img/loading.gif" lazyload alt="图形化界面"></li>
+<p> 原文(1)：</p>
+<blockquote>
+<p>Jarden Zinc(锌)Products,a large zinc plant a few miles outside Greeneville,Tennessee,has a special claim.</p>
+</blockquote>
+<ul>
+<li>参考译文：贾登锌制品公司是田纳西州格林维尔市郊几英里外的一家大型锌厂，有着特殊的诉求。</li>
 </ul>
-</li>
-<li>VS命令行【程序包管理器控制台】(推荐)<ul>
-<li>安装<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%AE%89%E8%A3%85.67xe6agpow.webp" srcset="/img/loading.gif" lazyload alt="安装"></li>
+<hr>
+<p> 原文(2)：</p>
+<blockquote>
+<p>Since 1982,it has been the only supplier of penny blanksfor the U.S. Mint(铸币厂)</p>
+</blockquote>
+<ul>
+<li>参考译文：自1982年以来，它一直是美国造币厂唯一的硬币坯料供应商</li>
 </ul>
-</li>
-<li>卸载<ul>
-<li>常规<ul>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8D%B8%E8%BD%BD.4uav297b2p.webp" srcset="/img/loading.gif" lazyload alt="卸载"></li>
+<hr>
+<p> 原文(3)：</p>
+<blockquote>
+<p>It’s a good business for Jarden-since 2000,the company has earned more than $800 million.</p>
+</blockquote>
+<ul>
+<li>参考译文：自2000年以来，这对贾来说是一笔不错的生意，公司已经赚了8亿多美元。</li>
 </ul>
-</li>
-<li>非常规<ul>
-<li>直接在配置文件中把那一行是删除保存即可。</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%9D%9E%E5%B8%B8%E8%A7%84.4xugzza4wl.webp" srcset="/img/loading.gif" lazyload alt="非常规"></li>
+<hr>
+<p> 原文(4)：</p>
+<blockquote>
+<p>But it may not be a good deal for the U.S.</p>
+</blockquote>
+<ul>
+<li>参考译文：但对美国来说，这可能不是一个好交易。</li>
 </ul>
-</li>
+<hr>
+<p> 原文(5)：</p>
+<blockquote>
+<p>The value of the penny has been dropping for years.</p>
+</blockquote>
+<ul>
+<li>参考译文：硬币的价值多年来一直在下降。</li>
 </ul>
-</li>
-<li>更新<ul>
-<li>Update-Package XXX 跟上包名即可</li>
+<hr>
+<p> 原文(6)：</p>
+<blockquote>
+<p>In 2006，it began to cost more than a penny to make a penny.</p>
+</blockquote>
+<ul>
+<li>参考译文:2006年，铸造1美分要花费超过1美分。</li>
 </ul>
-</li>
-<li>注意<ul>
-<li>注意：【默认项目】为目标项目。</li>
-<li>1）安装：Install-Package XXX。-Version 指定版本。<ul>
-<li>可以看到把依赖组件都下载了。</li>
-<li>版本检测：尝试 把项目改为.NET core 1.0，然后再安装Zack.EFCore.Batch试试。</li>
+<hr>
+<p> 原文(7)：</p>
+<blockquote>
+<p>It now costs 2 C to produce a l C coin.</p>
+</blockquote>
+<ul>
+<li>参考译文:现在生产一枚1美分的硬币需要2美分。</li>
 </ul>
-</li>
-<li>2）卸载：Uninstall-Package XXX</li>
-<li>3）更新到最新版：Update-Package XXX</li>
+<hr>
+<p> 原文(8)：</p>
+<blockquote>
+<p>Many countries have stopped using pennies. Is it time for the U.S. to do the same?</p>
+</blockquote>
+<ul>
+<li>参考译文:许多国家已经停止使用硬币。美国也该这么做吗?</li>
 </ul>
-</li>
+<hr>
+<p> 原文(9)：</p>
+<blockquote>
+<p>Jarden and the zinc industry are fighting to keep the penny.Since 2006,Jarden has given $l.2 million to Americans for Common Cents (ACC).</p>
+</blockquote>
+<ul>
+<li>参考译文:贾登和锌工业正努力保住这笔钱。自2006年以来，贾登已经给“普通美分支持者”团体(ACC)资助了120万美元。</li>
 </ul>
-</li>
+<hr>
+<p> 原文(10)：</p>
+<blockquote>
+<p>The group’s mission is to keep the penny in use. Mark Weller is ACC’s executive director.</p>
+</blockquote>
+<ul>
+<li>参考译文:这个团体的任务就是保留1美分的使用。马克·韦勒是ACC的执行董事。</li>
 </ul>
-<h3 id="其他方面"><a href="#其他方面" class="headerlink" title="其他方面"></a>其他方面</h3><ul>
-<li>1、NuGet你也可以贡献，就三步。<ul>
-<li>能力的锻炼，增加社区的影响力</li>
+<hr>
+<p> 原文(11)：</p>
+<blockquote>
+<p>He argues that there are three main reasons for keeping the penny:</p>
+</blockquote>
+<ul>
+<li>参考译文:他认为，保留1美分硬币有三个主要原因:</li>
 </ul>
-</li>
-<li>2、和.NET Framework不同，.NET core绝大部分官方程序集也要到NuGet下载。模块化！<ul>
-<li>.NET Framework的一些部分功能都是默认集成了，到了.NET Core就把这些功能都剥离出来放在NuGet上面了，变成模块化~ 需要就装，不需要就不用安装</li>
+<hr>
+<p> 原文(12)：</p>
+<blockquote>
+<p>Without it, we would become more reliant on the five-cent coin,which also has problems; charities(慈善机构)that depend on penny drives would not be able to raise as much money; and a 2012 survey shows that 67% of Americans want to keep the penny.</p>
+</blockquote>
+<ul>
+<li>参考译文:没有它，我们将更加依赖5美分硬币，而5美分硬币也有问题;依靠美分驱动的慈善机构将无法筹集资金;2012年的一项调查显示，67%的美国人希望保留1美分。</li>
 </ul>
-</li>
-<li>3、少部分是收费的，如搜索“word file”。</li>
-<li>4、参差不齐，如何分辨质量。</li>
-<li>5、内部部署NuGet服务器。<ul>
-<li>通用的包，不方便放在NuGet上面。方便团队使用，可以内部去搭建NuGet服务器，如果需要微软的包，也可以映射过来。</li>
+<hr>
+<p> 原文(13)：</p>
+<blockquote>
+<p>Many people surveyed said they feared they would end up paying more for products.</p>
+</blockquote>
+<ul>
+<li>参考译文：许多受访者表示，他们担心最终会为产品支付更高的价格</li>
 </ul>
-</li>
+<hr>
+<p> 原文(14)：</p>
+<blockquote>
+<p>Many experts disagree with ACC.They point to the dozens of countries that have gotten rid of their lowest-value coins without raising prices for consumers.</p>
+</blockquote>
+<ul>
+<li>参考译文：许多专家不同意ACC的观点。他们指出，有几十个国家已经在不提高消费价格的情况下处理掉了它们的低价值硬币。</li>
 </ul>
-<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><ul>
-<li>项目中的包太多了，想更新版本，如果使用VS命令行，需要一个一个更新太麻烦了<ul>
-<li>可以使用VS图形界面去更新(选需要更新的包即可)</li>
-<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%9B%B4%E6%96%B0.ic1upbr65.webp" srcset="/img/loading.gif" lazyload alt="更新"></li>
+<hr>
+<p> 原文(15)：</p>
+<blockquote>
+<p>And charities don’t seem too concerned either.</p>
+</blockquote>
+<ul>
+<li>参考译文：慈善机构似乎也不太关心。</li>
 </ul>
-</li>
+<hr>
+<p> 原文(16)：</p>
+<blockquote>
+<p>President Barack Obama says the mint could explore using cheaper metals to make pennies. Steel is less expensive than zinc.</p>
+</blockquote>
+<ul>
+<li>参考译文：美国总统贝拉克·奥巴马表示，铸币厂可以探索使用更便宜的金属制造硬币。钢比锌便宜。</li>
 </ul>
-
+<hr>
+<p> 原文(17)：</p>
+<blockquote>
+<p>Pennies are 97.5% zinc and 2.5% copper. But no matter what it is made of, the penny’s days may be numbered.</p>
+</blockquote>
+<ul>
+<li>参考译文：硬币由97.5%的锌和2.5%的铜组成。但不管它是什么做的，硬币的日子可能屈指可数了。</li>
+</ul>
+<hr>
+<p> 原文(18)：</p>
+<blockquote>
+<p>Most in-store purchases are now made with credit cards,not cash. Is it time for a change?</p>
+</blockquote>
+<ul>
+<li>参考译文：现在大多数的店内购物都是用信用卡，而不是现金。是时候改变了吗?</li>
+</ul>
+<h2 id="在都串完词后去进行-阅读理解的做题"><a href="#在都串完词后去进行-阅读理解的做题" class="headerlink" title="在都串完词后去进行 阅读理解的做题"></a>在都串完词后去进行 阅读理解的做题</h2>
                 
               </div>
             
@@ -509,12 +464,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  <a href="/categories/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/" class="category-chain-item">学位英语</a>
   
   
     <span>></span>
     
-  <a href="/categories/NET-Core/%E7%AC%AC2%E7%AB%A0%EF%BC%9A-NET-Core-%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/" class="category-chain-item">第2章：.NET Core 重难点知识</a>
+  <a href="/categories/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87/" class="category-chain-item">精读阅读理解精通核心必备词汇</a>
   
   
 
@@ -531,7 +486,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+        <a href="/tags/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/" class="print-no-link">#学位英语</a>
       
     </div>
   
@@ -543,8 +498,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P2-1 NuGet</div>
-      <div>http://example.com/2024/08/23/Net Core2022教程/第2章：.NET Core 重难点知识/P2-1 NuGet/</div>
+      <div>精读阅读理解精通核心必备词汇-4</div>
+      <div>http://example.com/2024/08/24/学位英语/精读阅读理解精通核心必备词汇-4/</div>
     </div>
     <div class="license-meta">
       
@@ -556,7 +511,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 23, 2024</div>
+          <div>August 24, 2024</div>
         </div>
       
       
@@ -588,9 +543,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/24/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87-3/" title="精读阅读理解精通核心必备词汇-3">
+                      <a href="/2024/08/24/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87-5/" title="精读阅读理解精通核心必备词汇-5">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">精读阅读理解精通核心必备词汇-3</span>
+                        <span class="hidden-mobile">精读阅读理解精通核心必备词汇-5</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -598,8 +553,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/21/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC1%E7%AB%A0%EF%BC%9A.NET%20Core%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0/P1-2%20.NET%20Core%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" title="P1-2 .NET Core 开发环境的搭建">
-                        <span class="hidden-mobile">P1-2 .NET Core 开发环境的搭建</span>
+                      <a href="/2024/08/24/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87-3/" title="精读阅读理解精通核心必备词汇-3">
+                        <span class="hidden-mobile">精读阅读理解精通核心必备词汇-3</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
