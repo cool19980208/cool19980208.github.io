@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LINQ 为什么要学LINQ？ 让数据处理变得简单 有可能运行效率不是最好的，但开发效率是很快的 非常的好用    Lambda表达式的学习路线 委托–&gt;Lambda表达式–&gt;LINQ看第一种怎么变成第二种   1、  12345isOK(int i)&#123;    return i&gt;3&amp;&amp;&lt;10;&#125;items.Where(isOK);  2、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P2-3 LINQ">
+<meta property="og:url" content="http://example.com/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LINQ 为什么要学LINQ？ 让数据处理变得简单 有可能运行效率不是最好的，但开发效率是很快的 非常的好用    Lambda表达式的学习路线 委托–&gt;Lambda表达式–&gt;LINQ看第一种怎么变成第二种   1、  12345isOK(int i)&#123;    return i&gt;3&amp;&amp;&lt;10;&#125;items.Where(isOK);  2、">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-27T07:48:26.000Z">
+<meta property="article:modified_time" content="2024-08-29T09:20:47.500Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>P2-3 LINQ - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P2-3 LINQ"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-27 15:48" pubdate>
+          August 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P2-3 LINQ</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="LINQ"><a href="#LINQ" class="headerlink" title="LINQ"></a>LINQ</h1><hr>
+<h2 id="为什么要学LINQ？"><a href="#为什么要学LINQ？" class="headerlink" title="为什么要学LINQ？"></a>为什么要学LINQ？</h2><ul>
+<li>让数据处理变得简单<ul>
+<li>有可能运行效率不是最好的，但开发效率是很快的</li>
+<li>非常的好用</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lambda表达式的学习路线"><a href="#Lambda表达式的学习路线" class="headerlink" title="Lambda表达式的学习路线"></a>Lambda表达式的学习路线</h2><blockquote>
+<p>委托–&gt;Lambda表达式–&gt;LINQ<br>看第一种怎么变成第二种</p>
+</blockquote>
+<ul>
+<li>1、</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#">isOK(<span class="hljs-built_in">int</span> i)<br>&#123;<br>    <span class="hljs-keyword">return</span> i&gt;<span class="hljs-number">3</span>&amp;&amp;&lt;<span class="hljs-number">10</span>;<br>&#125;<br>items.Where(isOK);<br></code></pre></td></tr></table></figure>
+<ul>
+<li>2、</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C#">items.Where(i=&gt; i&gt;<span class="hljs-number">3</span>&amp;&amp;&lt;<span class="hljs-number">10</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><ul>
+<li>1、委托是可以指向方法的类型，调用委托变量时执行的就是变量指向的方法<ul>
+<li>例子：<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>    &#123;<br>        D1 d = F1;<span class="hljs-comment">//指向方法F1</span><br>        d();<span class="hljs-comment">//运行方法</span><br><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">F1</span>()</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;我是F1&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">D1</span>()</span>;<span class="hljs-comment">//委托和类一级</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>2、.NET中定义了泛型委托Action(无返回值)和Func(有返回值),所以一般不同自定义委托类型</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    D1 d = F1;<span class="hljs-comment">//指向方法F1</span><br>    d();<span class="hljs-comment">//运行方法</span><br>    Func&lt;<span class="hljs-built_in">int</span>,<span class="hljs-built_in">int</span>,<span class="hljs-built_in">int</span>&gt; x = F2;<span class="hljs-comment">//有返回值的</span><br>    Console.WriteLine(x(<span class="hljs-number">6</span>,<span class="hljs-number">8</span>));<br>    Action d1 = F1;<span class="hljs-comment">//没返回值的</span><br>    d1();<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">F1</span>()</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;我是F1&quot;</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> <span class="hljs-title">F2</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> i,<span class="hljs-built_in">int</span> j</span>)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> i + j;<br>&#125;<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="Lambda是怎么来的？"><a href="#Lambda是怎么来的？" class="headerlink" title="Lambda是怎么来的？"></a>Lambda是怎么来的？</h3><ul>
+<li>2.委托变量不仅可以指向普通方法，还可以指向匿名方法<ul>
+<li>匿名方法可以写成Lambda表达式<ul>
+<li>进化1<ul>
+<li>可以省略参数数据类型，因为编译能根据委托类型推断出参数的类型，用&#x3D;&gt;引出来方法体 </li>
+<li>&#x3D;&gt; : goes to ；Lambda表达式的运算符</li>
+</ul>
+</li>
+<li>进化2<ul>
+<li>1.Action：如果委托没有返回值，且方法体只有一行代码，可省略{}</li>
+<li>2.Func：如果&#x3D;&gt;之后的方法体中只有一行代码，且方法有返回值，那么可以省略方法体的{}以及return</li>
+</ul>
+</li>
+<li>进化3<ul>
+<li>如果只有一个参数，参数的()可以省略</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第一阶段<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//第一阶段(完整写法)</span><br>Action f1 = <span class="hljs-built_in">delegate</span> ()<span class="hljs-comment">//没有参数和返回值的匿名方法</span><br>&#123;<br>Console.WriteLine(<span class="hljs-string">&quot;cool真帅&quot;</span>);<br>&#125;;<br><br>Action&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">int</span>&gt; f2 = <span class="hljs-built_in">delegate</span> (<span class="hljs-built_in">string</span> i, <span class="hljs-built_in">int</span> j)<span class="hljs-comment">//没返回值的匿名方法</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;n=<span class="hljs-subst">&#123;i&#125;</span>,j=<span class="hljs-subst">&#123;j&#125;</span>&quot;</span>);<br>&#125;;<br>Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; f3 = <span class="hljs-built_in">delegate</span> (<span class="hljs-built_in">int</span> i, <span class="hljs-built_in">int</span> j)<span class="hljs-comment">//有返回值的匿名方法</span><br>&#123;<br>    <span class="hljs-keyword">return</span> i + j;<br>&#125;;<br>f1();<br>f2(<span class="hljs-string">&quot;cool&quot;</span>, <span class="hljs-number">18</span>);<br>Console.WriteLine(f3(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>));<br><br></code></pre></td></tr></table></figure></li>
+<li>第二阶段<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//第二阶段：把delegate替换成=&gt; ；然后参数类型都可以去掉，因为编译器能根据委托类型推断出参数的类型</span><br>Action f1 =  () =&gt;&#123; Console.WriteLine(<span class="hljs-string">&quot;cool真帅&quot;</span>);&#125;; <br><br>Action&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">int</span>&gt; f2 =  ( i,  j) =&gt; &#123; Console.WriteLine(<span class="hljs-string">$&quot;n=<span class="hljs-subst">&#123;i&#125;</span>,j=<span class="hljs-subst">&#123;j&#125;</span>&quot;</span>);&#125;;<br><br>Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; f3 =  ( i,  j) =&gt; &#123; <span class="hljs-keyword">return</span> i + j;&#125;;<br></code></pre></td></tr></table></figure></li>
+<li>第三阶段<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//第三阶段</span><br>Action f1 = () =&gt; Console.WriteLine(<span class="hljs-string">&quot;cool真帅&quot;</span>); <span class="hljs-comment">//省略&#123;&#125;</span><br><br>Action&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">int</span>&gt; f2 = ( i,  j) =&gt; Console.WriteLine(<span class="hljs-string">$&quot;n=<span class="hljs-subst">&#123;i&#125;</span>,j=<span class="hljs-subst">&#123;j&#125;</span>&quot;</span>); <span class="hljs-comment">//省略&#123;&#125;</span><br><br>Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; f3 = (i, j) =&gt;  i + j; <span class="hljs-comment">//省略方法体的&#123;&#125;以及return</span><br></code></pre></td></tr></table></figure></li>
+<li>第四阶段<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//第四阶段</span><br>Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">bool</span>&gt; f5 = i =&gt; i &gt; <span class="hljs-number">5</span>;<span class="hljs-comment">//反推1</span><br><br>Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">bool</span>&gt; f6 = <span class="hljs-built_in">delegate</span> (<span class="hljs-built_in">int</span> i)<br>    &#123;<br>        <span class="hljs-keyword">return</span> i &gt; <span class="hljs-number">5</span>;<br>    &#125;;<br>Console.WriteLine(f5(<span class="hljs-number">6</span>));<br>Console.WriteLine(f6(<span class="hljs-number">6</span>));<br><br>---------------------------------------------------------<br><br>Action&lt;<span class="hljs-built_in">string</span>&gt; f7 = s =&gt; Console.WriteLine(s);<span class="hljs-comment">//反推2</span><br>Action&lt;<span class="hljs-built_in">string</span>&gt; f8 = <span class="hljs-built_in">delegate</span> (<span class="hljs-built_in">string</span> s)<br>&#123;<br>    Console.WriteLine(s);<br>&#125;;<br>f7(<span class="hljs-string">&quot;帅&quot;</span>);<br>f8(<span class="hljs-string">&quot;努力&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="揭秘LINQ方法的背后"><a href="#揭秘LINQ方法的背后" class="headerlink" title="揭秘LINQ方法的背后"></a>揭秘LINQ方法的背后</h3><ul>
+<li>LINQ中提供了很多集合的扩展方法，配合Lambda能简化数据处理</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-built_in">int</span>[] arrays = &#123; <span class="hljs-number">60</span>, <span class="hljs-number">25</span>, <span class="hljs-number">55</span>, <span class="hljs-number">80</span>, <span class="hljs-number">40</span>, <span class="hljs-number">30</span>, <span class="hljs-number">50</span>, <span class="hljs-number">90</span>, <span class="hljs-number">70</span>, <span class="hljs-number">77</span>, <span class="hljs-number">76</span>, <span class="hljs-number">66</span>, <span class="hljs-number">88</span> &#125;;<br><span class="hljs-comment">//IEnumerable&lt;int&gt; result = arrays.Where(a =&gt; a &gt; 40);//Where方法是扩展方法，using System.Linq</span><br><span class="hljs-keyword">var</span> result = arrays.Where(a =&gt; a &gt; <span class="hljs-number">40</span>);<span class="hljs-comment">//var简化</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>可以使用var让编译器的“类型推断”来简化类型的声明。在LINQ中常用<ul>
+<li>C#的var和JavaScript的var不一样，在C#上它是强类型的</li>
+<li>在JavaScript中是弱类型的，C#中的弱类型是dynamic(*)，用到了解一下即可</li>
+</ul>
+</li>
+</ul>
+<h4 id="优化上面的代码"><a href="#优化上面的代码" class="headerlink" title="优化上面的代码"></a>优化上面的代码</h4><p>1、编写自己的扩展方法MyWhere来模拟Where的实现。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-title">MyWhere</span>(<span class="hljs-params">IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; items,Func&lt;<span class="hljs-built_in">int</span>,<span class="hljs-built_in">bool</span>&gt; f</span>)</span><br>    &#123;<br>        List&lt;<span class="hljs-built_in">int</span>&gt; result = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-built_in">int</span>&gt;();<br>        <span class="hljs-keyword">foreach</span>(<span class="hljs-built_in">int</span> i <span class="hljs-keyword">in</span> items)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (f(i)==<span class="hljs-literal">true</span>)<br>            &#123;<br>                result.Add(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>2、通过yield return来让MyWhere“流水线”处理。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-title">MyWhere2</span>(<span class="hljs-params">IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; items, Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">bool</span>&gt; f</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">foreach</span> (<span class="hljs-built_in">int</span> i <span class="hljs-keyword">in</span> items)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (f(i) == <span class="hljs-literal">true</span>)<br>            &#123;<br>                <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> i;<br>            &#125;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="常用集合类的扩展方法"><a href="#常用集合类的扩展方法" class="headerlink" title="常用集合类的扩展方法"></a>常用集合类的扩展方法</h2><ul>
+<li>LINQ关键的功能是提供了集合类的扩展方法。所有实现了IEnumerable<T>接口的类都可以使用这些方法。<ul>
+<li>比如：数组、List、Set等 </li>
+<li>LINQ中提供了大量类似Where的扩展方法，用来简化数据处理。大部分都在System.Linq命名空间中</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//准备初始数据</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">long</span> Id &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> Gender &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<span class="hljs-comment">//性别</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Salary &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<span class="hljs-comment">//月薪</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">string</span> <span class="hljs-title">ToString</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">$&quot;Id=<span class="hljs-subst">&#123;Id&#125;</span>,Name=<span class="hljs-subst">&#123;Name&#125;</span>,Age=<span class="hljs-subst">&#123;Age&#125;</span>,Gender=<span class="hljs-subst">&#123;Gender&#125;</span>,Salary=<span class="hljs-subst">&#123;Salary&#125;</span>&quot;</span>;<br>    &#125;<br><br>&#125;<br><br><br>List&lt;Employee&gt; list = <span class="hljs-keyword">new</span> List&lt;Employee&gt;();<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">1</span>, Name = <span class="hljs-string">&quot;jerry&quot;</span>, Age = <span class="hljs-number">28</span>, Gender = <span class="hljs-literal">true</span>, Salary = <span class="hljs-number">5000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">2</span>, Name = <span class="hljs-string">&quot;jim&quot;</span>, Age = <span class="hljs-number">33</span>, Gender = <span class="hljs-literal">true</span>, Salary = <span class="hljs-number">3000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">3</span>, Name = <span class="hljs-string">&quot;lily&quot;</span>, Age = <span class="hljs-number">35</span>, Gender = <span class="hljs-literal">false</span>, Salary = <span class="hljs-number">9000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">4</span>, Name = <span class="hljs-string">&quot;lucy&quot;</span>, Age = <span class="hljs-number">16</span>, Gender = <span class="hljs-literal">false</span>, Salary = <span class="hljs-number">2000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">5</span>, Name = <span class="hljs-string">&quot;kimi&quot;</span>, Age = <span class="hljs-number">25</span>, Gender = <span class="hljs-literal">true</span>, Salary = <span class="hljs-number">1000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">6</span>, Name = <span class="hljs-string">&quot;nancy&quot;</span>, Age = <span class="hljs-number">35</span>, Gender = <span class="hljs-literal">false</span>, Salary = <span class="hljs-number">8000</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">7</span>, Name = <span class="hljs-string">&quot;zack&quot;</span>, Age = <span class="hljs-number">35</span>, Gender = <span class="hljs-literal">true</span>, Salary = <span class="hljs-number">8500</span> &#125;);<br>list.Add(<span class="hljs-keyword">new</span> Employee &#123; Id = <span class="hljs-number">8</span>, Name = <span class="hljs-string">&quot;jack&quot;</span>, Age = <span class="hljs-number">33</span>, Gender = <span class="hljs-literal">true</span>, Salary = <span class="hljs-number">8000</span> &#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="Where方法：数据过滤"><a href="#Where方法：数据过滤" class="headerlink" title="Where方法：数据过滤"></a>Where方法：数据过滤</h3><ul>
+<li><code>Where</code>方法：根据条件对数据进行过滤，类似SQL语句的where那个意思</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> items = list.Where(e=&gt;e.Age&gt;<span class="hljs-number">25</span>);<br><span class="hljs-keyword">foreach</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Count方法：获取数据条数"><a href="#Count方法：获取数据条数" class="headerlink" title="Count方法：获取数据条数"></a>Count方法：获取数据条数</h3><ul>
+<li><code>Count</code>方法：获取数据条数</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">list.Count(e =&gt; e.Age &gt; <span class="hljs-number">30</span>&amp;&amp;e.Salary&gt;<span class="hljs-number">5000</span>);<span class="hljs-comment">//直接计算数据条数</span><br>list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span> &amp;&amp; e.Salary &gt; <span class="hljs-number">5000</span>).Count();<span class="hljs-comment">//先过滤，后计算</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Any方法：判断是否至少有一条满足条件的数据"><a href="#Any方法：判断是否至少有一条满足条件的数据" class="headerlink" title="Any方法：判断是否至少有一条满足条件的数据"></a>Any方法：判断是否至少有一条满足条件的数据</h3><ul>
+<li><code>Any</code>方法：判断集合中是否至少有一条满足条件的数据<ul>
+<li>Any比Count实现效率更高</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#">list.Any();<br>list.Any(e =&gt; e.Age &gt; <span class="hljs-number">30</span> &amp;&amp; e.Salary &gt; <span class="hljs-number">30000</span>);<br>list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span> &amp;&amp; e.Salary &gt; <span class="hljs-number">30000</span>).Any();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取一条数据"><a href="#获取一条数据" class="headerlink" title="获取一条数据"></a>获取一条数据</h3><ul>
+<li>LINQ中有4组获取一条数据的方法，选择合适的方法，进行“防御性编程”。</li>
+<li>合理使用这些可以提高程序的正确性<blockquote>
+<p>一个健壮的程序，不应该隐藏异常，而是有了异常要及早暴露出来，以避免引起更大的问题<br>—《ASP.NET Core 技术内幕与项目实战》</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Single方法"><a href="#Single方法" class="headerlink" title="Single方法"></a>Single方法</h4><p>使用<code>Single</code>方法时，应确认集合中有且仅有一条满足条件的数据。</p>
+<ul>
+<li>如果没有数据或多于一条数据满足条件，<code>Single</code>将抛出异常。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Employee e1 = list.Single(e =&gt; e.Name == <span class="hljs-string">&quot;jim&quot;</span>);<br>Employee e2 = list.Where(e =&gt; e.Name == <span class="hljs-string">&quot;jim&quot;</span>).Single();<br></code></pre></td></tr></table></figure>
+
+<h4 id="SingleOrDefault方法"><a href="#SingleOrDefault方法" class="headerlink" title="SingleOrDefault方法"></a>SingleOrDefault方法</h4><p>使用<code>SingleOrDefault</code>方法时，应确认集合中最多只有一条满足要求的数据。</p>
+<ul>
+<li>如果没有满足条件的数据，<code>SingleOrDefault</code>就会返回类型的默认值</li>
+<li>如果满足条件的数据多于一条，<code>SingleOrDefault</code>就会抛出异常</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Employee e1 = list.SingleOrDefault(e =&gt; e.Name == <span class="hljs-string">&quot;jim&quot;</span>);<br>Employee e2 = list.Where(e =&gt; e.Age == <span class="hljs-number">33</span>).SingleOrDefault();<br></code></pre></td></tr></table></figure>
+
+<h4 id="First方法"><a href="#First方法" class="headerlink" title="First方法"></a>First方法</h4><p>使用<code>First</code>方法时，如果集合中满足条件的数据有一条或者多条，<code>First</code>就会返回第一条数据<br>如果没有满足条件的数据，<code>First</code>就会抛出异常</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Employee e1 = list.First(e =&gt; e.Name == <span class="hljs-string">&quot;jim&quot;</span>);<br>Employee e2 = list.Where(e =&gt; e.Age == <span class="hljs-number">35</span>).First();<br></code></pre></td></tr></table></figure>
+
+<h4 id="FirstOrDefault方法"><a href="#FirstOrDefault方法" class="headerlink" title="FirstOrDefault方法"></a>FirstOrDefault方法</h4><p>使用<code>FirstOrDefault</code>方法时，如果集合中满足条件的数据有一条或者多条，<code>FirstOrDefault</code>就会返回第一条数据<br>如果没有满足条件的数据，<code>FirstOrDefault</code>就会返回类型的默认值</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Employee e3 = list.FirstOrDefault(e =&gt; e.Name == <span class="hljs-string">&quot;jim&quot;</span>);<br>Employee e4 = list.Where(e =&gt; e.Age == <span class="hljs-number">33</span>).FirstOrDefault();<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><ul>
+<li>使用<code>OrderBy</code>方法时，对数据进行正向排序</li>
+<li>使用<code>OrderByDescending</code>方法时，对数据进行逆向排序</li>
+<li>常规我们都是用某个<code>属性</code>去排序</li>
+<li>对于简单类型排序，也许不用lambda表达式。<ul>
+<li>特殊案例：按照最后一个字符排序；用Guid或者随机数进行随机排序</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> e1 = list.OrderBy(e =&gt; e.Age);<span class="hljs-comment">//正向排序</span><br><span class="hljs-keyword">var</span> e2 = list.OrderByDescending(e =&gt; e.Age);<span class="hljs-comment">//逆向排序</span><br><span class="hljs-keyword">foreach</span> ( <span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> e2)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br><br>------------------------------------------------<br><span class="hljs-comment">//简单类型排序</span><br><span class="hljs-built_in">int</span>[] nums = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>[] &#123; <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">111</span>, <span class="hljs-number">56</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">10</span> &#125;;<br><span class="hljs-keyword">var</span> nums2 = nums.OrderBy(i =&gt; i);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> nums2)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br><br><br>------------------------------------------------<br><br><span class="hljs-keyword">var</span> e1 = list.OrderBy(e =&gt; e.Name[e.Name.Length<span class="hljs-number">-1</span>]);<span class="hljs-comment">//取名字最后一个字母进行排序</span><br><span class="hljs-keyword">var</span> e2 = list.OrderBy(e =&gt; Guid.NewGuid());<span class="hljs-comment">//Guid 随机数算法</span><br><br>Random rand = <span class="hljs-keyword">new</span> Random();<br><span class="hljs-keyword">var</span> e3 = list.OrderBy(e =&gt; rand.Next()); <span class="hljs-comment">//随机数</span><br><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> e3)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="多规则排序"><a href="#多规则排序" class="headerlink" title="多规则排序"></a>多规则排序</h4><ul>
+<li>可以在<code>OrderBy</code>、<code>OrderByDescending</code>后面继续写<code>ThenBy</code>、<code>ThenByDescending</code>用来二次筛选</li>
+<li>案例：优先按照Age排序，如果Age相同再按照Salary排序</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> e1 = list.OrderBy(e =&gt; e.Age).ThenBy(e=&gt;e.Salary);<span class="hljs-comment">//正序</span><br><span class="hljs-keyword">var</span> e2 = list.OrderByDescending(e =&gt; e.Age).ThenByDescending(e =&gt; e.Salary);<span class="hljs-comment">//倒序</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="限制结果集，获取部分数据"><a href="#限制结果集，获取部分数据" class="headerlink" title="限制结果集，获取部分数据"></a>限制结果集，获取部分数据</h3><ul>
+<li>使用<code>Skip(n)</code>方法:跳过n条数据</li>
+<li>使用<code>Take(n)</code>方法：获取n条数据</li>
+<li>两者可以组合使用，也可以单独使用<ul>
+<li>案例：获取从第2条开始获取3条数据</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> e1 = list.Skip(<span class="hljs-number">1</span>).Take(<span class="hljs-number">3</span>);<span class="hljs-comment">//跳过一条，取3条</span><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> e1)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="LINQ的另一种写法"><a href="#LINQ的另一种写法" class="headerlink" title="LINQ的另一种写法"></a>LINQ的另一种写法</h2><hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC2%E7%AB%A0%EF%BC%9A-NET-Core-%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/" class="category-chain-item">第2章：.NET Core 重难点知识</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P2-3 LINQ</div>
+      <div>http://example.com/2024/08/27/Net Core2022教程/第2章：.NET Core 重难点知识/P2-3 LINQ/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P1-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%9C%A8%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96%20%E8%BF%98%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E4%B8%80%E4%B8%AA%E6%8A%80%E8%83%BD/" title="P1-程序员在技术之外 还要掌握的一个技能">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P1-程序员在技术之外 还要掌握的一个技能</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-2%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="P2-2 异步编程">
+                        <span class="hidden-mobile">P2-2 异步编程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

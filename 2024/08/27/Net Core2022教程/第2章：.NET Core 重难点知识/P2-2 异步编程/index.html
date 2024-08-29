@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="异步编程 为什么要用异步编程？ 场景：餐馆点餐客人上桌后，服务员站在旁边等待客人点餐，点餐完成后给后厨。 这叫：“同步点餐”客户上桌后，服务员把菜单和点菜单给客人留下，然后就招待别的客人去了。让客人自己翻看菜单和写点菜单，写完之后呼叫服务员，让服务员把菜单给后厨。 这叫“异步点餐”   优点 让服务员可以同时服务更多的客人   缺点 单个客人点餐的时间变长   例子：同步美化图片  异步编程不会让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P2-2 异步编程">
+<meta property="og:url" content="http://example.com/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-2%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="异步编程 为什么要用异步编程？ 场景：餐馆点餐客人上桌后，服务员站在旁边等待客人点餐，点餐完成后给后厨。 这叫：“同步点餐”客户上桌后，服务员把菜单和点菜单给客人留下，然后就招待别的客人去了。让客人自己翻看菜单和写点菜单，写完之后呼叫服务员，让服务员把菜单给后厨。 这叫“异步点餐”   优点 让服务员可以同时服务更多的客人   缺点 单个客人点餐的时间变长   例子：同步美化图片  异步编程不会让">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E4%BE%8B%E5%AD%90.58hat5ypjb.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E4%B8%8D%E9%80%82%E5%90%88Main.5q7chxs5u3.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%B2%A1%E9%97%AE%E9%A2%98.86tkwuz1qm.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%80%89%E6%8B%A91.58hatdp83u.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/lambda.8hgeq2solu.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8F%8D%E7%BC%96%E8%AF%91.7w6r3t4pd1.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy1.77dhjsr93z.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy2.syvo79ckg.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy3.86tkwyu09t.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E5%88%87%E6%8D%A2%E7%BA%BF%E7%A8%8B1.esg17fr6b.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A22.7ax3le9bdh.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E5%90%8C%E7%BA%BF%E7%A8%8B.6pnfz5afx3.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E4%B8%8D%E5%90%8C%E7%BA%BF%E7%A8%8B.13lpla953q.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/File.ReadAllTextAsync().54xozrfdt2.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E4%BE%8B%E5%AD%90.8hgeuauagj.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E6%9A%82%E5%81%9C.51e328tnj1.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B81.7zqd6v79ne.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B82.73tvrexl7f.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B83.5xakit8om4.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E5%85%B6%E4%BB%961.60u6gnisb6.webp">
+<meta property="article:published_time" content="2024-08-27T06:23:26.000Z">
+<meta property="article:modified_time" content="2024-08-27T06:24:47.734Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E4%BE%8B%E5%AD%90.58hat5ypjb.webp">
+  
+  
+  
+  <title>P2-2 异步编程 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P2-2 异步编程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-27 14:23" pubdate>
+          August 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P2-2 异步编程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h1><hr>
+<h2 id="为什么要用异步编程？"><a href="#为什么要用异步编程？" class="headerlink" title="为什么要用异步编程？"></a>为什么要用异步编程？</h2><blockquote>
+<p>场景：餐馆点餐<br>客人上桌后，服务员站在旁边等待客人点餐，点餐完成后给后厨。 这叫：“同步点餐”<br>客户上桌后，服务员把菜单和点菜单给客人留下，然后就招待别的客人去了。让客人自己翻看菜单和写点菜单，写完之后呼叫服务员，让服务员把菜单给后厨。 这叫“异步点餐”</p>
+</blockquote>
+<ul>
+<li>优点<ul>
+<li>让服务员可以同时服务更多的客人</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>单个客人点餐的时间变长</li>
+</ul>
+</li>
+<li>例子：同步美化图片<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E4%BE%8B%E5%AD%90.58hat5ypjb.webp" srcset="/img/loading.gif" lazyload alt="例子"></li>
+<li>异步编程不会让单个请求处理效率变高，甚至有可能略有降低。</li>
+<li>异步编程不是提高了web服务器的运行效率，只是提高了web服务器能够同时处理的这个请求的数量而已</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="轻松上手async、await"><a href="#轻松上手async、await" class="headerlink" title="轻松上手async、await"></a>轻松上手async、await</h2><ul>
+<li>传统多线程开发太麻烦<ul>
+<li>C#关键字：async、await</li>
+<li>async、await 并不等于“多线程”，只是减低了编写难度而已</li>
+</ul>
+</li>
+</ul>
+<h3 id="异步方法"><a href="#异步方法" class="headerlink" title="异步方法"></a>异步方法</h3><blockquote>
+<p>“异步方法”：用async关键字修饰的方法</p>
+</blockquote>
+<ul>
+<li>异步方法的返回值一般是Task<T>，T就是真正的返回值类型.<ul>
+<li>比如：Task<int>  这个的返回值类型就是int</li>
+<li>惯例：<strong>异步方法名字以Async结尾</strong>(程序员的个人修养，建议这个做规范一点)<ul>
+<li>当然了，你不写Async结尾也可以，只是建议这样做，一般只要是Async结尾的，大部分都是异步方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>即使方法没有返回值，也最好把返回值声明为非泛型的Task。<ul>
+<li>比如：static async Task Main(string[] args)</li>
+<li>不要写成 static async void Main(string[] args)，要不然会出问题</li>
+</ul>
+</li>
+<li>调用泛型方法时，一般在方法前加上await，这样拿到的返回值就是泛型指定的T类型；<ul>
+<li>比如：string s &#x3D; await File.ReadAllTextAsync(fileName);</li>
+</ul>
+</li>
+<li>异步方法的“传染性”：一个方法中如果有await调用，则这个方法也必须修饰为async<ul>
+<li>只要方法里面有一条await调用，那就必须修饰为async</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>不等待</li>
+<li>等结果出来了，我在输出它<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>     <span class="hljs-built_in">string</span> fileName = <span class="hljs-string">&quot;d:/1.txt&quot;</span>;<br>     File.Delete(fileName);<br>     File.WriteAllTextAsync(fileName, <span class="hljs-string">&quot;hello async&quot;</span>);<br>     <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> File.ReadAllTextAsync(fileName);<br>     Console.WriteLine(s);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="练习例子：await"><a href="#练习例子：await" class="headerlink" title="练习例子：await"></a>练习例子：await</h4><ul>
+<li><p>1.问题：用了await，方法就必须用async去修饰，修饰完还是报错</p>
+<ul>
+<li>程序不包含适合于入口点的静态“Main”方法<ul>
+<li>把Void修改为：Task</li>
+</ul>
+</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E4%B8%8D%E9%80%82%E5%90%88Main.5q7chxs5u3.webp" srcset="/img/loading.gif" lazyload alt="不适合Main"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E6%B2%A1%E9%97%AE%E9%A2%98.86tkwuz1qm.webp" srcset="/img/loading.gif" lazyload alt="没问题"></li>
+</ul>
+</li>
+<li><p>2.报错：System.IO.IOException:“The process cannot access the file ‘D:.NET Core Test\1.txt’ because it is being used by another process.”</p>
+<ul>
+<li>写入方法前面不加 await。代码是可以被编译成功并且运行的。</li>
+<li>原因：WriteAllTextAsync方法默认是独占式写入。当这个方法还没写入完成，就没办法运行下一行代码</li>
+<li>所以前面加上await即可，<strong>不等待这个方法写完，就运行下一个代码；写入完，就开始输出</strong></li>
+</ul>
+</li>
+<li><p>3.注意：调用异步方法一般前面都加await</p>
+</li>
+</ul>
+<hr>
+<h2 id="如何编写异步方法？"><a href="#如何编写异步方法？" class="headerlink" title="如何编写异步方法？"></a>如何编写异步方法？</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> i = <span class="hljs-keyword">await</span> DownloadHtmlAsync(<span class="hljs-string">&quot;https://www.youzack.com&quot;</span>, <span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>);<br>    Console.WriteLine(<span class="hljs-string">&quot;ok&quot;</span> + i);<br>&#125;<br><span class="hljs-comment">/* 不带返回值的</span><br><span class="hljs-comment">    * static async Task DownloadHtmlAsync(string url,String filename)</span><br><span class="hljs-comment">    &#123;</span><br><span class="hljs-comment">        //因为HttpClient里面实现了IDisposable这个接口，所以用using来进行资源的回收</span><br><span class="hljs-comment">        //HttpClientFactory  一般都是搭配这个使用</span><br><span class="hljs-comment">        using (HttpClient httpClient=new HttpClient())</span><br><span class="hljs-comment">        &#123;</span><br><span class="hljs-comment">        String html = await httpClient.GetStringAsync(url);</span><br><span class="hljs-comment">        await File.WriteAllTextAsync(filename, html);</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">    &#125;*/</span><br><br><span class="hljs-comment">//带返回值的</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-title">DownloadHtmlAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url, String filename</span>)</span><br>&#123;<br>    <span class="hljs-comment">//因为HttpClient里面实现了IDisposable这个接口，所以用using来进行资源的回收</span><br>    <span class="hljs-comment">//HttpClientFactory  一般都是搭配这个使用</span><br>    <span class="hljs-keyword">using</span> (HttpClient httpClient = <span class="hljs-keyword">new</span> HttpClient())<br>    &#123;<br>        String html = <span class="hljs-keyword">await</span> httpClient.GetStringAsync(url);<br>        <span class="hljs-keyword">await</span> File.WriteAllTextAsync(filename, html);<br>        <span class="hljs-keyword">return</span> html.Length;<span class="hljs-comment">//返回长度</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果同样的功能，既有同步方法，又有异步方法，选择用哪个呢？</p>
+<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E9%80%89%E6%8B%A91.58hatdp83u.webp" srcset="/img/loading.gif" lazyload alt="选择1"></li>
+<li>这个情况<strong>首先使用异步方法</strong>，这样能提高系统并发量</li>
+</ul>
+</li>
+<li><p>对于不支持的异步方法（或者逼不得已不能写async方法时）怎么办？</p>
+<ul>
+<li>Result（有返回值）<ul>
+<li>string s&#x3D;  File.ReadAllTextAsync(@”D:.NET Core Test\1.txt”).Result;</li>
+<li>这一句分解开来，就是下面两句。<ul>
+<li>Task t &#x3D; File.ReadAllTextAsync(@”D:.NET Core Test\1.txt”);<br>string s &#x3D; t.Result;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Wait()（无返回值）<ul>
+<li>File.WriteAllTextAsync(@”D:.NET Core Test\1.txt”,”aaaaaaaaa”).Wait();</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意点：<strong>尽量不要使用。因为他有死锁的风险。</strong></p>
+<ul>
+<li>如果你使用了，未来运行过程中卡了，及有可能是这边出了问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="异步委托"><a href="#异步委托" class="headerlink" title="异步委托"></a>异步委托</h3><h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/lambda.8hgeq2solu.webp" srcset="/img/loading.gif" lazyload alt="lambda"><br><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C#">ThreadPool.QueueUserWorkItem(<span class="hljs-keyword">async</span>(obj) =&gt;<br>&#123;<br><br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>    &#123;<br>        <span class="hljs-keyword">await</span> File.WriteAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>, <span class="hljs-string">&quot;aaaaaaaaa&quot;</span>);<br>    &#125;<br>&#125;);<br>Console.Read();<br><br></code></pre></td></tr></table></figure></h2><h2 id="async、await原理揭秘"><a href="#async、await原理揭秘" class="headerlink" title="async、await原理揭秘"></a>async、await原理揭秘</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">using</span> (HttpClient httpClient = <span class="hljs-keyword">new</span> HttpClient())<br>        &#123;<br>            <span class="hljs-built_in">string</span> html = <span class="hljs-keyword">await</span> httpClient.GetStringAsync(<span class="hljs-string">&quot;https://www.baidu.com&quot;</span>);<br>            Console.WriteLine(html);<br>        &#125;<br>        <span class="hljs-built_in">string</span> txt = <span class="hljs-string">&quot;hello cool&quot;</span>;<br>        <span class="hljs-built_in">string</span> filename = <span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>;<br>        <span class="hljs-keyword">await</span> File.WriteAllTextAsync(filename, txt);<br>        Console.WriteLine(<span class="hljs-string">&quot;写入成功&quot;</span>);<br>        <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> File.ReadAllTextAsync(filename);<br>        Console.WriteLine(<span class="hljs-string">&quot;文件内容&quot;</span>+s);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>1.用ILSpy反编译dll(.exe只是windows下的启动器)，切换成C# 4.0版本，就能看到容易理解的底层IL代码。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/%E5%8F%8D%E7%BC%96%E8%AF%91.7w6r3t4pd1.webp" srcset="/img/loading.gif" lazyload alt="反编译"></li>
+</ul>
+</li>
+<li>2.用dnSpy反编译<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy1.77dhjsr93z.webp" srcset="/img/loading.gif" lazyload alt="dnSpy1"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy2.syvo79ckg.webp" srcset="/img/loading.gif" lazyload alt="dnSpy2"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240823/dnSpy3.86tkwyu09t.webp" srcset="/img/loading.gif" lazyload alt="dnSpy3"></li>
+</ul>
+</li>
+<li>await、async是“语法糖”，最终编译成“状态机调用”<ul>
+<li>语法糖：背后很苦，表面很甜</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>async的方法会被C#编译器编译成一个类，并根据await调用把方法切分为多个状态，对async方法的调用就会被拆分为若干次对MoveNext的调用。</li>
+<li>用await看似是“等待”，经过编译后，其实没有“wait”<ul>
+<li>只不过是把菜单给你让你自己点餐，然后先去接待其他客人，等你点好了，帮你把菜单给后厨而已</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="async背后的线程切换"><a href="#async背后的线程切换" class="headerlink" title="async背后的线程切换"></a>async背后的线程切换</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>问题1：为什么编译器要把一个async方法拆分为多个状态然后分为多次调用？</li>
+<li>问题2：“异步的可以避免线程等待耗时操作” 但是使用await还是要等待。反正都是等待，有什么区别呢？ <ul>
+<li>在对异步方法进行await调用的等待期间，.NET会把当前的线程返回给线程池，等异步方法调用执行完毕后，框架会从线程池再取出来一个线程，执行后续的代码。</li>
+<li>我们把这种由不同线程执行不同代码段的行为称为“线程切换”</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程切换的演示"><a href="#线程切换的演示" class="headerlink" title="线程切换的演示"></a>线程切换的演示</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span>  <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;线程1：&quot;</span>+Thread.CurrentThread.ManagedThreadId);<span class="hljs-comment">//获取线程ID</span><br>    <span class="hljs-comment">/* StringBuilder txt = new StringBuilder();</span><br><span class="hljs-comment">      for (int i = 0; i &lt; 100000; i++)</span><br><span class="hljs-comment">      &#123;</span><br><span class="hljs-comment">          txt.Append(&quot;aaaaaa&quot;);</span><br><span class="hljs-comment">      &#125;*/</span><br>    <span class="hljs-built_in">string</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">1000000</span>);<br>    <span class="hljs-keyword">await</span> File.WriteAllTextAsync(<span class="hljs-string">&quot;D:/.NET Core Test/1.txt&quot;</span>, str);<br>    Console.WriteLine(<span class="hljs-string">&quot;线程2：&quot;</span> + Thread.CurrentThread.ManagedThreadId);<span class="hljs-comment">//获取线程ID</span><br>    <span class="hljs-keyword">await</span> File.WriteAllTextAsync(<span class="hljs-string">&quot;D:/.NET Core Test/2.txt&quot;</span>, str);<br>    Console.WriteLine(<span class="hljs-string">&quot;线程3：&quot;</span> + Thread.CurrentThread.ManagedThreadId);<span class="hljs-comment">//获取线程ID</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E5%88%87%E6%8D%A2%E7%BA%BF%E7%A8%8B1.esg17fr6b.webp" srcset="/img/loading.gif" lazyload alt="切换线程1"></p>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A22.7ax3le9bdh.webp" srcset="/img/loading.gif" lazyload alt="线程切换2"></p>
+<ul>
+<li>用餐馆点餐的例子阐述一下线程切换的过程<ul>
+<li>1.服务员给客人安排好位置(放了菜单)后，就被放回了“空闲服务员池”</li>
+<li>2.等客人完成看菜单和点菜的操作后，喊“服务员，菜点好了”后，餐馆会从空闲服务员池中取一个空闲的服务员出来完成帮客人把点菜单交给后厨的操作。</li>
+</ul>
+</li>
+<li>图2，10次都是同一个线程，当到了10000次时，线程就不一样了。(硬件的不同，对比也不同)<ul>
+<li>注意细节:如果写入内容少，会发现线程ID不变</li>
+<li>优化：到要等待的时候，如果发现已经执行结束了，那就没必要再切换线程了，剩下的代码就继续在之前的线程上继续执行了。</li>
+<li>用餐馆点餐来举例子</li>
+<li>1.服务员给客人安排好位置后，刚准备回头到“空闲服务员池”的时候，客人已经点好了菜，喊了“服务员，菜点好了”，这个时候服务员还没走出几步呢，所以直接同一个服务员去服务不就可以了吗~ 所以线程是同一个</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="异步方法不等于多线程"><a href="#异步方法不等于多线程" class="headerlink" title="异步方法不等于多线程"></a>异步方法不等于多线程</h2><h3 id="误解：很多开发人员觉得异步方法中的代码一定是在新线程中执行的。觉得异步方法等于多线程"><a href="#误解：很多开发人员觉得异步方法中的代码一定是在新线程中执行的。觉得异步方法等于多线程" class="headerlink" title="误解：很多开发人员觉得异步方法中的代码一定是在新线程中执行的。觉得异步方法等于多线程"></a>误解：很多开发人员觉得异步方法中的代码一定是在新线程中执行的。觉得异步方法等于多线程</h3><ul>
+<li>结论：异步方法中的代码并不会自动在新线程中执行，<strong>除非把代码放到新线程中执行</strong></li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;1-Main: &quot;</span>+ Thread.CurrentThread.ManagedThreadId);<br>    Console.WriteLine(<span class="hljs-keyword">await</span> CalcAsync(<span class="hljs-number">1000</span>));<br>    Console.WriteLine(<span class="hljs-string">&quot;2-Main: &quot;</span> + Thread.CurrentThread.ManagedThreadId);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task&lt;<span class="hljs-built_in">double</span>&gt; <span class="hljs-title">CalcAsync</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> n</span>)</span><br>&#123;<br>    <span class="hljs-comment">/*Console.WriteLine(&quot;CalcAsync: &quot; + Thread.CurrentThread.ManagedThreadId);</span><br><span class="hljs-comment">    double result = 0;</span><br><span class="hljs-comment">    Random rand = new Random();</span><br><span class="hljs-comment">    for (var i = 0; i &lt; n*n; i++)</span><br><span class="hljs-comment">    &#123;</span><br><span class="hljs-comment">        result = result + (double)rand.NextDouble();</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">    return result;*/</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> Task.Run(() =&gt; <span class="hljs-comment">//Task.Run 新线程</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;CalcAsync: &quot;</span> + Thread.CurrentThread.ManagedThreadId);<br>        <span class="hljs-built_in">double</span> result = <span class="hljs-number">0</span>;<br>        Random rand = <span class="hljs-keyword">new</span> Random();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n * n; i++)<br>        &#123;<br>            result = result + (<span class="hljs-built_in">double</span>)rand.NextDouble();<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>1.没有用Task.Run的时候,都是同一个线程，不论次数。<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E5%90%8C%E7%BA%BF%E7%A8%8B.6pnfz5afx3.webp" srcset="/img/loading.gif" lazyload alt="同线程"></li>
+<li>2.调用Task.Run方法后，代码就可以在新线程中执行了。所以可以证明结论时正确的。<ul>
+<li>Task.Run就是对 Task.Factory.StartNew 方法的封装而已。</li>
+<li>Task.Factory.StartNew 方法提供的参数更多，可以对执行的线程做更精细化的控制。<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E4%B8%8D%E5%90%8C%E7%BA%BF%E7%A8%8B.13lpla953q.webp" srcset="/img/loading.gif" lazyload alt="不同线程"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="为什么有的异步方法没有async"><a href="#为什么有的异步方法没有async" class="headerlink" title="为什么有的异步方法没有async"></a>为什么有的异步方法没有async</h2><h3 id="看-NET-的File-ReadAllTextAsync-代码"><a href="#看-NET-的File-ReadAllTextAsync-代码" class="headerlink" title="看.NET 的File.ReadAllTextAsync()代码"></a>看.NET 的File.ReadAllTextAsync()代码</h3><ul>
+<li>方法名字上面没有 async 去修饰，方法里面也没有await<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/File.ReadAllTextAsync().54xozrfdt2.webp" srcset="/img/loading.gif" lazyload alt="File"></li>
+</ul>
+<h3 id="async方法缺点"><a href="#async方法缺点" class="headerlink" title="async方法缺点"></a>async方法缺点</h3><ul>
+<li>1、异步方法会被编译成对应的类，这不仅会加大程序集的尺寸，而且程序的运行效率没有普通方法高<ul>
+<li>普通异步方法还需要先接收Task<string>，然后用await取出来，在装到Task<string>里面。这就是“拆开了再组装上”。</li>
+</ul>
+</li>
+<li>2、可能会占用非常多的线程</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> ReadFileAsync(<span class="hljs-number">2</span>);<br>    Console.WriteLine(s);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">ReadFileAsync</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> num</span>)<span class="hljs-comment">//普通异步方法</span></span><br>&#123;<br>    <span class="hljs-keyword">if</span> (num==<span class="hljs-number">1</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num==<span class="hljs-number">2</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\2.txt&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentException(<span class="hljs-string">&quot;num invalid&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="未用async修饰的方法"><a href="#未用async修饰的方法" class="headerlink" title="未用async修饰的方法"></a>未用async修饰的方法</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>        &#123;<br>            <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> ReadFileAsync(<span class="hljs-number">2</span>);<br>            Console.WriteLine(s);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">static</span>  Task&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">ReadFileAsync</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> num</span>)<span class="hljs-comment">//未用async修饰的异步方法</span></span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (num == <span class="hljs-number">1</span>)<br>            &#123;<br>                <span class="hljs-keyword">return</span>  File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>);<span class="hljs-comment">//返回值就是Task&lt;string&gt;类型，所以直接return</span><br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num == <span class="hljs-number">2</span>)<br>            &#123;<br>                <span class="hljs-keyword">return</span>  File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\2.txt&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentException(<span class="hljs-string">&quot;num invalid&quot;</span>);<br>            &#125;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>只甩手Task的数据，不“拆完了再装”。</p>
+<ul>
+<li>变成了普通的方法调用</li>
+</ul>
+</li>
+<li><p>优点：运行效率更高，不会造成线程浪费</p>
+</li>
+<li><p>返回值为Task的不一定都要标注async，标注async只是让我们更方便的await而已。</p>
+</li>
+</ul>
+<h3 id="什么样的方法是可以直接不写async呢"><a href="#什么样的方法是可以直接不写async呢" class="headerlink" title="什么样的方法是可以直接不写async呢"></a>什么样的方法是可以直接不写async呢</h3><ul>
+<li>如果一个异步方法只是对别的异步方法调用的转发，并没有太多复杂的逻辑(比如等待A的结果，在调用B；把A调用的返回值拿到内部做一些处理再返回)，那么就可以去掉async关键字。</li>
+<li>如果需要把获取异步方法的返回值后再进一步的处理，比如后面+字符串cool，或者其他逻辑时，最好的选择就是用async和await。<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E4%BE%8B%E5%AD%90.8hgeuauagj.webp" srcset="/img/loading.gif" lazyload alt="例子"></li>
+</ul>
+<hr>
+<h2 id="异步编程的几个重要问题"><a href="#异步编程的几个重要问题" class="headerlink" title="异步编程的几个重要问题"></a>异步编程的几个重要问题</h2><h3 id="异步暂停"><a href="#异步暂停" class="headerlink" title="异步暂停"></a>异步暂停</h3><ul>
+<li>异步暂停的方法<ul>
+<li>如果想在异步方法中暂停一段时间，不要用Thread.Sleep(),因为它会阻塞调用线程</li>
+<li>换成 await Task.Delay() 即可。</li>
+</ul>
+</li>
+<li>在控制台中看不到这两个方法的区别，但是放在WinForm程序中就难呢过看到区别了。<ul>
+<li>ASP.NET Core中也看不到区别，但是Sleep()会降低并发</li>
+<li>用点餐举例子<ul>
+<li>Sleep()的时候，是服务员都卡着动不了 </li>
+<li>Delay()的时候，是客户卡着不动，休息了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240826/%E6%9A%82%E5%81%9C.51e328tnj1.webp" srcset="/img/loading.gif" lazyload alt="暂停"></p>
+<p>作业</p>
+<ul>
+<li>封装一个异步方法，下载给定的网址，如果下载失败，则稍等500ms在重试，如果重试三次仍然失败，则抛异常“下载失败”</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br><br>    <span class="hljs-built_in">string</span> url = <span class="hljs-string">&quot;https://www.baiu.com/&quot;</span>; <span class="hljs-comment">// 这里替换成你想要下载的URL</span><br>    <span class="hljs-keyword">try</span><br>    &#123;<br>        <span class="hljs-keyword">var</span> content =  <span class="hljs-keyword">await</span> DownloadAsync(url);<br>        Console.WriteLine(<span class="hljs-string">&quot;下载成功:&quot;</span>);<br>        Console.WriteLine(content);<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception ex)<br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;下载失败: <span class="hljs-subst">&#123;ex.Message&#125;</span>&quot;</span>);<br>    &#125;<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">DownloadAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url</span>)</span><br>&#123;<br>    <span class="hljs-keyword">using</span>(HttpClient httpClient =<span class="hljs-keyword">new</span> HttpClient())<br>    &#123;<br>        <span class="hljs-built_in">int</span> retryCount = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(retryCount&lt;<span class="hljs-number">4</span>)<span class="hljs-comment">//3次重试</span><br>        &#123;<br>            <span class="hljs-keyword">try</span><br>            &#123;<br>                <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> httpClient.GetStringAsync(url);<span class="hljs-comment">//获取网址信息</span><br>                <span class="hljs-keyword">return</span> s;<br>            &#125;<br>            <span class="hljs-keyword">catch</span> (HttpRequestException)<span class="hljs-comment">//抓取异常</span><br>            &#123;<br>                retryCount++;<br>                <span class="hljs-keyword">if</span> (retryCount &gt;= <span class="hljs-number">4</span>)<br>                &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;下载失败&quot;</span>);<br>                &#125;<br><br>                Console.WriteLine(<span class="hljs-string">$&quot;尝试下载失败，‌正在重试...(<span class="hljs-subst">&#123;retryCount&#125;</span>/3)&quot;</span>);<br>                <span class="hljs-keyword">await</span> Task.Delay(<span class="hljs-number">500</span>); <span class="hljs-comment">// 等待500ms</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;下载失败&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="提前终止执行"><a href="#提前终止执行" class="headerlink" title="提前终止执行"></a>提前终止执行</h3><ul>
+<li><p>有时需要提前终止任务，比如：请求超时、用户取消请求</p>
+<ul>
+<li>很多异步方法都有CancellationToken参数，用于获得提前终止执行的信号</li>
+</ul>
+</li>
+<li><p>CancellationToken结构体</p>
+<ul>
+<li>None：空</li>
+<li>bool isCancellationRequested 是否取消</li>
+<li>(*)Register(Action callback)  注册取消监听  这个了解即可~不常用</li>
+<li>ThrowifCancellationRequested() 如果任务被取消，执行到这句话就抛异常</li>
+<li>CancellationTokenSource</li>
+<li>CancelAfter()超时后发出取消信号</li>
+<li>Cancel() 发出取消信号</li>
+<li>CancellationToken Token</li>
+</ul>
+</li>
+<li><p>建议用第一种写法</p>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">DownloadAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url,<span class="hljs-built_in">int</span> n,CancellationToken cancellationToken</span>)<span class="hljs-comment">//第一种写法</span></span><br>&#123;<br>    <span class="hljs-keyword">using</span> (HttpClient httpClient = <span class="hljs-keyword">new</span> HttpClient())<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        &#123;<br>            <span class="hljs-built_in">string</span> html = <span class="hljs-keyword">await</span> httpClient.GetStringAsync(url);<br>            Console.WriteLine(<span class="hljs-string">$&quot;<span class="hljs-subst">&#123;DateTime.Now&#125;</span>:<span class="hljs-subst">&#123;html&#125;</span>&quot;</span>);<br>            <span class="hljs-keyword">if</span> (cancellationToken.IsCancellationRequested)<span class="hljs-comment">//自己可以控制以及如何来处理这个请求的细节</span><br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">&quot;请求被取消&quot;</span>);<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B81.7zqd6v79ne.webp" srcset="/img/loading.gif" lazyload alt="请求异常1"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Download2Async</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url, <span class="hljs-built_in">int</span> n, CancellationToken cancellationToken</span>)<span class="hljs-comment">//第二种写法</span></span><br>&#123;<br>    <span class="hljs-keyword">using</span> (HttpClient httpClient = <span class="hljs-keyword">new</span> HttpClient())<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        &#123;<br>            <span class="hljs-built_in">string</span> html = <span class="hljs-keyword">await</span> httpClient.GetStringAsync(url);<span class="hljs-comment">//请求一分钟到了后返回，然后在处理它</span><br>            Console.WriteLine(<span class="hljs-string">$&quot;<span class="hljs-subst">&#123;DateTime.Now&#125;</span>:<span class="hljs-subst">&#123;html&#125;</span>&quot;</span>);<br>            <span class="hljs-comment">/*if (cancellationToken.IsCancellationRequested)</span><br><span class="hljs-comment">            &#123;</span><br><span class="hljs-comment">                Console.WriteLine(&quot;请求被取消&quot;);</span><br><span class="hljs-comment">                break;</span><br><span class="hljs-comment">            &#125;*/</span><br>            cancellationToken.ThrowIfCancellationRequested();<span class="hljs-comment">//发现请求取消了，就把异常抛出去</span><br><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B82.73tvrexl7f.webp" srcset="/img/loading.gif" lazyload alt="请求异常2"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Download3Async</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url, <span class="hljs-built_in">int</span> n, CancellationToken cancellationToken</span>)<span class="hljs-comment">//第三种写法</span></span><br>&#123;<br>    <span class="hljs-keyword">using</span> (HttpClient httpClient = <span class="hljs-keyword">new</span> HttpClient())<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        &#123;<br>            <span class="hljs-comment">//GetAsync的实现，微软内置的。有可能请求还没到1分钟，就被请求取消5s自动处理了.这个可以在后续在手动处理</span><br>            <span class="hljs-comment">//缺点：不能自己控制cancellationToken响应的处理</span><br>            <span class="hljs-keyword">var</span> resp = <span class="hljs-keyword">await</span> httpClient.GetAsync(url, cancellationToken);<br>            <br>            <span class="hljs-built_in">string</span> html = <span class="hljs-keyword">await</span> resp.Content.ReadAsStringAsync();<br>            Console.WriteLine(<span class="hljs-string">$&quot;<span class="hljs-subst">&#123;DateTime.Now&#125;</span>:<span class="hljs-subst">&#123;html&#125;</span>&quot;</span>);<br><br><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B83.5xakit8om4.webp" srcset="/img/loading.gif" lazyload alt="请求异常3"></p>
+<ul>
+<li><p>例子<br>为“下载一个网址N次”的方法增加取消功能。<br>分别用GetStringAsync + IsCancellationRequested、 GetStringAsync + ThrowIfCancellationRequested()、带CancellationToken的GetAsync()分别实现。取消分别用超时、用户敲按键（不能await）实现。</p>
+</li>
+<li><p>ASP.NET Core开发中，一般不需要自己处理CancellationToken、CancellationTokenSource这些，只要做到“<strong>能转发CancellationToken就转发</strong>”即可。</p>
+<ul>
+<li>ASP.NET Core会对于用户请求中断进行处理</li>
+<li>(*)演示一下ASP.NET Core中的使用：写一个方法，Delay1000次，用Debug.WriteLine()输出，访问中间跳到放到其他网站。(等有ASP.NET Core的基础了再看)</li>
+</ul>
+</li>
+</ul>
+<h3 id="WhenAll"><a href="#WhenAll" class="headerlink" title="WhenAll"></a>WhenAll</h3><ul>
+<li>Task类的重要方法<ul>
+<li>1、Task<Task> WhenAny(IEnumerable<Task> tasks)等，任何一个Task完成，Task就完成<ul>
+<li>这个用的比较少</li>
+</ul>
+</li>
+<li>2、Task&lt;TResult[]&gt; WhenAll<TResult>(params Task<TResult>[] tasks)等，所有Task完成，Task才完成。用于等待多个任务执行结束，但是不在乎它们的执行顺序。<ul>
+<li>一般都用用这个</li>
+</ul>
+</li>
+<li>3、FromResult() 创建普通数值的Task对象。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    Task&lt;<span class="hljs-built_in">string</span>&gt; t1 = File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\1.txt&quot;</span>);<span class="hljs-comment">//读取文件</span><br>    Task&lt;<span class="hljs-built_in">string</span>&gt; t2 = File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\2.txt&quot;</span>);<br>    Task&lt;<span class="hljs-built_in">string</span>&gt; t3 = File.ReadAllTextAsync(<span class="hljs-string">@&quot;D:\.NET Core Test\3.txt&quot;</span>);<br>    <span class="hljs-built_in">string</span>[] results = <span class="hljs-keyword">await</span> Task.WhenAll(t1, t2, t3);<span class="hljs-comment">//然后await去取，等都读取完成后，再返回值</span><br>    <span class="hljs-built_in">string</span> s1 = results[<span class="hljs-number">0</span>];<br>    <span class="hljs-built_in">string</span> s2 = results[<span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">string</span> s3 = results[<span class="hljs-number">2</span>];<br>    Console.WriteLine(s1+s2+s3);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="案例：计算一个文件夹下，所有文本文件的单词个数汇总"><a href="#案例：计算一个文件夹下，所有文本文件的单词个数汇总" class="headerlink" title="案例：计算一个文件夹下，所有文本文件的单词个数汇总"></a>案例：计算一个文件夹下，所有文本文件的单词个数汇总</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>  <br>    <span class="hljs-built_in">string</span>[] files = Directory.GetFiles(<span class="hljs-string">@&quot;D:\.NET Core Test&quot;</span>);<br>    Task&lt;<span class="hljs-built_in">int</span>&gt;[] countTasks = <span class="hljs-keyword">new</span> Task&lt;<span class="hljs-built_in">int</span>&gt;[files.Length];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; files.Length; i++)<br>    &#123;<br>        <span class="hljs-built_in">string</span> filename = files[i];<br>        Task&lt;<span class="hljs-built_in">int</span>&gt; t = ReadCharsCount(filename);<br>        countTasks[i] = t;<br>    &#125;<br>    <span class="hljs-built_in">int</span>[] counts = <span class="hljs-keyword">await</span> Task.WhenAll(countTasks);<br>    <span class="hljs-built_in">int</span> c = counts.Sum();<span class="hljs-comment">//计算数组的和</span><br>    Console.WriteLine(c);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task&lt;<span class="hljs-built_in">int</span>&gt; <span class="hljs-title">ReadCharsCount</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> filename</span>)</span><br>&#123;<br>    <span class="hljs-built_in">string</span> s = <span class="hljs-keyword">await</span> File.ReadAllTextAsync(filename);<br>    <span class="hljs-keyword">return</span> s.Length;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="接口中的异步方法"><a href="#接口中的异步方法" class="headerlink" title="接口中的异步方法"></a>接口中的异步方法</h3><ul>
+<li><p>由于async用于提示编译器为异步方法中的await代码进行分段处理，而且一个异步方法是否用async修饰对于方法的调用者来讲没区别的，因此对于接口中的方法或者抽象方法不能修饰为async</p>
+</li>
+<li><p>接口中不能加async，但是正文中可以<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240827/%E5%85%B6%E4%BB%961.60u6gnisb6.webp" srcset="/img/loading.gif" lazyload alt="其他1"></p>
+</li>
+<li><p>异步与yield</p>
+<ul>
+<li>复习：yield return不仅能够简化数据的返回，而且可以让数据处理“流水线化”，提升性能。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    <span class="hljs-keyword">foreach</span>(<span class="hljs-function"><span class="hljs-keyword">var</span> s <span class="hljs-keyword">in</span> <span class="hljs-title">Test</span>())</span><br>    &#123;<br>        Console.WriteLine(s);<br>    &#125;<br>    <br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> IEnumerable&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">Test</span>()</span><br>&#123;<br>    List&lt;<span class="hljs-built_in">string</span>&gt; list = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-built_in">string</span>&gt;();<br>    list.Add(<span class="hljs-string">&quot;hello&quot;</span>);<br>    list.Add(<span class="hljs-string">&quot;cool&quot;</span>);<br>    list.Add(<span class="hljs-string">&quot;youzack&quot;</span>);<br>    <span class="hljs-keyword">return</span> list;<span class="hljs-comment">//这是上述代码都执行完成后再一起返回。</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> IEnumerable&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">Test1</span>()</span><br>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<span class="hljs-comment">//这种是执行完后，就返回.这样的执行效率就会更高</span><br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;cool&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;youzack&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>在旧版C#中，async方法中不能用yield。</p>
+</li>
+<li><p>从C# 8.0 开始，把返回值声明为IAsyncEnumerable(不要带Task)，然后遍历的时候用await foreach()即可。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>&#123;<br>    <span class="hljs-keyword">await</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-function"><span class="hljs-keyword">var</span> s <span class="hljs-keyword">in</span> <span class="hljs-title">Test2</span>())<span class="hljs-comment">//循环前面加上await</span></span><br>    &#123;<br>        Console.WriteLine(s);<br>    &#125;<br>    <br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> IAsyncEnumerable&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">Test2</span>()</span><br>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;yzk&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;youzack&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>ASP.NET Core和控制台项目中没有SynchronizationContext，因此不用管ConfigureAwait(false)等。</p>
+</li>
+<li><p>注意：不要同步、异步方法混用。</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC2%E7%AB%A0%EF%BC%9A-NET-Core-%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/" class="category-chain-item">第2章：.NET Core 重难点知识</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P2-2 异步编程</div>
+      <div>http://example.com/2024/08/27/Net Core2022教程/第2章：.NET Core 重难点知识/P2-2 异步编程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/" title="P2-3 LINQ">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P2-3 LINQ</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/24/%E5%AD%A6%E4%BD%8D%E8%8B%B1%E8%AF%AD/%E7%B2%BE%E8%AF%BB%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3%E7%B2%BE%E9%80%9A%E6%A0%B8%E5%BF%83%E5%BF%85%E5%A4%87%E8%AF%8D%E6%B1%87-8/" title="精读阅读理解精通核心必备词汇-8">
+                        <span class="hidden-mobile">精读阅读理解精通核心必备词汇-8</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
