@@ -22,15 +22,18 @@
     <meta name="description" content="LINQ 为什么要学LINQ？ 让数据处理变得简单 有可能运行效率不是最好的，但开发效率是很快的 非常的好用    Lambda表达式的学习路线 委托–&gt;Lambda表达式–&gt;LINQ看第一种怎么变成第二种   1、  12345isOK(int i)&#123;    return i&gt;3&amp;&amp;&lt;10;&#125;items.Where(isOK);  2、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P2-3 LINQ">
-<meta property="og:url" content="http://example.com/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/index.html">
+<meta property="og:url" content="http://example.com/2024/09/05/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="LINQ 为什么要学LINQ？ 让数据处理变得简单 有可能运行效率不是最好的，但开发效率是很快的 非常的好用    Lambda表达式的学习路线 委托–&gt;Lambda表达式–&gt;LINQ看第一种怎么变成第二种   1、  12345isOK(int i)&#123;    return i&gt;3&amp;&amp;&lt;10;&#125;items.Where(isOK);  2、">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-27T07:48:26.000Z">
-<meta property="article:modified_time" content="2024-08-29T09:20:47.500Z">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240902/%E5%8C%BF%E5%90%8D%E7%B1%BB%E5%9E%8B.2h88znx6xa.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240904/%E5%8F%8D%E7%BC%96%E8%AF%91.6t729o0yas.webp">
+<meta property="article:published_time" content="2024-09-05T09:45:26.000Z">
+<meta property="article:modified_time" content="2024-09-05T09:45:46.153Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content=".NET Core2022-学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240902/%E5%8C%BF%E5%90%8D%E7%B1%BB%E5%9E%8B.2h88znx6xa.webp">
   
   
   
@@ -211,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-27 15:48" pubdate>
-          August 27, 2024 pm
+        <time datetime="2024-09-05 17:45" pubdate>
+          September 5, 2024 pm
         </time>
       </span>
     
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k words
+          4.3k words
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          20 mins
+          36 mins
         
       </span>
     
@@ -446,9 +449,134 @@
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> e1 = list.Skip(<span class="hljs-number">1</span>).Take(<span class="hljs-number">3</span>);<span class="hljs-comment">//跳过一条，取3条</span><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> e1)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><ul>
+<li><code>Max()</code>、<code>Min ()</code> 、<code>Average () </code>、<code>Sum ()</code> 、<code>Count ()</code>。</li>
+<li>LINQ中所有的扩展方法几乎都是针对IEnumerable接口的，而几乎所有能返回集合的都返回IEnumerable，所以是可以把几乎所有方法用来“链式使用”的。</li>
+<li>可以和Where、Skip、Take等方法一起使用</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-built_in">int</span> e1=list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span>).Max(e =&gt; e.Salary);<span class="hljs-comment">//Max</span><br><br><span class="hljs-built_in">int</span> e1=list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span>).Min(e =&gt; e.Salary);<span class="hljs-comment">//Min</span><br><br><span class="hljs-built_in">double</span> e1=list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span>).Average(e =&gt; e.Salary);<span class="hljs-comment">//Average</span><br><br><span class="hljs-built_in">double</span> e1=list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span>).Sum(e =&gt; e.Salary);<span class="hljs-comment">//Sum</span><br><br><span class="hljs-built_in">int</span> e1=list.Where(e =&gt; e.Age &gt; <span class="hljs-number">30</span>).Count();<span class="hljs-comment">//Count</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><ul>
+<li><p>使用<code>GroupBy</code>方法:类似于SQL中group by实现的分组操作</p>
+</li>
+<li><p>GroupBy()方法参数是分组条件表达式，返回值为IGrouping&lt;TKey, TSource&gt;类型的泛型IEnumerable，也就是每一组以一个IGrouping对象的形式返回。-</p>
+</li>
+<li><p>IGrouping是一个继承自IEnumerable的接口，IGrouping中Key属性表示这一组的分组数据的值。</p>
+</li>
+<li><p>例子：根据年龄分组，获取每组人数、最高工资、平均工资。用var简化编程。</p>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs C#">IEnumerable&lt;IGrouping&lt;<span class="hljs-built_in">int</span>, Employee&gt;&gt; items = list.GroupBy(e =&gt; e.Age);<span class="hljs-comment">//Groupby分组，分完后每一个都是IGrouping类型的组</span><br><span class="hljs-keyword">foreach</span> (IGrouping&lt;<span class="hljs-built_in">int</span>, Employee&gt; item <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(item.Key);<br>    Console.WriteLine(<span class="hljs-string">&quot;最大工资：&quot;</span>+item.Max(e=&gt;e.Salary));<br>    <span class="hljs-keyword">foreach</span> (Employee e <span class="hljs-keyword">in</span> item)<br>    &#123;<br>        Console.WriteLine(e);<br>    &#125;<br>    Console.WriteLine(<span class="hljs-string">&quot;*************************&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//可以用var去让编译器自动推断变量类型，来简化代码</span><br><span class="hljs-keyword">var</span> items = list.GroupBy(e =&gt; e.Age);<span class="hljs-comment">//Groupby分组，分完后每一个都是IGrouping类型的组</span><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(item.Key);<br>    Console.WriteLine(<span class="hljs-string">&quot;最大工资：&quot;</span> + item.Max(e =&gt; e.Salary));<br>    <span class="hljs-keyword">foreach</span> (Employee e <span class="hljs-keyword">in</span> item)<br>    &#123;<br>        Console.WriteLine(e);<br>    &#125;<br>    Console.WriteLine(<span class="hljs-string">&quot;*************************&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//例子：根据年龄分组，获取每组人数、最高工资、平均工资。用var简化编程。</span><br><br><span class="hljs-keyword">var</span> items = list.GroupBy(e =&gt; e.Age);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;人数为：&quot;</span>+e.Count());<br>    Console.WriteLine(<span class="hljs-string">&quot;最高工资为：&quot;</span> + e.Max(e=&gt;e.Salary));<br>    Console.WriteLine(<span class="hljs-string">&quot;平均工资为：&quot;</span> + e.Average(e =&gt; e.Salary));<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> e)<br>    &#123;<br>        Console.WriteLine(item);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h3><ul>
+<li>使用<code>Select</code>方法:类似于SQL中Select的投影查询<ul>
+<li>把集合中的每一项逐个转换为另外一种类型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs C#"><br><span class="hljs-comment">//类似于SQL中的Select操作，都是把对应的数据取出来 投影出来</span><br>IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; ltems1 =  list.Select(e =&gt; e.Age);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-built_in">int</span> e <span class="hljs-keyword">in</span> ltems1)<br>&#123;<br>    Console.WriteLine(e);<br>&#125;<br><br>IEnumerable&lt;<span class="hljs-built_in">string</span>&gt; items2 = list.Select(e =&gt; e.Gender ? <span class="hljs-string">&quot;男&quot;</span> : <span class="hljs-string">&quot;女&quot;</span>);<span class="hljs-comment">//把bool转换成string取出来</span><br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-built_in">string</span> e <span class="hljs-keyword">in</span> items2)<br>    &#123;<br>        Console.WriteLine(e);<br>    &#125;<br><br><span class="hljs-keyword">var</span> item3 = list.Select(e =&gt; <span class="hljs-keyword">new</span> Dog &#123; NickName = e.Name, Age = e.Age &#125;);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> item3)<br>&#123;<br>    Console.WriteLine(item.NickName+<span class="hljs-string">&quot;,&quot;</span>+item.Age);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="投影与匿名类型"><a href="#投影与匿名类型" class="headerlink" title="投影与匿名类型"></a>投影与匿名类型</h4><ul>
+<li>匿名类型<ul>
+<li>可以通过反编译看匿名类型原理<ul>
+<li>编译器自动创建一个类，里面有Name和Age的属性</li>
+</ul>
+</li>
+<li>var搭配匿名类型无敌~(匿名类型因为没有名字，所以object类型也管不到，只能使用var)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> e = <span class="hljs-keyword">new</span> &#123; Name = <span class="hljs-string">&quot;Cool&quot;</span>, Age = <span class="hljs-number">18</span> &#125;;<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240902/%E5%8C%BF%E5%90%8D%E7%B1%BB%E5%9E%8B.2h88znx6xa.webp" srcset="/img/loading.gif" lazyload alt="匿名类型"></p>
+<ul>
+<li>投影和匿名类型结合</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> items = list.Select(e =&gt; <span class="hljs-keyword">new</span> &#123; NewName = e.Name, NewAge = e.Age, XingBie = e.Gender ? <span class="hljs-string">&quot;男&quot;</span> : <span class="hljs-string">&quot;女&quot;</span>, Money=e.Salary&#125;);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(item.NewName);<br>    Console.WriteLine(item.NewAge);<br>    Console.WriteLine(item.XingBie);<br>    Console.WriteLine(item.Money);<br>    Console.WriteLine(<span class="hljs-string">&quot;********************&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//例子：根据年龄分组，获取每组人数、平均工资。</span><br><span class="hljs-keyword">var</span> items = list.GroupBy(e =&gt; e.Age).Select(g =&gt; <span class="hljs-keyword">new</span> &#123; Gender = g.Key, Count = g.Count(), Av = g.Average(e=&gt;e.Salary),MaxAge=g.Max(e=&gt;e.Age),MinAge=g.Min(e=&gt;e.Age) &#125;);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> items)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;年龄：<span class="hljs-subst">&#123;item.Gender&#125;</span>+每组人数:<span class="hljs-subst">&#123;item.Count&#125;</span>+平均工资：<span class="hljs-subst">&#123;item.Av&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集合转换"><a href="#集合转换" class="headerlink" title="集合转换"></a>集合转换</h3><ul>
+<li>有一些地方需要数组类型或者List类型的变量，我们可以用ToArray()方法和ToList()分别把IEnumerable<T>转换为数组类型和List<T>类型</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Employee[] items1 = list.Where(e =&gt; e.Salary &gt; <span class="hljs-number">3000</span>).ToArray();<br>List&lt;Employee&gt; items2 = list.Where(e =&gt; e.Salary &gt; <span class="hljs-number">3000</span>).ToList();<br></code></pre></td></tr></table></figure>
+<h4 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h4><ul>
+<li>Where、Select、OrderBy、GroupBy、Take、Skip等返回值都是IEnumerable<T>类型，所以可以链式调用。</li>
+<li>例子：“获取Id&gt;2的数据，然后按照Age分组，并且把分组按照Age排序，然后取出前3条，最后再投影取得年龄、人数、平均工资”</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> items = list.Where(e =&gt; e.Id &gt; <span class="hljs-number">2</span>).GroupBy(e =&gt; e.Age).OrderBy(g =&gt; g.Key).Take(<span class="hljs-number">3</span>)<br>.Select(g =&gt; <span class="hljs-keyword">new</span> &#123; NewAge = g.Key, Count = g.Count(), Av = g.Average(e =&gt; e.Salary) &#125;);<br><span class="hljs-comment">//g=IGrouping&lt;int,Employee&gt; ;  e=Employee</span><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> items)<br>&#123;<br>Console.WriteLine(<span class="hljs-string">$&quot;年龄：<span class="hljs-subst">&#123;item.NewAge&#125;</span>;人数:<span class="hljs-subst">&#123;item.Count&#125;</span>;平均工资：<span class="hljs-subst">&#123;item.Av&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <hr>
-<h2 id="LINQ的另一种写法"><a href="#LINQ的另一种写法" class="headerlink" title="LINQ的另一种写法"></a>LINQ的另一种写法</h2><hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+<h2 id="LINQ的另一种写法"><a href="#LINQ的另一种写法" class="headerlink" title="LINQ的另一种写法"></a>LINQ的另一种写法</h2><ul>
+<li>在上面学习的时候使用Where、OrderBy、Select等 扩展方法进行数据查询的写法叫做“LINQ的方法语法”。</li>
+<li>除此之外，LINQ还有另外一种叫做“查询语法”的写法<ul>
+<li>查询语法<ul>
+<li><strong>“查询语法”看起来更酷，但是“方法语法”更实用，因此.NET开发者大部分还是用的“方法语法”</strong><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//LINQ方法语法</span><br><span class="hljs-keyword">var</span> items = list.Where(e =&gt; e.Salary &gt; <span class="hljs-number">3000</span>).OrderBy(e =&gt; e.Age)<br>    .Select(e =&gt; <span class="hljs-keyword">new</span> &#123; MZ = e.Name, NL = e.Age, XB = e.Gender ? <span class="hljs-string">&quot;男&quot;</span> : <span class="hljs-string">&quot;女&quot;</span> &#125;);<br><br><span class="hljs-comment">//查询语法</span><br><span class="hljs-keyword">var</span> items = <span class="hljs-keyword">from</span> e <span class="hljs-keyword">in</span> list<br>            <span class="hljs-keyword">where</span> e.Salary &gt; <span class="hljs-number">5000</span><br>            <span class="hljs-keyword">orderby</span> e.Age<br>            <span class="hljs-keyword">select</span> <span class="hljs-keyword">new</span> &#123; e.Name, e.Age, Gender = e.Gender ? <span class="hljs-string">&quot;男&quot;</span> : <span class="hljs-string">&quot;女&quot;</span> &#125;;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>两者的区别<ul>
+<li>运行时没有区别，编译后都是一样的。<ul>
+<li>可以从反编译中看到编译后都变成了查询语法的样子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240904/%E5%8F%8D%E7%BC%96%E8%AF%91.6t729o0yas.webp" srcset="/img/loading.gif" lazyload alt="反编译"></p>
+<h2 id="LINQ解决面试问题"><a href="#LINQ解决面试问题" class="headerlink" title="LINQ解决面试问题"></a>LINQ解决面试问题</h2><ul>
+<li>性能与面试<ul>
+<li>LINQ大部分时间不会影响性能(项目开发中，基本不影响)<ul>
+<li>不过杨中科老师遇到过一个场景用LINQ影响了性能<ul>
+<li>做抠图软件过程中，需要把绿幕扣掉，换上新背景</li>
+<li>这就需要对每一个像素点操作，取出一个点的rgb值，然后取出它的最大值。用到了LINQ会发现很卡</li>
+<li>换了三元运算符后就好了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>面试的时候算法题一般尽量避免使用正则表达式、LINQ等这些高级的类库。<ul>
+<li>例子：大饭店面试大厨的故事<ul>
+<li>不会让你做山珍海味，就让你做蛋炒饭去考验你的技术</li>
+<li>好比代码，你会用LINQ，不代表你厉害，因为这是框架的力量<ul>
+<li>你能用最简单的代码达到同样的效果，这才是你自己的技术</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//LINQ方法</span><br><span class="hljs-built_in">int</span> i = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">int</span> j = <span class="hljs-number">8</span>;<br><span class="hljs-built_in">int</span> k = <span class="hljs-number">6</span>;<br><span class="hljs-built_in">int</span>[] nums = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>[] &#123; i, j, k &#125;; <br><span class="hljs-built_in">int</span> max = nums.Max();<br>Console.WriteLine(max);<br><br><span class="hljs-comment">//常规方法或者三元运算符</span><br><span class="hljs-built_in">int</span> i = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">int</span> j = <span class="hljs-number">8</span>;<br><span class="hljs-built_in">int</span> k = <span class="hljs-number">6</span>;<br><span class="hljs-built_in">int</span> max = Math.Max(i, Math.Max(j, k));<br>Console.WriteLine(max);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>案例1<ul>
+<li>有一个用逗号分隔的表示成绩的字符串，如”61,90,100,99,18,22,38,66,80,93,55,50,89”，计算这些成绩的平均值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//案例1</span><br><span class="hljs-comment">//有一个用逗号分隔的表示成绩的字符串，如&quot;61,90,100,99,18,22,38,66,80,93,55,50,89&quot;，计算这些成绩的平均值。</span><br><br><span class="hljs-comment">//自己写的，没用LINQ</span><br><span class="hljs-built_in">string</span> s = <span class="hljs-string">&quot;61,90,100,99,18,22,38,66,80,93,55,50,89&quot;</span>;<br><span class="hljs-built_in">double</span> sum = <span class="hljs-number">0</span>;<br>  String[] items = s.Split(<span class="hljs-string">&quot;,&quot;</span>);<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; items.Length; i++)<br>  &#123;<br>      sum = sum + <span class="hljs-built_in">double</span>.Parse(items[i]);<br>      <span class="hljs-keyword">if</span> (i == items.Length<span class="hljs-number">-1</span>)<br>      &#123;<br>          <span class="hljs-built_in">double</span> CJ = sum / items.Length;<br>          Console.WriteLine(CJ);<br>      &#125;<br>  &#125;<br><span class="hljs-comment">//展开写</span><br>String[] items = s.Split(<span class="hljs-string">&quot;,&quot;</span>);<br>IEnumerable&lt;<span class="hljs-built_in">int</span>&gt; nums = items.Select(e =&gt; Convert.ToInt32(e));<br><span class="hljs-built_in">double</span> avg = nums.Average();<br>Console.WriteLine(avg);<br><span class="hljs-comment">//最简洁的写法</span><br><span class="hljs-built_in">double</span> avg = s.Split(<span class="hljs-string">&#x27;,&#x27;</span>).Select(e =&gt; Convert.ToInt32(e)).Average();<br>Console.WriteLine(avg);<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>案例2<ul>
+<li>统计一个字符串中每个字母出现的频率（忽略大小写），然后按照从高到低的顺序输出出现频率高于2次的单词和其出现的频率。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//案例2</span><br><span class="hljs-comment">//统计一个字符串中每个字母出现的频率（忽略大小写），然后按照从高到低的顺序输出出现频率高于2次的单词和其出现的频率。</span><br><span class="hljs-built_in">string</span> s1 = <span class="hljs-string">&quot;a,b,c,w,g,t,k,l,i,u,t,q,a,z,v,A,FG,JF,AD,TRDH,SDFDS,EAREW,SDFFSA,AFDS,N&quot;</span>;<br><span class="hljs-keyword">var</span> strs = s1.Where(c =&gt; <span class="hljs-built_in">char</span>.IsLetter(c)).Select(c =&gt; <span class="hljs-built_in">char</span>.ToLower(c)).GroupBy(c =&gt; c)<br>    .Select(g=&gt;<span class="hljs-keyword">new</span> &#123; g.Key,Count=g.Count()&#125;).OrderByDescending(g=&gt;g.Count).Where(g=&gt;g.Count&gt;<span class="hljs-number">2</span>);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> strs)<br>&#123;<br>    Console.WriteLine(item);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>本章介绍了用简单的几个声明就可以完成复杂数据处理任务的LINQ技术<ul>
+<li>委托–&gt;Lambda表达式–&gt;LINQ</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
@@ -501,7 +629,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>P2-3 LINQ</div>
-      <div>http://example.com/2024/08/27/Net Core2022教程/第2章：.NET Core 重难点知识/P2-3 LINQ/</div>
+      <div>http://example.com/2024/09/05/Net Core2022教程/第2章：.NET Core 重难点知识/P2-3 LINQ/</div>
     </div>
     <div class="license-meta">
       
@@ -513,7 +641,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 27, 2024</div>
+          <div>September 5, 2024</div>
         </div>
       
       
@@ -545,18 +673,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P1-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%9C%A8%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96%20%E8%BF%98%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E4%B8%80%E4%B8%AA%E6%8A%80%E8%83%BD/" title="P1-程序员在技术之外 还要掌握的一个技能">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P1-程序员在技术之外 还要掌握的一个技能</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/27/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-2%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="P2-2 异步编程">
-                        <span class="hidden-mobile">P2-2 异步编程</span>
+                      <a href="/2024/08/29/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P9-%E6%8A%80%E6%9C%AF%E8%B4%9F%E5%80%BA%20%20%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8D%E6%83%B3%E7%A6%BB%E8%81%8C%20%E8%AF%B7%E9%87%8D%E8%A7%86%E5%B9%B6%E5%B0%BD%E5%BF%AB%E8%BF%98%E6%B8%85%E6%8A%80%E6%9C%AF%E8%B4%9F%E5%80%BA/" title="P9-技术负债  程序员不想离职 请重视并尽快还清技术负债">
+                        <span class="hidden-mobile">P9-技术负债  程序员不想离职 请重视并尽快还清技术负债</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
