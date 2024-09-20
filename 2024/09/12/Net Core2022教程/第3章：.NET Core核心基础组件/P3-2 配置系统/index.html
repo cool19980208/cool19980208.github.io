@@ -1,0 +1,911 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="配置系统 配置系统的基本使用说明 1、传统Web.config配置的缺点，之前DI讲到过。 2、为了兼容，仍然可以使用Web.config和ConfigurationManager类，但不推荐。 3、.NET 中的配置系统支持丰富的配置源，包括文件（json、xml、ini等）、注册表、环境变量、命令行、Azure Key Vault等，还可以配置自定义配置源。可以跟踪配置的改变，可以按照优先级覆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P3-2 配置系统">
+<meta property="og:url" content="http://example.com/2024/09/12/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-2%20%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="配置系统 配置系统的基本使用说明 1、传统Web.config配置的缺点，之前DI讲到过。 2、为了兼容，仍然可以使用Web.config和ConfigurationManager类，但不推荐。 3、.NET 中的配置系统支持丰富的配置源，包括文件（json、xml、ini等）、注册表、环境变量、命令行、Azure Key Vault等，还可以配置自定义配置源。可以跟踪配置的改变，可以按照优先级覆">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240910/%E4%BD%BF%E7%94%A8.6t72icyuyc.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/%E5%91%BD%E4%BB%A4%E8%A1%8C.1024adah8s.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/2019.39l4tuv7pl.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/2022.8hgfguo7nu.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.1aoy3ippe3.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%88%9B%E5%BB%BA%E8%A1%A8.26lfkeg3lk.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%94%AE.1e8k2nzhvd.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%87%AA%E5%8A%A8%E5%A2%9E%E9%95%BF.1zi7oyty61.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E4%BF%9D%E5%AD%98.7sn5y9heew.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE.6f0mu8f1f4.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F.13lq9kcuoh.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%91%BD%E4%BB%A4%E8%A1%8C.13lq9le95d.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.1vylrbuuvl.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%9D%AF%E5%85%B7%E6%95%85%E4%BA%8B.54xpnzici8.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%AE%89%E8%A3%85%E5%8C%85.8ad7mxn6k2.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%8F%96%E8%87%B3%E6%9C%BA%E5%AF%86.1hs60gwz5f.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%8E%92%E5%BA%8F.13lq9looab.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%9C%BA%E5%AF%86%E5%82%A8%E5%AD%98.6f0mubd0s0.webp">
+<meta property="article:published_time" content="2024-09-12T03:16:26.000Z">
+<meta property="article:modified_time" content="2024-09-12T03:20:34.793Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240910/%E4%BD%BF%E7%94%A8.6t72icyuyc.webp">
+  
+  
+  
+  <title>P3-2 配置系统 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P3-2 配置系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-12 11:16" pubdate>
+          September 12, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P3-2 配置系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h1><hr>
+<h2 id="配置系统的基本使用"><a href="#配置系统的基本使用" class="headerlink" title="配置系统的基本使用"></a>配置系统的基本使用</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>1、传统Web.config配置的缺点，之前DI讲到过。</li>
+<li>2、为了兼容，仍然可以使用Web.config和ConfigurationManager类，但不推荐。</li>
+<li>3、.NET 中的配置系统支持丰富的配置源，包括文件（json、xml、ini等）、注册表、环境变量、命令行、Azure Key Vault等，还可以配置自定义配置源。可以跟踪配置的改变，可以按照优先级覆盖。</li>
+<li>4、<code>通过IConfigurationRoot读取配置</code>和<code>绑定读取配置</code>这两种方式都只适合特殊情况(极端情况)，一般来说还有另外一个方法更加简洁的去使用</li>
+<li>5、(*)懂了即可</li>
+</ul>
+<h3 id="Json文件配置"><a href="#Json文件配置" class="headerlink" title="Json文件配置"></a>Json文件配置</h3><ul>
+<li>1、创建一个json文件，文件名随意，比如config.json，设置“如果较新则复制”。参考备注</li>
+<li>2、NuGet安装Microsoft.Extensions.Configuration和Microsoft.Extensions.Configuration.Json。<ul>
+<li>Microsoft.Extensions.Configuration：配置框架基础包<ul>
+<li>Install-Package Microsoft.Extensions.Configuration</li>
+</ul>
+</li>
+<li>Microsoft.Extensions.Configuration.Json：读取Json的包<ul>
+<li>Install-Package Microsoft.Extensions.Configuration.Json</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3、编写代码，先用简单的方式读取配置。</li>
+</ul>
+<h3 id="通过IConfigurationRoot读取配置"><a href="#通过IConfigurationRoot读取配置" class="headerlink" title="通过IConfigurationRoot读取配置(*)"></a>通过IConfigurationRoot读取配置(*)</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//读取配置原始方法</span><br>ConfigurationBuilder configBuilder = <span class="hljs-keyword">new</span> ConfigurationBuilder();<br>configBuilder.AddJsonFile(<br>    <span class="hljs-string">&quot;config.json&quot;</span>, optional: <span class="hljs-literal">false</span>, reloadOnChange: <span class="hljs-literal">false</span>);<br>IConfigurationRoot config = configBuilder.Build();<br><span class="hljs-built_in">string</span> name = config[<span class="hljs-string">&quot;name&quot;</span>];<br><span class="hljs-built_in">string</span> proxyAddress = config.GetSection(<span class="hljs-string">&quot;proxy:address&quot;</span>).Value;<br><br><span class="hljs-comment">//optional参数表示这个文件是否可选。初学者，建议optional设置为false，这样写错了的话能够即使发现</span><br><span class="hljs-comment">//reloadOnChange参数表示如果文件修改了，是否重新加载配置。</span><br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="绑定读取配置"><a href="#绑定读取配置" class="headerlink" title="绑定读取配置(*)"></a>绑定读取配置(*)</h3><ul>
+<li>1、可以绑定一个类，自动完成配置的读取。</li>
+<li>2、NuGet安装：Microsoft.Extensions.Configuration.Binder</li>
+<li>3、Server server &#x3D; configRoot.GetSection(“proxy”).Get<Server>()</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#">Config config = configRoot.Get&lt;Config&gt;();<br>Console.WriteLine(config.Name);<br>Console.WriteLine(config.Proxy.Port);<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240910/%E4%BD%BF%E7%94%A8.6t72icyuyc.webp" srcset="/img/loading.gif" lazyload alt="使用"></p>
+<h2 id="使用选项方式读取配置"><a href="#使用选项方式读取配置" class="headerlink" title="使用选项方式读取配置"></a>使用选项方式读取配置</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><ul>
+<li>1、推荐使用选项方式读取，和DI结合更好，且更好利用“reloadonchange”机制。</li>
+<li>2、NuGet安装：Microsoft.Extensions.Options、Microsoft.Extensions.Configuration.Binder，当然也需要Microsoft.Extensions.Configuration、Microsoft.Extensions.Configuration.Json。</li>
+<li>3、读取配置的时候，DI要声明<code>IOptions&lt;T&gt;</code>、<code>IOptionsMonitor&lt;T&gt;</code>、<code>IOptionsSnapshot&lt;T&gt;</code>等类型。<ul>
+<li>三者的区别</li>
+<li><code>IOptions&lt;T&gt;</code>:在配置改变后，我们不能读到新的值，必须重启程序才可以读到新的值</li>
+<li><code>IOptionsMonitor</code>：在配置改变后，我们能读到新的值</li>
+<li><code>IOptionsSnapshot</code>：也是在配置改变后，我们能读到新的值，<ul>
+<li>和<code>IOptionsMonitor</code>不同的是，IOptionsSnapshot会在同一个范围内会保持一致性（比如ASP.NET Core一个请求中）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>建议用IOptionsSnapshot</strong></li>
+</ul>
+<h3 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h3><ul>
+<li>1、在读取配置的地方，用IOptionsSnapshot<T>注入。不要在构造函数里直接读取IOptionsSnapshot.Value，而是到用到的地方再读取，否则就无法更新变化。</li>
+<li>2、如下配置<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C#">services.AddOptions()<br>	.Configure&lt;DbSettings&gt;(e =&gt; config.GetSection(<span class="hljs-string">&quot;DB&quot;</span>).Bind(e))<br>	.Configure&lt;SmtpSettings&gt;(e =&gt; config.GetSection(<span class="hljs-string">&quot;Smtp&quot;</span>).Bind(e));<br>services.AddTransient&lt;Demo&gt;();<span class="hljs-comment">//不能用Singleton</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="从命令行读取配置"><a href="#从命令行读取配置" class="headerlink" title="从命令行读取配置"></a>从命令行读取配置</h2><ul>
+<li>1、配置框架还支持从命令行参数、环境变量等地方读取。</li>
+<li>2、NuGet安装Microsoft.Extensions.Configuration.CommandLine。</li>
+<li>3、configBuilder.AddCommandLine(args)</li>
+<li>4、参数支持多种格式，比如：server&#x3D;127.0.0.1、–server&#x3D;127.0.0.1、–server 127.0.0.1（注意在键值之间加空格）、&#x2F;server&#x3D;127.0.0.1、&#x2F;server 127.0.0.1（注意在键值之间加空格）。格式不能混用。</li>
+<li>5、调试的时候，VS中简化命令行传参数的方法。<ul>
+<li>命令行<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/%E5%91%BD%E4%BB%A4%E8%A1%8C.1024adah8s.webp" srcset="/img/loading.gif" lazyload alt="命令行"></li>
+</ul>
+</li>
+<li>2019<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/2019.39l4tuv7pl.webp" srcset="/img/loading.gif" lazyload alt="2019"></li>
+</ul>
+</li>
+<li>2022<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/2022.8hgfguo7nu.webp" srcset="/img/loading.gif" lazyload alt="2022"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//DB:DbType=666 Smtp:Server=zane</span><br>ConfigurationBuilder configBuilder = <span class="hljs-keyword">new</span> ConfigurationBuilder();<br>configBuilder.AddCommandLine(args);<span class="hljs-comment">//从命名行读取配置</span><br>IConfigurationRoot config = configBuilder.Build();<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="扁平化配置"><a href="#扁平化配置" class="headerlink" title="扁平化配置"></a>扁平化配置</h3><ul>
+<li>1、对于环境变量、命令行等简单的键值对结构，如果想要进行复杂结构的配置，需要进行“扁平化处理”。对于配置的名字需要采用“层级配置”。例如：<code>a:b:c</code>。对于数字这样配置：<code>a:b:c:0</code>、 <code>a:b:c:1</code>、 <code>a:b:c:2</code>。</li>
+<li>2、演示一下。</li>
+<li>3、这个知识点在自定义配置Provider中还会用到。</li>
+</ul>
+<h2 id="从环境变量读取配置"><a href="#从环境变量读取配置" class="headerlink" title="从环境变量读取配置"></a>从环境变量读取配置</h2><ul>
+<li>1、NuGet安装：Microsoft.Extensions.Configuration.EnvironmentVariables。</li>
+<li>2、然后configurationBuilder. AddEnvironmentVariables()<ul>
+<li>AddEnvironmentVariables() 有无参数和有prefix参数的两个重载版本。</li>
+<li>无参数版本会把程序相关的所有环境变量都加载进来，由于有可能和系统中已有的环境变量冲突，因此建议用有prefix参数的AddEnvironmentVariables()。</li>
+<li>读取配置的时候，prefix参数会被忽略。</li>
+</ul>
+</li>
+<li>3、VS中调试时，避免修改系统环境变量，直接在VS中设置环境变量的方法。<ul>
+<li>环境变量<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240911/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.1aoy3ippe3.webp" srcset="/img/loading.gif" lazyload alt="环境变量"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//TEST_Smtp:Server=cool   TEST_DB:DbType=888</span><br>ConfigurationBuilder configBuilder = <span class="hljs-keyword">new</span> ConfigurationBuilder();<br>configBuilder.AddEnvironmentVariables(<span class="hljs-string">&quot;TEST_&quot;</span>);<span class="hljs-comment">//从环境变量读取配置  建议有前缀去区分 比如：TEST_</span><br>IConfigurationRoot config = configBuilder.Build();<br></code></pre></td></tr></table></figure>
+
+<h3 id="其他配置源"><a href="#其他配置源" class="headerlink" title="其他配置源"></a>其他配置源</h3><p>1、还支持ini、xml等格式的配置源，如果想用查询文档即可。<br>2、还支持在运行时、调试时加载不同的json文件；<br>3、还内置或者第三方支持中心化配置服务器，比如使用Apollo、Nacos等开源服务器，或者使用Azure、阿里云等的配置服务。具体看文档即可。</p>
+<h2 id="案例：开发我们的配置提供程序"><a href="#案例：开发我们的配置提供程序" class="headerlink" title="案例：开发我们的配置提供程序"></a>案例：开发我们的配置提供程序</h2><ul>
+<li>什么是“自己造轮子”<ul>
+<li>本来有现成的框架可以使用，但你非得自己去创造，还不一定有现成的好用</li>
+<li><strong>对于一个程序员来讲，一定要有自己造轮子的这个能力</strong></li>
+<li>价值</li>
+<li>对行业：就是说在行业里边，一定是有一些人不满足于现有的东西，去创造新的东西<ul>
+<li>如果只会用行业内的框架，越用还越觉得越垃圾，但是还必须用~你怎么办呢</li>
+</ul>
+</li>
+<li>对自己<ul>
+<li>可以提高自己。当你可以造轮子了，你这时就是创造者了，而并非只是一个使用者</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="开发自定义配置提供者的步骤"><a href="#开发自定义配置提供者的步骤" class="headerlink" title="开发自定义配置提供者的步骤"></a>开发自定义配置提供者的步骤</h3><ul>
+<li>1、开发一个直接或者间接实现IConfigurationProvider接口的类XXXConfigurationProvider，一般继承自ConfigurationProvider。<ul>
+<li>如果是从文件读取，可以继承自<code>FileConfigurationProvider</code>。</li>
+<li>重写Load方法，把“扁平化数据”设置到<code>Data</code>属性即可。</li>
+</ul>
+</li>
+<li>2、再开发一个实现了IConfigurationSource接口的类XXXConfigurationSource。<ul>
+<li>如果是从文件读取，可以继承自<code>FileConfigurationSource</code>。</li>
+<li>在Build方法中返回上面的ConfigurationProvider对象。</li>
+</ul>
+</li>
+<li>3、然后使用即可，configurationBuilder.Add(new ConfigurationSource())即可。</li>
+<li>为了简化使用，一般提供一个IConfigurationBuilder的扩展方法。</li>
+</ul>
+<blockquote>
+<p>整体流程：编写ConfigurationProvider类实际读取配置；<br>编写ConfigurationSource在Build中返回ConfigurationProvider对象；<br>把ConfigurationSource对象加入IConfigurationBuilder。</p>
+</blockquote>
+<h4 id="开发web-config提供者"><a href="#开发web-config提供者" class="headerlink" title="开发web.config提供者"></a>开发web.config提供者</h4><ul>
+<li>1、.NET Core中不建议使用.NET Framework里的web.config，不过仍然继续提供了ConfigurationManager了，不过没有官方支持通过新的Configuration框架读取的方式。<ul>
+<li>我们来实现一个，能够读取web.config里的connectionStrings和appSettings的内容。没用过web.config也没关系。</li>
+</ul>
+</li>
+<li>2、这个项目主要意义还是展示如何编写自定义配置提供者，实用意义不大。主要为下一个更实用的配置提供者做知识准备。<blockquote>
+<p>代码写在了“Config1\自定义配置提供”这个项目里</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="项目需求-开发数据库配置提供者"><a href="#项目需求-开发数据库配置提供者" class="headerlink" title="项目需求(开发数据库配置提供者)"></a>项目需求(开发数据库配置提供者)</h3><ul>
+<li>1、网站用集群部署，如果用本地配置文件，每次修改都要挨个修改。有Apollo、Nacos等开源的配置中心以及云服务平台的配置服务，但是项目对于配置的要求没有非常复杂，因此决定在关系数据库中保存配置。<ul>
+<li>如果项目用不到云服务平台的话，可以用关系数据库中保存配置达到中心化配置的需求</li>
+</ul>
+</li>
+<li>2、已经开源 <a target="_blank" rel="noopener" href="https://github.com/yangzhongke/Zack.AnyDBConfigProvider">https://github.com/yangzhongke/Zack.AnyDBConfigProvider</a></li>
+<li>3、按照文档先使用一下，站在使用者角度体验一下。思考自己如何实现。项目亮点：value支持json格式。</li>
+</ul>
+<h4 id="解读源代码"><a href="#解读源代码" class="headerlink" title="解读源代码"></a>解读源代码</h4><ul>
+<li>1、杨老师github上的源代码。</li>
+<li>2、重点：定时reload的实现（也可以考虑改成用触发器实时触发）；ReaderWriterLockSlim 的使用；json解析为“扁平结构”。</li>
+</ul>
+<h4 id="步骤中的问题"><a href="#步骤中的问题" class="headerlink" title="步骤中的问题"></a>步骤中的问题</h4><ul>
+<li>第一步<ul>
+<li>Id的自动增长<ul>
+<li>1.设置主键。 2.设置自动增长</li>
+</ul>
+</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%88%9B%E5%BB%BA%E8%A1%A8.26lfkeg3lk.webp" srcset="/img/loading.gif" lazyload alt="创建表"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%94%AE.1e8k2nzhvd.webp" srcset="/img/loading.gif" lazyload alt="设置主键"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%87%AA%E5%8A%A8%E5%A2%9E%E9%95%BF.1zi7oyty61.webp" srcset="/img/loading.gif" lazyload alt="自动增长"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E4%BF%9D%E5%AD%98.7sn5y9heew.webp" srcset="/img/loading.gif" lazyload alt="保存"></li>
+<li>在表中写入配置数据</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE.6f0mu8f1f4.webp" srcset="/img/loading.gif" lazyload alt="写入数据"></li>
+</ul>
+</li>
+<li>第二步<ul>
+<li>在对应的项目中安装第三方包<ul>
+<li>Install-Package Zack.AnyDBConfigProvider  </li>
+<li>Install-Package Microsoft.Data.SqlClient</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第三步<ul>
+<li>在代码中写入配置(下面都是简单写的，具体可以看使用说明中)<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-built_in">string</span> conn1 = <span class="hljs-string">&quot;Server=127.0.0.1;Database=School;Trusted_Connection=True&quot;</span>;<br>configBuilder.AddDbConfiguration(() =&gt; <span class="hljs-keyword">new</span> SqlConnection(conn1), reloadOnChange: <span class="hljs-literal">true</span>, <br>reloadInterval: TimeSpan.FromSeconds(<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>第四步<ul>
+<li>运行</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F.13lq9kcuoh.webp" srcset="/img/loading.gif" lazyload alt="连接成功"></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>代码写在了“Config1\Config1”这个项目里</p>
+</blockquote>
+<hr>
+<h2 id="多配置源问题"><a href="#多配置源问题" class="headerlink" title="多配置源问题"></a>多配置源问题</h2><h3 id="为什么多配置源"><a href="#为什么多配置源" class="headerlink" title="为什么多配置源"></a>为什么多配置源</h3><ul>
+<li>1、比如：某个网站需要自定义配置；程序员的同一台机器上，开发调试环境和测试环境用不同的配置。</li>
+<li>2、按照注册到ConfigurationBuilder的顺序，“后来者居上”<ul>
+<li>后注册的优先级高，如果配置名字重复，用后注册的值。</li>
+<li>如果配置名字不重复，就用前注册的值。后者有则代替，无则保持</li>
+</ul>
+</li>
+<li>3、实验：控制台的覆盖环境变量的，自定义Provider的覆盖控制台的。</li>
+<li>练习<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%91%BD%E4%BB%A4%E8%A1%8C.13lq9le95d.webp" srcset="/img/loading.gif" lazyload alt="命令行"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.1vylrbuuvl.webp" srcset="/img/loading.gif" lazyload alt="环境变量"></li>
+</ul>
+</li>
+</ul>
+<h3 id="配置文件的重要性"><a href="#配置文件的重要性" class="headerlink" title="配置文件的重要性"></a>配置文件的重要性</h3><ul>
+<li>把配置文件不小心传到互联网的下场<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%9D%AF%E5%85%B7%E6%95%85%E4%BA%8B.54xpnzici8.webp" srcset="/img/loading.gif" lazyload alt="杯具故事"></li>
+</ul>
+</li>
+</ul>
+<h4 id="保命的UserSecrets-为了防止上述事件的发生"><a href="#保命的UserSecrets-为了防止上述事件的发生" class="headerlink" title="保命的UserSecrets(为了防止上述事件的发生)"></a>保命的UserSecrets(为了防止上述事件的发生)</h4><ul>
+<li>1、.NET 提供了user-secrets机制， user-secrets的配置不放到源代码中。</li>
+<li>2、Nuget安装：Microsoft.Extensions.Configuration.UserSecrets</li>
+<li>3、在VS项目上点右键【管理用户机密】，编辑这个配置文件。看看这个文件在哪里。会自动在csproj中的UserSecretsId就是文件夹的名字。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%AE%89%E8%A3%85%E5%8C%85.8ad7mxn6k2.webp" srcset="/img/loading.gif" lazyload alt="安装包"></li>
+<li>点击确定后就自动安装了Microsoft.Extensions.Configuration.UserSecrets这个包</li>
+</ul>
+</li>
+<li>4、configBuilder.AddUserSecrets<Program>()</li>
+</ul>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ul>
+<li>1、不能泄漏到源码中的配置放到user-secrets即可，不用都放。<ul>
+<li>比如公司的服务器配置文件等</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E5%8F%96%E8%87%B3%E6%9C%BA%E5%AF%86.1hs60gwz5f.webp" srcset="/img/loading.gif" lazyload alt="取至机密"></li>
+</ul>
+</li>
+<li>2、一般把user-secrets优先级放到普通json文件之前。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%8E%92%E5%BA%8F.13lq9looab.webp" srcset="/img/loading.gif" lazyload alt="排序"></li>
+</ul>
+</li>
+<li>3、如果开发人员电脑重装系统等原因造成本地的配置文件删除了，就需要重新配置。<ul>
+<li>因为机密文件储存在C盘，所以如果有，记得提前备份</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%9C%BA%E5%AF%86%E5%82%A8%E5%AD%98.6f0mubd0s0.webp" srcset="/img/loading.gif" lazyload alt="机密储存"></li>
+</ul>
+</li>
+<li>4、并不是生产中的加密，只适用于开发环境。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P3-2 配置系统</div>
+      <div>http://example.com/2024/09/12/Net Core2022教程/第3章：.NET Core核心基础组件/P3-2 配置系统/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 12, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-3%20%E6%97%A5%E5%BF%97/" title="P3-3 日志">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P3-3 日志</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/10/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-1%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" title="P3-1 依赖注入">
+                        <span class="hidden-mobile">P3-1 依赖注入</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

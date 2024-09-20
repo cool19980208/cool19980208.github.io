@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="依赖注入 什么是控制反转、服务定位器和依赖注入控制反转 生活中的“控制反转”：自己发电和用电网的电。 依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IOC）思想的实现方式。 依赖注入简化模块的组装过程，降低模块之间的耦合度  1234567自己发电的代码var connSettings &#x3D; ConfigurationManager.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P3-1 依赖注入">
+<meta property="og:url" content="http://example.com/2024/09/10/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-1%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="依赖注入 什么是控制反转、服务定位器和依赖注入控制反转 生活中的“控制反转”：自己发电和用电网的电。 依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IOC）思想的实现方式。 依赖注入简化模块的组装过程，降低模块之间的耦合度  1234567自己发电的代码var connSettings &#x3D; ConfigurationManager.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/Disposable.7p3jsg9cnh.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E7%9E%AC%E6%80%81.231tel81u9.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/scope.92q2whkeoe.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E4%B8%8D%E5%90%8C%E8%8C%83%E5%9B%B4%E7%9A%84scope.92q2whkeof.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E5%8D%95%E4%BE%8B.39l4n6wyfk.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.8ojn9v1yxp.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E9%9C%80%E6%B1%82.7ax45tqwwt.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E6%B3%A8%E6%84%8F%E7%82%B9.7p3jwph9wp.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E6%89%A9%E5%B1%95.4cku2btc10.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240910/%E5%9B%BE%E7%89%871.231tjw9sox.webp">
+<meta property="article:published_time" content="2024-09-10T09:29:26.000Z">
+<meta property="article:modified_time" content="2024-09-10T09:29:19.528Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/Disposable.7p3jsg9cnh.webp">
+  
+  
+  
+  <title>P3-1 依赖注入 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P3-1 依赖注入"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-10 17:29" pubdate>
+          September 10, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P3-1 依赖注入</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><hr>
+<h2 id="什么是控制反转、服务定位器和依赖注入"><a href="#什么是控制反转、服务定位器和依赖注入" class="headerlink" title="什么是控制反转、服务定位器和依赖注入"></a>什么是控制反转、服务定位器和依赖注入</h2><h3 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h3><ul>
+<li>生活中的“控制反转”：自己发电和用电网的电。</li>
+<li>依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IOC）思想的实现方式。</li>
+<li>依赖注入简化模块的组装过程，降低模块之间的耦合度</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#">自己发电的代码<br><br><span class="hljs-keyword">var</span> connSettings = ConfigurationManager.ConnectionStrings[<span class="hljs-string">&quot;connStr1&quot;</span>];<br><span class="hljs-built_in">string</span> connStr = connSettings.ConnectionString;<br>SqlConnection conn = <span class="hljs-keyword">new</span> SqlConnection(connStr);<br>缺点是？<br><span class="hljs-comment">//缺点是：你需要先去配置文件Web.config读取数据库连接字符串，然后创建新对象去接收这个值，然后去连接数据库</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="代码控制反转的目的"><a href="#代码控制反转的目的" class="headerlink" title="代码控制反转的目的"></a>代码控制反转的目的</h3><p>“怎样创建XX对象”→“我要XX对象”</p>
+<p>两种实现方式：</p>
+<ol>
+<li>服务定位器(ServiceLocator)<ol>
+<li>需要先找<code>服务定位器</code>去要，然后它给你，你在拿去使用(半自动化)</li>
+</ol>
+</li>
+<li>推荐：<strong>依赖注入(Dependency Injection，DI)</strong> ⭐️⭐️⭐️<ol>
+<li>自己声明一下，编译器会自动的给你声明的属性赋值(自动化)</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//畅想Demo 下面都是自己想象的，不是.NET 有的</span><br>服务定位器<br>IDbConnection conn = ServiceLocator.GetService&lt;IDbConnection&gt;();<br><br>依赖注入<br><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> IDbConnection Conn &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">InsertDB</span>()</span><br>    &#123;<br>        IDbCommand cmd = Conn.CreateCommand();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="NET-Core依赖注入的基本使用"><a href="#NET-Core依赖注入的基本使用" class="headerlink" title=".NET Core依赖注入的基本使用"></a>.NET Core依赖注入的基本使用</h2><h3 id="DI的几个概念"><a href="#DI的几个概念" class="headerlink" title="DI的几个概念"></a>DI的几个概念</h3><ul>
+<li>服务(srevice):对象<ul>
+<li>当你向框架要一个对象的时候，它就会给你提供一个服务</li>
+</ul>
+</li>
+<li>注册服务<ul>
+<li>把服务注册进去，你才能拿到这个服务</li>
+</ul>
+</li>
+<li>服务容器：负责管理注册的服务</li>
+<li>查询服务：创建对象及关联对象</li>
+<li>对象的生命周期<blockquote>
+<p>获取服务的时候是创建一个新对象还是用之前的对象</p>
+</blockquote>
+<ul>
+<li>瞬态(Transient)<ul>
+<li>每次被请求的时候都会创建一个新对象</li>
+</ul>
+</li>
+<li>范围(Scoped)<ul>
+<li>在给定的范围内，可以多次请求同一个服务对象，服务每次返回的对象都是同一个</li>
+</ul>
+</li>
+<li>单例(Singleton)<ul>
+<li>全局共享同一个服务对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="NET-中使用DI"><a href="#NET-中使用DI" class="headerlink" title=".NET 中使用DI"></a>.NET 中使用DI</h3><p>1、测试代码见备注<br>2、根据类型来获取和注册服务。<br>可以分别指定服务类型（service type）和实现类型（implementation type）。这两者可能相同，也可能不同。服务类型可以是类，也可以是接口，建议面向<code>接口编程</code>，更灵活。<br>3、.NET控制反转组件取名为DependencyInjection，但它包含ServiceLocator的功能。</p>
+<h3 id="NET-中使用DI-2"><a href="#NET-中使用DI-2" class="headerlink" title=".NET 中使用DI 2"></a>.NET 中使用DI 2</h3><ul>
+<li>1.通过NuGet安装对应开发包<ul>
+<li>Install-Package Microsoft.Extensions.DependencyInjection</li>
+</ul>
+</li>
+<li>2.using Microsoft.Extensions.DependencyInjection</li>
+<li>3.ServiceCollection用来构造容器对象IServiceProvider 。调用ServiceCollection的BuildServiceProvider()创建的ServiceProvider，可以用来获取BuildServiceProvider()之前ServiceCollection中的对象。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>    &#123;<br>        ServiceCollection services = <span class="hljs-keyword">new</span> ServiceCollection();<br>        services.AddTransient&lt;TestServiceImpl&gt;();<span class="hljs-comment">//瞬态服务</span><br>        <span class="hljs-keyword">using</span>(ServiceProvider sp =services.BuildServiceProvider())<br>        <span class="hljs-comment">//ServiceProvider == 服务定位器</span><br>        &#123;<br>            TestServiceImpl testService = sp.GetRequiredService&lt;TestServiceImpl&gt;();<br>            testService.Name = <span class="hljs-string">&quot;Tom&quot;</span>;<br>            testService.SayHi();<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITestService</span><span class="hljs-comment">//接口</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SayHi</span>()</span>;<br><br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestServiceImpl</span>:<span class="hljs-title">ITestService</span><span class="hljs-comment">//实现类</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SayHi</span>()</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;Hi,I&#x27;m <span class="hljs-subst">&#123;Name&#125;</span>&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li><p>1、给类构造函数中打印，看看不同生命周期的对象创建，使用serviceProvider.CreateScope()创建Scope</p>
+</li>
+<li><p>2、如果一个类实现了IDisposable接口，则离开作用域之后容器会自动调用对象的Dispose方法</p>
+<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/Disposable.7p3jsg9cnh.webp" srcset="/img/loading.gif" lazyload alt="Disposable"></li>
+</ul>
+</li>
+<li><p>3、不要在长生命周期的对象中引用比它短的生命周期的对象。在ASP.NET Core中，这样做的话默认会抛异常</p>
+</li>
+<li><p>生命周期的选择</p>
+<ul>
+<li>如果类无状态，建议为Singleton<ul>
+<li>无状态<ul>
+<li>类中没有成员变量和属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果类有状态，且有Scope控制，建议为Scoped，因为通常这种Scope控制下的代码都是运行在同一个线程中的，没有并发修改的问题</li>
+<li>在使用Transient的时候要谨慎(Transient使用一般很少，因为很容易用了出现内存泄漏)</li>
+</ul>
+</li>
+<li><p>5、.NET注册服务的重载方法很多，看着文档琢磨吧</p>
+</li>
+<li><p>比较</p>
+<ul>
+<li>瞬态<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E7%9E%AC%E6%80%81.231tel81u9.webp" srcset="/img/loading.gif" lazyload alt="瞬态"></li>
+</ul>
+</li>
+<li>范围<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/scope.92q2whkeoe.webp" srcset="/img/loading.gif" lazyload alt="scope"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E4%B8%8D%E5%90%8C%E8%8C%83%E5%9B%B4%E7%9A%84scope.92q2whkeof.webp" srcset="/img/loading.gif" lazyload alt="不同范围的scope"></li>
+</ul>
+</li>
+<li>单例<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240906/%E5%8D%95%E4%BE%8B.39l4n6wyfk.webp" srcset="/img/loading.gif" lazyload alt="单例"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他注册方法"><a href="#其他注册方法" class="headerlink" title="其他注册方法"></a>其他注册方法</h4><ul>
+<li>服务类型和实现类型不一致的注册<ul>
+<li>服务类型：接口</li>
+<li>实现类型：实现类</li>
+</ul>
+</li>
+<li>其他的Add方法</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//services.AddScoped&lt;ITestService, TestServiceImpl&gt;();</span><br><span class="hljs-comment">//services.AddScoped(typeof (ITestService), typeof (TestServiceImpl));</span><br><span class="hljs-comment">//services.AddSingleton&lt;ITestService, TestServiceImpl&gt;();</span><br>services.AddSingleton(<span class="hljs-keyword">typeof</span>(ITestService), <span class="hljs-keyword">new</span> TestServiceImpl());<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="服务定位器"><a href="#服务定位器" class="headerlink" title="服务定位器"></a>服务定位器</h3><p>IServiceProvider的服务定位器方法：</p>
+<ul>
+<li>T GetService<T>() 如果获取不到对象，则返回null。<ul>
+<li>object GetService(Type serviceType) —非泛型方法</li>
+</ul>
+</li>
+<li>T GetRequiredService<T>()如果获取不到对象，则抛异常<ul>
+<li>object GetRequiredService(Type serviceType) —非泛型方法</li>
+</ul>
+</li>
+<li>IEnumerable<T> GetServices<T>()适用于可能有很多满足条件的服务<ul>
+<li>IEnumerable<object> GetServices(Type serviceType) —非泛型方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//T GetService&lt;T&gt;() 如果获取不到对象，则返回null。</span><br>ITestService ts1 = sp.GetService&lt;ITestService&gt;();<br><span class="hljs-comment">//ITestService ts1 = (ITestService)sp.GetService(typeof(ITestService));//非泛型</span><br><br><span class="hljs-comment">//T GetRequiredService&lt;T&gt;()如果获取不到对象，则抛异常</span><br><span class="hljs-comment">//Required:必须的。如果找不到，直接抛异常  </span><br><span class="hljs-comment">//类似于显示类型转换和as</span><br>ITestService ts2 = sp.GetRequiredService&lt;ITestService&gt;();<br>ts1.Name = <span class="hljs-string">&quot;zane&quot;</span>;<br>ts1.SayHi();<br>Console.WriteLine(ts1.GetType());<br><br><br><span class="hljs-comment">//IEnumerable&lt;T&gt; GetServices&lt;T&gt;()适用于可能有很多满足条件的服务</span><br>IEnumerable&lt;ITestService&gt; tests = sp.GetServices&lt;ITestService&gt;();<br><span class="hljs-keyword">foreach</span> (ITestService t <span class="hljs-keyword">in</span> tests)<br>&#123;<br>    Console.WriteLine(t.GetType());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="依赖注入的魅力所在"><a href="#依赖注入的魅力所在" class="headerlink" title="依赖注入的魅力所在"></a>依赖注入的魅力所在</h2><ul>
+<li>1、依赖注入是有“传染性”的，如果一个类的对象是通过DI创建的，那么这个类的构造方法中声明的所有服务类型的参数都会被DI赋值；<ul>
+<li>但是如果一个对象是由开发人员手动创建的，那么这个对象就和DI没有关系，它的构造方法中声明的服务类型参数就不会被自动赋值。</li>
+<li>一旦使用了DI，就要尽量避免直接通过new关键字来创建对象</li>
+<li>好处：业务逻辑层的开发人员不用管数据访问类的代码，只需要注册服务去使用即可。不需要知道数据访问类的逻辑与代码。数据访问类就是框架，自动根据你声明的类型去赋值</li>
+</ul>
+</li>
+<li>2、.NET的DI默认是构造函数注入。</li>
+<li>3、案例：编写一个类，连接数据库做插入操作，记录日志(模拟的输出)，把Dao、日志都放入单独的服务类</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">DI</span>依赖注入1<br>&#123;<br><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br>    &#123;<br>        ServiceCollection services = <span class="hljs-keyword">new</span> ServiceCollection();<br>        services.AddScoped&lt;Controller&gt;();<br>        services.AddScoped&lt;ILog,LogImpl&gt;();<br>        services.AddScoped&lt;IStorage,StorageImpl&gt;();<br>        <span class="hljs-comment">//services.AddScoped&lt;IConfig,ConfigImpl&gt;();//注册服务</span><br>        services.AddScoped&lt;IConfig,DBConfigImpl&gt;();<br>        <span class="hljs-comment">//所有用到的服务都写到services.BuildServiceProvider()之前</span><br>        <span class="hljs-keyword">using</span> (<span class="hljs-keyword">var</span> sp =services.BuildServiceProvider())<br>        &#123;<br>            <span class="hljs-keyword">var</span> c = sp.GetRequiredService&lt;Controller&gt;();<br>            c.Test();<br>        &#125;<br>        Console.ReadKey();<br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title">Controller</span><br>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ILog log;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IStorage storage;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Controller</span>(<span class="hljs-params">ILog log, IStorage storage</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">this</span>.log = log;<br>        <span class="hljs-keyword">this</span>.storage = storage;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">this</span>.log.Log(<span class="hljs-string">&quot;开始上传&quot;</span>);<br>        <span class="hljs-keyword">this</span>.storage.Sava(<span class="hljs-string">&quot;asdasdas&quot;</span>, <span class="hljs-string">&quot;1.txt&quot;</span>);<br>        <span class="hljs-keyword">this</span>.log.Log(<span class="hljs-string">&quot;上传完毕&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">interface</span> <span class="hljs-title">ILog</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Log</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> msg</span>)</span>;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title">LogImpl</span> : <span class="hljs-title">ILog</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Log</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> msg</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;日志：<span class="hljs-subst">&#123;msg&#125;</span>&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">interface</span> <span class="hljs-title">IConfig</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">GetValue</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>)</span>;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title">ConfigImpl</span> : <span class="hljs-title">IConfig</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">GetValue</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title">DBConfigImpl</span> : <span class="hljs-title">IConfig</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">GetValue</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;从数据库中读取&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello db&quot;</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">interface</span> <span class="hljs-title">IStorage</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Sava</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> content, <span class="hljs-built_in">string</span> name</span>)</span>;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title">StorageImpl</span> : <span class="hljs-title">IStorage</span><br>&#123;<br>    <span class="hljs-comment">//DI:降低模块之间的耦合</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IConfig config;<span class="hljs-comment">//取配置文件中的数据</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StorageImpl</span>(<span class="hljs-params">IConfig config</span>)<span class="hljs-comment">//注入：IConfig config |  StorageImpl==构造函数</span></span><br>    &#123;<br>        <span class="hljs-keyword">this</span>.config = config;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Sava</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> content, <span class="hljs-built_in">string</span> name</span>)</span><br>    &#123;<br>        <span class="hljs-built_in">string</span> server = config.GetValue(<span class="hljs-string">&quot;server&quot;</span>);<span class="hljs-comment">//去配置文件夹中的服务器</span><br>        Console.WriteLine(<span class="hljs-string">$&quot;向<span class="hljs-subst">&#123;server&#125;</span>服务器上传文件名为<span class="hljs-subst">&#123;name&#125;</span>，文件内容为：<span class="hljs-subst">&#123;content&#125;</span>&quot;</span>);<br>    &#125;<br>&#125;<br><br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>需求说明</p>
+<blockquote>
+<p>1、目的：演示DI的能力；<br>2、有配置服务、日志服务，然后再开发一个邮件发送器服务。可以通过配置服务来从文件、环境变量、数据库等地方读取配置，可以通过日志服务来将程序运行过程中的日志信息写入文件、控制台、数据库等。<br>3、说明：案例中开发了自己的日志、配置等接口，这只是在揭示原理，.NET有现成的，后面讲。</p>
+</blockquote>
+<h4 id="实现1"><a href="#实现1" class="headerlink" title="实现1"></a>实现1</h4><ul>
+<li>1、创建四个.NET Core类库项目，ConfigServices是配置服务的项目，LogServices是日志服务的项目，MailServices是邮件发送器的项目，然后再建一个.NET Core控制台项目MailServicesConsole来调用MailServices。MailServices项目引用ConfigServices项目和LogServices项目，而MailServicesConsole项目引用MailServices项目。</li>
+<li>2、编写类库项目LogServices，创建ILogProvider接口。编写实现类ConsoleLogProvider。编写一个ConsoleLogProviderExtensions定义扩展方法AddConsoleLog，namespace和IServiceCollection 一致。<blockquote>
+<p>代码写在了“ConfigServices”这个项目里</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="实现2"><a href="#实现2" class="headerlink" title="实现2"></a>实现2</h4><ul>
+<li><p>1、编写配置服务的类库项目ConfigServices。接口IConfigProvider，方法：string GetValue(string name)。</p>
+</li>
+<li><p>2、环境变量读取配置类EnvVarConfigProvider：Environment.GetEnvironmentVariable(name)；编写一个类带扩展方法：AddEnvVarConfig</p>
+</li>
+<li><p>3、编写从ini文件中读取配置的类ConfigServices。</p>
+</li>
+<li><p>注意点</p>
+<ul>
+<li>①读取本地的配置文件，需要修改为“如果较新则复制”<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.8ojn9v1yxp.webp" srcset="/img/loading.gif" lazyload alt="配置文件"></li>
+</ul>
+</li>
+<li>②简化注册服务的方法<ul>
+<li>扩展方法 <ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E9%9C%80%E6%B1%82.7ax45tqwwt.webp" srcset="/img/loading.gif" lazyload alt="需求"></li>
+</ul>
+</li>
+<li>1.名称空间名称修改为“Microsoft.Extensions.DependencyInjection”，  这样可以免去using引用</li>
+<li>2.方法参数中需要加 this，要不然“.”调用时出不来</li>
+<li>3.扩展方法后，其实有的实现类就可以不写public了<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E6%B3%A8%E6%84%8F%E7%82%B9.7p3jwph9wp.webp" srcset="/img/loading.gif" lazyload alt="注意点"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240909/%E6%89%A9%E5%B1%95.4cku2btc10.webp" srcset="/img/loading.gif" lazyload alt="扩展"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现3"><a href="#实现3" class="headerlink" title="实现3"></a>实现3</h4><ul>
+<li>1、“可覆盖的配置读取器”。配置中心服务器。可以本地的覆盖配置服务器的，或者配置文件覆盖环境变量的。<br>例如，按照“配置中心服务器”、“本地环境变量”、“本地配置文件”的顺序添加了三个配置提供者，在“配置中心服务器”中提供了“a&#x3D;1;b&#x3D;2;c&#x3D;3”这三个配置项，在“本地环境变量”中配置了“a&#x3D;10;b&#x3D;20;”，在“本地配置文件”中配置了“b&#x3D;200”，那么最终我们读取的时候读到的就是“a&#x3D;10;b&#x3D;200;c&#x3D;3;”</li>
+<li>2、定义一个从各个ConfigProvider中读取项的IConfigReader接口。编写实现类LayeredConfigReader 。</li>
+</ul>
+<h4 id="实现4"><a href="#实现4" class="headerlink" title="实现4"></a>实现4</h4><ul>
+<li>1、编写发送邮件的服务。IMailSender接口，实现类DefaultMailSender。注入IConfigReader ，ILogProvider ，不真的发邮件，想真的发邮件用MailKit。</li>
+<li>2、整合、调试。</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>关注于接口，而不是关注于实现，各个服务可以更弱耦合的协同工作。在编写代码的时候，我们甚至都不知道具体的服务是什么。</p>
+</li>
+<li><p>第三方DI容器：Autofac等。Autofac优点：支持属性注入、基于名字注入、基于约定的注入等。</p>
+</li>
+<li><p>奥卡姆剃刀原理：如无必要，勿增实体</p>
+<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240910/%E5%9B%BE%E7%89%871.231tjw9sox.webp" srcset="/img/loading.gif" lazyload alt="图片1"></li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P3-1 依赖注入</div>
+      <div>http://example.com/2024/09/10/Net Core2022教程/第3章：.NET Core核心基础组件/P3-1 依赖注入/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 10, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/12/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-2%20%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" title="P3-2 配置系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P3-2 配置系统</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/05/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/" title="P2-3 LINQ">
+                        <span class="hidden-mobile">P2-3 LINQ</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="日志 .NET Core日志的基本使用 日志是程序运行中的“黑匣子”，在程序出现问题以后，我们可以通过分析日志来查找问题 类似于飞机的黑匣子一样，黑匣子中含有机长等人的语音，飞机运行状态警告等等信息。    什么是日志   基本概念 1、日志级别：Trace &lt; Debug &lt; Information &lt; Warning &lt; Error &lt; Critical(重要程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P3-3 日志">
+<meta property="og:url" content="http://example.com/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-3%20%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="日志 .NET Core日志的基本使用 日志是程序运行中的“黑匣子”，在程序出现问题以后，我们可以通过分析日志来查找问题 类似于飞机的黑匣子一样，黑匣子中含有机长等人的语音，飞机运行状态警告等等信息。    什么是日志   基本概念 1、日志级别：Trace &lt; Debug &lt; Information &lt; Warning &lt; Error &lt; Critical(重要程序">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%97.60u73nu123.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%971.5j45f4ywxg.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%972.969p2ozml0.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240913/Exceptionless.39l4wqxls8.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240913/Exceptionless2.54xppda1e1.webp">
+<meta property="article:published_time" content="2024-09-13T02:17:26.000Z">
+<meta property="article:modified_time" content="2024-09-13T02:19:01.399Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%97.60u73nu123.webp">
+  
+  
+  
+  <title>P3-3 日志 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P3-3 日志"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-13 10:17" pubdate>
+          September 13, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P3-3 日志</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><hr>
+<h2 id="NET-Core日志的基本使用"><a href="#NET-Core日志的基本使用" class="headerlink" title=".NET Core日志的基本使用"></a>.NET Core日志的基本使用</h2><ul>
+<li>日志是程序运行中的“黑匣子”，在程序出现问题以后，我们可以通过分析日志来查找问题<ul>
+<li>类似于飞机的黑匣子一样，黑匣子中含有机长等人的语音，飞机运行状态警告等等信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是日志"><a href="#什么是日志" class="headerlink" title="什么是日志"></a>什么是日志</h3><ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%97.60u73nu123.webp" srcset="/img/loading.gif" lazyload alt="日志"></li>
+</ul>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>1、日志级别：Trace &lt; Debug &lt; Information &lt; Warning &lt; Error &lt; Critical(重要程序依次从右到左)<ul>
+<li>6种级别，根据个人的使用习惯去使用。<ul>
+<li>一般不会全部用到，像杨中科老师一般都使用<code>Debug</code>、<code>Warning</code> 、<code>Error</code> 这三种</li>
+<li><code>Debug</code>：一般的信息</li>
+<li><code>Warning</code> ：连接重试的信息等</li>
+<li><code>Error</code>：代码逻辑错误的信息等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2、日志提供者（LoggingProvider）：把日志输出到哪里。控制台、文件、数据库等。</li>
+<li>3、.NET的日志非常灵活，对于业务代码只要注入日志对象记录日志即可，具体哪些日志输出到哪里、什么样的格式、是否输出等都有配置或者初始化代码决定。</li>
+</ul>
+<h3 id="输出到控制台"><a href="#输出到控制台" class="headerlink" title="输出到控制台"></a>输出到控制台</h3><ul>
+<li>1、NuGet：<ul>
+<li><code>Microsoft.Extensions.Logging</code>:日志Log基础框架</li>
+<li><code>Microsoft.Extensions.Logging.Console</code>：日志输出控制台需要的包</li>
+</ul>
+</li>
+<li>2、DI注入：<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#">services.AddLogging(logBuilder=&gt; &#123;<br>logBuilder.AddConsole(); <span class="hljs-comment">//可多个Provider           </span><br>&#125;);<br></code></pre></td></tr></table></figure></li>
+<li>3、需要记录日志的代码，注入<code>ILogger&lt;T&gt;</code>即可，T一般就用当前类，这个类的名字会输出到日志，方便定位错误。然后调用LogInformation()、LogError等方法输出不同级别的日志，还支持输出异常对象。</li>
+</ul>
+<h3 id="其他日志提供者"><a href="#其他日志提供者" class="headerlink" title="其他日志提供者"></a>其他日志提供者</h3><ul>
+<li>1、Console只适合开发阶段，why？运行阶段需要输出到文件等。</li>
+<li>2、采用和Configuration类似的扩展机制，不仅内置了Debug、事件查看器、文件、Azure日志等提供者，还可以扩展。Provider可以共存。</li>
+<li>3、Event Log：Windows Only。<ul>
+<li>这个方法知道就好，<strong>不太建议使用</strong>;因为只能在Wiondows上使用，不能跨平台</li>
+<li>在Windows下部署的程序、网站运行出错、不正常，先去EventLog看看。</li>
+<li>NuGet安装：Microsoft.Extensions.Logging.EventLog。然后logBuilder.AddEventLog()。<ul>
+<li>这个我在<code>2024-09-12</code>的时候去用，报错“EventLog access is not supported on this platform”</li>
+<li>也不纠结了，了解就好</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="文件日志提供程序NLog"><a href="#文件日志提供程序NLog" class="headerlink" title="文件日志提供程序NLog"></a>文件日志提供程序NLog</h2><h3 id="文件日志"><a href="#文件日志" class="headerlink" title="文件日志"></a>文件日志</h3><ul>
+<li>一般运维人员更喜欢文本日志，这样可以拷贝到自己的电脑上去慢慢排查</li>
+<li>1、为什么文本日志一般按照日期区分？<ul>
+<li>避免单个文件过大，排查问题困难</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%971.5j45f4ywxg.webp" srcset="/img/loading.gif" lazyload alt="日志1"></li>
+</ul>
+</li>
+<li>2、如何避免文本日志把磁盘撑爆？<ul>
+<li>限制日志总个数或者总大小。(一般都是两者都限制，比如总个数不超过100个，一个文本大小不超过100M)</li>
+</ul>
+</li>
+<li>3、如何避免一个日志文件太大的问题？<ul>
+<li>银行业务的故事</li>
+<li>其中一个系统的日志，一天就生成一个，一个日志文件能有6-7个G那么大。(业务量很大)<ul>
+<li>还不能把日志文件拷贝到电脑上，因为银行的特殊性</li>
+<li>这种情况最好通过限制单个文件大小去降低排查的困难性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="NLog"><a href="#NLog" class="headerlink" title="NLog"></a>NLog</h3><h4 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h4><ul>
+<li>1、.NET没有内置文本日志提供者。<ul>
+<li>第三方有Log4Net、NLog、Serilog等。老牌的Log4Net另搞一套，不考虑。</li>
+<li>这一次我们先用NLog去演示</li>
+</ul>
+</li>
+<li>2、NLog<ul>
+<li>NuGet安装：NLog.Extensions.Logging（using NLog.Extensions.Logging;）。</li>
+<li>项目根目录下建<code>nlog.config</code>，注意文件名的大小写(考虑linux)。也可以是其他文件名，但是需要单独配置。<ul>
+<li>可以把<code>c:\temp\</code>删除，日志会在程序目录下生成</li>
+</ul>
+</li>
+<li><code>约定大于配置</code>。内容见备注。讲解一下配置文件。<ul>
+<li>rules：规则</li>
+<li>targets：都是文件格式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3、增加logBuilder.AddNLog()</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240912/%E6%97%A5%E5%BF%972.969p2ozml0.webp" srcset="/img/loading.gif" lazyload alt="日志2"></p>
+<h4 id="日志分类、过滤"><a href="#日志分类、过滤" class="headerlink" title="日志分类、过滤"></a>日志分类、过滤</h4><ul>
+<li>1、为什么要日志分类？<ul>
+<li>不同级别或者不同模块的日志记录到不同的地方。<ul>
+<li>比如登录注册、下单、出库等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2、为什么要日志过滤？<ul>
+<li>项目不同阶段(比如刚上线和稳定后)需要记录的日志不同。严重错误可以调用短信Provider等。<ul>
+<li>项目初期也许会用需要<code>Debug</code>级别的日志，等稳定之后也许就不需要了~</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3、搞一个新的类，放到SystemServices这个命名空间下，然后输出一些日志。然后调用很多次日志执行的代码。nlog.config如备注所改。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//nlog.config</span><br>&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span> ?&gt;<br>&lt;nlog xmlns=<span class="hljs-string">&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;</span><br>      xmlns:xsi=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>&gt;<br><br>	&lt;targets&gt;<br>		<br>		&lt;target xsi:type=<span class="hljs-string">&quot;File&quot;</span> name=<span class="hljs-string">&quot;defaultFile&quot;</span> fileName=<span class="hljs-string">&quot;logs/log-$&#123;shortdate&#125;.log&quot;</span><br>				layout=<span class="hljs-string">&quot;$&#123;date&#125;||$&#123;level:uppercase=true&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;&quot;</span> /&gt;<br><br>		&lt;!-- archiveAboveSize:限制单个文本的大小 ； maxArchiveFiles：限制文件个数 --&gt;<br>		&lt;target xsi:type=<span class="hljs-string">&quot;File&quot;</span> name=<span class="hljs-string">&quot;systServicesFile&quot;</span> archiveAboveSize=<span class="hljs-string">&quot;10000&quot;</span> maxArchiveFiles=<span class="hljs-string">&quot;3&quot;</span><br>				fileName=<span class="hljs-string">&quot;logs/systServices-$&#123;shortdate&#125;.log&quot;</span><br>				layout=<span class="hljs-string">&quot;$&#123;date&#125;||$&#123;level:uppercase=true&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;&quot;</span> /&gt;<br><br>		&lt;target xsi:type=<span class="hljs-string">&quot;ColoredConsole&quot;</span> name=<span class="hljs-string">&quot;targetConsole&quot;</span> <br>				layout=<span class="hljs-string">&quot;$&#123;date&#125;||$&#123;level:uppercase=true&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;&quot;</span> /&gt;<br>	&lt;/targets&gt;<br><br>	&lt;rules&gt;<br>		&lt;!--最低级别：Warn ；最高级别：Fatal --&gt;<br>		&lt;logger name=<span class="hljs-string">&quot;*&quot;</span> minlevel=<span class="hljs-string">&quot;Warn&quot;</span> maxlevel=<span class="hljs-string">&quot;Fatal&quot;</span> writeTo=<span class="hljs-string">&quot;targetConsole&quot;</span> /&gt;<br>		&lt;!--命名空间名称开头：SystemServices --&gt;<br>		&lt;logger name=<span class="hljs-string">&quot;SystemServices.*&quot;</span> minlevel=<span class="hljs-string">&quot;Trace&quot;</span> writeTo=<span class="hljs-string">&quot;systServicesFile&quot;</span> final=<span class="hljs-string">&quot;true&quot;</span> /&gt;<br>		&lt;!--上面都不符合就用这个--&gt;<br>		&lt;logger name=<span class="hljs-string">&quot;*&quot;</span> minlevel=<span class="hljs-string">&quot;Trace&quot;</span> writeTo=<span class="hljs-string">&quot;defaultFile&quot;</span> /&gt;<br>	&lt;/rules&gt;<br><br>&lt;/nlog&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="参数解读"><a href="#参数解读" class="headerlink" title="参数解读"></a>参数解读</h4><ul>
+<li>1、<code>archiveAboveSize</code>为“单个日志文件超过多少字节就把日志存档”，单位为字节，这样可以避免单个文件太大，<ul>
+<li>如果不设定maxArchiveFiles参数，则文件日志存档文件的数量会一直增加，</li>
+</ul>
+</li>
+<li>如果设定<code>maxArchiveFiles</code>参数后，则最多保存maxArchiveFiles指定数量个数的存档文件，旧的会被删掉；</li>
+<li>当然也可以不设置<code>maxArchiveFiles</code>参数，而设置maxArchiveDays参数，这样可以设定保存若干天的日志存档。</li>
+<li>2、这些不同参数的起到什么作用？ <ul>
+<li>“滚动日志”策略</li>
+</ul>
+</li>
+</ul>
+<h5 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h5><ul>
+<li>1、rules节点下可以添加多个logger，每个logger都有名字（name属性），name是通配符格式的。</li>
+<li>2、logger节点的minlevel属性和maxlevel属性，表示这个logger接受日志的最低级别和最高级别。</li>
+<li>3、日志输出时，会从上往下匹配rules节点下所有的logger，若发现当前日志的分类名和level符合这个logger的name的通配符，就会把日志输出给这个logger。<ul>
+<li>如果匹配多个logger，就把这条日志输出给多个logger。</li>
+<li>但是如果一个logger设置了final&#x3D;”true”，那么如果匹配到这个logger，就不继续向下匹配其他logger了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="NLog其他"><a href="#NLog其他" class="headerlink" title="NLog其他"></a>NLog其他</h4><ul>
+<li>1、NLog部分功能和.NET的Logging重复，比如分类、分级、各种Provider。</li>
+<li>2、为了避免冲突，如果用NLog，建议不要再配置 .NET 的分级等（具体用法见微软文档）。</li>
+</ul>
+<hr>
+<h2 id="结构化日志和集中化日志"><a href="#结构化日志和集中化日志" class="headerlink" title="结构化日志和集中化日志"></a>结构化日志和集中化日志</h2><ul>
+<li><strong>结构化日志</strong>：结构化日志比普通文本更利于日志的分析，比如统计“邮件发送失败”错误发生了多少次。</li>
+<li><strong>集中化日志</strong>:集群化部署环境中，有N多服务器，如果每个服务器都把日志记录到本地文件，不便于查询、分析。需要把日志保存到集中化的日志服务器中。</li>
+</ul>
+<h3 id="Serilog"><a href="#Serilog" class="headerlink" title="Serilog"></a>Serilog</h3><ul>
+<li>1、NLog也可以配置结构化日志，不过配置麻烦，推荐用<code>Serilog</code>。</li>
+<li>2、NuGet安装：<code>Serilog.AspNetCore</code></li>
+<li>3、用下面的代码来进行使用<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C#">Log.Logger = <span class="hljs-keyword">new</span> LoggerConfiguration()<br>   .MinimumLevel.Debug()<br>   .Enrich.FromLogContext()<br>   .WriteTo.Console(<span class="hljs-keyword">new</span> JsonFormatter())<br>   .CreateLogger();<br>builder.AddSerilog();<br></code></pre></td></tr></table></figure></li>
+<li>4、要记录的结构化数据通过占位符来输出<blockquote>
+<p>logger.LogWarning(“新增用户 {@person}”,new { Id&#x3D;3,Name&#x3D;”zack”});</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">User user = <span class="hljs-keyword">new</span> User &#123; Name = <span class="hljs-string">&quot;admin&quot;</span>, Emai = <span class="hljs-string">&quot;123465@qq.com&quot;</span> &#125;;<br>logger.LogDebug(<span class="hljs-string">&quot;注册一个用户&#123;@person&#125;&quot;</span>, user);<br></code></pre></td></tr></table></figure>
+<ul>
+<li>5、同样可以输出到文件、数据库、MongoDB等。</li>
+</ul>
+<h3 id="集中日志服务"><a href="#集中日志服务" class="headerlink" title="集中日志服务"></a>集中日志服务</h3><ul>
+<li>1、使用NLog、Serilog等可以把日志记录到数据库、MongoDB等地方，就可以实现“结构化、集中日志服务”，不过需要自己编写日志分析程序。</li>
+<li>2、公有云厂商一般都提供了日志云服务，都带分析功能，都有对应Serilog插件，即使没有提供，开发一个插件也不麻烦。</li>
+<li>3、如果没有用云平台或者想自己控制日志服务，可以使用<code>Exceptionless</code>或者<code>ELK</code>等。</li>
+<li>4、 Exceptionless、ELK即提供了现成的云服务，也提供了自己部署(Self Hosting)的模式。由于网速等原因，云服务不符合中国的要求，不过可以试用一下，看是否满足要求，再自己部署。<ul>
+<li>可以都先试用一下，选择其一后，然后在进行自部署<ul>
+<li><a target="_blank" rel="noopener" href="https://exceptionless.com/docs/self-hosting/">https://exceptionless.com/docs/self-hosting/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Exceptionless"><a href="#Exceptionless" class="headerlink" title="Exceptionless"></a>Exceptionless</h4><ul>
+<li>1、到Exceptionless官网注册、登录后，新建一个项目，按照向导输入公司名字、项目名字后，网站就会给出一个apiKey</li>
+<li>2、项目NuGet安装Serilog的Exceptionless插件：<code>Serilog.Sinks.Exceptionless</code>。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240913/Exceptionless.39l4wqxls8.webp" srcset="/img/loading.gif" lazyload alt="Exceptionless"></li>
+</ul>
+</li>
+<li>3、在程序的最开始加上一句ExceptionlessClient.Default.Startup(“拿到的apiKey”)，然后Serilog的配置中加上一句：.WriteTo.Exceptionless()</li>
+<li>4、运行结果<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240913/Exceptionless2.54xppda1e1.webp" srcset="/img/loading.gif" lazyload alt="Exceptionless2"></li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>1、普通项目用NLog输出到文本文件即可，根据需要设定过滤、分类规则。</li>
+<li>2、集群部署的项目用Serilog+“集中式日志服务”。如果需要记录结构化日志，再进行结构化输出。<ul>
+<li><strong>强烈建议都用Serilog来结构化日志</strong>，这样后面转集中化日志也简单</li>
+</ul>
+</li>
+<li>3、如果用云服务的就够了，就用云服务的，免得自己部署；<ul>
+<li>如果想自己控制日志数据就用自部署Exceptionless或者ELK(难度大)等。</li>
+<li>到底选择哪一个，具体还是得看哪一个功能更加适合你们公司<ul>
+<li>不必因为部署难度去选择简单的~</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>4、有经验的程序员&#x2F;架构师会根据自己公司的业务需求，从很多的软件&#x2F;框架中来搭配出更加适合公司需求的~<ul>
+<li>解决方案的能力很重要</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第3章小结"><a href="#第3章小结" class="headerlink" title="第3章小结"></a>第3章小结</h2><blockquote>
+<p>本章介绍了依赖注入、配置系统和日志这3个模块。</p>
+</blockquote>
+<ul>
+<li>依赖注入<ul>
+<li>可以让程序组件以低耦合的形式组装在一起</li>
+</ul>
+</li>
+<li>配置系统<ul>
+<li>配置系统允许我们通过命令行、环境变量、配置文件甚至自定义配置源来进行系统的配置</li>
+<li>多配置源的机制能让我们更灵活地对系统进行配置</li>
+</ul>
+</li>
+<li>日志<ul>
+<li>使用日志功能，可以把日志信息按照不同级别的输出，也可以在不改变业务代码的前提下，对于日志的输出进行灵活的定制</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P3-3 日志</div>
+      <div>http://example.com/2024/09/13/Net Core2022教程/第3章：.NET Core核心基础组件/P3-3 日志/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 13, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-1%20EF%20Core%E6%A6%82%E8%BF%B0/" title="P4-1 EF Core概述">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P4-1 EF Core概述</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/12/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-2%20%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" title="P3-2 配置系统">
+                        <span class="hidden-mobile">P3-2 配置系统</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

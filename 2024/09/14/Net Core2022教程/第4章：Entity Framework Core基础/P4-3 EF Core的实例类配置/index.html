@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="EF Core的实例类配置 约定大于配置主要规则：  1：数据库表名采用DbContext中的对应的DbSet的属性名 2：数据表列的名字采用实体类属性的名字，列的数据类型采用和实体类属性类型最兼容的类型 比如在SQL Server中，string类型对应nvarchar，long类型对应bigint   3：数据表列的可空性取决于对应实体类属性的可空性 .EF Core6中支持C#中的可空引用类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P4-3 EF Core的实例类配置">
+<meta property="og:url" content="http://example.com/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-3%20EF%20Core%E7%9A%84%E5%AE%9E%E4%BE%8B%E7%B1%BB%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="EF Core的实例类配置 约定大于配置主要规则：  1：数据库表名采用DbContext中的对应的DbSet的属性名 2：数据表列的名字采用实体类属性的名字，列的数据类型采用和实体类属性类型最兼容的类型 比如在SQL Server中，string类型对应nvarchar，long类型对应bigint   3：数据表列的可空性取决于对应实体类属性的可空性 .EF Core6中支持C#中的可空引用类">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-14T07:10:26.000Z">
+<meta property="article:modified_time" content="2024-09-14T07:10:41.562Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>P4-3 EF Core的实例类配置 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P4-3 EF Core的实例类配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-14 15:10" pubdate>
+          September 14, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P4-3 EF Core的实例类配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="EF-Core的实例类配置"><a href="#EF-Core的实例类配置" class="headerlink" title="EF Core的实例类配置"></a>EF Core的实例类配置</h1><hr>
+<h2 id="约定大于配置"><a href="#约定大于配置" class="headerlink" title="约定大于配置"></a>约定大于配置</h2><p>主要规则：</p>
+<ul>
+<li>1：数据库表名采用DbContext中的对应的DbSet的属性名</li>
+<li>2：数据表列的名字采用实体类属性的名字，列的数据类型采用和实体类属性类型最兼容的类型<ul>
+<li>比如在SQL Server中，string类型对应nvarchar，long类型对应bigint</li>
+</ul>
+</li>
+<li>3：数据表列的可空性取决于对应实体类属性的可空性<ul>
+<li>.EF Core6中支持C#中的可空引用类型</li>
+</ul>
+</li>
+<li>4：名字为Id的属性为主键，<ul>
+<li>如果主键为short, int 或者 long类型，则默认采用自增字段</li>
+<li>如果主键为Guid类型，则默认采用默认的Guid生成机制生成主键值</li>
+</ul>
+</li>
+</ul>
+<h3 id="两种配置方式的对比"><a href="#两种配置方式的对比" class="headerlink" title="两种配置方式的对比"></a>两种配置方式的对比</h3><ul>
+<li><p>1、Data Annotation<br>把配置以特性（Annotation）的形式标注在实体类中。</p>
+<ul>
+<li>优点：简单</li>
+<li>缺点：耦合</li>
+</ul>
+</li>
+<li><p>2、<strong>Fluent API(推荐这种)</strong><br>把配置写到单独的配置类中。</p>
+<ul>
+<li>缺点：复杂</li>
+<li>优点：解耦</li>
+</ul>
+</li>
+<li><p>3、两者大部分功能重叠。</p>
+<ul>
+<li>因为在开源社区中有两种实体类的配置方案<ul>
+<li>1.混合方案：以Data Annotation为主，Fluent API为辅助</li>
+<li>2.单一方案：只用Fluent API</li>
+</ul>
+</li>
+<li><strong>基于分层的设计原则，我们推荐单一方案的使用</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Data-Annotaion-数据注释"><a href="#Data-Annotaion-数据注释" class="headerlink" title="Data Annotaion(数据注释)"></a>Data Annotaion(数据注释)</h2><ul>
+<li>把配置以特性（Annotation）的形式标注在实体类中。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#">[<span class="hljs-meta">Table(<span class="hljs-string">&quot;T_Cats&quot;</span>)</span>]<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">long</span> Id &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<span class="hljs-comment">//主键</span><br><br>    [<span class="hljs-meta">Required</span>]<span class="hljs-comment">//不可为空</span><br>    [<span class="hljs-meta">MaxLength(22)</span>]<span class="hljs-comment">//最大长度为20</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Fluent-API"><a href="#Fluent-API" class="headerlink" title="Fluent API"></a>Fluent API</h2><ul>
+<li>把配置写到单独的配置类中。<ul>
+<li>属于官方的推荐用法</li>
+</ul>
+</li>
+</ul>
+<h3 id="Fluent-API基本配置"><a href="#Fluent-API基本配置" class="headerlink" title="Fluent API基本配置"></a>Fluent API基本配置</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//1、视图与实体类映射：</span><br>modelBuilder.Entity&lt;Blog&gt;().ToView(<span class="hljs-string">&quot;blogsView&quot;</span>);<br><br><span class="hljs-comment">//2、排除属性映射：</span><br>modelBuilder.Entity&lt;Blog&gt;().Ignore(b =&gt; b. Name2);<br><br><span class="hljs-comment">//3、配置数据库列名：</span><br>modelBuilder.Entity&lt;Blog&gt;().Property(b =&gt;b.BlogId).HasColumnName(<span class="hljs-string">&quot;blog_id&quot;</span>);<br><br><span class="hljs-comment">//4、配置列数据类型：</span><br>builder.Property(e =&gt; e.Title) .HasColumnType(<span class="hljs-string">&quot;varchar(200)&quot;</span>)<br><br><span class="hljs-comment">//5、配置主键</span><br><span class="hljs-comment">//默认把名字为Id或者“实体类型+Id“的属性作为主键，可以用HasKey()来配置其他属性作为主键。</span><br><span class="hljs-comment">//支持复合主键，但是不建议使用。</span><br>modelBuilder.Entity&lt;Student&gt;().HasKey(c =&gt; c.Number);<br><br><span class="hljs-comment">//6、索引</span><br>modelBuilder.Entity&lt;Blog&gt;().HasIndex(b =&gt; b.Url);<br><br><span class="hljs-comment">//复合索引</span><br>modelBuilder.Entity&lt;Person&gt;().HasIndex(p =&gt; <span class="hljs-keyword">new</span> &#123; p.FirstName, p.LastName &#125;);<br><br>唯一索引：IsUnique()；聚集索引：IsClustered()<br><br><span class="hljs-comment">//7、重载的方法</span><br><span class="hljs-comment">//比如HasIndex的重载，</span><br>builder.HasIndex(<span class="hljs-string">&quot;Number&quot;</span>);<br>builder.HasIndex(b =&gt; b.Number);<br><span class="hljs-comment">//重载方法我们建议都使用builder.HasIndex(b =&gt; b.Number); 因为这样如果属性写错了，C#会报错</span><br><br><span class="hljs-comment">//8、用EF Core太多高级特性的时候要谨慎，尽量不要和业务逻辑混合在一起，以免“不能自拔”。</span><br><span class="hljs-comment">//比如Ignore、Shadow、Table Splitting等……</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Fluent-API究竟流畅在哪里"><a href="#Fluent-API究竟流畅在哪里" class="headerlink" title="Fluent API究竟流畅在哪里"></a>Fluent API究竟流畅在哪里</h3><ul>
+<li>相同返回值类型的方法可以用链式调用，这样使用可以简化代码的编写</li>
+<li>为什么流程？ 因为相同返回值类型的方法 你可以用<code>.</code>去连接,可以一直点下去<ul>
+<li>builder.Property(e &#x3D;&gt; e.AuthorName).HasMaxLength(20).IsRequired();</li>
+</ul>
+</li>
+</ul>
+<h3 id="杨老师的经验之谈"><a href="#杨老师的经验之谈" class="headerlink" title="杨老师的经验之谈"></a>杨老师的经验之谈</h3><ul>
+<li>A、B两个技术，让你选择你怎么选？<ul>
+<li>A比B 适度且合理的复杂，但B简单易上手。</li>
+<li>潜意识中你会选B，因为简单上手快。但杨中科老师的经验是选A，因为A虽然适合且合理的复杂，但对于后期会非常好用<ul>
+<li>比如：WinForm 和 MVC；Data Annotaion和 Fluent API ；EF的<code>DB First</code>、<code>Model First</code>、<code>Code First</code>三者的对比~</li>
+<li>都是难一点的技术到后期的效果好一点。前期越简单的技术，后面越麻烦。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="主键类型的选择并不简单"><a href="#主键类型的选择并不简单" class="headerlink" title="主键类型的选择并不简单"></a>主键类型的选择并不简单</h2><ul>
+<li>EF Core支持多种主键生成策略：自动增长；Guid；Hi&#x2F;Lo算法等。</li>
+</ul>
+<h3 id="自动增长。"><a href="#自动增长。" class="headerlink" title="自动增长。"></a>自动增长。</h3><ul>
+<li>分析<ul>
+<li>优点：简单；</li>
+<li>缺点：数据库迁移以及分布式系统中比较麻烦；并发性能差。</li>
+<li>long、int等类型主键，默认是自增。</li>
+</ul>
+</li>
+<li>自增字段的代码中不能为Id赋值，必须保持默认值0，否则运行的时候就会报错。</li>
+</ul>
+<h3 id="Guid算法"><a href="#Guid算法" class="headerlink" title="Guid算法"></a>Guid算法</h3><ul>
+<li>基于网卡的mac地址，时间戳等信息来生成一个全球唯一的ID，因此不需要锁机制</li>
+<li>分析<ul>
+<li>适合于分布式系统，在进行多数据库数据合并的时候很简单</li>
+<li>优点：简单，高并发，全局唯一</li>
+<li>缺点：磁盘空间占用大</li>
+</ul>
+</li>
+<li>Guid值不连续。<ul>
+<li>使用Guid类型做主键的时候，不能把主键设置为聚集索引。因为聚集索引是按照顺序保存主键的，因此用Guid做主键性能差。</li>
+<li>比如MySQL的InnoDB引擎中主键是强制使用聚集索引的。</li>
+<li>有的数据库支持部分的连续Guid，比如SQLServer中的NewSequentialId()，但也不能解决问题。</li>
+<li>在SQLServer等中，不要把Guid主键设置为聚集索引；在MySQL中，插入频繁的表不要用Guid做主键。</li>
+</ul>
+</li>
+<li>3、演示Guid用法：既可以让EF Core给赋值，也可以手动赋值（推荐）</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//Guid算法</span><br>Author a2 = <span class="hljs-keyword">new</span> Author &#123; Name = <span class="hljs-string">&quot;Zack Yang&quot;</span> &#125;;<br>a2.Id = Guid.NewGuid();<br>Console.WriteLine(<span class="hljs-string">$&quot;保存前，Id=<span class="hljs-subst">&#123;a2.Id&#125;</span>&quot;</span>);<br>ctx.Authors.Add(a2);<br><span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<br>Console.WriteLine(<span class="hljs-string">$&quot;保存后，Id=<span class="hljs-subst">&#123;a2.Id&#125;</span>&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="自增-Guid算法"><a href="#自增-Guid算法" class="headerlink" title="自增+Guid算法"></a>自增+Guid算法</h4><ul>
+<li>混合自增和Guid（非复合主键）<ul>
+<li>用自增列做物理的主键，而用Guid列做逻辑上的主键。</li>
+<li>把自增列设置为表的主键，而在业务上查询数据时候把Guid当主键用。在和其他表关联以及和外部系统通讯的时候（比如前端显示数据的标识的时候）都是使用Guid列。</li>
+<li>不仅保证了性能，而且利用了Guid的优点，而且减轻了主键自增性导致主键值可被预测带来的安全性问题。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hi-Lo算法"><a href="#Hi-Lo算法" class="headerlink" title="Hi&#x2F;Lo算法"></a>Hi&#x2F;Lo算法</h4><ul>
+<li>Hi&#x2F;Lo算法：EF Core支持Hi&#x2F;Lo算法来优化自增列。</li>
+<li>主键值由两部分组成：高位（Hi）和低位（Lo），高位由数据库生成，两个高位之间间隔若干个值，由程序在本地生成低位，低位的值在本地自增生成。不同进程或者集群中不同服务器获取的Hi值不会重复，而本地进程计算的Lo则可以保证可以在本地高效率的生成主键值。但是HiLo算法不是EF Core的标准。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P4-3 EF Core的实例类配置</div>
+      <div>http://example.com/2024/09/14/Net Core2022教程/第4章：Entity Framework Core基础/P4-3 EF Core的实例类配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 14, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-4%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB/" title="P4-4 数据库迁移">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P4-4 数据库迁移</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-2%20EF%20Core%E5%85%A5%E9%97%A8/" title="P4-2 EF Core入门">
+                        <span class="hidden-mobile">P4-2 EF Core入门</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

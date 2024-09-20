@@ -227,6 +227,550 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-5%20%E6%9F%A5%E7%9C%8BEF%20Core%E7%94%9F%E6%88%90%E7%9A%84SQL%E8%AF%AD%E5%8F%A5/" target="_self">
+          P4-5 查看EF Core生成的SQL语句
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-5%20%E6%9F%A5%E7%9C%8BEF%20Core%E7%94%9F%E6%88%90%E7%9A%84SQL%E8%AF%AD%E5%8F%A5/" target="_self">
+        <div>
+          查看EF Core生成的SQL语句 使用简单日志查看SQL语句EF Core底层原理 EF Core：就是把C#代码转换为SQL语句的框架。    EF Core把C#代码编译成SQL语句，然后给AST，然后给到对应数据库的Provider去执行 因为每个数据库的语法，都不一样，所以需要使用对用的PRovider    SQL Server Profiler查看SQL语句 1、SQL Server
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-18 15:39" pubdate>
+              2024-09-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-4%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB/" target="_self">
+          P4-4 数据库迁移
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-4%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB/" target="_self">
+        <div>
+          数据库迁移 数据库迁移原理 1、使用迁移脚本，可以对当前连接的数据库执行编号更高的迁移，这个操作叫做“向上迁移”（Up），也可以执行把数据库回退到旧的迁移，这个操作叫“向下迁移”（Down）。 2、除非有特殊需要，否则不要删除Migrations文件夹下的代码。 3、进一步分析Migrations下的代码。分析Up、Down等方法。查看Migration编号。    4、查看数据库的__EFMig
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-18 09:48" pubdate>
+              2024-09-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-3%20EF%20Core%E7%9A%84%E5%AE%9E%E4%BE%8B%E7%B1%BB%E9%85%8D%E7%BD%AE/" target="_self">
+          P4-3 EF Core的实例类配置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-3%20EF%20Core%E7%9A%84%E5%AE%9E%E4%BE%8B%E7%B1%BB%E9%85%8D%E7%BD%AE/" target="_self">
+        <div>
+          EF Core的实例类配置 约定大于配置主要规则：  1：数据库表名采用DbContext中的对应的DbSet的属性名 2：数据表列的名字采用实体类属性的名字，列的数据类型采用和实体类属性类型最兼容的类型 比如在SQL Server中，string类型对应nvarchar，long类型对应bigint   3：数据表列的可空性取决于对应实体类属性的可空性 .EF Core6中支持C#中的可空引用类
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-14 15:10" pubdate>
+              2024-09-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-2%20EF%20Core%E5%85%A5%E9%97%A8/" target="_self">
+          P4-2 EF Core入门
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/14/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-2%20EF%20Core%E5%85%A5%E9%97%A8/" target="_self">
+        <div>
+          EF Core入门 该选择什么数据库 1、EF Core是对于底层ADO.NET Core的封装，因此ADO.NET Core支持的数据库不一定被EF Core支持。 2、EF Core支持所有主流的数据库，包括MYSQL Server、Oracle、MySQL、PostgreSQL、SQLite等。 也可以自己实现Provider支持其他数据库。国产数据库支持问题。   3、对于SQLServe
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-14 08:54" pubdate>
+              2024-09-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-1%20EF%20Core%E6%A6%82%E8%BF%B0/" target="_self">
+          P4-1 EF Core概述
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-1%20EF%20Core%E6%A6%82%E8%BF%B0/" target="_self">
+        <div>
+          EF Core概述 什么是ORM 1、说明：本课程需要你有数据库、SQL等基础知识。 2、ORM：Object Relational Mapping。让开发者用对象操作的形式操作关系数据库。 关系型数据库 MySQL、SQLServer、Oracle等   对象数据库 mongodb：只是用起来和对象数据库差不多，但坑很多     3、有哪些ORM：EF core、Dapper、SqlSugar、
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-13 11:13" pubdate>
+              2024-09-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-3%20%E6%97%A5%E5%BF%97/" target="_self">
+          P3-3 日志
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/13/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-3%20%E6%97%A5%E5%BF%97/" target="_self">
+        <div>
+          日志 .NET Core日志的基本使用 日志是程序运行中的“黑匣子”，在程序出现问题以后，我们可以通过分析日志来查找问题 类似于飞机的黑匣子一样，黑匣子中含有机长等人的语音，飞机运行状态警告等等信息。    什么是日志   基本概念 1、日志级别：Trace &lt; Debug &lt; Information &lt; Warning &lt; Error &lt; Critical(重要程序
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-13 10:17" pubdate>
+              2024-09-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/12/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-2%20%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" target="_self">
+          P3-2 配置系统
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/12/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-2%20%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F/" target="_self">
+        <div>
+          配置系统 配置系统的基本使用说明 1、传统Web.config配置的缺点，之前DI讲到过。 2、为了兼容，仍然可以使用Web.config和ConfigurationManager类，但不推荐。 3、.NET 中的配置系统支持丰富的配置源，包括文件（json、xml、ini等）、注册表、环境变量、命令行、Azure Key Vault等，还可以配置自定义配置源。可以跟踪配置的改变，可以按照优先级覆
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-12 11:16" pubdate>
+              2024-09-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/10/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-1%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" target="_self">
+          P3-1 依赖注入
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/10/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC3%E7%AB%A0%EF%BC%9A.NET%20Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/P3-1%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" target="_self">
+        <div>
+          依赖注入 什么是控制反转、服务定位器和依赖注入控制反转 生活中的“控制反转”：自己发电和用电网的电。 依赖注入（Dependency Injection，DI）是控制反转（Inversion of Control，IOC）思想的实现方式。 依赖注入简化模块的组装过程，降低模块之间的耦合度  1234567自己发电的代码var connSettings = ConfigurationManager.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-10 17:29" pubdate>
+              2024-09-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC3%E7%AB%A0-NET-Core%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6/" class="category-chain-item">第3章 .NET Core核心基础组件</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/">#.NET Core2022-学习</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/09/05/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC2%E7%AB%A0%EF%BC%9A.NET%20Core%20%E9%87%8D%E9%9A%BE%E7%82%B9%E7%9F%A5%E8%AF%86/P2-3%20LINQ/" target="_self">
           P2-3 LINQ
         </a>
@@ -350,499 +894,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/29/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P8-HTML+CSS+JavaScript%E7%9A%84%E7%BB%83%E6%89%8B%E9%A1%B9%E7%9B%AE/" target="_self">
-          P8-  HTML+CSS+JavaScript的练手项目
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/29/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P8-HTML+CSS+JavaScript%E7%9A%84%E7%BB%83%E6%89%8B%E9%A1%B9%E7%9B%AE/" target="_self">
-        <div>
-          HTML+CSS+JavaScript的练手项目 开源库地址：https://github.com/bradtraversy/50projects50days
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-29 10:59" pubdate>
-              2024-08-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/29/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P7-%E4%BD%9C%E4%B8%BA%E5%89%8D%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98%20%E8%8A%B1%E8%B4%B9%E5%A4%A7%E9%87%8F%E6%97%B6%E9%97%B4%20%E5%AD%A6%E7%9A%84%E6%9C%80%E6%B2%A1%E7%94%A8%E7%9A%845%E4%B8%AA%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/" target="_self">
-          P7-作为前端程序员 花费大量时间 学的最没用的5个编程技术
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/29/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P7-%E4%BD%9C%E4%B8%BA%E5%89%8D%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98%20%E8%8A%B1%E8%B4%B9%E5%A4%A7%E9%87%8F%E6%97%B6%E9%97%B4%20%E5%AD%A6%E7%9A%84%E6%9C%80%E6%B2%A1%E7%94%A8%E7%9A%845%E4%B8%AA%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/" target="_self">
-        <div>
-          前端程序员学的最没用的5个编程技术 我的师父告诉我：程序员必须不断学习，目的是为了不要犯我犯过的错，让你少走一些弯路。 技术一：AngularJs 一款构建用户界面的前端框架 这个坑新人最容易踩  技术二：jQuery 一个快速、简洁的JavaScript框架 替代：MVVM框架  技术三：Flutter 开源的构建用户界面(UI)工具包 替代：ReactNative  技术四：PHP 是在服务器
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-29 10:43" pubdate>
-              2024-08-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P6-%E8%BD%AC%E8%A1%8C%E5%BD%93%E7%A8%8B%E5%BA%8F%E5%91%98%20%E5%85%88%E7%9C%8B%E7%9C%8B%E8%BF%99%E4%BB%BD%E6%94%BB%E7%95%A5%20%E6%97%A0%E7%97%9B%E8%BD%AC%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%91%98%20%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/" target="_self">
-          P6-转行当程序员 先看看这份攻略 无痛转行程序员 真实案例分享
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P6-%E8%BD%AC%E8%A1%8C%E5%BD%93%E7%A8%8B%E5%BA%8F%E5%91%98%20%E5%85%88%E7%9C%8B%E7%9C%8B%E8%BF%99%E4%BB%BD%E6%94%BB%E7%95%A5%20%E6%97%A0%E7%97%9B%E8%BD%AC%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%91%98%20%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/" target="_self">
-        <div>
-          无痛转行程序员 真实案例分享 如何顺利转行当程序员半路出家的优势传统行业从业者转行当程序员的优势 比科班程序员更具备优秀的人际交往能力 程序员的工作中其实有着各种的交际场景和会议交流，属于高密度的工作。所以不善于交流和缺乏软技能是科班程序员绕不开的一个劣势   可以跳出程序思维，获得独特的视角  非科班的劣势转换中遇到的困难和不利因素 科班程序员的鄙视和误解 现实是残酷的，所以在你转行的过程当中是
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 18:01" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P5-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%AB%98%E5%BC%BA%E5%BA%A6%E5%B7%A5%E4%BD%9C%E5%90%8E%20%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E4%B8%8B%E7%8F%AD%E6%97%B6%E9%97%B4%E5%AD%A6%E4%B9%A0/" target="_self">
-          P5-程序员高强度工作后 如何高效利用下班时间学习
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P5-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%AB%98%E5%BC%BA%E5%BA%A6%E5%B7%A5%E4%BD%9C%E5%90%8E%20%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E4%B8%8B%E7%8F%AD%E6%97%B6%E9%97%B4%E5%AD%A6%E4%B9%A0/" target="_self">
-        <div>
-          如何高效利用下班时间学习 可用时间的分配 可用时间&#x3D;24小时-工作时间-通勤时间-休息时间-花在必要事项上的时间 通勤时间：尽量租在公司近一点的地方。贵是贵点，省下来的30分钟-2小时可以用来提升自己 误区一：减少休息时间 这看似是最简单的增加可用时间的方法，就是减少睡眠时间 这是错误的。因为睡眠减少，大脑的反应会变慢，让自己的效率降低。保持6-8小时的睡眠是最好的       个人认为
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 10:47" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P4-%E5%BD%93%E7%A8%8B%E5%BA%8F%E5%91%9815%E5%B9%B4%E5%90%8E%20%E9%82%A3%E4%BA%9B%E5%90%8E%E7%9F%A5%E5%90%8E%E8%A7%89%E7%9A%84%E7%BB%8F%E9%AA%8C%E6%95%99%E5%AD%A6%EF%BC%9B%E6%88%91%E8%B8%A9%E7%9A%84%E5%A4%A7%E5%9D%91%20%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E5%B0%B1%E5%88%AB%E8%B8%A9%E4%BA%86/" target="_self">
-          P4-当程序员15年后 那些后知后觉的经验教学|我踩的大坑 小伙伴们就别踩了
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P4-%E5%BD%93%E7%A8%8B%E5%BA%8F%E5%91%9815%E5%B9%B4%E5%90%8E%20%E9%82%A3%E4%BA%9B%E5%90%8E%E7%9F%A5%E5%90%8E%E8%A7%89%E7%9A%84%E7%BB%8F%E9%AA%8C%E6%95%99%E5%AD%A6%EF%BC%9B%E6%88%91%E8%B8%A9%E7%9A%84%E5%A4%A7%E5%9D%91%20%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E5%B0%B1%E5%88%AB%E8%B8%A9%E4%BA%86/" target="_self">
-        <div>
-          程序员的经验教学 经验教学环节1.对于程序员来说英语很重要，可能比逻辑能力更重要。 当你脱离了初级阶段后，你会发现你开发的东西中文资料就会变得越来越少，特殊是在Github上交流的时候，都是使用英语交流。 如果英语不好，就只能等这些技术普及后，出了中文版本后，才能开始通透的学习 如果英语好，你的编程语文化和规范化也会得到很大的提升 用中文或拼音来起变量名的同事，这是一个非常不好的习惯。在公司开发中
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 10:19" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P3-%E7%A8%8B%E5%BA%8F%E5%91%98%E6%98%AF%E5%90%83%E9%9D%92%E6%98%A5%E9%A5%AD%E7%9A%84%E8%81%8C%E4%B8%9A%E5%90%97%EF%BC%9F%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%9B%BD%E5%86%85%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%AF%85%E5%92%92/" target="_self">
-          P3-程序员是吃青春饭的职业吗？如何破解国内程序员的诅咒
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/28/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P3-%E7%A8%8B%E5%BA%8F%E5%91%98%E6%98%AF%E5%90%83%E9%9D%92%E6%98%A5%E9%A5%AD%E7%9A%84%E8%81%8C%E4%B8%9A%E5%90%97%EF%BC%9F%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%9B%BD%E5%86%85%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%AF%85%E5%92%92/" target="_self">
-        <div>
-          如何破解国内程序员的诅咒 15年程序员怎么看这个问题 它的回答：程序员绝对不是一个吃青春饭的职业，但也不能说每个程序员他都能干到60岁。 怎么样变成程序员领域的常青树呢？  为什么说程序员是吃青春饭的职业吗？ 1、国内的IT公司把脑力劳动干成了体力劳动，都是以最小化功能上线，上线后不断的迭代。 小步快跑的模式就注定了开发速度高于一切   程序员吃青春饭的原因—(三大程序员诅咒) 1.国内的互联网还
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 09:46" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P2-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%81%98%E6%8A%80%E5%B7%A7%20%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%B5%81%E7%A8%8B%E6%94%BB%E7%95%A5/" target="_self">
-          P2-程序员应聘技巧 保姆级流程攻略
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P2-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%81%98%E6%8A%80%E5%B7%A7%20%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%B5%81%E7%A8%8B%E6%94%BB%E7%95%A5/" target="_self">
-        <div>
-          程序员应聘技巧 保姆级流程攻略 应聘的重要性 15年老程序员给你的应聘技巧(B站-技术胖)   应聘中哪个环节最重要？ 项目经验的介绍    应聘中应该做好的五件事如何准备简历 简历的最基本要求 简历中没有错别字 保证简历的语句通顺 简历中有良好的逻辑性 其次要重点打磨自己的开发经验和项目经验这个模块     项目经验介绍，用简练的文字描述项目背景，承担角色、参与项目的时长、用的技术和你的突出贡献
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-27 17:59" pubdate>
-              2024-08-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P1-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%9C%A8%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96%20%E8%BF%98%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E4%B8%80%E4%B8%AA%E6%8A%80%E8%83%BD/" target="_self">
-          P1-程序员在技术之外 还要掌握的一个技能
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/27/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/P1-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%9C%A8%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96%20%E8%BF%98%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E4%B8%80%E4%B8%AA%E6%8A%80%E8%83%BD/" target="_self">
-        <div>
-          程序员在技术之外还要掌握的一个技能除了编程技术之外的独门秘籍在成长过程中，程序员除了技术能力之外，还需要掌握其他技能。以下是一些例子：  请教大佬的问题：你是如何成长的这样快速的？ 答案通常是除了编程技术之外的独门秘籍。 例如：文档写得特别好、口才出众、PPT制作能力强、喜欢编写开源程序并与他人共同进步。    “自我营销”能力举例子 在公司中，小张和小王两名实习生的情况： 小张编程技术稍高，但性
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-27 16:19" pubdate>
-              2024-08-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/" class="category-chain-item">程序软技能</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%BD%AF%E6%8A%80%E8%83%BD/">#程序软技能</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
