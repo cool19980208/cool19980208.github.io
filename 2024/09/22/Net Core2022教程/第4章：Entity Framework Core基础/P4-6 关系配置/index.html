@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关系配置 说明 1、所谓“关系数据库” 2、复习：数据库表之间的关系：一对一、一对多、多对多。 3、EF Core不仅支持单实体操作，更支持多实体的关系操作。 4、三部曲： 实体类中关系属性 FluentAPI关系配置(这个是最复杂的) 使用关系操作    一对多实体类 文章实体类Article 评论实体类Comment 一篇文章对应多条评论。      关系配置 EF Core中实体之间关系的配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P4-6 关系配置">
+<meta property="og:url" content="http://example.com/2024/09/22/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-6%20%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关系配置 说明 1、所谓“关系数据库” 2、复习：数据库表之间的关系：一对一、一对多、多对多。 3、EF Core不仅支持单实体操作，更支持多实体的关系操作。 4、三部曲： 实体类中关系属性 FluentAPI关系配置(这个是最复杂的) 使用关系操作    一对多实体类 文章实体类Article 评论实体类Comment 一篇文章对应多条评论。      关系配置 EF Core中实体之间关系的配">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240918/%E6%96%87%E7%AB%A0.64dta2vq9y.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240918/%E8%AF%84%E8%AE%BA.9dcx6qj7wl.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E5%A4%9A%E7%AB%AF%E9%85%8D%E7%BD%AE.9rjcyk8s42.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E4%B8%80%E5%AF%B9%E5%A4%9A.8vmvj3zcl2.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E4%B8%A4%E7%A7%8D%E8%BF%9E%E6%8E%A5.3d4r4qt41e.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E9%A1%BA%E6%9D%86%E7%88%AC.26lfud1yz7.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A41.5mnrobmcsx.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A42.7p95w77f6.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A43.8dwtwe8gur.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E5%A4%9A%E5%AF%B9%E4%B8%80%E7%9A%84%E5%8D%95%E9%A1%B9.3god2kwqkh.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E6%A1%88%E4%BE%8Bpng.5mnrpnxb0j.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E5%8F%8D%E5%90%91%E9%85%8D%E7%BD%AE.70aatpidfo.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E7%89%B9%E6%AE%8A%E4%B8%80%E5%AF%B9%E5%A4%9A.wiird4clt.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240922/%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE.pfawuubxm.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240922/%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE-%E6%9F%A5%E8%AF%A2.6t72zb4f4w.webp">
+<meta property="article:published_time" content="2024-09-22T00:44:26.000Z">
+<meta property="article:modified_time" content="2024-09-22T00:44:20.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240918/%E6%96%87%E7%AB%A0.64dta2vq9y.webp">
+  
+  
+  
+  <title>P4-6 关系配置 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P4-6 关系配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-22 08:44" pubdate>
+          September 22, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P4-6 关系配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="关系配置"><a href="#关系配置" class="headerlink" title="关系配置"></a>关系配置</h1><hr>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>1、所谓“关系数据库”</li>
+<li>2、复习：数据库表之间的关系：一对一、一对多、多对多。</li>
+<li>3、EF Core不仅支持单实体操作，更支持多实体的关系操作。</li>
+<li>4、三部曲：<ul>
+<li>实体类中关系属性</li>
+<li>FluentAPI关系配置(这个是最复杂的)</li>
+<li>使用关系操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><h3 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h3><ul>
+<li>文章实体类Article</li>
+<li>评论实体类Comment</li>
+<li>一篇文章对应多条评论。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240918/%E6%96%87%E7%AB%A0.64dta2vq9y.webp" srcset="/img/loading.gif" lazyload alt="文章"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240918/%E8%AF%84%E8%AE%BA.9dcx6qj7wl.webp" srcset="/img/loading.gif" lazyload alt="评论"></li>
+</ul>
+</li>
+</ul>
+<h3 id="关系配置-1"><a href="#关系配置-1" class="headerlink" title="关系配置"></a>关系配置</h3><ul>
+<li><p>EF Core中实体之间关系的配置的套路：</p>
+<ul>
+<li>HasXXX(…).WithXXX(…);</li>
+<li>有XXX、反之带有XXX。<ul>
+<li>XXX可选值One(一)、Many(多)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一对多：HasOne(…).WithMany(…);</p>
+</li>
+<li><p>一对一：HasOne(…).WithOne (…);</p>
+</li>
+<li><p>多对多：HasMany (…).WithMany(…);<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E5%A4%9A%E7%AB%AF%E9%85%8D%E7%BD%AE.9rjcyk8s42.webp" srcset="/img/loading.gif" lazyload alt="多端配置"><br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E4%B8%80%E5%AF%B9%E5%A4%9A.8vmvj3zcl2.webp" srcset="/img/loading.gif" lazyload alt="一对多"></p>
+</li>
+</ul>
+<hr>
+<h2 id="关联数据的获取"><a href="#关联数据的获取" class="headerlink" title="关联数据的获取"></a>关联数据的获取</h2><h3 id="一对多-1"><a href="#一对多-1" class="headerlink" title="一对多"></a>一对多</h3><ul>
+<li>获取关系数据(用EF Core常用下面两个)<ul>
+<li>using Microsoft.EntityFrameworkCore;</li>
+<li>using System.Linq;<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C#">Article a = ctx.Articles.Include(a=&gt;a.Comments).Single(a=&gt;a.Id==<span class="hljs-number">1</span>);<br>Console.WriteLine(a.Title);<br><span class="hljs-keyword">foreach</span>(Comment c <span class="hljs-keyword">in</span> a.Comments)<br>&#123;<br>	Console.WriteLine(c.Id+<span class="hljs-string">&quot;:&quot;</span>+c.Message);<br>&#125;<br><span class="hljs-comment">//Include定义在Microsoft.EntityFrameworkCore命名空间中。</span><br><span class="hljs-comment">//查看一下生成的SQL语句</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>如果没有Include<ul>
+<li>去掉Include，再看一下运行效果。<ul>
+<li>去掉后，不会去用join连接另外一个表，无法多表联查</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查看生成的SQL分析为什么。<ul>
+<li>A连接B查询  和B连接A查询 运行的SQL查询语句不一样</li>
+<li>LEFT JOIN &#x2F; INNER JOIN </li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E4%B8%A4%E7%A7%8D%E8%BF%9E%E6%8E%A5.3d4r4qt41e.webp" srcset="/img/loading.gif" lazyload alt="两种连接"><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> [t0].[Id], [t0].[Content], [t0].[Title], [t1].[Id], [t1].[ArticleId], [t1].[Message]<br><span class="hljs-keyword">FROM</span> (<br>    <span class="hljs-keyword">SELECT</span> TOP(<span class="hljs-number">2</span>) [t].[Id], [t].[Content], [t].[Title]<br>    <span class="hljs-keyword">FROM</span> [T_Articles] <span class="hljs-keyword">AS</span> [t]<br>    <span class="hljs-keyword">WHERE</span> [t].[Id] <span class="hljs-operator">=</span> <span class="hljs-built_in">CAST</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> <span class="hljs-type">bigint</span>)<br>) <span class="hljs-keyword">AS</span> [t0]<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> [T_Comments] <span class="hljs-keyword">AS</span> [t1] <span class="hljs-keyword">ON</span> [t0].[Id] <span class="hljs-operator">=</span> [t1].[ArticleId]<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> [t0].[Id], [t1].[Id]<br><br><br><span class="hljs-keyword">SELECT</span> TOP(<span class="hljs-number">2</span>) [t].[Id], [t].[ArticleId], [t].[Message], [t0].[Id], [t0].[Content], [t0].[Title]<br><span class="hljs-keyword">FROM</span> [T_Comments] <span class="hljs-keyword">AS</span> [t]<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> [T_Articles] <span class="hljs-keyword">AS</span> [t0] <span class="hljs-keyword">ON</span> [t].[ArticleId] <span class="hljs-operator">=</span> [t0].[Id]<br><span class="hljs-keyword">WHERE</span> [t].[Id] <span class="hljs-operator">=</span> <span class="hljs-built_in">CAST</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> <span class="hljs-type">bigint</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="实体类对象的关联追踪"><a href="#实体类对象的关联追踪" class="headerlink" title="实体类对象的关联追踪"></a>实体类对象的关联追踪</h2><ul>
+<li>只要我们的代码把实体类的关系设定了，EF Core就会顺竿爬</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//关联添加数据</span><br>Article a1 = <span class="hljs-keyword">new</span> Article();<br>a1.Title = <span class="hljs-string">&quot;关于.NET 5正式发布&quot;</span>;<br>a1.Content = <span class="hljs-string">&quot;.NET是升级版&quot;</span>;<br>Comment c1 = <span class="hljs-keyword">new</span> Comment &#123; Message = <span class="hljs-string">&quot;已经再用了&quot;</span>, Article = a1 &#125;;<br>Comment c2 = <span class="hljs-keyword">new</span> Comment &#123; Message = <span class="hljs-string">&quot;不错不错&quot;</span>, Article = a1 &#125;;<br><span class="hljs-keyword">using</span> (MyDbContext ctx = <span class="hljs-keyword">new</span> MyDbContext())<br>&#123;<br>    ctx.Comments.Add(c1);<br>    ctx.Comments.Add(c2);<br>    <span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="EF-Core的“顺杆爬”"><a href="#EF-Core的“顺杆爬”" class="headerlink" title="EF Core的“顺杆爬”"></a>EF Core的“顺杆爬”</h3><p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240919/%E9%A1%BA%E6%9D%86%E7%88%AC.26lfud1yz7.webp" srcset="/img/loading.gif" lazyload alt="顺杆爬"></p>
+<ul>
+<li>不需要显式为Comment对象的Article属性赋值（当前赋值也不会出错），也不需要显式地把新创建的Comment类型的对象添加到DbContext中。</li>
+<li>EF Core会“顺竿爬”。</li>
+<li>杨中科老师的习惯是写全，不习惯让它顺杆爬，因为顺杆爬写着写着有可能自己都乱套了</li>
+</ul>
+<hr>
+<h2 id="关系的外键属性的设置"><a href="#关系的外键属性的设置" class="headerlink" title="关系的外键属性的设置"></a>关系的外键属性的设置</h2><h3 id="为什么需要额外的外键属性"><a href="#为什么需要额外的外键属性" class="headerlink" title="为什么需要额外的外键属性"></a>为什么需要额外的外键属性</h3><ul>
+<li>了解即可，具体适合的案例可以看实体书中本章的内容</li>
+</ul>
+<h3 id="EF-Core的SQL语句质量"><a href="#EF-Core的SQL语句质量" class="headerlink" title="EF Core的SQL语句质量"></a>EF Core的SQL语句质量</h3><ul>
+<li>数据库优化的原则<ul>
+<li>尽量不要select * from XXX</li>
+<li>可以获取需要的列即可，会提升性能(但用EF Core的话，一般情况下不需要进行这种优化)</li>
+</ul>
+</li>
+<li>EF Core自动生成的SQL语句质量<ul>
+<li>大部分查询比绝大部分程序员写出来的SQL性能都要高</li>
+<li>只有少部分SQL语句性能可能不尽如人意，但是也影响不大。<ul>
+<li>特殊的一些SQL语句可能影响性能瓶颈，咱们在需要特殊优化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="设置外键属性"><a href="#设置外键属性" class="headerlink" title="设置外键属性"></a>设置外键属性</h3><ul>
+<li>1、在实体类中显式声明一个外键属性。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A41.5mnrobmcsx.webp" srcset="/img/loading.gif" lazyload alt="步骤1"></li>
+</ul>
+</li>
+<li>2、关系配置中通过HasForeignKey(c&#x3D;&gt;c.ArticleId)指定这个属性为外键。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A42.7p95w77f6.webp" srcset="/img/loading.gif" lazyload alt="步骤2"></li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E6%AD%A5%E9%AA%A43.8dwtwe8gur.webp" srcset="/img/loading.gif" lazyload alt="步骤3"></li>
+</ul>
+</li>
+<li>3、除非必要，否则不用声明，因为会引入重复。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//关系的外键属性的设置</span><br><span class="hljs-keyword">var</span> a1 = ctx.Articles.Select(a =&gt; <span class="hljs-keyword">new</span> &#123; a.Id, a.Title &#125;).First();<br>Console.WriteLine(a1.Id+<span class="hljs-string">&quot;,&quot;</span>+a1.Title);<br><br><span class="hljs-keyword">var</span> cmt = ctx.Comments.Select(c=&gt; <span class="hljs-keyword">new</span> &#123; Id=c.Id,Aid=c.Article.Id&#125;).Single(c =&gt; c.Id == <span class="hljs-number">1</span>);<span class="hljs-comment">//只获取我们需要的列数据</span><br>Console.WriteLine(cmt.Id + <span class="hljs-string">&quot;,&quot;</span> + cmt.Aid);<br><br><span class="hljs-comment">//加了外键的</span><br><span class="hljs-keyword">var</span> cmt = ctx.Comments.Single(c =&gt; c.Id == <span class="hljs-number">1</span>);<span class="hljs-comment">//只获取我们需要的列数据</span><br>Console.WriteLine(cmt.Id + <span class="hljs-string">&quot;,&quot;</span> + cmt.ArticleId);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>没加外键<br><span class="hljs-keyword">SELECT</span> TOP(<span class="hljs-number">1</span>) [t].[Id], [t].[Title]<br>    <span class="hljs-keyword">FROM</span> [T_Articles] <span class="hljs-keyword">AS</span> [t]<br><br><br><span class="hljs-keyword">SELECT</span> TOP(<span class="hljs-number">2</span>) [t].[Id], [t0].[Id] <span class="hljs-keyword">AS</span> [Aid]<br>  <span class="hljs-keyword">FROM</span> [T_Comments] <span class="hljs-keyword">AS</span> [t]<br>  <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> [T_Articles] <span class="hljs-keyword">AS</span> [t0] <span class="hljs-keyword">ON</span> [t].[ArticleId] <span class="hljs-operator">=</span> [t0].[Id]<br>  <span class="hljs-keyword">WHERE</span> [t].[Id] <span class="hljs-operator">=</span> <span class="hljs-built_in">CAST</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> <span class="hljs-type">bigint</span>)<br><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>加了外键的<br><span class="hljs-keyword">SELECT</span> TOP(<span class="hljs-number">2</span>) [t].[Id], [t].[ArticleId], [t].[Message]<br>    <span class="hljs-keyword">FROM</span> [T_Comments] <span class="hljs-keyword">AS</span> [t]<br>    <span class="hljs-keyword">WHERE</span> [t].[Id] <span class="hljs-operator">=</span> <span class="hljs-built_in">CAST</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> <span class="hljs-type">bigint</span>)<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="单项导航属性"><a href="#单项导航属性" class="headerlink" title="单项导航属性"></a>单项导航属性</h2><ul>
+<li>对于主从结构的“一对多”表关系，一般是声明双向导航属性。<ul>
+<li>比如之前学的文章和评论的案例</li>
+</ul>
+</li>
+<li>而对于其他的“一对多”表关系：如果表属于被很多表引用的基础表，则用单项导航属性，否则可以自由决定是否用双向导航属性。<ul>
+<li>比如我有请假单，报销单，离职单等 但是都需要对应用户表。这种情况就适用于单项导航</li>
+</ul>
+</li>
+</ul>
+<h3 id="单项导航属性的使用步骤"><a href="#单项导航属性的使用步骤" class="headerlink" title="单项导航属性的使用步骤"></a>单项导航属性的使用步骤</h3><ul>
+<li>1.配置一端和多端<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240920/%E5%A4%9A%E5%AF%B9%E4%B8%80%E7%9A%84%E5%8D%95%E9%A1%B9.3god2kwqkh.webp" srcset="/img/loading.gif" lazyload alt="多对一的单项"></li>
+<li>不设置反向的属性，然后配置的时候WithMany()不设置参数即可。</li>
+</ul>
+</li>
+<li>单项属性如果反向获取数据</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C#">User u1 = <span class="hljs-keyword">new</span> User &#123; Name = <span class="hljs-string">&quot;鑫Cool&quot;</span> &#125;;<br>Leave l1 = <span class="hljs-keyword">new</span> Leave &#123; Remarks = <span class="hljs-string">&quot;回家处理事情&quot;</span>, Requester = u1 &#125;;<br>ctx.Leaves.Add(l1);<span class="hljs-comment">//根据多端去顺杆爬，插入User的信息</span><br>ctx.SaveChanges();<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="关系配置在哪个实体类中"><a href="#关系配置在哪个实体类中" class="headerlink" title="关系配置在哪个实体类中"></a>关系配置在哪个实体类中</h2><ul>
+<li>北京固安县和涿州市的故事<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E6%A1%88%E4%BE%8Bpng.5mnrpnxb0j.webp" srcset="/img/loading.gif" lazyload alt="案例png"></li>
+<li>固安县叫中间这个路的名字为“固涿路”；而涿州市叫“涿固路”</li>
+<li>站在不同的角度，就有不同的说法，但是本质上它们指的是同一个东西</li>
+<li>所以<code>两张表的关系配置可以在任何一端</code></li>
+</ul>
+</li>
+<li>文章Article和评论Comment<ul>
+<li>文章叫“一对多” ； 而评论叫“多对一”</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E5%8F%8D%E5%90%91%E9%85%8D%E7%BD%AE.70aatpidfo.webp" srcset="/img/loading.gif" lazyload alt="反向配置"></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#">builder.HasMany&lt;Comment&gt;(a =&gt; a.Comments).WithOne(c =&gt; c.Article).IsRequired();<span class="hljs-comment">//一对多</span><br><br>builder.HasOne&lt;Article&gt;(c =&gt; c.Article).WithMany(a =&gt; a.Comments).IsRequired();<span class="hljs-comment">//多对一</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><code>一对多</code>的推荐策略</p>
+<ul>
+<li>考虑到有单项导航属性的可能，我们一般用HasOne().WithMany()</li>
+<li>建议都配置到<code>多的那一端</code></li>
+</ul>
+</li>
+<li><p>自引用的组织结构树</p>
+<ul>
+<li>一种特殊的一对多案例<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240921/%E7%89%B9%E6%AE%8A%E4%B8%80%E5%AF%B9%E5%A4%9A.wiird4clt.webp" srcset="/img/loading.gif" lazyload alt="特殊一对多"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><ul>
+<li><p>一对一关系</p>
+<ul>
+<li>比如：订单–&gt;快递单</li>
+</ul>
+</li>
+<li><p>一对一关系配置</p>
+<ul>
+<li>1、 <code>builder.HasOne&lt;Delivery&gt;(o =&gt; o.Delivery).WithOne(d =&gt; d.Order).HasForeignKey&lt;Delivery&gt;(d=&gt;d.OrderId);</code></li>
+<li>2、测试插入和获取数据。</li>
+<li>注意：必须显式的在其中一个实体类中声明一个外键属性。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C#">Order order = <span class="hljs-keyword">new</span> Order();<br>order.Address = <span class="hljs-string">&quot;测试区涿州市&quot;</span>;<br>order.Name = <span class="hljs-string">&quot;3C充电器&quot;</span>;<br>Delivery delivery = <span class="hljs-keyword">new</span> Delivery();<br>delivery.CompanyName = <span class="hljs-string">&quot;快到天际快递&quot;</span>;<br>delivery.Number = <span class="hljs-string">&quot;SN666888&quot;</span>;<br>delivery.Order = order;<br>ctx.Deliveries.Add(delivery);<br><span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<span class="hljs-comment">//插入</span><br><br>Order o1 = <span class="hljs-keyword">await</span> ctx.Orders.Include(o =&gt; o.Delivery).FirstAsync(o =&gt; o.Name.Contains(<span class="hljs-string">&quot;充电器&quot;</span>));<span class="hljs-comment">//查询</span><br>Console.WriteLine(<span class="hljs-string">$&quot;名称:<span class="hljs-subst">&#123;o1.Name&#125;</span>,单号:<span class="hljs-subst">&#123;o1.Delivery.Number&#125;</span>&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><ul>
+<li>描述<ul>
+<li>多对多的案例：老师–&gt;学生</li>
+<li>从EF Core 5.0开始，才正式支持多对多关系的支持<ul>
+<li>但还是需要中间表来保存两张表之间的对应关系</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多对多实体和多对多关系配置<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240922/%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE.pfawuubxm.webp" srcset="/img/loading.gif" lazyload alt="多对多关系配置"></li>
+</ul>
+</li>
+<li>测试代码<ul>
+<li>数据插入</li>
+<li>查询</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240922/%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE-%E6%9F%A5%E8%AF%A2.6t72zb4f4w.webp" srcset="/img/loading.gif" lazyload alt="插入数据-查询"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="基于关系的复杂查询"><a href="#基于关系的复杂查询" class="headerlink" title="基于关系的复杂查询"></a>基于关系的复杂查询</h2><h3 id="关系数据查询"><a href="#关系数据查询" class="headerlink" title="关系数据查询"></a>关系数据查询</h3><ul>
+<li>1、查询评论中含有“微软”的所有的文章</li>
+<li>2、同样效果的代码可能有多种写法，有时候要关注底层的SQL，看哪种方式最好。<ul>
+<li>确保系统在重要环节不会有明显的<code>性能瓶颈</code><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//第一种 exists</span><br>ctx.Articles.Where(a=&gt;a.Comments.Any(c=&gt;c.Message.Contains(<span class="hljs-string">&quot;微软&quot;</span>)));<br><br><span class="hljs-comment">//第二种 inner join</span><br>ctx.Comments.Where(c =&gt; c.Message.Contains(<span class="hljs-string">&quot;微软&quot;</span>)).Select(c =&gt; c.Article).Distinct();<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>1、查询“所有由蜗牛快递负责的订单信息”<br>ctx.Orders.Where(o&#x3D;&gt;o.Delivery.CompanyName&#x3D;&#x3D; “蜗牛快递”);</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity-Framework-Core%E5%9F%BA%E7%A1%80/" class="category-chain-item">第4章：Entity Framework Core基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P4-6 关系配置</div>
+      <div>http://example.com/2024/09/22/Net Core2022教程/第4章：Entity Framework Core基础/P4-6 关系配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 22, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/25/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF%20Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/P5-1%20EF%20Core%E5%8E%9F%E7%90%86%E6%8F%AD%E7%A7%98/" title="P5-1 EF Core原理揭秘">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P5-1 EF Core原理揭秘</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/18/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-5%20%E6%9F%A5%E7%9C%8BEF%20Core%E7%94%9F%E6%88%90%E7%9A%84SQL%E8%AF%AD%E5%8F%A5/" title="P4-5 查看EF Core生成的SQL语句">
+                        <span class="hidden-mobile">P4-5 查看EF Core生成的SQL语句</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

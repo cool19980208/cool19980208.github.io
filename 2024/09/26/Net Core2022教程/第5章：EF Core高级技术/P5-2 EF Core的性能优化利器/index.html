@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="EF Core的性能优化利器 EF Core的优化之AsNoTracking 1、如果通过DbContext查询出来的对象只是用来展示，不会发生状态改变，则可以使用AsNoTracking()来 “禁用跟踪”。 2、分别加AsNoTracking()和不加，分别查看一个对象修改后的EntityEntry 信息。 3、如果查询出来的对象不会被修改、删除等，那么查询时可以AsNoTracking()，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P5-2 EF Core的性能优化利器">
+<meta property="og:url" content="http://example.com/2024/09/26/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF%20Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/P5-2%20EF%20Core%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%88%A9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="EF Core的性能优化利器 EF Core的优化之AsNoTracking 1、如果通过DbContext查询出来的对象只是用来展示，不会发生状态改变，则可以使用AsNoTracking()来 “禁用跟踪”。 2、分别加AsNoTracking()和不加，分别查看一个对象修改后的EntityEntry 信息。 3、如果查询出来的对象不会被修改、删除等，那么查询时可以AsNoTracking()，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%BF%BD%E7%95%A5.wiiwshl3i.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E6%89%B9%E9%87%8F.6t7343res7.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%85%A8%E5%B1%80%E7%AD%9B%E9%80%89%E5%99%A8.8vmvs5pd2x.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240926/%E6%AD%BB%E9%94%81.45nge9nb0.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240926/%E4%B9%90%E8%A7%82%E5%B9%B6%E5%8F%91.8hgg2bx262.webp">
+<meta property="article:published_time" content="2024-09-26T09:26:26.000Z">
+<meta property="article:modified_time" content="2024-09-26T09:26:40.978Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%BF%BD%E7%95%A5.wiiwshl3i.webp">
+  
+  
+  
+  <title>P5-2 EF Core的性能优化利器 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P5-2 EF Core的性能优化利器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-26 17:26" pubdate>
+          September 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P5-2 EF Core的性能优化利器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="EF-Core的性能优化利器"><a href="#EF-Core的性能优化利器" class="headerlink" title="EF Core的性能优化利器"></a>EF Core的性能优化利器</h1><hr>
+<h2 id="EF-Core的优化之AsNoTracking"><a href="#EF-Core的优化之AsNoTracking" class="headerlink" title="EF Core的优化之AsNoTracking"></a>EF Core的优化之AsNoTracking</h2><ul>
+<li>1、如果通过DbContext查询出来的对象只是用来展示，不会发生状态改变，则可以使用AsNoTracking()来 “禁用跟踪”。</li>
+<li>2、分别加AsNoTracking()和不加，分别查看一个对象修改后的EntityEntry 信息。</li>
+<li>3、如果查询出来的对象不会被修改、删除等，那么查询时可以AsNoTracking()，就能降低内存占用。<ul>
+<li>如果查询加了AsNoTracking()，后续去执行修改语句，是不生效的。<ul>
+<li>因为EF Core是用“快照来更改跟踪”<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%BF%BD%E7%95%A5.wiiwshl3i.webp" srcset="/img/loading.gif" lazyload alt="忽略"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="实体类状态跟踪的妙用"><a href="#实体类状态跟踪的妙用" class="headerlink" title="实体类状态跟踪的妙用"></a>实体类状态跟踪的妙用</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>1、开发人员一般不需要关注实体状态的跟踪，让它在背后帮助我们工作即可。</li>
+<li>2、有人利用状态跟踪的特点做一些小动作，<ul>
+<li>杨中科老师不推荐，但是要介绍了解一下，以防止其他程序员用这种写法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><ul>
+<li>常规更新需要先查询、再更新，两条SQL。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//一般用法，先查询出来，然后修改，进行保存</span><br><span class="hljs-keyword">var</span> a = ctx.Articles.Where(a =&gt; a.Id == <span class="hljs-number">6</span>).Single();<br>a.Price = <span class="hljs-number">188</span>;<br><span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<br><br><span class="hljs-comment">//另外一种写法:跳过查询，直接修改，保存。一条SQL搞定</span><br><span class="hljs-comment">//查看生成的SQL，只更新Title列。</span><br>Article b1 = <span class="hljs-keyword">new</span> Article &#123; Id = <span class="hljs-number">10</span> &#125;;<span class="hljs-comment">//跟踪通过Id定位</span><br>    b1.Title = <span class="hljs-string">&quot;yz&quot;</span>;<br>    <span class="hljs-keyword">var</span> entry1 = ctx.Entry(b1);<br>    entry1.Property(<span class="hljs-string">&quot;Title&quot;</span>).IsModified = <span class="hljs-literal">true</span>;<br>    Console.WriteLine(entry1.DebugView.LongView);<br>    ctx.SaveChanges();<br></code></pre></td></tr></table></figure>
+
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><ul>
+<li>常规删除需要先查询、再删除，两条SQL。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//一般用法，先查询出来，然后删除，进行保存</span><br><span class="hljs-keyword">var</span> a = ctx.Articles.Where(a =&gt; a.Id == <span class="hljs-number">6</span>).Single();<br>ctx.Remove(a);<br><span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<br><br><span class="hljs-comment">//另外一种写法:跳过查询，直接删除--&gt;保存。一条SQL搞定</span><br>Article b1 = <span class="hljs-keyword">new</span> Article &#123; Id = <span class="hljs-number">10</span> &#125;;<span class="hljs-comment">//跟踪通过Id定位</span><br>ctx.Entry(b1).State = EntityState.Deleted;<br>ctx.SaveChanges();<br></code></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>上面的技巧代码可读性、可维护性不强，而且使用不当有可能造成不容易发现的Bug。<ul>
+<li>带来的性能提升也是微乎其微的，<strong>因此不推荐使用，知道即可</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Find和FindAsync方法"><a href="#Find和FindAsync方法" class="headerlink" title="Find和FindAsync方法"></a>Find和FindAsync方法</h2><ul>
+<li><p>Find和FindAsync方法：在上下文查找这个对象是否已经被跟踪</p>
+<ul>
+<li>如果对象已经被跟踪，就直接返回被跟踪的对象</li>
+<li>只有在本地没有找到这个对象时，EF Core才会免去这次数据库查询</li>
+</ul>
+</li>
+<li><p>对比Single方法：执行一次数据库查询</p>
+</li>
+<li><p>优点：有可能因为用Find方法会减少一次数据库查询，性能更好。</p>
+</li>
+<li><p>缺点：但是如果在对象被跟踪之后，数据库中对应的数据已经被其他程序修改了，那么Find方法可能会返回旧数据</p>
+</li>
+</ul>
+<hr>
+<h2 id="EF-Core中高效地删除、更新数据"><a href="#EF-Core中高效地删除、更新数据" class="headerlink" title="EF Core中高效地删除、更新数据"></a>EF Core中高效地删除、更新数据</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>EF Core中不支持高效的插入数据，都是逐条操作。AddRange、DeleteRange等。(2024-09-25)<ul>
+<li>在.NET 5和6中是没有批量修改、删除操作的，在EF Core7里面才有了</li>
+<li>微软地址：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/ef/core/what-is-new/ef-core-7.0/whatsnew#executeupdate-and-executedelete-bulk-updates">https://learn.microsoft.com/zh-cn/ef/core/what-is-new/ef-core-7.0/whatsnew#executeupdate-and-executedelete-bulk-updates</a></li>
+</ul>
+</li>
+<li>在.NET 5和6中是没有批量修改、删除操作的，那怎么办呢？<ul>
+<li>可以用杨中科老师的开源项目Zack.EFCore.Batch <ul>
+<li>高效批量修改、删除、插入的开源项目，具体使用看文档</li>
+</ul>
+</li>
+<li>开源项目地址：<a target="_blank" rel="noopener" href="https://github.com/yangzhongke/Zack.EFCore.Batch">https://github.com/yangzhongke/Zack.EFCore.Batch</a></li>
+<li>文档：<a target="_blank" rel="noopener" href="https://github.com/yangzhongke/Zack.EFCore.Batch/blob/main/README_CN.md">https://github.com/yangzhongke/Zack.EFCore.Batch/blob/main/README_CN.md</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="为啥不用SQL实现"><a href="#为啥不用SQL实现" class="headerlink" title="为啥不用SQL实现"></a>为啥不用SQL实现</h3><ul>
+<li>1、原生SQL语句需要把表名、列名等硬编码到SQL语句中，不符合模型驱动、分层隔离等思想，程序员直接面对数据库表，无法利用EF Core强类型的特性，如果模型发生改变，必须手动变更SQL语句。</li>
+<li>2、无法利用EF Core强大的SQL翻译机制来屏蔽不同底层数据库的差异。</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//杨中科老师的开源项目Zack.EFCore.Batch</span><br><span class="hljs-comment">//批量删除</span><br><span class="hljs-keyword">await</span> ctx.DeleteRangeAsync&lt;Article&gt;(b =&gt; b.Id &gt; <span class="hljs-number">131080</span> || b.Content == <span class="hljs-string">&quot;zack yang&quot;</span>);<br><br><span class="hljs-comment">//批量更新</span><br><span class="hljs-keyword">await</span> ctx.BatchUpdate&lt;Article&gt;()<br>.Set(b =&gt; b.Price, b =&gt; b.Price + <span class="hljs-number">3</span>)<br>.Set(b =&gt; b.Title, b =&gt; b.Title+DateTime.Now.Second)<br>.Where(b =&gt; b.Id&gt; <span class="hljs-number">131070</span>)<br>.ExecuteAsync();<br><br><span class="hljs-comment">//批量插入</span><br>List&lt;Article&gt; Articles = <span class="hljs-keyword">new</span> List&lt;Article&gt;();<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++)<br>&#123;<br>    Articles.Add(<br>        <span class="hljs-keyword">new</span> Article<br>        &#123;<br>            Title = <span class="hljs-string">&quot;abc&quot;</span> + i,<br>            Price = <span class="hljs-keyword">new</span> Random().NextDouble(),<br>            Content = Guid.NewGuid().ToString(),<br>        &#125;<br>    );<br>&#125;<br><span class="hljs-keyword">using</span> (MyDbContext ctx = <span class="hljs-keyword">new</span> MyDbContext())<br>&#123;<br>    ctx.BulkInsert(Articles);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E6%89%B9%E9%87%8F.6t7343res7.webp" srcset="/img/loading.gif" lazyload alt="批量"></p>
+<hr>
+<h2 id="全局查询筛选器"><a href="#全局查询筛选器" class="headerlink" title="全局查询筛选器"></a>全局查询筛选器</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>1、全局查询筛选器：EF Core 会自动将这个查询筛选器应用于涉及这个实体类型的所有 LINQ 查询。</li>
+<li>2、场景：软删除、多租户。</li>
+<li>3、什么是软删除？<ul>
+<li>逻辑删除，不是真从数据库删除。</li>
+<li>比如:像银行等会被审计的系统去使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><ul>
+<li>1、builder.HasQueryFilter(b&#x3D;&gt;b.IsDeleted&#x3D;&#x3D;false);<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%85%A8%E5%B1%80%E7%AD%9B%E9%80%89%E5%99%A8.8vmvs5pd2x.webp" srcset="/img/loading.gif" lazyload alt="全局筛选器"></li>
+</ul>
+</li>
+<li>2、测试一下如下的代码，查看生成的SQL：<ul>
+<li>ctx.Articles.Take(3)</li>
+</ul>
+</li>
+<li>3、忽略：IgnoreQueryFilters()</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#">ctx.Articles.Take(<span class="hljs-number">3</span>)<span class="hljs-comment">//全局软删除</span><br><br>ctx.Articles.IgnoreQueryFilters().Take(<span class="hljs-number">3</span>)<span class="hljs-comment">//忽略全局软删除</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="注意：全局筛选器的性能陷阱"><a href="#注意：全局筛选器的性能陷阱" class="headerlink" title="注意：全局筛选器的性能陷阱"></a>注意：全局筛选器的性能陷阱</h3><ul>
+<li>如果启用了软删除，查询操作可能会导致全表扫描，从而影响查询性能。<ul>
+<li>如果为软删除列创建索引的话，又会增加索引的磁盘占用</li>
+</ul>
+</li>
+<li>所以，如果使用了全局查询筛选器，我们就需要根据项目的需要进一步优化数据库了</li>
+</ul>
+<hr>
+<h2 id="悲观并发控制"><a href="#悲观并发控制" class="headerlink" title="悲观并发控制"></a>悲观并发控制</h2><h3 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>1、并发控制：避免多个用户同时操作资源造成的并发冲突问题。举例：统计点击量。<br>2、最好的解决方案：非数据库解决方案。<br>3、数据库层面的两种策略：悲观、乐观。</li>
+</ul>
+<p>1、悲观并发控制一般采用行锁、表锁等排他锁对资源进行锁定，确保同时只有一个使用者操作被锁定的资源。<br>2、EF Core没有封装悲观并发控制的使用，需要开发人员编写原生SQL语句来使用悲观并发控制。不同数据库的语法不一样。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
+<li>1.创建实体类</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">class</span> <span class="hljs-title">House</span><br>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">long</span> Id &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Owner &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>2.MySQL行锁： select * from T_Houses where Id&#x3D;1 for update<ul>
+<li>如果有其他的查询操作也使用for update来查询Id&#x3D;1的这条数据的话，那些查询就会被挂起，一直到针对这条数据的更新操作完成从而释放这个行锁，代码才会继续执行。</li>
+<li>SQL Server行锁：SELECT * FROM T_Houses WITH (ROWLOCK) WHERE Id &#x3D; 1</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现测试"><a href="#实现测试" class="headerlink" title="实现测试"></a>实现测试</h3><ul>
+<li>1、锁是和事务相关的，因此通过BeginTransactionAsync()创建一个事务，并且在所有操作完成后调用CommitAsync()提交事务。</li>
+<li>2、var h1 &#x3D; await ctx.Houses.FromSqlInterpolated($”select * from T_Houses where Id&#x3D;1 for update”).SingleAsync();</li>
+<li>3、定位到编译完成的exe目录下，运行两个exe程序的实例，分别输入姓名tom和jim。<ul>
+<li>报错</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240926/%E6%AD%BB%E9%94%81.45nge9nb0.webp" srcset="/img/loading.gif" lazyload alt="死锁"></li>
+<li>最后让GPT调整了一下代码就可以了</li>
+</ul>
+</li>
+</ul>
+<h3 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h3><ul>
+<li>1、悲观并发控制的使用比较简单；</li>
+<li>2、锁是独占、排他的，如果系统并发量很大的话，会严重影响性能，如果使用不当的话，甚至会导致死锁。</li>
+<li>3、不同数据库的语法不一样。</li>
+</ul>
+<hr>
+<h2 id="乐观并发控制"><a href="#乐观并发控制" class="headerlink" title="乐观并发控制"></a>乐观并发控制</h2><h3 id="乐观并发控制的原理"><a href="#乐观并发控制的原理" class="headerlink" title="乐观并发控制的原理"></a>乐观并发控制的原理</h3><ul>
+<li>EF Core内置了使用并发令牌列实现的乐观并发控制<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#">Update T_Houses <span class="hljs-keyword">set</span> Owner=新值<br><span class="hljs-keyword">where</span> Id=<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> Owner=旧值<br></code></pre></td></tr></table></figure></li>
+<li>举例子。当Update的时候，如果数据库中的Owner值已经被其他操作者更新为其他值了，那么where语句的值就会为false，</li>
+<li>因此这个Update语句影响的行数就是0，EF Core就知道“发生并发冲突”了，因此SaveChanges()方法就会抛出DbUpdateConcurrencyException异常<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240926/%E4%B9%90%E8%A7%82%E5%B9%B6%E5%8F%91.8hgg2bx262.webp" srcset="/img/loading.gif" lazyload alt="乐观并发"></li>
+</ul>
+</li>
+</ul>
+<h4 id="实现：EF-Core中配置"><a href="#实现：EF-Core中配置" class="headerlink" title="实现：EF Core中配置"></a>实现：EF Core中配置</h4><p>1、把被并发修改的属性使用IsConcurrencyToken()设置为并发令牌。<br><code>builder.Property(h =&gt; h.Owner).IsConcurrencyToken();</code><br>2、用catch接住异常</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">try</span><br>&#123;<br>    <span class="hljs-keyword">await</span> ctx.SaveChangesAsync();<br>    Console.WriteLine(<span class="hljs-string">&quot;恭喜你，抢到了&quot;</span>);<br>&#125;<br><span class="hljs-keyword">catch</span> (DbUpdateConcurrencyException ex)<br>&#123;<br>    <span class="hljs-keyword">var</span> entry = ex.Entries.First();<br>    <span class="hljs-keyword">var</span> dbValues = <span class="hljs-keyword">await</span> entry.GetDatabaseValuesAsync();<br>    <span class="hljs-built_in">string</span> newOwner = dbValues.GetValue&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-keyword">nameof</span>(House.Owner));<br>    Console.WriteLine(<span class="hljs-string">$&quot;并发冲突，被<span class="hljs-subst">&#123;newOwner&#125;</span>提前抢走了&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="运行观察"><a href="#运行观察" class="headerlink" title="运行观察"></a>运行观察</h4><ul>
+<li>1、首先把数据库中Id&#x3D;1这一行数据中的Owner列的值清空，然后仍然像上一节一样运行两个exe程序的实例，分别输入姓名tom和jim。</li>
+<li>2、查看EF Core运行的SQL语句。<ul>
+<li>抢先一步成功就直接update成功了，</li>
+<li>失败的，就先update发现影响行数为0，那么就再次执行一下查询，然后提示报错</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//成功</span><br>SET NOCOUNT ON;<br>      UPDATE [T_Houses] SET [Owner] = @p0<br>      WHERE [Id] = @p1 AND [Owner] = @p2;<br>      SELECT @@ROWCOUNT;<br><br><span class="hljs-comment">//并发冲突，失败的</span><br>SET NOCOUNT ON;<br>      UPDATE [T_Houses] SET [Owner] = @p0<br>      WHERE [Id] = @p1 AND [Owner] = @p2;<br>      SELECT @@ROWCOUNT;<br><br><span class="hljs-function">SELECT <span class="hljs-title">TOP</span>(<span class="hljs-params"><span class="hljs-number">1</span></span>) [t].[Id], [t].[Name], [t].[Owner]</span><br><span class="hljs-function">      FROM [T_Houses] AS [t]</span><br><span class="hljs-function">      WHERE [t].[Id]</span> = @__p_0<br></code></pre></td></tr></table></figure>
+
+<h3 id="乐观并发控制：RowVersion"><a href="#乐观并发控制：RowVersion" class="headerlink" title="乐观并发控制：RowVersion"></a>乐观并发控制：RowVersion</h3><ul>
+<li>SQLServer的RowVersion</li>
+<li>1、SQLServer数据库可以用一个byte[]类型的属性做并发令牌属性，然后使用IsRowVersion()把这个属性设置为RowVersion类型，这样这个属性对应的数据库列就会被设置为ROWVERSION类型。<ul>
+<li>对于ROWVERSION类型的列，在每次插入或更新行时，数据库会自动为这一行的ROWVERSION类型的列其生成新值。</li>
+</ul>
+</li>
+<li>2、在SQLServer中，timestamp和rowversion是同一种类型的不同别名而已。</li>
+</ul>
+<h4 id="实体类及配置"><a href="#实体类及配置" class="headerlink" title="实体类及配置"></a>实体类及配置</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">class</span> <span class="hljs-title">House</span><br>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">long</span> Id &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Owner &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">byte</span>[] RowVer &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br>builder.Property(h =&gt; h.RowVer).IsRowVersion();<br></code></pre></td></tr></table></figure>
+
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>1、在MySQL等数据库中虽然也有类似的timestamp类型，但是由于timestamp类型的精度不够，并不适合在高并发的系统<ul>
+<li>低版本好像有这个问题，高版本不确定修复了没</li>
+</ul>
+</li>
+<li>2、非SQLServer中，可以将并发令牌列的值更新为Guid的值</li>
+</ul>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>1、乐观并发控制能够避免悲观锁带来的性能、死锁等问题，因此推荐使用<strong>乐观并发控制</strong>而不是悲观锁</li>
+<li>2、如果有一个确定的字段要被进行并发控制，那么使用IsConcurrencyToken()把这个字段设置为并发令牌即可</li>
+<li>3、如果无法确定一个唯一的并发令牌列，那么就可以引入一个额外的属性设置为并发令牌，并且在每次更新数据的时候，手动更新这一列的值<ul>
+<li>如果用的是SQLServer数据库，那么也可以采用RowVersion列，这样就不用开发者手动来在每次更新数据的时候，手动更新并发令牌的值了</li>
+<li>如果用的是MySQl就只能在修改其他属性值的同时，使用h1.RowVer &#x3D; Guid.NewGuid()手动更新并发令牌属性的值</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF-Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/" class="category-chain-item">第5章：EF Core高级技术</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P5-2 EF Core的性能优化利器</div>
+      <div>http://example.com/2024/09/26/Net Core2022教程/第5章：EF Core高级技术/P5-2 EF Core的性能优化利器/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/25/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF%20Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/P5-1%20EF%20Core%E5%8E%9F%E7%90%86%E6%8F%AD%E7%A7%98/" title="P5-1 EF Core原理揭秘">
+                        <span class="hidden-mobile">P5-1 EF Core原理揭秘</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

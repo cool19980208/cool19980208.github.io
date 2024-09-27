@@ -1,0 +1,1018 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="EF Core原理揭秘 EF Core有哪些做不到的事情 C#千变万化，但SQL功能简单 所以会存在合法的C#语句运行过程中无法被翻译为SQL语句的情况 报错：The LINQ expression ‘DbSet().Where(t &#x3D;&gt; Program.IsOK(t.Name))’ could not be translated.     既生IEnumerable，何生IQue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P5-1 EF Core原理揭秘">
+<meta property="og:url" content="http://example.com/2024/09/25/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF%20Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/P5-1%20EF%20Core%E5%8E%9F%E7%90%86%E6%8F%AD%E7%A7%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="EF Core原理揭秘 EF Core有哪些做不到的事情 C#千变万化，但SQL功能简单 所以会存在合法的C#语句运行过程中无法被翻译为SQL语句的情况 报错：The LINQ expression ‘DbSet().Where(t &#x3D;&gt; Program.IsOK(t.Name))’ could not be translated.     既生IEnumerable，何生IQue">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/SQL%E8%BF%90%E8%A1%8C%E9%A1%BA%E5%BA%8F.7ax4pp2ar6.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/%E6%96%B9%E6%B3%95.m1eo9g23.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/%E5%88%86%E9%A1%B5.6m3v5v1ld5.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E6%80%BB%E9%A1%B5%E6%95%B0.1hs6hjedou.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E5%88%B6%E9%80%A0%E6%95%B0%E6%8D%AE.6ik99hvses.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E6%8A%A5%E9%94%99.6bh1e2ja2i.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E5%8A%A0%E8%BD%BD%E5%88%B0%E5%86%85%E5%AD%98.b8v9c9oe3.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%AD%90%E6%9F%A5%E8%AF%A2.231u57y0oy.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E6%94%B9%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F.73twwsb3l8.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/Dapper.9nzr9gwrjy.webp">
+<meta property="og:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96.7egqq135pr.webp">
+<meta property="article:published_time" content="2024-09-25T02:50:26.000Z">
+<meta property="article:modified_time" content="2024-09-25T02:50:36.547Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content=".NET Core2022-学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/SQL%E8%BF%90%E8%A1%8C%E9%A1%BA%E5%BA%8F.7ax4pp2ar6.webp">
+  
+  
+  
+  <title>P5-1 EF Core原理揭秘 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cool-Ren</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>主页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P5-1 EF Core原理揭秘"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-25 10:50" pubdate>
+          September 25, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P5-1 EF Core原理揭秘</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="EF-Core原理揭秘"><a href="#EF-Core原理揭秘" class="headerlink" title="EF Core原理揭秘"></a>EF Core原理揭秘</h1><hr>
+<h2 id="EF-Core有哪些做不到的事情"><a href="#EF-Core有哪些做不到的事情" class="headerlink" title="EF Core有哪些做不到的事情"></a>EF Core有哪些做不到的事情</h2><ul>
+<li>C#千变万化，但SQL功能简单<ul>
+<li>所以会存在<strong>合法的C#语句运行过程中无法被翻译为SQL语句</strong>的情况</li>
+<li>报错：The LINQ expression ‘DbSet<TPerson>().Where(t &#x3D;&gt; Program.IsOK(t.Name))’ could not be translated.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="既生IEnumerable，何生IQueryable"><a href="#既生IEnumerable，何生IQueryable" class="headerlink" title="既生IEnumerable，何生IQueryable"></a>既生IEnumerable，何生IQueryable</h2><ul>
+<li>1、不同的Where方法<ul>
+<li>普通集合的调用</li>
+<li>EF Core的DbSet的调用</li>
+</ul>
+</li>
+<li>2、IEnumerable和IQueryable的区别<ul>
+<li>IEnumerable都是供普通集合去使用，<ul>
+<li>比如Where等方法都是”客户端评估”</li>
+<li>“客户端评估”：把数据首先加载到应用程序的内存中，然后在内存中进行数据筛选的过程</li>
+</ul>
+</li>
+<li>IQueryable版本则是把查询操作翻译成SQL语句<ul>
+<li>算是”服务器端评估”</li>
+<li>“服务器端评估”：把Where条件转换成SQL语句，然后在数据库服务器上完成数据筛选的过程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在使用EF Core的时候，尽量都使用IQueryable版本的方法。尽量避免”客户端评估”</li>
+<li><code>Every disadvantage has its advantage</code><ul>
+<li>每个缺点都有它的优点</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//IQueryable &quot;服务器端评估&quot;</span><br>SELECT [t].[Id], [t].[ArticleId], [t].[Message]<br>      FROM [T_Comments] AS [t]<br>      WHERE [t].[Message] LIKE N<span class="hljs-string">&#x27;%了%&#x27;</span><br><br><br><span class="hljs-comment">//IEnumerable &quot;客户端评估&quot;</span><br>SELECT [t].[Id], [t].[ArticleId], [t].[Message]<br>      FROM [T_Comments] AS [t]<br></code></pre></td></tr></table></figure>
+
+<h3 id="在某些场景下”客户端评估”也是可以的"><a href="#在某些场景下”客户端评估”也是可以的" class="headerlink" title="在某些场景下”客户端评估”也是可以的"></a>在某些场景下”客户端评估”也是可以的</h3><ul>
+<li>服务器端—数据运算非常非常复杂，复杂到影响性能了</li>
+<li>可以用服务器端评估和客户端评估做一下性能对比<ul>
+<li>如果客户端评估性能更好，可以用它。但一般情况下很少用到</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//IQueryable</span><br>SELECT [t].[Id], COALESCE(SUBSTRING([t].[Message], <span class="hljs-number">0</span> + <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), N<span class="hljs-string">&#x27;&#x27;</span>) + N<span class="hljs-string">&#x27;...&#x27;</span> AS [Pre]<br>    FROM [T_Comments] AS [t]<br><br><span class="hljs-comment">//IEnumerable</span><br>SELECT [t].[Id], [t].[ArticleId], [t].[Message]<br>    FROM [T_Comments] AS [t]<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="IQueryable的延迟执行"><a href="#IQueryable的延迟执行" class="headerlink" title="IQueryable的延迟执行"></a>IQueryable的延迟执行</h2><ul>
+<li>IQueryable不仅可以带来“服务器端评估”的功能，而且提供了延迟执行的能力</li>
+</ul>
+<h3 id="延迟执行"><a href="#延迟执行" class="headerlink" title="延迟执行"></a>延迟执行</h3><ul>
+<li>1、测试一下：只查询，但是不遍历IQueryable，查看是否有执行SQL语句。<ul>
+<li>没有执行SQL语句</li>
+</ul>
+</li>
+<li>2、在查询之后、foreach前后分别加上输出语句，查看输出内容的顺序。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/SQL%E8%BF%90%E8%A1%8C%E9%A1%BA%E5%BA%8F.7ax4pp2ar6.webp" srcset="/img/loading.gif" lazyload alt="SQL运行顺序"></li>
+<li>在遍历触发的时候，SQL语句才会开始执行</li>
+</ul>
+</li>
+<li>3、总结发现：只有遍历IQueryable的时候才会执行。<ul>
+<li>因为这是立即执行方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="所谓IQueryable"><a href="#所谓IQueryable" class="headerlink" title="所谓IQueryable"></a>所谓IQueryable</h3><ul>
+<li>1、IQueryable只是代表一个“可以放到数据库服务器去执行的查询”，它没有立即执行，只是“可以被执行”而已。</li>
+<li>2、对于IQueryable接口调用<code>非立即执行</code>的时候不会执行查询，而调用<code>立即执行</code>方法的时候则会立即执行查询。<ul>
+<li><code>非立即执行方法</code>：GroupBy()、OrderBy()、Include()、Skip()、Take()等。</li>
+<li><code>立即执行方法</code>：遍历、ToArray()、ToList()、Min()、Max()、Count()等；</li>
+</ul>
+</li>
+<li>3、判断一个方法是否为立即执行方法的简单判断<ul>
+<li>一个方法的返回值类型如果是IQueryable类型，那么这个方法一般就是<code>非立即执行方法</code>，否则就是<code>立即执行方法</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么要实现”延迟执行”这种复杂的机制呢"><a href="#为什么要实现”延迟执行”这种复杂的机制呢" class="headerlink" title="为什么要实现”延迟执行”这种复杂的机制呢"></a>为什么要实现”延迟执行”这种复杂的机制呢</h3><ul>
+<li>1、可以在实际执行之前，分步构建IQueryable。<ul>
+<li>我们可以利用这个机制，使用IQueryable来拼接出复杂的查询条件，再去执行查询</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//分步构建IQueryable</span><br>IQueryable&lt;Article&gt; arts = ctx.Articles.Where(a =&gt; a.Id &gt; <span class="hljs-number">1</span>);<br>IQueryable&lt;Article&gt; arts2 = arts.Skip(<span class="hljs-number">2</span>);<br>IQueryable&lt;Article&gt; arts3 = arts2.Take(<span class="hljs-number">3</span>);<br>IQueryable&lt;Article&gt; arts4 = arts3.Where(a=&gt;a.Title.Contains(<span class="hljs-string">&quot;了&quot;</span>));<br><span class="hljs-comment">//立即执行方法触发执行SQL</span><br>arts4.ToArray();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>2、比如：定义一个方法根据给定的关键字searchWords来查询匹配的书；如果searchAll参数是true，则书名或者作者名中含有给定的searchWords都匹配，否则只匹配书名；如果orderByPrice参数为true，则按照价格排序，否则就自然排序；upperPrice参数代表价格上限。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/%E6%96%B9%E6%B3%95.m1eo9g23.webp" srcset="/img/loading.gif" lazyload alt="方法"></li>
+</ul>
+</li>
+<li>3、试着传递不同参数，查看生成的SQL的不同。<ul>
+<li>根据不同的条件，拼接出不同的查询条件，然后去执行<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//QueryArticles(&quot;了&quot;, true, true, 80);</span><br>SELECT [t].[Id], [t].[Content], [t].[Price], [t].[Title]<br>    FROM [T_Articles] AS [t]<br>    WHERE ([t].[Price] &lt;= @__upperPrice_0) AND (((@__searchWords_1 LIKE N<span class="hljs-string">&#x27;&#x27;</span>) OR (CHARINDEX(@__searchWords_1, [t].[Title]) &gt; <span class="hljs-number">0</span>)) OR ((@__searchWords_1 LIKE N<span class="hljs-string">&#x27;&#x27;</span>) OR (CHARINDEX(@__searchWords_1, [t].[Content]) &gt; <span class="hljs-number">0</span>)))<br>    ORDER BY [t].[Price]<br><br><span class="hljs-comment">//QueryArticles(&quot;了&quot;, false, false, 80);</span><br>SELECT [t].[Id], [t].[Content], [t].[Price], [t].[Title]<br>    FROM [T_Articles] AS [t]<br>    WHERE ([t].[Price] &lt;= @__upperPrice_0) AND ((@__searchWords_1 LIKE N<span class="hljs-string">&#x27;&#x27;</span>) OR (CHARINDEX(@__searchWords_1, [t].[Title]) &gt; <span class="hljs-number">0</span>))<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><ul>
+<li>1、IQueryable代表一个对数据库中数据进行查询的一个逻辑，这个查询是一个延迟查询。<ul>
+<li>我们可以调用非立即执行方法向IQueryable中添加查询逻辑</li>
+<li>当执行立即执行方法的时候才真正生成SQL语句来执行查询</li>
+</ul>
+</li>
+<li>2、EF Core把“动态拼接生产查询逻辑”变的非常简单<ul>
+<li>以前要是靠SQL拼接来实现的动态查询逻辑</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="IQueryable的复用"><a href="#IQueryable的复用" class="headerlink" title="IQueryable的复用"></a>IQueryable的复用</h2><ul>
+<li>IQueryable是一个待查询的逻辑，因此它是可以被重复使用的。<ul>
+<li>对于不同的立即执行操作，各自执行响应的查询逻辑</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs C#">IQueryable&lt;Book&gt; books = ctx.Books.Where(b =&gt; b.Price &gt; <span class="hljs-number">8</span>);<br>Console.WriteLine(books.Count());<br>Console.WriteLine(books.Max(b=&gt;b.Price));<br><span class="hljs-keyword">foreach</span> (Book b <span class="hljs-keyword">in</span> books.Where(b=&gt;b.PubTime.Year&gt;<span class="hljs-number">2000</span>))<br>&#123;<br>    Console.WriteLine(b.Title);<br>&#125;<br><br><span class="hljs-comment">//books.Count()</span><br><span class="hljs-function">SELECT <span class="hljs-title">COUNT</span>(<span class="hljs-params">*</span>)</span><br><span class="hljs-function">      FROM [T_Books] AS [t]</span><br><span class="hljs-function">      WHERE [t].[Price] &gt; 8.0E0</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-comment">//books.Max(b=&gt;b.Price)</span></span><br><span class="hljs-function"> SELECT <span class="hljs-title">MAX</span>(<span class="hljs-params">[t].[Price]</span>)</span><br><span class="hljs-function">      FROM [T_Books] AS [t]</span><br><span class="hljs-function">      WHERE [t].[Price] &gt; 8.0E0</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-comment">//books.Where(b=&gt;b.PubTime.Year&gt;2000)</span></span><br><span class="hljs-function">SELECT [t].[Id], [t].[AuthorName], [t].[Price], [t].[PubTime], [t].[Title]</span><br><span class="hljs-function">      FROM [T_Books] AS [t]</span><br><span class="hljs-function">      <span class="hljs-title">WHERE</span> (<span class="hljs-params">[t].[Price] &gt; <span class="hljs-number">8.0E0</span></span>) <span class="hljs-title">AND</span> (<span class="hljs-params">DATEPART(year, [t].[PubTime]</span>) &gt; 2000)</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="EF-Core分页查询"><a href="#EF-Core分页查询" class="headerlink" title="EF Core分页查询"></a>EF Core分页查询</h2><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>Web网站常用的分页<ul>
+<li>一页多少条数据</li>
+<li>总页数</li>
+<li>切换某一页</li>
+</ul>
+</li>
+<li>手机APP划，然后下滑触发分页<ul>
+<li>同理<br><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240923/%E5%88%86%E9%A1%B5.6m3v5v1ld5.webp" srcset="/img/loading.gif" lazyload alt="分页"></li>
+</ul>
+</li>
+</ul>
+<h3 id="分页的实现"><a href="#分页的实现" class="headerlink" title="分页的实现"></a>分页的实现</h3><ul>
+<li>1、Skip(3).Take(8) <ul>
+<li>使用分页查询有一个问题需要注意：那就是尽量显式指定排序规则<ul>
+<li>因为如果不指定排序规则，那么数据库的查询计划对于数据的排序可能是不确定的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2、需要知道满足条件的数据的总条数：可以使用IQueryable的复用</li>
+<li>3、页数：long pageCount &#x3D; (long)Math.Ceiling(count * 1.0 &#x2F; pageSize);</li>
+</ul>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E6%80%BB%E9%A1%B5%E6%95%B0.1hs6hjedou.webp" srcset="/img/loading.gif" lazyload alt="总页数"></p>
+<hr>
+<h2 id="IQueryable的底层运行"><a href="#IQueryable的底层运行" class="headerlink" title="IQueryable的底层运行"></a>IQueryable的底层运行</h2><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><ul>
+<li><p>1、DataReader：分批从数据库服务器读取数据。内存占用小、 DB连接占用时间长；</p>
+<ul>
+<li>在遍历执行的过程中，我们突然关闭SQL Server去测试一下</li>
+</ul>
+</li>
+<li><p>2、DataTable：把所有数据都一次性从数据库服务器都加载到客户端内存中。内存占用大，节省DB连接。</p>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//先查询后然后全部插入。指数级的制造数据，只适用于测试</span><br>INSERT INTO dbo.T_Articles(Title,Content)<br>SELECT Title,Content FROM dbo.T_Articles<br></code></pre></td></tr></table></figure>
+<p><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E5%88%B6%E9%80%A0%E6%95%B0%E6%8D%AE.6ik99hvses.webp" srcset="/img/loading.gif" lazyload alt="制造数据"></p>
+<h3 id="验证IQueryable用什么方式"><a href="#验证IQueryable用什么方式" class="headerlink" title="验证IQueryable用什么方式"></a>验证IQueryable用什么方式</h3><ul>
+<li>1、用insert into select多插入一些数据，然后加上Delay&#x2F;Sleep的遍历IQueryable。<ul>
+<li>在遍历执行的过程中，停止SQLServer服务器。<ul>
+<li>IQueryable内部就是在调用DataReader。</li>
+</ul>
+</li>
+<li>测试</li>
+<li>报错：A transport-level error has occurred when receiving results from the server. (provider: Session Provider, error: 19 - Physical connection is not usable)”</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E6%8A%A5%E9%94%99.6bh1e2ja2i.webp" srcset="/img/loading.gif" lazyload alt="报错"></li>
+</ul>
+</li>
+<li>2、优点：节省客户端内存。<br>缺点：如果处理的慢，会长时间占用连接。</li>
+</ul>
+<h4 id="一次性加载数据到内存"><a href="#一次性加载数据到内存" class="headerlink" title="一次性加载数据到内存"></a>一次性加载数据到内存</h4><ul>
+<li>1、一次性加载数据到内存：用IQueryable的ToArray()、ToArrayAsync()、ToList()、ToListAsync()等方法。</li>
+<li>2、等ToArray()执行完毕，再断服务器试一下。<ul>
+<li>测试<ul>
+<li>加了ToList()之后，关闭SQL Server也不妨碍读取数据</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240924/%E5%8A%A0%E8%BD%BD%E5%88%B0%E5%86%85%E5%AD%98.b8v9c9oe3.webp" srcset="/img/loading.gif" lazyload alt="加载到内存"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="何时需要一次性加载"><a href="#何时需要一次性加载" class="headerlink" title="何时需要一次性加载"></a>何时需要一次性加载</h3><ul>
+<li>1、场景1：遍历IQueryable并且进行数据处理的过程很耗时。</li>
+<li>2、场景2：如果方法需要返回查询结果，并且在方法里销毁DbContext的话，是不能返回IQueryable的。必须一次性加载返回。</li>
+<li>3、场景3：多个IQueryable的遍历嵌套。很多数据库的ADO.NET Core Provider是不支持多个DataReader同时执行的。把连接字符串中的MultipleActiveResultSets&#x3D;true删掉，其他数据库不支持这个。</li>
+<li><strong>一般情况下默认的IQueryable就行，特殊情况可以加载到内存去执行，但量别大，要不然会影响并发</strong></li>
+</ul>
+<hr>
+<h2 id="EF-Core中的异步方法"><a href="#EF-Core中的异步方法" class="headerlink" title="EF Core中的异步方法"></a>EF Core中的异步方法</h2><ul>
+<li><p>异步编程通常能够提升系统的吞吐量，所以我们一般优先使用异步方法</p>
+</li>
+<li><p>异步方法大部分是定义在Microsoft.EntityFrameworkCore这个命名空间下</p>
+<ul>
+<li>EntityFrameworkQueryableExtensions等类中的扩展方法，记得using。</li>
+</ul>
+</li>
+<li><p>IQueryable的这些异步的扩展方法都是“立即执行”方法，</p>
+</li>
+<li><p>而GroupBy、OrderBy、Join、Where等“非立即执行”方法则没有对应的异步方法。</p>
+</li>
+</ul>
+<h3 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h3><ul>
+<li>因为“非立即执行”方法并没有实际执行SQL语句，并不是消耗IO的操作。</li>
+</ul>
+<h3 id="如何异步遍历IQueryable"><a href="#如何异步遍历IQueryable" class="headerlink" title="如何异步遍历IQueryable"></a>如何异步遍历IQueryable</h3><ul>
+<li><p>方式1、ToListAsync()、ToArrayAsync()。结果集不要太大。</p>
+</li>
+<li><p>方式2、await foreach (Book b in ctx.Books.AsAsyncEnumerable())</p>
+</li>
+<li><p>不过，一般没必要这么做</p>
+<ul>
+<li>初级阶段只做了解就好了，当遇到特殊需求或者遍历有性能瓶颈时，可以用上面两种方法去进行优化</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="如何执行原生SQL语句"><a href="#如何执行原生SQL语句" class="headerlink" title="如何执行原生SQL语句"></a>如何执行原生SQL语句</h2><h3 id="为啥要写原生SQL语句"><a href="#为啥要写原生SQL语句" class="headerlink" title="为啥要写原生SQL语句"></a>为啥要写原生SQL语句</h3><ul>
+<li>1、尽管EF Core已经非常强大，但是仍然存在着无法被写成标准EF Core调用方法的SQL语句，少数情况下仍然需要写原生SQL。<ul>
+<li>比如：报表</li>
+</ul>
+</li>
+<li>2、可能无法跨数据库。<ul>
+<li>因为我们用EF Core是自动忽视底层差异去转换对应的SQL语句去执行</li>
+</ul>
+</li>
+<li>3、三种情况：非查询语句、实体查询、任意SQL查询。</li>
+</ul>
+<h3 id="执行SQL非查询语句"><a href="#执行SQL非查询语句" class="headerlink" title="执行SQL非查询语句"></a>执行SQL非查询语句</h3><ul>
+<li>使用dbCtx.Database. ExecuteSqlInterpolated () <ul>
+<li>dbCtx.Database. ExecuteSqlInterpolatedAsync()方法来执行原生的非查询SQL语句。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">await</span> ctx.Database.ExecuteSqlInterpolatedAsync(@<span class="hljs-string">$&quot;INSERT INTO T_Articles (Title,Content,Price)</span><br><span class="hljs-string">                SELECT Title, <span class="hljs-subst">&#123;name&#125;</span>, Price FROM T_Articles WHERE Price = <span class="hljs-subst">&#123;age&#125;</span>&quot;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="这种拼接式的SQL语句有SQL注入漏洞吗？"><a href="#这种拼接式的SQL语句有SQL注入漏洞吗？" class="headerlink" title="这种拼接式的SQL语句有SQL注入漏洞吗？"></a>这种拼接式的SQL语句有SQL注入漏洞吗？</h4><ul>
+<li>1、字符串内插的方式会不会有SQL注入攻击漏洞吗？<ul>
+<li>查看一下执行的SQL语句吧。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//这是使用ExecuteSqlInterpolatedAsync后生成的参数化SQL</span><br><span class="hljs-function">INSERT INTO <span class="hljs-title">T_Articles</span> (<span class="hljs-params">Title,Content,Price</span>)</span><br><span class="hljs-function">SELECT Title, @p0, Price FROM T_Articles WHERE Price</span> = @p1<br><br><span class="hljs-comment">//这是一般的内插值SQL语句</span><br><span class="hljs-function">INSERT INTO <span class="hljs-title">T_Articles</span> (<span class="hljs-params">Title,Content,Price</span>)</span><br><span class="hljs-function">SELECT Title, Zane, Price FROM T_Articles WHERE Price</span> = <span class="hljs-number">2</span><br><br></code></pre></td></tr></table></figure>
+<ul>
+<li>2、字符串内插如果赋值给string变量，就是字符串拼接；字符串内插如果赋值给FormattableString变量，编译器就会构造FormattableString 对象。<ul>
+<li>打印FormattableString的成员试试看。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//Format</span><br>Format:<span class="hljs-function">INSERT INTO <span class="hljs-title">T_Articles</span> (<span class="hljs-params">Title,Content,Price</span>)</span><br><span class="hljs-function">SELECT Title,</span> &#123;<span class="hljs-number">0</span>&#125;, Price FROM T_Articles WHERE Price = &#123;<span class="hljs-number">1</span>&#125;<br><span class="hljs-comment">//ArgumentCount</span><br>ArgumentCount:<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>3、ExecuteSqlInterpolatedAsync()的参数是FormattableString类型。<ul>
+<li>因此ExecuteSqlInterpolatedAsync会进行参数化SQL的处理。</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>除了ExecuteSqlInterpolated ()、ExecuteSqlInterpolatedAsync() ，<ul>
+<li>还有ExecuteSqlRaw()、ExecuteSqlRawAsync() 也可以执行原生SQL语句，但需要开发人员自己处理查询参数等了，<strong>因此不推荐使用</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="执行实体类SQL查询语句"><a href="#执行实体类SQL查询语句" class="headerlink" title="执行实体类SQL查询语句"></a>执行实体类SQL查询语句</h3><h4 id="实体相关SQL"><a href="#实体相关SQL" class="headerlink" title="实体相关SQL"></a>实体相关SQL</h4><ul>
+<li>1、如果要执行的原生SQL是一个查询语句，并且查询的结果也能对应一个实体，就可以调用对应实体的DbSet的FromSqlInterpolated()方法来执行一个查询SQL语句，同样可以使用字符串内插来传递参数。<ul>
+<li>嵌套的SQL语句不能用Order By，但是可以后续用LINQ的OrderBy来达到目的</li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E5%AD%90%E6%9F%A5%E8%AF%A2.231u57y0oy.webp" srcset="/img/loading.gif" lazyload alt="子查询"> </li>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E6%94%B9%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F.73twwsb3l8.webp" srcset="/img/loading.gif" lazyload alt="改这种方式"></li>
+</ul>
+</li>
+</ul>
+<h4 id="好用的IQueryable"><a href="#好用的IQueryable" class="headerlink" title="好用的IQueryable"></a>好用的IQueryable</h4><ul>
+<li>1、FromSqlInterpolated()方法的返回值是IQueryable类型的，因此我们可以在实际执行IQueryable之前，可以对IQueryable进行进一步的处理。<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> querryable= ctx.Articles.FromSqlInterpolated(<span class="hljs-string">$&quot;SELECT * FROM T_Articles WHERE Title LIKE <span class="hljs-subst">&#123;titlePattern&#125;</span> &quot;</span>);<span class="hljs-comment">//ORDER BY NEWID()</span><br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> a <span class="hljs-keyword">in</span> querryable.OrderBy(a=&gt;Guid.NewGuid()).Skip(<span class="hljs-number">1</span>).Take(<span class="hljs-number">2</span>))<br>&#123;<br>    Console.WriteLine(a.Id+<span class="hljs-string">&quot;,&quot;</span>+a.Title);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>2、把只能用原生SQL语句写的逻辑用FromSqlInterpolated()去执行，然后把分页、分组、二次过滤、排序、Include等其他逻辑尽可能仍然使用EF Core的标准操作去实现。</li>
+</ul>
+<h4 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h4><ul>
+<li>SQL 查询必须返回实体类型对应数据库表的所有列；<ul>
+<li>只能*去查询，需要指定列的话，有可能会报错</li>
+</ul>
+</li>
+<li>结果集中的列名必须与属性映射到的列名称匹配。</li>
+<li>只能单表查询，不能使用Join语句进行关联查询。但是可以在查询后面使用Include()来进行关联数据的获取。<ul>
+<li>所以不太适合比较复杂的报表语句</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行任意SQL查询语句"><a href="#执行任意SQL查询语句" class="headerlink" title="执行任意SQL查询语句"></a>执行任意SQL查询语句</h3><h4 id="啥时候要用ADO-NET"><a href="#啥时候要用ADO-NET" class="headerlink" title="啥时候要用ADO.NET"></a>啥时候要用ADO.NET</h4><ul>
+<li>1、FromSqlInterpolated()只能执行单表查询，但是在实现报表查询等的时候，SQL语句通常是非常复杂的，不仅要多表Join，而且返回的查询结果一般也都不会和一个实体类完整对应。因此需要一种执行任意SQL查询语句的方法</li>
+<li>2、EF Core中允许把一个视图或一个存储过程映射为实体，因此可以把复杂的查询语句写成视图或存储过程，然后再声明对应的实体类，并且在DbContext中配置对应的DbSet。<ul>
+<li>目前大部分公司都不推荐编写存储过程，而推荐创建视图<ul>
+<li>但是项目的报表等复杂查询通常很多，因此对应的视图也会很多，就需要在上下文类中配置很多不是实体类的“实体类”，这样会造成项目中“实体类”的膨胀，不利用项目管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3、<strong>杨中科老师强烈不推荐使用视图或存储过程</strong><ul>
+<li>因为后期的映射，膨胀等不利于项目管理</li>
+<li>项目复杂查询很多，导致：视图太多；非实体的DbSet；DbSet膨胀。</li>
+<li>如果有上述这种情况，直接使用<strong>执行任意SQL查询语句的方法</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="执行任意SQL查询语句-1"><a href="#执行任意SQL查询语句-1" class="headerlink" title="执行任意SQL查询语句"></a>执行任意SQL查询语句</h3><h4 id="ADO-NET"><a href="#ADO-NET" class="headerlink" title="ADO.NET"></a>ADO.NET</h4><p>dbCxt.Database.GetDbConnection()获得ADO.NET Core的数据库连接对象。这里不讲解ADO.NET基础知识。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//ADO.NET 原生方法</span><br>DbConnection conn = ctx.Database.GetDbConnection(); <span class="hljs-comment">//拿到Context对应的底层Connection</span><br><span class="hljs-keyword">if</span> (conn.State != ConnectionState.Open)<br>&#123;<br>    <span class="hljs-keyword">await</span> conn.OpenAsync();<br>&#125;<br><span class="hljs-keyword">using</span> (<span class="hljs-keyword">var</span> cmd = conn.CreateCommand())<br>&#123;<br>    cmd.CommandText = <span class="hljs-string">&quot;SELECT Price,COUNT(*) FROM T_Articles GROUP BY Price&quot;</span>;<br>    <span class="hljs-keyword">using</span> (<span class="hljs-keyword">var</span> reader = <span class="hljs-keyword">await</span> cmd.ExecuteReaderAsync())<br>    &#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">await</span> reader.ReadAsync())<br>        &#123;<br>            <span class="hljs-built_in">double</span> price = reader.GetDouble(<span class="hljs-number">0</span>);<br>            <span class="hljs-built_in">int</span> count = reader.GetInt32(<span class="hljs-number">1</span>);<br>            Console.WriteLine(<span class="hljs-string">$&quot;<span class="hljs-subst">&#123;price&#125;</span>:<span class="hljs-subst">&#123;count&#125;</span>&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="Dapper"><a href="#Dapper" class="headerlink" title="Dapper"></a>Dapper</h4><ul>
+<li>using 引用 <code>Install-Package Dapper </code><ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/Dapper.9nzr9gwrjy.webp" srcset="/img/loading.gif" lazyload alt="Dapper"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">var</span> items = ctx.Database.GetDbConnection().Query&lt;GroupArticleByPrice&gt;(<br>    <span class="hljs-string">&quot;SELECT Price,COUNT(*) PCount FROM T_Articles GROUP BY Price&quot;</span><br>);<br><span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> items)<br>&#123;<br>Console.WriteLine(item.Price + <span class="hljs-string">&quot;:&quot;</span> + item.PCount);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>一般Linq操作就够了，尽量不用写原生SQL；</p>
+<ul>
+<li>1、非查询SQL用ExecuteSqlInterpolated () ；</li>
+<li>2、针对实体的SQL查询用FromSqlInterpolated()。</li>
+<li>3、复杂SQL查询用ADO.NET的方式或者Dapper等。<ul>
+<li>推荐用Dapper等框架执行原生复杂查询SQL。</li>
+</ul>
+</li>
+<li>4、EF Core和Dapper是可以共存的~</li>
+</ul>
+<hr>
+<h2 id="怎么知道实体类变化了"><a href="#怎么知道实体类变化了" class="headerlink" title="怎么知道实体类变化了"></a>怎么知道实体类变化了</h2><h3 id="实体类没有实现属性值改变的通知机制，EF-Core是如何检测到变化的呢？"><a href="#实体类没有实现属性值改变的通知机制，EF-Core是如何检测到变化的呢？" class="headerlink" title="实体类没有实现属性值改变的通知机制，EF Core是如何检测到变化的呢？"></a>实体类没有实现属性值改变的通知机制，EF Core是如何检测到变化的呢？</h3><ul>
+<li><p>EF Core默认采用“快照更改跟踪”实现实体类改变的检测</p>
+<ul>
+<li>快照更改跟踪：首次跟踪一个实体的时候，EF Core 会创建这个实体的快照。执行SaveChanges()等方法时，EF Core将会把存储的快照中的值与实体的当前值进行比较。</li>
+</ul>
+</li>
+<li><p>实体的状态</p>
+<ul>
+<li>已添加(Added)：DbContext正在跟踪此实体，但数据库中尚不存在该实体。</li>
+<li>未改变(Unchanged)：DbContext正在跟踪此实体，该实体存在于数据库中，其属性值和从数据库中读取到的值一致，未发生改变。</li>
+<li>已修改(Modified)：DbContext正在跟踪此实体，并存在于数据库中，并且其部分或全部属性值已修改。</li>
+<li>已删除(Deleted)：DbContext正在跟踪此实体，并存在于数据库中，但在下次调用 SaveChanges 时要从数据库中删除对应数据。</li>
+<li>已分离(Detached)：DbContext未跟踪该实体。</li>
+</ul>
+</li>
+</ul>
+<h3 id="SaveChanges-的操作"><a href="#SaveChanges-的操作" class="headerlink" title="SaveChanges()的操作"></a>SaveChanges()的操作</h3><ul>
+<li>“已分离”和“未改变”的实体，SaveChanges()忽略；</li>
+<li>“已添加”的实体，SaveChanges() 插入数据库；</li>
+<li>“已修改”的实体，SaveChanges() 更新到数据库；</li>
+<li>“已删除”的实体，SaveChanges() 从数据库删除；</li>
+</ul>
+<h3 id="查看实体类的状态和实体类的变化信息"><a href="#查看实体类的状态和实体类的变化信息" class="headerlink" title="查看实体类的状态和实体类的变化信息"></a>查看实体类的状态和实体类的变化信息</h3><ul>
+<li>1、使用DbContext的Entry()方法来获得实体在EF Core中的跟踪信息对象EntityEntry<ul>
+<li>EntityEntry类的State属性代表实体的状态</li>
+<li>通过DebugView.LongView属性可以看到实体的变化信息</li>
+</ul>
+</li>
+<li>2、测试：从数据库中查出3条记录，修改一条、删除一条、一条不动；再new两个对象，其中一个Add，另外一个不动。然后查看它们的EntityEntry。<ul>
+<li><img src="https://github.com/cool19980208/picx-images-hosting/raw/master/20240925/%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96.7egqq135pr.webp" srcset="/img/loading.gif" lazyload alt="状态变化"></li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>DbContext会根据跟踪的实体的状态，在SaveChanges()的时候<ul>
+<li>根据实体状态的不同，生成Update、Delete、Insert等SQL语句，来把内存中实体的变化更新到数据库中</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NET-Core/" class="category-chain-item">.NET Core</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/NET-Core/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF-Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/" class="category-chain-item">第5章：EF Core高级技术</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NET-Core2022-%E5%AD%A6%E4%B9%A0/" class="print-no-link">#.NET Core2022-学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P5-1 EF Core原理揭秘</div>
+      <div>http://example.com/2024/09/25/Net Core2022教程/第5章：EF Core高级技术/P5-1 EF Core原理揭秘/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 25, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/26/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC5%E7%AB%A0%EF%BC%9AEF%20Core%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/P5-2%20EF%20Core%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%88%A9%E5%99%A8/" title="P5-2 EF Core的性能优化利器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">P5-2 EF Core的性能优化利器</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/22/Net%20Core2022%E6%95%99%E7%A8%8B/%E7%AC%AC4%E7%AB%A0%EF%BC%9AEntity%20Framework%20Core%E5%9F%BA%E7%A1%80/P4-6%20%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE/" title="P4-6 关系配置">
+                        <span class="hidden-mobile">P4-6 关系配置</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
