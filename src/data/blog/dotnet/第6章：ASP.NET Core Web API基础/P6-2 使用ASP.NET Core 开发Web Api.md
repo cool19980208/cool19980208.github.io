@@ -1,12 +1,13 @@
 ---
 title: P6-2 使用ASP.NET Core 开发Web API
-date: 2024-09-29 16:14:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第6章：ASP.NET Core Web API基础
+description: .NET Core 学习笔记 - P6-2 使用ASP.NET Core 开发Web API
+pubDatetime: 2024-09-29T16:14:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第6章：ASP.NET Core Web API基础
+draft: false
 ---
-# 使用ASP.NET Core 开发Web API
 ---
 
 ## 简单介绍

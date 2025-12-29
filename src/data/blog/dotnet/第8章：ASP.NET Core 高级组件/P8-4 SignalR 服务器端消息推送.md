@@ -1,12 +1,13 @@
 ---
 title: P8-4 SignalR 服务器端消息推送
-date: 2024-12-04 14:26:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第8章：ASP.NET Core 高级组件
+description: .NET Core 学习笔记 - P8-4 SignalR 服务器端消息推送
+pubDatetime: 2024-12-04T14:26:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第8章：ASP.NET Core 高级组件
+draft: false
 ---
-# SignalR 服务器端消息推送
 
 在传统的HTTP中，**只能客户端主动向服务器端发起请求，服务器端无法主动向客户端发送消息**
 但在有些业务场景下，我们需要服务器端主动向客户端发送消息，比如

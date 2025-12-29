@@ -1,12 +1,13 @@
 ---
 title: P4-4 Excel文件的读写
-date: 2024-08-15 12:19:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-4 Excel文件的读写
+pubDatetime: 2024-08-15T12:19:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# Excel文件的读写
 ---
 
 ## Excel格式说明

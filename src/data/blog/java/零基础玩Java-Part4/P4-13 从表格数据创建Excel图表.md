@@ -1,10 +1,12 @@
 ---
 title: P4-13 从表格数据创建Excel图表
-date: 2024-08-12 17:35:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-13 从表格数据创建Excel图表
+pubDatetime: 2024-08-12T17:35:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
 # 从表格中获取数据并创建Excel图表
 ---

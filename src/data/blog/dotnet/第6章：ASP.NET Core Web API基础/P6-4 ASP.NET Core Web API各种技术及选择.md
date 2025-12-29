@@ -1,12 +1,13 @@
 ---
 title: P6-4 ASP.NET Core Web API各种技术及选择
-date: 2024-09-30 12:21:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第6章：ASP.NET Core Web API基础
+description: .NET Core 学习笔记 - P6-4 ASP.NET Core Web API各种技术及选择
+pubDatetime: 2024-09-30T12:21:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第6章：ASP.NET Core Web API基础
+draft: false
 ---
-# ASP.NET Core Web API各种技术及选择
 ---
 ## 控制器父类用哪个
 - MVC和Web API之前有对比过了

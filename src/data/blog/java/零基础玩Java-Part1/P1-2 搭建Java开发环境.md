@@ -1,10 +1,12 @@
 ---
 title: P1-2  搭建Java开发环境
-date: 2024-07-30 19:29:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part1
+description: Java 学习笔记 - P1-2  搭建Java开发环境
+pubDatetime: 2024-07-30T19:29:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part1
+draft: false
 ---
 
 # 搭建Java开发环境

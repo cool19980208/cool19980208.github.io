@@ -1,12 +1,13 @@
 ---
 title: P3-7 JavaBean
-date: 2024-08-10 10:13:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part3
+description: Java 学习笔记 - P3-7 JavaBean
+pubDatetime: 2024-08-10T10:13:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part3
+draft: false
 ---
-# JavaBean
 ---
 ## 为什么需要用到Javabean
 - 1、Java中没有C#、Kotlin等语言中的属性的语法，为了规范Java中“属性”的语法，Java制定了JavaBean规范，按照JavaBean规范来编写，能够更简单的和其他框架一起使用

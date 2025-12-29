@@ -1,12 +1,13 @@
 ---
 title: P8-1 Authentication与Authorization
-date: 2024-10-14 17:26:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第8章：ASP.NET Core 高级组件
+description: .NET Core 学习笔记 - P8-1 Authentication与Authorization
+pubDatetime: 2024-10-14T17:26:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第8章：ASP.NET Core 高级组件
+draft: false
 ---
-# Authentication与Authorization
 ---
 - 1、Authentication 简单来说就是“鉴权”或“验证”
   - 对访问者的用户身份进行验证，“用户是否登录成功”。

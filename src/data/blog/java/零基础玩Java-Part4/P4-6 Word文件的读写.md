@@ -1,12 +1,13 @@
 ---
 title: P4-6 Word文件的读写
-date: 2024-08-16 09:08:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-6 Word文件的读写
+pubDatetime: 2024-08-16T09:08:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# Word文件的读写
 ---
 
 ## Word格式说明

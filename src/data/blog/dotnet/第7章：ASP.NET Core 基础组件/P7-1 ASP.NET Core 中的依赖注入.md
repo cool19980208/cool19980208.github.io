@@ -1,12 +1,13 @@
 ---
 title: P7-1 ASP.NET Core 中的依赖注入
-date: 2024-10-02 16:01:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第7章：ASP.NET Core 基础组件
+description: .NET Core 学习笔记 - P7-1 ASP.NET Core 中的依赖注入
+pubDatetime: 2024-10-02T16:01:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第7章：ASP.NET Core 基础组件
+draft: false
 ---
-# ASP.NET Core 中的依赖注入
 ---
 ## 对象注入的代码写到哪里
 - 1、在ASP.NET Core项目中一般不需要自己创建ServiceCollection、IServiceProvider。

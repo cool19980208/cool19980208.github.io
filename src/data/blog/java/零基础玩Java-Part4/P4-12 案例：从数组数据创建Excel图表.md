@@ -1,12 +1,13 @@
 ---
 title: P4-12 案例：从数组数据创建Excel图表
-date: 2024-08-19 15:00:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-12 案例：从数组数据创建Excel图表
+pubDatetime: 2024-08-19T15:00:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# 案例：从数组数据创建Excel图表
 ---
 ## 主要概念
 - XSSFChart是代表Excel中的图表对象。

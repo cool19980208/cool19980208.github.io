@@ -1,12 +1,13 @@
 ---
 title: P2-3 LINQ
-date: 2024-09-05 17:45:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第2章：.NET Core 重难点知识
+description: .NET Core 学习笔记 - P2-3 LINQ
+pubDatetime: 2024-09-05T17:45:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第2章：.NET Core 重难点知识
+draft: false
 ---
-# LINQ
 ---
 ## 为什么要学LINQ？
 - 让数据处理变得简单

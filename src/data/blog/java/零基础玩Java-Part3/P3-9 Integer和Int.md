@@ -1,12 +1,13 @@
 ---
 title: P3-9 Integer和Int
-date: 2024-08-11 16:09:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part3
+description: Java 学习笔记 - P3-9 Integer和Int
+pubDatetime: 2024-08-11T16:09:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part3
+draft: false
 ---
-# Integer和Int
 ---
 
 ## Int不能为空

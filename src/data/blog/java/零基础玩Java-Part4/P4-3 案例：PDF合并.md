@@ -1,10 +1,12 @@
 ---
 title: P4-3 案例：PDF合并
-date: 2024-08-14 14:38:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-3 案例：PDF合并
+pubDatetime: 2024-08-14T14:38:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
 # PDF合并
 ---

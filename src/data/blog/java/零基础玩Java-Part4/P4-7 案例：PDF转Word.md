@@ -1,12 +1,13 @@
 ---
 title: P4-7 案例：PDF转Word
-date: 2024-08-16 10:50:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-7 案例：PDF转Word
+pubDatetime: 2024-08-16T10:50:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# 案例：PDF转Word
 ---
 ## 程序员的工作
 程序员的工作其无非就是把一堆零件，有读写的PDF零件，有读写Word的零件，有读写Excel的零件等等，然后根据不同的项目把这些零件组装起来，按照不同的项目需求进行不同的拼装，从而就能够开发出来千变万化的程序

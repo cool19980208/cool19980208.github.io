@@ -1,12 +1,13 @@
 ---
 title: P6-3 Restful：想说爱你不容易
-date: 2024-09-30 09:35:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第6章：ASP.NET Core Web API基础
+description: .NET Core 学习笔记 - P6-3 Restful：想说爱你不容易
+pubDatetime: 2024-09-30T09:35:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第6章：ASP.NET Core Web API基础
+draft: false
 ---
-# Restful：想说爱你不容易
 ---
 ## 什么是Restful
 - Web API两种风格：面向过程（RPC）、面向REST（REST）

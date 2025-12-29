@@ -1,12 +1,13 @@
 ---
 title: P5-2 EF Core的性能优化利器
-date: 2024-09-26 17:26:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第5章：EF Core高级技术
+description: .NET Core 学习笔记 - P5-2 EF Core的性能优化利器
+pubDatetime: 2024-09-26T17:26:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第5章：EF Core高级技术
+draft: false
 ---
-# EF Core的性能优化利器
 ---
 ## EF Core的优化之AsNoTracking
 - 1、如果通过DbContext查询出来的对象只是用来展示，不会发生状态改变，则可以使用AsNoTracking()来 “禁用跟踪”。

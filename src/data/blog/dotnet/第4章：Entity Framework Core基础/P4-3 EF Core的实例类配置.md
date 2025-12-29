@@ -1,12 +1,13 @@
 ---
 title: P4-3 EF Core的实例类配置
-date: 2024-09-14 15:10:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第4章：Entity Framework Core基础
+description: .NET Core 学习笔记 - P4-3 EF Core的实例类配置
+pubDatetime: 2024-09-14T15:10:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第4章：Entity Framework Core基础
+draft: false
 ---
-# EF Core的实例类配置
 ---
 ## 约定大于配置
 主要规则：

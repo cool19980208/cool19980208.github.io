@@ -1,12 +1,13 @@
 ---
 title: P4-2 EF Core入门
-date: 2024-09-14 08:54:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第4章：Entity Framework Core基础
+description: .NET Core 学习笔记 - P4-2 EF Core入门
+pubDatetime: 2024-09-14T08:54:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第4章：Entity Framework Core基础
+draft: false
 ---
-# EF Core入门
 ---
 ## 该选择什么数据库
 - 1、EF Core是对于底层ADO.NET Core的封装，因此ADO.NET Core支持的数据库不一定被EF Core支持。

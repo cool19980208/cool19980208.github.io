@@ -1,14 +1,14 @@
 ---
 title: P8-5 ASP.NET Core系统的部署
-date: 2024-12-18 17:26:26
+description: .NET Core 学习笔记 - P8-5 ASP.NET Core系统的部署
+pubDatetime: 2024-12-18T17:26:26+08:00
 tags:
   - .NET
   - Core2022-学习
-categories:
   - .NET Core
   - 第8章：ASP.NET Core 高级组件
+draft: false
 ---
-# ASP.NET Core系统的部署
 
 ---
 ## ASP.NET Core网站的发布

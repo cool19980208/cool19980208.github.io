@@ -1,12 +1,13 @@
 ---
 title: P6-1 ASP.NET Core MVC项目
-date: 2024-09-29 11:01:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第6章：ASP.NET Core Web API基础
+description: .NET Core 学习笔记 - P6-1 ASP.NET Core MVC项目
+pubDatetime: 2024-09-29T11:01:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第6章：ASP.NET Core Web API基础
+draft: false
 ---
-# ASP.NET Core MVC项目
 ---
 ## 什么是ASP.NET Core
 - 1、ASP.NET Core是.NET中做Web开发的框架。

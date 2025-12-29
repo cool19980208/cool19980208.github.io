@@ -1,12 +1,13 @@
 ---
 title: P4-8 使用Word模板简化文件创建
-date: 2024-08-16 14:46:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-8 使用Word模板简化文件创建
+pubDatetime: 2024-08-16T14:46:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# 使用Word模板简化文件创建
 ---
 
 ## Word格式说明

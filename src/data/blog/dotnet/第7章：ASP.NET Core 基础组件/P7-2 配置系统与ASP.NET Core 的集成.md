@@ -1,12 +1,13 @@
 ---
 title: P7-2 配置系统与ASP.NET Core 的集成
-date: 2024-10-07 21:33:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第7章：ASP.NET Core 基础组件
+description: .NET Core 学习笔记 - P7-2 配置系统与ASP.NET Core 的集成
+pubDatetime: 2024-10-07T21:33:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第7章：ASP.NET Core 基础组件
+draft: false
 ---
-# 配置系统与ASP.NET Core 的集成
 ---
 ## 默认添加的配置提供者
 为了简化开发，在ASP.NET Core项目中，WebApplication类的CreateBuilder方法会按照下面的顺序来提供默认的配置

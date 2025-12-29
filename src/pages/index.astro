@@ -25,7 +25,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
+        你好，我是 Cool
       </h1>
       <a
         target="_blank"
@@ -43,19 +43,27 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       </a>
 
       <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+        这里是我的技术博客，记录和分享我在编程路上的学习笔记与思考。
+        主要涵盖 <strong>Java</strong>、<strong>.NET Core</strong> 等后端技术，
+        以及<strong>学习方法论</strong>和<strong>程序员软技能</strong>。
       </p>
       <p class="mt-2">
-        Read the blog posts or check
+        我相信持续学习和输出是成长的最佳方式。
+        如果这些内容对你有帮助，欢迎通过
         <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
+          href="/rss.xml"
         >
-          README
-        </LinkButton> for more info.
+          RSS 订阅
+        </LinkButton>
+        或查看
+        <LinkButton
+          class="underline decoration-dashed underline-offset-4 hover:text-accent"
+          href="/about"
+        >
+          关于页面
+        </LinkButton>
+        了解更多。
       </p>
       {
         // only display if at least one social link is enabled

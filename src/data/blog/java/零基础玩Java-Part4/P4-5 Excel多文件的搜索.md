@@ -1,10 +1,12 @@
 ---
 title: P4-5 Excel多文件的搜索
-date: 2024-08-15 16:47:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-5 Excel多文件的搜索
+pubDatetime: 2024-08-15T16:47:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
 # 在多个Excel文件中进行搜索
 ---

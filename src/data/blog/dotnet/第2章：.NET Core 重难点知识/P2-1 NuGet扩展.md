@@ -1,10 +1,12 @@
 ---
 title: P2-1 NuGet扩展
-date: 2024-08-23 11:32:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第2章：.NET Core 重难点知识
+description: .NET Core 学习笔记 - P2-1 NuGet扩展
+pubDatetime: 2024-08-23T11:32:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第2章：.NET Core 重难点知识
+draft: false
 ---
 # NuGet
 ---

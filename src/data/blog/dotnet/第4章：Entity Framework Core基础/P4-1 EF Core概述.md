@@ -1,12 +1,13 @@
 ---
 title: P4-1 EF Core概述
-date: 2024-09-13 11:13:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第4章：Entity Framework Core基础
+description: .NET Core 学习笔记 - P4-1 EF Core概述
+pubDatetime: 2024-09-13T11:13:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第4章：Entity Framework Core基础
+draft: false
 ---
-# EF Core概述
 ---
 ## 什么是ORM
 - 1、说明：本课程需要你有数据库、SQL等基础知识。

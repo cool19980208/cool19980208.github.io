@@ -1,12 +1,13 @@
 ---
 title: P6-5 ASP.NET Core Web API案例
-date: 2024-09-30 16:09:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第6章：ASP.NET Core Web API基础
+description: .NET Core 学习笔记 - P6-5 ASP.NET Core Web API案例
+pubDatetime: 2024-09-30T16:09:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第6章：ASP.NET Core Web API基础
+draft: false
 ---
-# ASP.NET Core Web API案例
 ---
 ## 开发Web API
 - 开发一个处理用户登录的Web API项目

@@ -1,12 +1,13 @@
 ---
 title: P2-8 GUI对话框
-date: 2024-08-06 11:15:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part2
+description: Java 学习笔记 - P2-8 GUI对话框
+pubDatetime: 2024-08-06T11:15:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part2
+draft: false
 ---
-# GUI对话框
 ---
 
 ## 关于GUI

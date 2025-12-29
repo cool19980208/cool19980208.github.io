@@ -1,12 +1,13 @@
 ---
 title: P4-9 案例：根据Excel工资表生成工资条
-date: 2024-08-16 17:07:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part4
+description: Java 学习笔记 - P4-9 案例：根据Excel工资表生成工资条
+pubDatetime: 2024-08-16T17:07:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part4
+draft: false
 ---
-# 案例：根据Excel工资表生成工资条
 ---
 
 ## 需求

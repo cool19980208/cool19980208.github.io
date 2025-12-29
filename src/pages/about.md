@@ -1,37 +1,57 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "关于"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+## 👋 关于我
 
-![Astro Paper](public/astropaper-og.jpg)
+你好，我是 **Cool**，一名运维工程师，目前专注于出海业务的技术探索。
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+这个博客是我的学习笔记本和思考记录，记录了我在技术路上的探索与成长。
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+## 📚 博客内容
 
-## Features
+这里主要分享以下几个方面的内容：
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+### 技术笔记
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+- **Java 系列**：从零基础到实战应用，包括基础语法、面向对象、办公自动化等
+- **.NET Core 系列**：涵盖核心基础组件、EF Core、ASP.NET Core Web API 等
 
-and so much more.
+### 学习方法
 
-## Show your support
+- 如何高效学习编程
+- 战胜拖延症和选择恐惧
+- 笔记方法与知识管理
+- 输入与输出的平衡
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+### 程序员软技能
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+- 职业发展与规划
+- 时间管理与工作效率
+- 技术负债与持续学习
+- 转行经验与面试技巧
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+## 💡 我的理念
 
-Kyay zuu! 🙏🏼
+> **持续学习，持续输出**
+
+我相信：
+
+- 📝 **写作是最好的学习方式** - 通过输出倒逼输入，加深理解
+- 🔄 **分享让知识更有价值** - 帮助他人的同时也在巩固自己
+- 🎯 **实践胜于空谈** - 理论结合实战，才能真正掌握技术
+- 🌱 **保持好奇心** - 技术日新月异，终身学习是程序员的必修课
+
+## 🔗 联系方式
+
+- GitHub: [@cool19980208](https://github.com/cool19980208)
+- 博客: [Cool's Blog](https://astro-paper.pages.dev/)
+
+## 📮 订阅更新
+
+如果你觉得这些内容有帮助，欢迎通过 [RSS](/rss.xml) 订阅本博客，第一时间获取更新。
+
+---
+
+感谢你的阅读！如果有任何问题或建议，欢迎通过 GitHub 与我交流。

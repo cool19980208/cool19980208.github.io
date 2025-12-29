@@ -1,12 +1,13 @@
 ---
 title: P5-1 EF Core原理揭秘
-date: 2024-09-25 10:50:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第5章：EF Core高级技术
+description: .NET Core 学习笔记 - P5-1 EF Core原理揭秘
+pubDatetime: 2024-09-25T10:50:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第5章：EF Core高级技术
+draft: false
 ---
-# EF Core原理揭秘
 ---
 ## EF Core有哪些做不到的事情
 - C#千变万化，但SQL功能简单

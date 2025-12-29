@@ -1,10 +1,12 @@
 ---
 title: P1-3  编写第一个Java程序
-date: 2024-07-30 22:02:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part1
+description: Java 学习笔记 - P1-3  编写第一个Java程序
+pubDatetime: 2024-07-30T22:02:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part1
+draft: false
 ---
 
 # 编写第一个Java程序

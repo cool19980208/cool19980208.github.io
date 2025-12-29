@@ -1,12 +1,13 @@
 ---
 title: P2-3  Maven的使用
-date: 2024-08-03 17:05:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part2
+description: Java 学习笔记 - P2-3  Maven的使用
+pubDatetime: 2024-08-03T17:05:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part2
+draft: false
 ---
-# Maven的使用
 ---
 ## YZK18-COMMONS库
 - 由杨中科封装的库，让初学者更好的学习

@@ -1,12 +1,13 @@
 ---
 title: P3-10 Java中基本的数据结构
-date: 2024-08-11 19:16:26
-tags: Java学习
-categories:
-- Java
-- 零基础玩Java-Part3
+description: Java 学习笔记 - P3-10 Java中基本的数据结构
+pubDatetime: 2024-08-11T19:16:26+08:00
+tags:
+  - Java学习
+  - Java
+  - 零基础玩Java-Part3
+draft: false
 ---
-# Java中基本的数据结构
 ---
 
 ## 数据结构

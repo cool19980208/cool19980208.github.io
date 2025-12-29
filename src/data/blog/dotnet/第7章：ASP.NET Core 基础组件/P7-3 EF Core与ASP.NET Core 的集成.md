@@ -1,12 +1,13 @@
 ---
 title: P7-3 EF Core与ASP.NET Core 的集成
-date: 2024-10-10 09:31:26
-tags: .NET Core2022-学习
-categories:
-- .NET Core
-- 第7章：ASP.NET Core 基础组件
+description: .NET Core 学习笔记 - P7-3 EF Core与ASP.NET Core 的集成
+pubDatetime: 2024-10-10T09:31:26+08:00
+tags:
+  - .NET Core2022-学习
+  - .NET Core
+  - 第7章：ASP.NET Core 基础组件
+draft: false
 ---
-# EF Core与ASP.NET Core 的集成
 ---
 ## 分层项目中EF Core的用法
 
