@@ -46,7 +46,7 @@ title: "关于"
 ## 🔗 联系方式
 
 - GitHub: [@cool19980208](https://github.com/cool19980208)
-- 博客: [Cool's Blog](https://astro-paper.pages.dev/)
+- 博客: [Cool's Blog](https://cool19980208.github.io/)
 
 ## 📮 订阅更新
 
